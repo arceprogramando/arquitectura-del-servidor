@@ -62,6 +62,8 @@ Para realizar este Ejercicio
 - [mongoose] interacción con la base de datos y proporciona una serie de características que facilitan el desarrollo de aplicaciones web y API que utilizan MongoDB 
 - [mongoose-paginate-v2] es una libreria para poder paginar que contiene un wrapper de paginas de diferentes estilos
 - [bootstrap] bootstrap incluido en CDN para crear diseño mas atractivo
+- [multer] para la configuracion de subida de archivos a travez del front , y manipularlos desde el server
+- [bcrypt] una libreria para poder hashear contraseñas
 
 ### Todos los paquetes 
 ```sh
@@ -69,7 +71,7 @@ npm init @eslint/config
 
 npm install cross-env nodemon -D
 
-npm install express cors dotenv cookie-parser express-handlebars mongoose mongoose-paginate-v2
+npm install express cors dotenv cookie-parser express-handlebars mongoose mongoose-paginate-v2 multer bcrypt
 
 ```
 
@@ -86,3 +88,5 @@ npm install express cors dotenv cookie-parser express-handlebars mongoose mongoo
   [mongoose]:<https://www.npmjs.com/package/mongoose>
   [mongoose-paginate-v2]:<https://www.npmjs.com/package/mongoose-paginate-v2>
   [bootstrap]:<https://getbootstrap.com>
+  [multer]:<https://www.npmjs.com/package/multer>
+  [bcrypt]:<https://www.npmjs.com/package/bcrypt>

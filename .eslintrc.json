@@ -21,6 +21,7 @@
         "no-underscore-dangle": 0 ,
         "max-len" : 0,
         "no-console":0,
-        "padded-blocks":0
+        "padded-blocks":0,
+        "func-names":0
     }
   }

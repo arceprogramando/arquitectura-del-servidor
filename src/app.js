@@ -11,6 +11,7 @@ import configObject from './config/config.js';
 import __dirname from './utils.js';
 import viewsRouter from './routes/views.router.js';
 import mongoDBConnection from './dao/db/config/mongo.config.js';
+import sessionRoutes from './routes/session.routes.js';
 
 const app = express();
 const env = configObject;
@@ -54,3 +55,4 @@ app.listen(app.get('PORT'), () => {
 
 mongoDBConnection();
 app.use('/', viewsRouter);
+app.use('/api/session', sessionRoutes);
