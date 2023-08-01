@@ -1,0 +1,42 @@
+<div class="container  h-100">
+        <div class="row h-100">
+            <div class="col-md-4 my-auto">
+
+                <form class="card card-body rounded-0" id="noteForm" action="/api/chat/" method="POST">
+
+                    <h1 class="h3 mb-5">Escribe un mensaje</h1>
+                    <input type="text" id="user" name="user" placeholder="user"
+                        class="form-control rounded-0 mb-3" required>
+                    <textarea name="message" id="message" rows="2" class="form-control rounded-0 mb-3 "
+                        placeholder="Write a message" required></textarea>
+                    <button class="btn btn-dark rounded-0">Send</button>
+                </form>
+
+            </div>
+            <div class="col-md-8 py-3">
+                <div id="notes"></div>
+            </div>
+        </div>
+    </div>
+<div class="col-md-8 py-3 overflow-auto max-heigth">
+      <div id="notes">
+        <div>
+          {{#each messages}}
+          <div class="">
+            <div class="card card-body rounded-2 mb-2 animate__animated animate__fadeInUp background">
+              <div class="d-flex justify-content-between  ">
+                <h1 class="h3 card-title">{{this.user}}</h1>
+                <p class="h5">{{this.message}}</p>
+              </div> 
+            </div>
+          </div>
+          {{else}}
+          <p>No hay mensajes disponibles.</p>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/chat.js"></script>

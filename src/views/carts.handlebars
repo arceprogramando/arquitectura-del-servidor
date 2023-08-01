@@ -1,0 +1,19 @@
+<div>
+  <h1>Cart por id</h1>
+  <div>
+    {{#each cart.products}}
+      <div class="card card-body rounded-2 mb-2 animate__animated animate__fadeInUp background">
+        <div class="d-flex justify-content-between">
+          <h1 class="h3 card-title">{{this.product.title}}</h1>
+          <p class="h5">Quantity: {{this.quantity}}</p>
+        </div>
+        <p>Description: {{this.product.description}}</p>
+        <p>Code: {{this.product.code}}</p>
+        <p>Price: {{this.product.price}}</p>
+        <p>Status: {{this.product.status}}</p>
+        <p>Category: {{this.product.category}}</p>
+        <img src="{{this.product.thumbnails}}" alt="Product Image" class="img-thumbnail">
+      </div>
+    {{/each}}
+  </div>
+</div>

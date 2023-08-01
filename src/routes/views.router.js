@@ -2,6 +2,7 @@ import { Router } from 'express';
 import productsModel from '../dao/models/products.models.js';
 import isLogged from '../middleware/auth.products.js';
 import messageModel from '../dao/models/message.models.js';
+import CartModel from '../dao/models/carts.models.js';
 
 const router = Router();
 
@@ -66,7 +67,7 @@ router.get('/products', isLogged, async (req, res) => {
   }
 });
 
-router.get('/chat', async (req, res) => {
+router.get('/chat', isLogged, async (req, res) => {
   try {
     const findmessage = await messageModel.find({});
     const messages = findmessage.map((message) => message.toObject());
@@ -75,9 +76,47 @@ router.get('/chat', async (req, res) => {
       messages,
       style: 'index.css',
     });
+
   } catch (error) {
     res.status(500).json({ error: 'Error al obtener los mensajes' });
   }
+});
+
+router.get('/carts/:id', async (req, res) => {
+  try {
+    const cart = await CartModel.findById({ _id: req.params.id }).populate('products.product');
+    if (!cart) {
+      return res.status(404).json({ error: 'Carrito no encontrado' });
+    }
+
+    return res.render('carts', {
+      cart: cart.toObject(),
+      style: '../../css/index.css',
+    });
+
+  } catch (error) {
+    return res.status(500).json({ error: `Error al obtener el carrito ${error}` });
+  }
+});
+
+router.get('/register', async (req, res) => {
+  res.render('register');
+});
+
+router.get('/recover', async (req, res) => {
+  res.render('recover');
+});
+
+router.get('/profile', isLogged, async (req, res) => {
+  const { user } = req.session;
+  // eslint-disable-next-line no-console
+  console.log(user);
+  res.render('profile', {
+    followers: user.followers,
+    lastname: user.firstname || user.login,
+    age: user.age,
+    email: user.email,
+  });
 });
 
 export default router;
