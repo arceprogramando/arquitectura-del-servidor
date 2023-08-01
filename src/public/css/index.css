@@ -1,0 +1,30 @@
+body{
+  height: 100vh;
+}
+p{
+  
+  color: red;
+}
+
+img{
+  width: 4em;
+  height: 4em;
+}
+
+
+.max-heigth{
+  max-height: 100vh;
+}
+
+.background{
+  background: hsla(141, 54%, 86%, 1);
+  background: linear-gradient(0deg, hsla(141, 54%, 86%, 1) 0%, hsla(333, 73%, 85%, 1) 50%, hsla(211, 58%, 79%, 1) 100%);
+  background: -moz-linear-gradient(0deg, hsla(141, 54%, 86%, 1) 0%, hsla(333, 73%, 85%, 1) 50%, hsla(211, 58%, 79%, 1) 100%);
+  background: -webkit-linear-gradient(0deg, hsla(141, 54%, 86%, 1) 0%, hsla(333, 73%, 85%, 1) 50%, hsla(211, 58%, 79%, 1) 100%);
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#CAEFD7", endColorstr="#F5BFD7", GradientType=1 );
+}
+
+
+.h-80 {
+  max-height: 80vh;
+}
