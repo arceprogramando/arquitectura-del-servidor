@@ -88,7 +88,6 @@ router.post('/login', async (req, res) => {
     };
 
     req.session.user = cleanUser;
-    console.log('Inicio de sesión exitoso:', cleanUser);
 
     return res.redirect('/products');
   } catch (error) {
@@ -106,16 +105,15 @@ router.get('/logout', (req, res) => {
   });
 });
 
-router.get('/recover-psw', async (req, res) => {
+router.post('/recover-psw', async (req, res) => {
   try {
-    console.log('BODY UPDATE');
     const { newpassword, email } = req.body;
 
-    const newPasswordHashed = encrypt.createHash(newpassword);
+    const newPasswordHashed = await encrypt.createHash(newpassword);
     const findUser = await userModel.findOne({ email });
 
     if (!findUser) {
-      return res.status(401).json({ message: 'Cradenciales invalidas o erroneas' });
+      return res.status(401).json({ message: 'Credenciales inválidas o erróneas' });
     }
 
     const updateUser = await userModel.findByIdAndUpdate(findUser._id, {
@@ -123,10 +121,10 @@ router.get('/recover-psw', async (req, res) => {
     });
 
     if (!updateUser) {
-      return res.json({ message: 'problemas actualizando la contraseña' });
+      return res.json({ message: 'Problemas actualizando la contraseña' });
     }
 
-    return res.render('login');
+    return res.redirect('/');
 
   } catch (error) {
     return res.status(500).json({ status: 'Error al actualizar la contraseña', error });
