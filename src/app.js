@@ -7,11 +7,13 @@ import session from 'express-session';
 import mongoStore from 'connect-mongo';
 import displayRoutes from 'express-routemap';
 import { engine } from 'express-handlebars';
+import passport from 'passport';
 import configObject from './config/config.js';
 import __dirname from './utils.js';
 import viewsRouter from './routes/views.router.js';
 import mongoDBConnection from './dao/db/config/mongo.config.js';
 import sessionRoutes from './routes/session.routes.js';
+import initializePassport from './config/passport.config.js';
 
 const app = express();
 const env = configObject;
@@ -48,6 +50,10 @@ app.use(
   }),
 );
 
+initializePassport();
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.listen(app.get('PORT'), () => {
   console.log(`=Encendido servidor en puerto ${app.get('PORT')}= \n====== http://localhost:${app.get('PORT')}/ =====`);
   console.log(`==========ENV:${app.get('NODE_ENV')}==========`);
@@ -56,5 +62,6 @@ app.listen(app.get('PORT'), () => {
 });
 
 mongoDBConnection();
+
 app.use('/', viewsRouter);
 app.use('/api/session', sessionRoutes);

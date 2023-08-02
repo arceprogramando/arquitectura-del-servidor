@@ -64,6 +64,8 @@ Para realizar este Ejercicio
 - [bootstrap] bootstrap incluido en CDN para crear diseño mas atractivo
 - [multer] para la configuracion de subida de archivos a travez del front , y manipularlos desde el server
 - [bcrypt] una libreria para poder hashear contraseñas
+- [passport] una libreria que funciona como middleware para hacer autentificacion de login , ya sea con esta misma o con sus extensiones.
+- [passport-github2] Estrategia de passport para poder poder hacer uso de el logeo con github
 
 ### Todos los paquetes 
 ```sh
@@ -71,7 +73,7 @@ npm init @eslint/config
 
 npm install cross-env nodemon -D
 
-npm install express cors dotenv cookie-parser express-handlebars mongoose mongoose-paginate-v2 multer bcrypt
+npm install express cors dotenv cookie-parser express-handlebars mongoose mongoose-paginate-v2 multer bcrypt passport passport-github2
 
 ```
 
@@ -90,3 +92,5 @@ npm install express cors dotenv cookie-parser express-handlebars mongoose mongoo
   [bootstrap]:<https://getbootstrap.com>
   [multer]:<https://www.npmjs.com/package/multer>
   [bcrypt]:<https://www.npmjs.com/package/bcrypt>
+  [passport]:<https://www.npmjs.com/package/passport>
+  [passport-github2]:<https://www.npmjs.com/package/passport-github2>

@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import passport from 'passport';
 import userModel from '../dao/models/user.models.js';
 import encrypt from '../utils/encrypt.js';
 
@@ -128,6 +129,30 @@ router.post('/recover-psw', async (req, res) => {
 
   } catch (error) {
     return res.status(500).json({ status: 'Error al actualizar la contraseña', error });
+  }
+});
+
+router.get('/github', passport.authenticate('github', { scope: ['user:email'] }), async (req, res) => {
+  try {
+    const authenticatedUser = req.user;
+    console.log('🚀 ~ file: session.routes.js:138 ~ router.get ~ authenticatedUser:', authenticatedUser);
+    res.redirect('/product');
+
+  } catch (error) {
+    console.error('Error en la autenticación de GitHub:', error);
+    res.status(500).json({ message: 'Error en la autenticación de GitHub' });
+  }
+});
+
+router.get('/github/callback', passport.authenticate('github', { failureRedirect: '/login' }), async (req, res) => {
+  try {
+
+    console.log('***Usuario endpoint de github/callback para comunicarnos***');
+    req.session.user = req.user;
+
+    res.redirect('/profile');
+  } catch (error) {
+    console.log('🚀 ~ file: session.routes.js:195 ~ router.get ~ error:', error);
   }
 });
 
