@@ -28,11 +28,11 @@ const userSchema = new mongoose.Schema({
   role: {
     type: String,
     enum: Object.values(roleType),
-    default: 'user',
+    default: 'USER',
   },
   cart: {
     type: mongoose.Types.ObjectId,
-    ref: 'cart',
+    ref: 'carts',
   },
   notes: {
     type: [

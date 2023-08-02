@@ -1,6 +1,9 @@
 import bcrypt from 'bcrypt';
 
-const createHash = (password) => bcrypt(password, bcrypt.genSalt(10));
+const createHash = async (password) => {
+  const saltRounds = 10;
+  return bcrypt.hash(password, saltRounds);
+};
 
 const isValidPassword = (user, password) => bcrypt.compareSync(password, user.password);
 
