@@ -29,16 +29,18 @@ app.set('view engine', 'handlebars');
 
 app.set('PORT', env.PORT || 8080);
 app.set('NODE_ENV', env.NODE_ENV || 'development');
+app.set('DB_CNN', env.DB_CNN);
+app.set('DB_NAME', env.DB_NAME);
 
 app.use(
   session({
     store: mongoStore.create({
-      mongoUrl: env.DB_CNN,
+      mongoUrl: `${app.get('DB_CNN')}${app.get('DB_NAME')}`,
       mongoOptions: {
         useNewUrlParser: true,
         useUnifiedTopology: true,
       },
-      ttl: 20,
+      ttl: 30,
     }),
     secret: 'mi_clave_secreta',
     saveUninitialized: false,
