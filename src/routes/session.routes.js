@@ -17,47 +17,74 @@ router.get('/', (req, res) => {
   }
 });
 
-router.post('/register', async (req, res) => {
+// router.post('/register', async (req, res) => {
+//   try {
+//     const {
+//       firstname, lastname, email, age, password,
+//     } = req.body;
+
+//     if (!firstname || !lastname || !email || !age || !password) {
+//       return res.status(400).json({ state: 'fallido', message: 'Por favor, completa todos los campos.' });
+//     }
+
+//     const existingUser = await UserModel.findOne(
+//       { email },
+//       {
+//         email: 1,
+//         firstname: 1,
+//         lastname: 1,
+//         password: 1,
+//       },
+//     );
+
+//     if (existingUser) {
+//       return res.status(409).json({ state: 'fallido', message: 'El correo electrónico ya está registrado.' });
+//     }
+
+//     if (age <= 0) {
+//       return res.status(400).json({ state: 'fallido', message: 'La edad debe ser un número positivo.' });
+//     }
+
+//     const newUser = await UserModel.create({
+//       firstname,
+//       lastname,
+//       email,
+//       age,
+//       password: await encrypt.createHash(password),
+//     });
+
+//     req.session.user = { ...newUser };
+//     return res.redirect('/');
+//   } catch (error) {
+//     console.log('🚀 ~ file: session.routes.js:58 ~ router.post ~ error:', error);
+//     return res.status(500).json({ state: 'fallido', message: 'Hubo un error al registrar el usuario', error });
+//   }
+// });
+
+// Register con Passport
+
+router.post('/register', passport.authenticate('local-register', {
+  failureRedirect: '/',
+}), async (req, res) => {
   try {
     const {
       firstname, lastname, email, age, password,
     } = req.body;
 
-    if (!firstname || !lastname || !email || !age || !password) {
-      return res.status(400).json({ state: 'fallido', message: 'Por favor, completa todos los campos.' });
-    }
+    const hashedPassword = await encrypt.createHash(password);
 
-    const existingUser = await UserModel.findOne(
-      { email },
-      {
-        email: 1,
-        firstname: 1,
-        lastname: 1,
-        password: 1,
-      },
-    );
-
-    if (existingUser) {
-      return res.status(409).json({ state: 'fallido', message: 'El correo electrónico ya está registrado.' });
-    }
-
-    if (age <= 0) {
-      return res.status(400).json({ state: 'fallido', message: 'La edad debe ser un número positivo.' });
-    }
-
-    const newUser = await UserModel.create({
+    await UserModel.create({
       firstname,
       lastname,
       email,
       age,
-      password: await encrypt.createHash(password),
+      password: hashedPassword,
     });
 
-    req.session.user = { ...newUser };
-    return res.redirect('/');
+    res.redirect('/');
   } catch (error) {
-    console.log('🚀 ~ file: session.routes.js:58 ~ router.post ~ error:', error);
-    return res.status(500).json({ state: 'fallido', message: 'Hubo un error al registrar el usuario', error });
+    console.error('Error al registrar el usuario:', error);
+    res.status(500).json({ status: 'error', message: 'Hubo un error al registrar el usuario' });
   }
 });
 
