@@ -15,6 +15,7 @@ import mongoDBConnection from './dao/db/config/mongo.config.js';
 import sessionRoutes from './routes/session.routes.js';
 import initializePassport from './config/passport.config.js';
 import productRouter from './routes/products.routes.js';
+import cartRouter from './routes/carts.routes.js';
 
 const app = express();
 const env = configObject;
@@ -67,4 +68,4 @@ mongoDBConnection();
 app.use('/', viewsRouter);
 app.use('/api/session', sessionRoutes);
 app.use('/api/products', productRouter);
-// app.use('/api/carts', cartRouter);
+app.use('/api/carts', cartRouter);

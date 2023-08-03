@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import passport from 'passport';
-import userModel from '../dao/models/user.models.js';
+import UserModel from '../dao/models/user.models.js';
 import encrypt from '../utils/encrypt.js';
 
 const router = Router();
@@ -27,7 +27,7 @@ router.post('/register', async (req, res) => {
       return res.status(400).json({ state: 'fallido', message: 'Por favor, completa todos los campos.' });
     }
 
-    const existingUser = await userModel.findOne(
+    const existingUser = await UserModel.findOne(
       { email },
       {
         email: 1,
@@ -45,7 +45,7 @@ router.post('/register', async (req, res) => {
       return res.status(400).json({ state: 'fallido', message: 'La edad debe ser un número positivo.' });
     }
 
-    const newUser = await userModel.create({
+    const newUser = await UserModel.create({
       firstname,
       lastname,
       email,
@@ -68,7 +68,7 @@ router.post('/login', async (req, res) => {
       return res.status(400).send({ status: 'fallido', error: 'valores incompletos' });
     }
 
-    const findUser = await userModel.findOne({ email });
+    const findUser = await UserModel.findOne({ email });
 
     if (!findUser) {
       console.log('Usuario no encontrado');
@@ -111,13 +111,13 @@ router.post('/recover-psw', async (req, res) => {
     const { newpassword, email } = req.body;
 
     const newPasswordHashed = await encrypt.createHash(newpassword);
-    const findUser = await userModel.findOne({ email });
+    const findUser = await UserModel.findOne({ email });
 
     if (!findUser) {
       return res.status(401).json({ message: 'Credenciales inválidas o erróneas' });
     }
 
-    const updateUser = await userModel.findByIdAndUpdate(findUser._id, {
+    const updateUser = await UserModel.findByIdAndUpdate(findUser._id, {
       password: newPasswordHashed,
     });
 

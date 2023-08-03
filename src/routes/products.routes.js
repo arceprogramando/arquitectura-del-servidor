@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import productModel from '../dao/models/products.models.js';
+import ProductModel from '../dao/models/products.models.js';
 import uploadMiddleware from '../services/uploader.js';
 
 const router = Router();
@@ -33,7 +33,7 @@ router.post('/', uploadMiddleware, async (req, res) => {
       thumbnails,
     };
 
-    const createdProduct = await productModel.create(product);
+    const createdProduct = await ProductModel.create(product);
 
     return res.send({ status: 'success', payload: createdProduct });
 
@@ -45,7 +45,7 @@ router.post('/', uploadMiddleware, async (req, res) => {
 
 router.get('/:pId', async (req, res) => {
   try {
-    const product = await productModel.findById({ _id: req.params.pId });
+    const product = await ProductModel.findById({ _id: req.params.pId });
 
     if (product) {
       res.status(200).json(product);
@@ -84,7 +84,7 @@ router.put('/:pId', uploadMiddleware, async (req, res) => {
       });
     }
 
-    const updatedProduct = await productModel.findByIdAndUpdate(
+    const updatedProduct = await ProductModel.findByIdAndUpdate(
       pId,
       {
         title,
@@ -112,13 +112,13 @@ router.delete('/:pId', async (req, res) => {
   try {
     const { pId } = req.params;
 
-    const product = await productModel.findById({ _id: pId });
+    const product = await ProductModel.findById({ _id: pId });
 
     if (!product) {
       return res.status(404).json({ error: 'El producto no existe' });
     }
 
-    await productModel.findByIdAndDelete({ _id: pId });
+    await ProductModel.findByIdAndDelete({ _id: pId });
 
     return res.status(200).json({ status: 'success', message: 'Producto eliminado correctamente' });
   } catch (error) {
