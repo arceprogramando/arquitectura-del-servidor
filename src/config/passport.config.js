@@ -1,9 +1,12 @@
 import passport from 'passport';
+import local from 'passport-local';
 import GitHubStrategy from 'passport-github2';
 import configObject from './config.js';
 import userModel from '../dao/models/user.models.js';
+import encrypt from '../utils/encrypt.js';
 
 const env = configObject;
+const LocalStrategy = local.Strategy;
 
 const { GITHUB_CLIENT_ID } = env;
 const { GITHUB_CLIENT_SECRET } = env;
@@ -34,6 +37,37 @@ const initializePassport = () => {
       return done(error);
     }
   }));
+
+  passport.use('local-register', new LocalStrategy(
+    { passReqToCallback: true, usernameField: 'email' },
+    async (req, username, password, done) => {
+      const {
+        firstname, lastname, email, age,
+      } = req.body;
+      try {
+        const user = await userModel.findOne({ email });
+        if (user) {
+          return done(null, false, { message: 'El correo electrónico ya está registrado.' });
+        }
+
+        const hashedPassword = await encrypt.createHash(password);
+
+        const newUser = {
+          firstname,
+          lastname,
+          email,
+          age,
+          password: hashedPassword,
+        };
+
+        const createdUser = await userModel.create(newUser);
+
+        return done(null, createdUser);
+      } catch (error) {
+        return done(error);
+      }
+    },
+  ));
 
   passport.serializeUser((user, done) => {
     done(null, user._id);
