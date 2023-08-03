@@ -6,7 +6,6 @@ const uploadPath = join(__dirname, 'public', 'upload');
 
 const storage = multer.diskStorage({
   destination(req, file, cb) {
-    console.log('Destination:', uploadPath);
     cb(null, uploadPath);
   },
   filename(req, file, cb) {
@@ -16,7 +15,7 @@ const storage = multer.diskStorage({
 
 const uploadMiddleware = multer({
   storage,
-  limits: { fileSize: 200000 },
+  limits: { fileSize: 300000 },
   fileFilter: (req, file, cb) => {
     const filetypes = /jpeg|jpg|png|fig|PNG/;
     const mimetype = filetypes.test(file.mimetype);
