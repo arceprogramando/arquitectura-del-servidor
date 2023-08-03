@@ -36,14 +36,12 @@ email:String (único)
 age:Number,
 password:String(Hash)
 cart:Id con referencia a Carts
-role:String(default:’user’)
-Desarrollar las estrategias de Passport para que funcionen con este modelo de usuarios
-- Modificar el sistema de login del usuario para poder trabajar con session o con jwt (a tu elección). 
+role:String(default:’USER’)✔️
+Desarrollar las estrategias de Passport para que funcionen con este modelo de usuarios✔️
+- Modificar el sistema de login del usuario para poder trabajar con session o con jwt (a tu elección). ✔️
 (Sólo para jwt) desarrollar una estrategia “current” para extraer la cookie que contiene el token para obtener el usuario asociado a dicho token, en caso de tener el token, devolver al usuario asociado al token, caso contrario devolver un error de passport, utilizar un extractor de cookie.
-Agregar al router /api/sessions/ la ruta /current, la cual utilizará el modelo de sesión que estés utilizando, para poder devolver en una respuesta el usuario actual.
+Agregar al router /api/sessions/ la ruta /current, la cual utilizará el modelo de sesión que estés utilizando, para poder devolver en una respuesta el usuario actual.(use sessions por ahora)
 
-- Me falta practicar aggregate a mis queries (minuto 50 clase mongo avanzado 2 esta la explicacion)
-- Las rutas para renderizar tengo que acomodarlas con la pagination  (minuto 23 parte 2 mongo avanzado 2 esta la explicacion )
 
 > Espero que Los ejercicios se encuentren
 > resueltos de buena forma y espero 

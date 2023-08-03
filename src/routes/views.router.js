@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import productsModel from '../dao/models/products.models.js';
 import isLogged from '../middleware/auth.products.js';
-import messageModel from '../dao/models/message.models.js';
+import MessageModel from '../dao/models/message.models.js';
 import CartModel from '../dao/models/carts.models.js';
 
 const router = Router();
@@ -69,7 +69,7 @@ router.get('/products', isLogged, async (req, res) => {
 
 router.get('/chat', isLogged, async (req, res) => {
   try {
-    const findmessage = await messageModel.find({});
+    const findmessage = await MessageModel.find({});
     const messages = findmessage.map((message) => message.toObject());
 
     res.render('chat', {
@@ -109,8 +109,6 @@ router.get('/recover', async (req, res) => {
 
 router.get('/profile', isLogged, async (req, res) => {
   const { user } = req.session;
-  // eslint-disable-next-line no-console
-  console.log(user);
   res.render('profile', {
     followers: user.followers,
     lastname: user.firstname || user.login,

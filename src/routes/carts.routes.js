@@ -104,7 +104,7 @@ router.put('/:cId', async (req, res) => {
   }
 });
 
-router.put('/:cId/products/:pId', async (req, res) => {
+router.put('/:cId/product/:pId', async (req, res) => {
   try {
     const { cId, pId } = req.params;
     const { quantity } = req.body;
@@ -143,7 +143,7 @@ router.delete('/carts/:cId', async (req, res) => {
   }
 });
 
-router.delete('/:cId/products/:pId', async (req, res) => {
+router.delete('/:cId/product/:pId', async (req, res) => {
   try {
     const { cId, pId } = req.params;
 
