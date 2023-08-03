@@ -67,3 +67,4 @@ mongoDBConnection();
 app.use('/', viewsRouter);
 app.use('/api/session', sessionRoutes);
 app.use('/api/products', productRouter);
+// app.use('/api/carts', cartRouter);
