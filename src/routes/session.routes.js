@@ -56,7 +56,7 @@ router.post('/login', passport.authenticate('local-login', { failureRedirect: '/
     email: req.user.email,
     role: req.user.role,
   };
-  res.redirect('/products');
+  return res.redirect('/products');
 });
 
 router.get('/logout', (req, res) => {

@@ -64,6 +64,9 @@ Para realizar este Ejercicio
 - [bcrypt] una libreria para poder hashear contraseñas
 - [passport] una libreria que funciona como middleware para hacer autentificacion de login , ya sea con esta misma o con sus extensiones.
 - [passport-github2] Estrategia de passport para poder poder hacer uso de el logeo con github
+- [connect-mongo] es un módulo de Node.js que se utiliza como almacén de sesiones 
+- [express-session] esencial para manejar sesiones de usuario en aplicaciones web creadas con Express.js
+- [passport-local] estrategia de passport para manejar el inicio de sesion local
 
 ### Todos los paquetes 
 ```sh
@@ -71,7 +74,7 @@ npm init @eslint/config
 
 npm install cross-env nodemon -D
 
-npm install express cors dotenv cookie-parser express-handlebars mongoose mongoose-paginate-v2 multer bcrypt passport passport-github2
+npm install express cors dotenv cookie-parser express-handlebars mongoose mongoose-paginate-v2 multer bcrypt passport passport-github2 connect-mongo express-session
 
 ```
 
@@ -92,3 +95,6 @@ npm install express cors dotenv cookie-parser express-handlebars mongoose mongoo
   [bcrypt]:<https://www.npmjs.com/package/bcrypt>
   [passport]:<https://www.npmjs.com/package/passport>
   [passport-github2]:<https://www.npmjs.com/package/passport-github2>
+  [connect-mongo]:<https://www.npmjs.com/package/connect-mongo>
+  [express-session]:<https://www.npmjs.com/package/express-session>
+  [passport-local]:<https://www.passportjs.org/packages/passport-local/>
