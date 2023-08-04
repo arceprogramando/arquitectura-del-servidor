@@ -2,7 +2,7 @@ import passport from 'passport';
 import local from 'passport-local';
 import GitHubStrategy from 'passport-github2';
 import configObject from './config.js';
-import userModel from '../dao/models/user.models.js';
+import UserModel from '../dao/models/user.models.js';
 import encrypt from '../utils/encrypt.js';
 
 const env = configObject;
@@ -19,7 +19,7 @@ const initializePassport = () => {
     callbackURL: `http://localhost:${PORT}/api/session/github/callback`,
   }, async (accessToken, refreshToken, profile, done) => {
     try {
-      const findUser = await userModel.findOne({ email: profile._json?.email });
+      const findUser = await UserModel.findOne({ email: profile._json?.email });
 
       if (!findUser) {
         const addNewUser = {
@@ -29,7 +29,7 @@ const initializePassport = () => {
           age: 0,
           password: '',
         };
-        const newUser = await userModel.create(addNewUser);
+        const newUser = await UserModel.create(addNewUser);
         return done(null, newUser);
       }
       return done(null, findUser);
@@ -45,7 +45,7 @@ const initializePassport = () => {
         firstname, lastname, email, age,
       } = req.body;
       try {
-        const user = await userModel.findOne({ email });
+        const user = await UserModel.findOne({ email });
         if (user) {
           return done(null, false, { message: 'El correo electrónico ya está registrado.' });
         }
@@ -60,7 +60,7 @@ const initializePassport = () => {
           password: hashedPassword,
         };
 
-        const createdUser = await userModel.create(newUser);
+        const createdUser = await UserModel.create(newUser);
 
         return done(null, createdUser);
       } catch (error) {
@@ -69,13 +69,26 @@ const initializePassport = () => {
     },
   ));
 
+  passport.use('local-login', new LocalStrategy({ usernameField: 'email' }, async (username, password, done) => {
+    try {
+      const user = await UserModel.findOne({ email: username });
+      if (!user) {
+        return done(null, false);
+      }
+      if (!encrypt.isValidPassword(user, password)) return done(null, false);
+      return done(null, user);
+    } catch (error) {
+      return done(error);
+    }
+  }));
+
   passport.serializeUser((user, done) => {
     done(null, user._id);
   });
 
   passport.deserializeUser(async (id, done) => {
     try {
-      const user = await userModel.findById({ _id: id });
+      const user = await UserModel.findById({ _id: id });
       done(null, user);
     } catch (error) {
       done(error);
