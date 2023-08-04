@@ -1,6 +1,6 @@
-# Arquitectura del servidor: Diseño
+# Arquitectura del servidor: Diseño(no finalizada)
 ## _Felipe Antonio Aleman Arce_
-### Ejercicio 11 entregable , Arquitectura del servidor: Diseño
+### Ejercicio 11 entregable , Arquitectura del servidor: Diseño(no finalizada)
 [![Coderhouse](https://res.cloudinary.com/hdsqazxtw/image/upload/v1570710978/coderhouse.jpg)](https://github.com/arceprogramando)
 Mi repositorio publico es  [arceprogramando][arceprogramando]
 en github.
