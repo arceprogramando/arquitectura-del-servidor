@@ -1,6 +1,6 @@
-# Segunda practica Integradora
+# Arquitectura del servidor: Diseño
 ## _Felipe Antonio Aleman Arce_
-### Ejercicio 10 entregable , Segunda practica Integradora
+### Ejercicio 11 entregable , Arquitectura del servidor: Diseño
 [![Coderhouse](https://res.cloudinary.com/hdsqazxtw/image/upload/v1570710978/coderhouse.jpg)](https://github.com/arceprogramando)
 Mi repositorio publico es  [arceprogramando][arceprogramando]
 en github.
@@ -18,15 +18,15 @@ Hasta ahora realice:
 - Post de Practica Integadora ((>‿◠)✌) ✔️
 - Login Por Formulario ✔️
 - Estrategia de autenticacion por terceros ✔️
-- Segunda practica integradora (>‿◠)
-
+- Segunda practica integradora (>‿◠) (falta reentregar ,pero esta completada en este proyecto)
+- Arquitectura del servidor: Diseño (Sin terminar)
 Cosas que me aun tengo sin funcionar o sin entender conceptos de anterior entregas:
 
 - Si se desea hacer la conexión de socket emits con HTTP, deberás buscar la forma de utilizar el servidor io de Sockets dentro de la petición POST. ¿Cómo utilizarás un emit dentro del POST?(sin terminar)❌❔
 - Llevar a una nueva vista con el producto seleccionado con su descripción completa, detalles de precio, categoría, etc. Además de un botón para agregar al carrito.
 - Contar con el botón de “agregar al carrito” directamente, sin necesidad de abrir una página adicional con los detalles del producto.(no se como hacer) ❌❔
 
-## (Nos encontramos aca) Segunda practica integradora
+##  Segunda practica integradora
 
 - Continuar sobre el proyecto que has trabajado para tu ecommerce y configurar los siguientes elementos:
 - Crear un modelo User el cual contará con los campos:
@@ -39,9 +39,24 @@ cart:Id con referencia a Carts
 role:String(default:’USER’)✔️
 Desarrollar las estrategias de Passport para que funcionen con este modelo de usuarios✔️
 - Modificar el sistema de login del usuario para poder trabajar con session o con jwt (a tu elección). ✔️
+
+### Use passportlocal 
 (Sólo para jwt) desarrollar una estrategia “current” para extraer la cookie que contiene el token para obtener el usuario asociado a dicho token, en caso de tener el token, devolver al usuario asociado al token, caso contrario devolver un error de passport, utilizar un extractor de cookie.
 Agregar al router /api/sessions/ la ruta /current, la cual utilizará el modelo de sesión que estés utilizando, para poder devolver en una respuesta el usuario actual.(use sessions por ahora)
 
+## Arquitectura del servidor: Diseño (Nos encontramos aca , sin terminar)
+### Aspectos a incluir
+- El proyecto debe contar con capas de
+routing, controlador, dao, con nuestras
+vistas bien separadas y con las
+responsabilidades correctamente
+delegadas.
+- Aspectos a incluir
+✓ Además, mover del proyecto todas las
+partes importantes y
+comprometedoras en un archivo .env
+para poder leerlo bajo variables de
+entorno en un archivo config.js
 
 > Espero que Los ejercicios se encuentren
 > resueltos de buena forma y espero 
