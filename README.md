@@ -51,8 +51,7 @@ routing, controlador, dao, con nuestras
 vistas bien separadas y con las
 responsabilidades correctamente
 delegadas.
-- Aspectos a incluir
-✓ Además, mover del proyecto todas las
+- Además, mover del proyecto todas las
 partes importantes y
 comprometedoras en un archivo .env
 para poder leerlo bajo variables de

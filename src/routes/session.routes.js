@@ -1,46 +1,22 @@
 import { Router } from 'express';
 import passport from 'passport';
 import UserModel from '../dao/models/user.models.js';
-import encrypt from '../utils/encrypt.js';
+import encrypt from '../helpers/encrypt.js';
+import UserController from '../controllers/session.controllers.js';
 
 const router = Router();
+const userController = new UserController();
 
-router.get('/', (req, res) => {
-  const counter = req.session?.counter;
-
-  if (!counter) {
-    req.session.counter = 1;
-    res.send(`Se ha visitado el sitio ${req.session.counter} vez`);
-  } else {
-    req.session.counter += 1;
-    res.send('Bienvenido');
-  }
-});
-
-// Register con Passport
+// Register con Passport y refactor
 
 router.post('/register', passport.authenticate('local-register', {
   failureRedirect: '/register',
 }), async (req, res) => {
   try {
-    const {
-      firstname, lastname, email, age, password,
-    } = req.body;
-
-    const hashedPassword = await encrypt.createHash(password);
-
-    await UserModel.create({
-      firstname,
-      lastname,
-      email,
-      age,
-      password: hashedPassword,
-    });
-
-    res.redirect('/');
+    await userController.createUser(req, res);
   } catch (error) {
-    console.error('Error al registrar el usuario:', error);
-    res.status(500).json({ status: 'error', message: 'Hubo un error al registrar el usuario' });
+
+    res.status(500).json({ status: 'error', message: 'Hubo un error al registrar el usuario en routes' });
   }
 });
 
