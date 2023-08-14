@@ -20,6 +20,8 @@ router.post('/register', passport.authenticate('local-register', {
   }
 });
 
+// Me encuentro haciendo este refactor
+
 router.post('/login', passport.authenticate('local-login', { failureRedirect: '/' }), async (req, res) => {
   if (!req.user) {
     return res.status(400).send({ status: 'error', error: 'Invalid credentials' });

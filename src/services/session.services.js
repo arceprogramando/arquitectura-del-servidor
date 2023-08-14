@@ -6,7 +6,7 @@ class UserService {
     this.UserModel = UserModel;
   }
 
-  createUser = async (userData) => {
+  async createUser(userData) {
     const {
       firstname, lastname, email, age, password,
     } = userData;
@@ -18,7 +18,24 @@ class UserService {
       age,
       password: hashedPassword,
     });
-  };
+  }
+
+  async loginUser(email, password) {
+    const user = await this.UserModel.findOne({ email });
+
+    if (!user || !(await user.isValidPassword(password))) {
+      throw new Error('Invalid credentials');
+    }
+
+    return {
+      firstname: user.firstname,
+      lastname: user.lastname,
+      age: user.age,
+      email: user.email,
+      role: user.role,
+    };
+  }
+
 }
 
 export default UserService;
