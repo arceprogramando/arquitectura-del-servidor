@@ -20,18 +20,11 @@ router.post('/register', passport.authenticate('local-register', {
   }
 });
 
-// Me encuentro haciendo este refactor
-
 router.post('/login', passport.authenticate('local-login', { failureRedirect: '/' }), userController.loginUser);
 
-router.get('/logout', (req, res) => {
-  req.session.destroy((error) => {
-    if (!error) {
-      return res.redirect('/');
-    }
-    return res.status(500).json({ status: 'Error al cerrar la sesion,', body: error });
-  });
-});
+router.get('/logout', userController.logoutUser);
+
+// Me encuentro haciendo este refactor
 
 router.post('/recover-psw', async (req, res) => {
   try {
