@@ -44,6 +44,18 @@ class UserController {
       res.status(400).send({ status: 'error', error: 'Credenciales inválidas en session' });
     }
   };
+
+  logoutUser = async (req, res) => {
+    try {
+      req.session.destroy();
+
+      return res.redirect('/');
+    } catch (error) {
+      console.error('Error al cerrar la sesión:', error);
+      return res.status(500).json({ status: 'Error al cerrar la sesión', error: error.message });
+    }
+  };
+
 }
 
 export default UserController;
