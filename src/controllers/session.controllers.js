@@ -1,10 +1,8 @@
 import UserService from '../services/session.services.js';
 
 class UserController {
-  UserService;
-
   constructor() {
-    this.UserService = new UserService();
+    this.userService = new UserService();
   }
 
   createUser = async (req, res) => {
@@ -12,7 +10,7 @@ class UserController {
       const {
         firstname, lastname, email, age, password,
       } = req.body;
-      await this.UserService.createUser({
+      await this.userService.createUser({
         firstname,
         lastname,
         email,
@@ -24,6 +22,26 @@ class UserController {
     } catch (error) {
       console.error('Error al registrar el usuario:', error);
       res.status(500).json({ status: 'error', message: 'Hubo un error al registrar el usuario' });
+    }
+  };
+
+  loginUser = async (req, res) => {
+    try {
+      const { email, password } = req.body;
+      const user = await this.userService.loginUser(email, password);
+
+      req.session.user = {
+        firstname: user.firstname,
+        lastname: user.lastname,
+        age: user.age,
+        email: user.email,
+        role: user.role,
+      };
+
+      res.redirect('/products');
+    } catch (error) {
+      console.error('Error al iniciar sesión:', error);
+      res.status(400).send({ status: 'error', error: 'Credenciales inválidas en session' });
     }
   };
 }

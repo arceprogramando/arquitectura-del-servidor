@@ -16,26 +16,13 @@ router.post('/register', passport.authenticate('local-register', {
     await userController.createUser(req, res);
   } catch (error) {
 
-    res.status(500).json({ status: 'error', message: 'Hubo un error al registrar el usuario en routes' });
+    res.status(500).json({ status: 'error', message: 'Hubo un error al registrar el usuario en router . linea 19' });
   }
 });
 
 // Me encuentro haciendo este refactor
 
-router.post('/login', passport.authenticate('local-login', { failureRedirect: '/' }), async (req, res) => {
-  if (!req.user) {
-    return res.status(400).send({ status: 'error', error: 'Invalid credentials' });
-  }
-
-  req.session.user = {
-    firstname: req.user.firstname,
-    lastname: req.user.lastname,
-    age: req.user.age,
-    email: req.user.email,
-    role: req.user.role,
-  };
-  return res.redirect('/products');
-});
+router.post('/login', passport.authenticate('local-login', { failureRedirect: '/' }), userController.loginUser);
 
 router.get('/logout', (req, res) => {
   req.session.destroy((error) => {

@@ -23,7 +23,7 @@ class UserService {
   async loginUser(email, password) {
     const user = await this.UserModel.findOne({ email });
 
-    if (!user || !(await user.isValidPassword(password))) {
+    if (!user || !(await encrypt.isValidPassword(user, password))) {
       throw new Error('Invalid credentials');
     }
 
@@ -35,7 +35,6 @@ class UserService {
       role: user.role,
     };
   }
-
 }
 
 export default UserService;
