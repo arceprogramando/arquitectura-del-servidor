@@ -1,7 +1,5 @@
 import { Router } from 'express';
 import passport from 'passport';
-import UserModel from '../dao/models/user.models.js';
-import encrypt from '../helpers/encrypt.js';
 import UserController from '../controllers/session.controllers.js';
 
 const router = Router();
@@ -26,31 +24,7 @@ router.get('/logout', userController.logoutUser);
 
 // Me encuentro haciendo este refactor
 
-router.post('/recover-psw', async (req, res) => {
-  try {
-    const { newpassword, email } = req.body;
-
-    const newPasswordHashed = await encrypt.createHash(newpassword);
-    const findUser = await UserModel.findOne({ email });
-
-    if (!findUser) {
-      return res.status(401).json({ message: 'Credenciales inválidas o erróneas' });
-    }
-
-    const updateUser = await UserModel.findByIdAndUpdate(findUser._id, {
-      password: newPasswordHashed,
-    });
-
-    if (!updateUser) {
-      return res.json({ message: 'Problemas actualizando la contraseña' });
-    }
-
-    return res.redirect('/');
-
-  } catch (error) {
-    return res.status(500).json({ status: 'Error al actualizar la contraseña', error });
-  }
-});
+router.post('/recover-psw', userController.resetPassword);
 
 router.get('/github', passport.authenticate('github', { scope: ['user:email'] }), async (req, res) => {
   try {

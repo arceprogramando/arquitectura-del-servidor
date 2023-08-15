@@ -56,6 +56,18 @@ class UserController {
     }
   };
 
+  resetPassword = async (req, res) => {
+    try {
+      const { email, newpassword } = req.body;
+
+      await this.userService.updatePassword(email, newpassword);
+
+      return res.redirect('/');
+    } catch (error) {
+      console.error('Error al actualizar la contraseña:', error);
+      return res.status(500).json({ status: 'Error al actualizar la contraseña', error: error.message });
+    }
+  };
 }
 
 export default UserController;

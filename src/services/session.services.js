@@ -23,7 +23,7 @@ class UserService {
   async loginUser(email, password) {
     const user = await this.UserModel.findOne({ email });
 
-    if (!user || !(await encrypt.isValidPassword(user, password))) {
+    if (!user || !encrypt.isValidPassword(user, password)) {
       throw new Error('Invalid credentials');
     }
 
@@ -35,6 +35,24 @@ class UserService {
       role: user.role,
     };
   }
+
+  async updatePassword(email, newPassword) {
+    const newPasswordHashed = await encrypt.createHash(newPassword);
+    const findUser = await UserModel.findOne({ email });
+
+    if (!findUser) {
+      throw new Error('Credenciales inválidas o erróneas');
+    }
+
+    const updateUser = await UserModel.findByIdAndUpdate(findUser._id, {
+      password: newPasswordHashed,
+    });
+
+    if (!updateUser) {
+      throw new Error('Problemas actualizando la contraseña');
+    }
+  }
+
 }
 
 export default UserService;
