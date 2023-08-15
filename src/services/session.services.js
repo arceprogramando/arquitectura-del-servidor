@@ -6,7 +6,7 @@ class UserService {
     this.UserModel = UserModel;
   }
 
-  async createUser(userData) {
+  createUser = async (userData) => {
     const {
       firstname, lastname, email, age, password,
     } = userData;
@@ -18,9 +18,9 @@ class UserService {
       age,
       password: hashedPassword,
     });
-  }
+  };
 
-  async loginUser(email, password) {
+  loginUser = async (email, password) => {
     const user = await this.UserModel.findOne({ email });
 
     if (!user || !encrypt.isValidPassword(user, password)) {
@@ -34,9 +34,9 @@ class UserService {
       email: user.email,
       role: user.role,
     };
-  }
+  };
 
-  async updatePassword(email, newPassword) {
+  updatePassword = async (email, newPassword) => {
     const newPasswordHashed = await encrypt.createHash(newPassword);
     const findUser = await UserModel.findOne({ email });
 
@@ -51,7 +51,7 @@ class UserService {
     if (!updateUser) {
       throw new Error('Problemas actualizando la contraseña');
     }
-  }
+  };
 
 }
 
