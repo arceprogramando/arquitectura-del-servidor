@@ -68,6 +68,28 @@ class UserController {
       return res.status(500).json({ status: 'Error al actualizar la contraseña', error: error.message });
     }
   };
+
+  authenticateGitHub = async (req, res) => {
+    try {
+      const authenticatedUser = req.user;
+      console.log('🚀 ~ file: session.controllers.js:75 ~ UserController ~ authenticateGitHub= ~ authenticatedUser:', authenticatedUser);
+      res.redirect('/product');
+    } catch (error) {
+      console.error('Error en la autenticación de GitHub:', error);
+      res.status(500).json({ message: 'Error en la autenticación de GitHub' });
+    }
+  };
+
+  handleGitHubCallback = async (req, res) => {
+    try {
+      console.log('***Usuario endpoint de github/callback para comunicarnos***');
+      req.session.user = req.user;
+      res.redirect('/profile');
+    } catch (error) {
+      console.log('Error en el callback de GitHub:', error);
+      res.status(500).json({ message: 'Error en la autenticación de GitHub' });
+    }
+  };
 }
 
 export default UserController;
