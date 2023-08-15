@@ -18,7 +18,7 @@ Hasta ahora realice:
 - Post de Practica Integadora ((>‿◠)✌) ✔️
 - Login Por Formulario ✔️
 - Estrategia de autenticacion por terceros ✔️
-- Segunda practica integradora (>‿◠) (falta reentregar ,pero esta completada en este proyecto)
+- Segunda practica integradora (>‿◠) ✔️
 - Arquitectura del servidor: Diseño (Sin terminar)
 Cosas que me aun tengo sin funcionar o sin entender conceptos de anterior entregas:
 

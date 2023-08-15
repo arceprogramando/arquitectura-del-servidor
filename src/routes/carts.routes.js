@@ -165,4 +165,5 @@ router.delete('/:cId/product/:pId', async (req, res) => {
     return res.status(500).json({ error: 'Error al eliminar el producto del carrito' });
   }
 });
+
 export default router;

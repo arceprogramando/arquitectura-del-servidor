@@ -1,47 +1,13 @@
 import { Router } from 'express';
 import ProductModel from '../dao/models/products.models.js';
 import uploadMiddleware from '../middleware/uploader.js';
+import ProductController from '../controllers/product.controller.js';
+
+const productController = new ProductController();
 
 const router = Router();
 
-router.post('/', uploadMiddleware, async (req, res) => {
-  try {
-    const {
-      title, description, code, price, status, stock, category,
-    } = req.body;
-
-    let thumbnails = null;
-
-    if (req.file) {
-      thumbnails = `/upload/${req.file.filename}`;
-    }
-
-    if (!(title && description && code && price && status && stock && category && thumbnails)) {
-      return res.status(400).json({
-        error: 'Todos los campos son requeridos',
-      });
-    }
-
-    const product = {
-      title,
-      description,
-      code,
-      price,
-      status,
-      stock,
-      category,
-      thumbnails,
-    };
-
-    const createdProduct = await ProductModel.create(product);
-
-    return res.send({ status: 'success', payload: createdProduct });
-
-  } catch (error) {
-
-    return res.status(500).send({ status: 'error', error: 'Problema interno con el servidor' });
-  }
-});
+router.post('/', uploadMiddleware, productController.createProduct);
 
 router.get('/:pId', async (req, res) => {
   try {
