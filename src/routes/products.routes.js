@@ -9,20 +9,23 @@ const router = Router();
 
 router.post('/', uploadMiddleware, productController.createProduct);
 
+router.get('/', productController.getAllProducts);
+
 router.get('/:pId', async (req, res) => {
   try {
-    const product = await ProductModel.findById({ _id: req.params.pId });
-
+    const product = await productController.getProductById(req.params.pId);
+    console.log(product);
     if (product) {
       res.status(200).json(product);
     } else {
       res.status(400).json({ error: 'El producto no existe' });
     }
   } catch (error) {
-    res.status(500).json({ error: 'Error al obtener el producto con el id solicitado' });
+    res.status(500).json({ error: `Error al obtener el producto con el id solicitado , ${error}` });
   }
 });
 
+// router.get('/:pId', productController.getProductById);
 router.put('/:pId', uploadMiddleware, async (req, res) => {
   try {
     const { pId } = req.params;

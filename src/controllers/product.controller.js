@@ -1,4 +1,5 @@
 import ProductService from '../services/product.services.js';
+import ProductsModel from '../dao/models/products.models.js';
 
 class ProductController {
   constructor() {
@@ -40,6 +41,30 @@ class ProductController {
       return res.status(500).json({ status: 'error', error: 'Problema interno con el servidor' });
     }
   };
+
+  getAllProducts = async (req, res) => {
+    try {
+      const products = await ProductsModel.find({});
+      res.status(200).json(products);
+    } catch (error) {
+      throw new Error('Error al obtener los productos');
+    }
+  };
+
+  // getProductById = async (req, res) => {
+  //   try {
+  //     const product = await this.productService.getProductById(req.params.pId);
+
+  //     if (product) {
+  //       return res.redirect(`/product/${product._id}`);
+  //     }
+  //     return res.redirect('/');
+
+  //   } catch (error) {
+  //     return res.status(500).json({ error: 'Error al obtener el producto con el id solicitado' });
+  //   }
+  // };
+
 }
 
 export default ProductController;
