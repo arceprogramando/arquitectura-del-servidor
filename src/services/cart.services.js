@@ -55,6 +55,15 @@ class CartService {
       throw new Error('Error al actualizar el carrito');
     }
   };
+
+  deleteCart = async (cartId) => {
+    try {
+      const deletedCart = await this.CartModel.findByIdAndDelete(cartId);
+      return deletedCart;
+    } catch (error) {
+      throw new Error('Error al eliminar la cart');
+    }
+  };
 }
 
 export default CartService;

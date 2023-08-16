@@ -63,6 +63,34 @@ class CartController {
       return res.status(500).json({ error: 'Error al actualizar el carrito' });
     }
   };
+
+  updateCartItemQuantity = async (req, res) => {
+    try {
+      const { cId, pId } = req.params;
+      const { quantity } = req.body;
+
+      const updatedCart = await this.cartService.updateCartItemQuantity(cId, pId, quantity);
+
+      return res.status(200).json(updatedCart);
+    } catch (error) {
+      return res.status(500).json({ error: 'Error al actualizar la cantidad de ejemplares del producto en el carrito' });
+    }
+  };
+
+  deleteCart = async (req, res) => {
+    try {
+      const { cId } = req.params;
+
+      const deletedCart = await this.cartService.deleteCart(cId);
+      if (!deletedCart) {
+        return res.status(404).json({ error: 'La cart no existe' });
+      }
+
+      return res.status(200).json({ status: 'success', message: 'La cart ha sido eliminada' });
+    } catch (error) {
+      return res.status(500).json({ error: 'Error al eliminar la cart' });
+    }
+  };
 }
 
 export default CartController;
