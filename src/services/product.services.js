@@ -27,6 +27,20 @@ class ProductService {
     }
   };
 
+  deleteProductById = async (productId) => {
+    try {
+      const product = await ProductsModel.findById(productId);
+
+      if (!product) {
+        return null;
+      }
+
+      await ProductsModel.findByIdAndDelete(productId);
+      return product;
+    } catch (error) {
+      throw new Error(`Error al eliminar el producto: ${error}`);
+    }
+  };
 }
 
 export default ProductService;
