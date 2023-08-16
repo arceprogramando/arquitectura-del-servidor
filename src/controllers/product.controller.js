@@ -105,7 +105,7 @@ class ProductController {
     } catch (error) {
       return res.status(500).json({ error: `Error al eliminar el producto: ${error.message}` });
     }
-  }
+  };
 }
 
 export default ProductController;
