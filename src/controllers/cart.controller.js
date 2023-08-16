@@ -91,6 +91,16 @@ class CartController {
       return res.status(500).json({ error: 'Error al eliminar la cart' });
     }
   };
+
+  deleteCartItem = async (req, res) => {
+    try {
+      const { cId, pId } = req.params;
+      const updatedCart = await this.cartService.deleteCartItem(cId, pId);
+      return res.status(200).json(updatedCart);
+    } catch (error) {
+      return res.status(500).json({ error: `'Error al eliminar el producto del carrito ${error}'` });
+    }
+  };
 }
 
 export default CartController;

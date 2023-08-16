@@ -64,6 +64,28 @@ class CartService {
       throw new Error('Error al eliminar la cart');
     }
   };
+
+  deleteCartItem = async (cId, pId) => {
+    try {
+      const cart = await this.CartModel.findById(cId);
+      if (!cart) {
+        throw new Error('El carrito no existe');
+      }
+
+      const productIndex = cart.products.findIndex((product) => product._id.toString() === pId);
+      if (productIndex === -1) {
+        throw new Error('El producto no existe en el carrito');
+      }
+
+      cart.products.splice(productIndex, 1);
+      const updatedCart = await cart.save();
+
+      return updatedCart;
+    } catch (error) {
+      throw new Error('Error al eliminar el producto del carrito');
+    }
+  };
+
 }
 
 export default CartService;
