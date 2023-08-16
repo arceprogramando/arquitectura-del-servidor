@@ -21,7 +21,6 @@ class ProductService {
         newData,
         { new: true },
       );
-      console.log('paso por el servicio');
       return updatedProduct;
     } catch (error) {
       throw new Error(`Error al actualizar el producto: ${error.message}`);
