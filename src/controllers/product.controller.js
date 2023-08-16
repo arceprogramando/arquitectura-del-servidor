@@ -51,20 +51,45 @@ class ProductController {
     }
   };
 
-  // getProductById = async (req, res) => {
-  //   try {
-  //     const product = await this.productService.getProductById(req.params.pId);
+  getProductById = async (req, res) => {
+    try {
+      const { pId } = req.params;
 
-  //     if (product) {
-  //       return res.redirect(`/product/${product._id}`);
-  //     }
-  //     return res.redirect('/');
+      const product = await ProductsModel.findById(pId);
 
-  //   } catch (error) {
-  //     return res.status(500).json({ error: 'Error al obtener el producto con el id solicitado' });
-  //   }
-  // };
+      if (!product) {
+        return res.status(404).json({ error: 'El producto no existe' });
+      }
 
+      return res.status(200).json(product);
+
+    } catch (error) {
+      return res.status(500).json({ error: `Error al obtener el producto ${error}` });
+    }
+  };
+
+  updateProduct = async (req, res) => {
+    try {
+      const { pId } = req.params;
+      const newData = req.body;
+
+      if (req.file) {
+        const newImagePath = `/upload/${req.file.filename}`;
+        newData.thumbnails = newImagePath;
+      }
+
+      const updatedProduct = await this.productService.updateProduct(pId, newData);
+
+      if (!updatedProduct) {
+        return res.status(404).json({ error: 'El producto no existe' });
+      }
+
+      return res.status(200).json({ status: 'success', updatedProduct });
+
+    } catch (error) {
+      return res.status(500).json({ error: `Error al actualizar el producto: ${error}` });
+    }
+  };
 }
 
 export default ProductController;

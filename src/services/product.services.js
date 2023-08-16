@@ -14,6 +14,20 @@ class ProductService {
     }
   };
 
+  updateProduct = async (productId, newData) => {
+    try {
+      const updatedProduct = await ProductsModel.findByIdAndUpdate(
+        productId,
+        newData,
+        { new: true },
+      );
+      console.log('paso por el servicio');
+      return updatedProduct;
+    } catch (error) {
+      throw new Error(`Error al actualizar el producto: ${error.message}`);
+    }
+  };
+
 }
 
 export default ProductService;
