@@ -47,6 +47,22 @@ class CartController {
       return res.status(500).json({ error: `Error al obtener el carrito ${error.message}` });
     }
   };
+
+  updateCartById = async (req, res) => {
+    try {
+      const { cId } = req.params;
+      const { products } = req.body;
+
+      const updatedCart = await this.cartService.updateCartById(cId, products);
+
+      if (updatedCart) {
+        return res.status(200).json(updatedCart);
+      }
+      return res.status(404).json({ error: 'El carrito no existe' });
+    } catch (error) {
+      return res.status(500).json({ error: 'Error al actualizar el carrito' });
+    }
+  };
 }
 
 export default CartController;

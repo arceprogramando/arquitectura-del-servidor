@@ -46,6 +46,15 @@ class CartService {
       throw new Error(`Error al obtener el carrito ${error.message}`);
     }
   };
+
+  updateCartById = async (cartId, products) => {
+    try {
+      const updatedCart = await this.CartModel.findByIdAndUpdate(cartId, { products }, { new: true });
+      return updatedCart;
+    } catch (error) {
+      throw new Error('Error al actualizar el carrito');
+    }
+  };
 }
 
 export default CartService;

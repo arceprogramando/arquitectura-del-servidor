@@ -14,21 +14,7 @@ router.get('/', cartController.getCarts);
 
 router.get('/:cId', cartController.getCartById);
 
-router.put('/:cId', async (req, res) => {
-  try {
-    const { cId } = req.params;
-    const { products } = req.body;
-
-    const updatedCart = await CartModel.findByIdAndUpdate(cId, { products }, { new: true });
-
-    if (updatedCart) {
-      return res.status(200).json(updatedCart);
-    }
-    return res.status(404).json({ error: 'El carrito no existe' });
-  } catch (error) {
-    return res.status(500).json({ error: 'Error al actualizar el carrito' });
-  }
-});
+router.put('/:cId', cartController.updateCartById);
 
 router.put('/:cId/product/:pId', async (req, res) => {
   try {
