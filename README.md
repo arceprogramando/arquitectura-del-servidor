@@ -1,6 +1,6 @@
-# Arquitectura del servidor: Diseño(no finalizada)
+# Arquitectura del servidor: Diseño
 ## _Felipe Antonio Aleman Arce_
-### Ejercicio 11 entregable , Arquitectura del servidor: Diseño(no finalizada)
+### Ejercicio 11 entregable , Arquitectura del servidor: Diseño
 [![Coderhouse](https://res.cloudinary.com/hdsqazxtw/image/upload/v1570710978/coderhouse.jpg)](https://github.com/arceprogramando)
 Mi repositorio publico es  [arceprogramando][arceprogramando]
 en github.
@@ -18,8 +18,8 @@ Hasta ahora realice:
 - Post de Practica Integadora ((>‿◠)✌) ✔️
 - Login Por Formulario ✔️
 - Estrategia de autenticacion por terceros ✔️
-- Segunda practica integradora (>‿◠) (falta reentregar ,pero esta completada en este proyecto)
-- Arquitectura del servidor: Diseño (Sin terminar)
+- Segunda practica integradora (>‿◠) ✔️
+- Arquitectura del servidor: Diseño ✔️
 Cosas que me aun tengo sin funcionar o sin entender conceptos de anterior entregas:
 
 - Si se desea hacer la conexión de socket emits con HTTP, deberás buscar la forma de utilizar el servidor io de Sockets dentro de la petición POST. ¿Cómo utilizarás un emit dentro del POST?(sin terminar)❌❔
@@ -44,15 +44,14 @@ Desarrollar las estrategias de Passport para que funcionen con este modelo de us
 (Sólo para jwt) desarrollar una estrategia “current” para extraer la cookie que contiene el token para obtener el usuario asociado a dicho token, en caso de tener el token, devolver al usuario asociado al token, caso contrario devolver un error de passport, utilizar un extractor de cookie.
 Agregar al router /api/sessions/ la ruta /current, la cual utilizará el modelo de sesión que estés utilizando, para poder devolver en una respuesta el usuario actual.(use sessions por ahora)
 
-## Arquitectura del servidor: Diseño (Nos encontramos aca , sin terminar)
+## Arquitectura del servidor: Diseño 
 ### Aspectos a incluir
 - El proyecto debe contar con capas de
 routing, controlador, dao, con nuestras
 vistas bien separadas y con las
 responsabilidades correctamente
 delegadas.
-- Aspectos a incluir
-✓ Además, mover del proyecto todas las
+- Además, mover del proyecto todas las
 partes importantes y
 comprometedoras en un archivo .env
 para poder leerlo bajo variables de

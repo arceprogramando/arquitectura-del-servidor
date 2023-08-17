@@ -14,7 +14,7 @@ const cartsItemSchema = new mongoose.Schema({
 });
 
 const cartSchema = new mongoose.Schema({
-  product: {
+  products: {
     type: [cartsItemSchema],
     default: [],
   },
