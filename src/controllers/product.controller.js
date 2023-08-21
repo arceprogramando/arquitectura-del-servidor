@@ -20,7 +20,7 @@ class ProductController {
 
       if (!(title && description && code && price && status && stock && category && thumbnails)) {
         return res.status(400).json({
-          error: 'Todos los campos son requeridos',
+          error: 'Todos los campos son requeridos para crear un producto.',
         });
       }
 
@@ -36,9 +36,9 @@ class ProductController {
       };
 
       await this.productService.createProduct(productData);
-      return res.redirect('/products');
+      return res.status(201).json({ status: 'success', message: 'Producto creado correctamente.' });
     } catch (error) {
-      return res.status(500).json({ status: 'error', error: 'Problema interno con el servidor' });
+      return res.status(500).json({ status: 'error', error: 'Hubo un problema interno en el servidor al crear el producto.' });
     }
   };
 
@@ -58,13 +58,13 @@ class ProductController {
       const product = await ProductsModel.findById(pId);
 
       if (!product) {
-        return res.status(404).json({ error: 'El producto no existe' });
+        return res.status(404).json({ error: 'El producto solicitado no existe.' });
       }
 
       return res.status(200).json(product);
 
     } catch (error) {
-      return res.status(500).json({ error: `Error al obtener el producto ${error}` });
+      return res.status(500).json({ error: `Error al obtener el producto: ${error}` });
     }
   };
 
@@ -81,10 +81,10 @@ class ProductController {
       const updatedProduct = await this.productService.updateProduct(pId, newData);
 
       if (!updatedProduct) {
-        return res.status(404).json({ error: 'El producto no existe' });
+        return res.status(404).json({ error: 'No se encontró el producto para actualizar.' });
       }
 
-      return res.status(200).json({ status: 'success', updatedProduct });
+      return res.status(200).json({ status: 'success', message: 'Producto actualizado correctamente.', updatedProduct });
 
     } catch (error) {
       return res.status(500).json({ error: `Error al actualizar el producto: ${error}` });
@@ -98,10 +98,10 @@ class ProductController {
       const deletedProduct = await ProductService.deleteProductById(pId);
 
       if (!deletedProduct) {
-        return res.status(404).json({ error: 'El producto no existe' });
+        return res.status(404).json({ error: 'No se encontró el producto que se intenta eliminar.' });
       }
 
-      return res.status(200).json({ status: 'success', message: 'Producto eliminado correctamente' });
+      return res.status(200).json({ status: 'success', message: 'Producto eliminado correctamente.' });
     } catch (error) {
       return res.status(500).json({ error: `Error al eliminar el producto: ${error.message}` });
     }
