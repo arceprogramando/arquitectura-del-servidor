@@ -2,7 +2,7 @@ import passport from 'passport';
 import local from 'passport-local';
 import GitHubStrategy from 'passport-github2';
 import configObject from './config.js';
-import UserModel from '../dao/models/user.models.js';
+import UserModel from '../model/user.models.js';
 import encrypt from '../helpers/encrypt.js';
 
 const env = configObject;

@@ -11,11 +11,11 @@ import passport from 'passport';
 import configObject from './config/config.js';
 import __dirname from './utils.js';
 import viewsRouter from './routes/views.router.js';
-import mongoDBConnection from './dao/db/config/mongo.config.js';
 import sessionRoutes from './routes/session.routes.js';
 import initializePassport from './config/passport.config.js';
 import productRouter from './routes/products.routes.js';
 import cartRouter from './routes/carts.routes.js';
+import initializeDatabase from './dao/factory.js';
 
 const app = express();
 const env = configObject;
@@ -35,6 +35,7 @@ app.set('PORT', env.PORT || 8080);
 app.set('NODE_ENV', env.NODE_ENV || 'development');
 app.set('DB_CNN', env.DB_CNN);
 app.set('DB_NAME', env.DB_NAME);
+app.set('PERSISTENCE', env.PERSISTENCE);
 
 app.use(
   session({
@@ -59,11 +60,10 @@ app.use(passport.session());
 app.listen(app.get('PORT'), () => {
   console.log(`=Encendido servidor en puerto ${app.get('PORT')}= \n====== http://localhost:${app.get('PORT')}/ =====`);
   console.log(`==========ENV:${app.get('NODE_ENV')}==========`);
-  console.log('===============^^^^^===============');
+  console.log(`==PERSISTENCE:${app.get('PERSISTENCE')}===============`);
   displayRoutes(app);
+  initializeDatabase();
 });
-
-mongoDBConnection();
 
 app.use('/', viewsRouter);
 app.use('/api/session', sessionRoutes);

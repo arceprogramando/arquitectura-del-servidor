@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import ProductModel from '../dao/models/products.models.js';
+import ProductModel from '../model/products.models.js';
 import uploadMiddleware from '../middleware/uploader.js';
 import ProductController from '../controllers/product.controller.js';
 

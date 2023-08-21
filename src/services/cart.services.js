@@ -1,4 +1,4 @@
-import CartModel from '../dao/models/carts.models.js';
+import CartModel from '../model/carts.models.js';
 
 class CartService {
   constructor() {
