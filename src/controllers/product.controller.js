@@ -36,7 +36,7 @@ class ProductController {
       };
 
       await this.productService.createProduct(productData);
-      return res.status(201).json({ status: 'success', message: 'Producto creado correctamente.' });
+      return res.redirect('/products');
     } catch (error) {
       return res.status(500).json({ status: 'error', error: 'Hubo un problema interno en el servidor al crear el producto.' });
     }
