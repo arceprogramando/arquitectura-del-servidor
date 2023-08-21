@@ -7,24 +7,23 @@ const { PERSISTENCE } = env;
 
 let Database;
 
-const initializeDatabase = async () => {
-  switch (PERSISTENCE) {
-    case 'MONGO':
-      try {
+const initializeDatabase = async (req, res) => {
+  try {
+    switch (PERSISTENCE) {
+      case 'MONGO':
         Database = await mongoDBConnection();
         return Database;
-      } catch (error) {
-        console.error('Error initializing database:', error);
-        return null;
-      }
-    case 'cualquiera':
-      console.log('Persistence dentro de Cualquiera.');
-      return null;
-
-    default:
-      console.log('Se encuentra en el case por default');
-      Database = await mongoDBConnection();
-      return Database;
+      case 'FILESYSTEM':
+        // TODO: Hacer conexion con filesystem
+        return Database;
+      default:
+        console.log('Using the default persistence (MongoDB).');
+        Database = await mongoDBConnection();
+        return Database;
+    }
+  } catch (error) {
+    console.error('Error initializing database:', error);
+    return res.status(500).json({ error: 'Error initializing database' });
   }
 };
 
