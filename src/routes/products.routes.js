@@ -11,9 +11,9 @@ router.post('/', uploadMiddleware, productController.createProduct);
 
 router.get('/', productController.getAllProducts);
 
-export default router;
+router.get('/:pId', productController.getProductById);
 
-// router.get('/:pId', productController.getProductById);
+export default router;
 
 // router.put('/:pId', uploadMiddleware, productController.updateProduct);
 

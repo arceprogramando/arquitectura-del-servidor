@@ -47,7 +47,24 @@ class ProductController {
       res.status(200).json(products);
 
     } catch (error) {
-      throw new Error(`Error al obtener los productos desde el service ${error}`);
+      throw new Error(`Error al obtener los productos desde el controller ${error}`);
+    }
+  };
+
+  getProductById = async (req, res) => {
+    try {
+      const { pId } = req.params;
+
+      const product = await this.productService.getProductById(pId);
+
+      if (!product) {
+        return res.status(404).json({ error: 'El producto solicitado no existe.' });
+      }
+
+      return res.status(200).json(product);
+
+    } catch (error) {
+      return res.status(500).json({ error: `Error al obtener el producto en el controller: ${error}` });
     }
   };
 }
@@ -60,23 +77,6 @@ export default ProductController;
 //     return res.redirect('/products');
 //   } catch (error) {
 //     return res.status(500).json({ status: 'error', error: 'Hubo un problema interno en el servidor al crear el producto.' });
-//   }
-// };
-
-// getProductById = async (req, res) => {
-//   try {
-//     const { pId } = req.params;
-
-//     const product = await ProductsModel.findById(pId);
-
-//     if (!product) {
-//       return res.status(404).json({ error: 'El producto solicitado no existe.' });
-//     }
-
-//     return res.status(200).json(product);
-
-//   } catch (error) {
-//     return res.status(500).json({ error: `Error al obtener el producto: ${error}` });
 //   }
 // };
 

@@ -23,6 +23,17 @@ class ProductService {
 
     }
   };
+
+  getProductById = async (pId) => {
+    try {
+      const productById = await this.productRepository.getProductById(pId);
+      return productById;
+    } catch (error) {
+      throw new Error(`Error al traer el producto con el id: ${pId} desde el service. error: ${error.message}`);
+
+    }
+  };
+
 }
 
 export default ProductService;

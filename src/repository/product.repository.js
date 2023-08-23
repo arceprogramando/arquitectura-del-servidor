@@ -22,18 +22,18 @@ class ProductRepository {
       throw new Error(`Error al obtener todos los productos de la base de datos: ${error.message}`);
     }
   };
+
+  getProductById = async (pId) => {
+    try {
+      const productById = await this.productModel.findById(pId);
+      return productById;
+    } catch (error) {
+      throw new Error(`Error al obtener el producto con id: ${pId} en la base de datos: ${error.message}`);
+    }
+  };
 }
 
 export default ProductRepository;
-
-//   getProductById = async (pId) => {
-//     try {
-//       const productById = await this.productModel.findById(pId);
-//       return productById;
-//     } catch (error) {
-//       throw new Error(`Error al obtener el producto con id: ${pId} en la base de datos: ${error.message}`);
-//     }
-//   };
 
 //   deleteProductById = async (pId) => {
 //     try {
