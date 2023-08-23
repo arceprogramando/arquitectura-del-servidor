@@ -15,22 +15,6 @@ router.get('/:pId', productController.getProductById);
 
 router.put('/:pId', uploadMiddleware, productController.updateProductById);
 
+router.delete('/:pId', productController.deleteProductById);
+
 export default router;
-
-// router.delete('/:pId', async (req, res) => {
-//   try {
-//     const { pId } = req.params;
-
-//     const product = await ProductModel.findById({ _id: pId });
-
-//     if (!product) {
-//       return res.status(404).json({ error: 'El producto no existe' });
-//     }
-
-//     await ProductModel.findByIdAndDelete({ _id: pId });
-
-//     return res.status(200).json({ status: 'success', message: 'Producto eliminado correctamente' });
-//   } catch (error) {
-//     return res.status(500).json({ error: `Error al eliminar el producto: ${error}` });
-//   }
-// });

@@ -40,16 +40,15 @@ class ProductRepository {
       throw new Error(`Error al actualizar el producto con id: ${pId} en la base de datos: ${error.message}`);
     }
   };
+
+  deleteProductById = async (pId) => {
+    try {
+      const deleteProductById = await this.productModel.deleteOne({ _pid: pId });
+      return deleteProductById;
+    } catch (error) {
+      throw new Error(`Error al eliminar el producto con id: ${pId} en la base de datos: ${error.message}`);
+    }
+  };
 }
 
 export default ProductRepository;
-
-//   deleteProductById = async (pId) => {
-//     try {
-//       const deleteProductById = await this.productModel.deleteOne({ _id: pId });
-//       return deleteProductById;
-//     } catch (error) {
-//       throw new Error(`Error al eliminar el producto con id: ${pId} en la base de datos: ${error.message}`);
-//     }
-//   };
-// }

@@ -88,22 +88,23 @@ class ProductController {
     }
   };
 
+  deleteProductById = async (req, res) => {
+    try {
+      const { pId } = req.params;
+
+      const deletedProduct = await this.productService.deleteProductById(pId);
+
+      if (!deletedProduct) {
+        return res.status(404).json({ error: 'No se encontró el producto que se intenta eliminar.' });
+      }
+
+      return res.status(200).json({ status: 'success', message: 'Producto eliminado correctamente.' });
+
+    } catch (error) {
+      return res.status(500).json({ error: `Error al eliminar el producto: ${error.message}` });
+
+    }
+  };
 }
 
 export default ProductController;
-
-// deleteProduct = async (req, res) => {
-//   try {
-//     const { pId } = req.params;
-
-//     const deletedProduct = await ProductService.deleteProductById(pId);
-
-//     if (!deletedProduct) {
-//       return res.status(404).json({ error: 'No se encontró el producto que se intenta eliminar.' });
-//     }
-
-//     return res.status(200).json({ status: 'success', message: 'Producto eliminado correctamente.' });
-//   } catch (error) {
-//     return res.status(500).json({ error: `Error al eliminar el producto: ${error.message}` });
-//   }
-// };

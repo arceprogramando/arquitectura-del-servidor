@@ -39,25 +39,19 @@ class ProductService {
       const updatedProduct = await this.productRepository.updateProductById(pId, newData, { new: true });
       return updatedProduct;
     } catch (error) {
-      throw new Error(`Error al actualizar el producto: ${error.message}`);
+      throw new Error(`Error al actualizar el producto con el id ${pId} en el service: ${error.message}`);
     }
   };
 
+  deleteProductById = async (pId) => {
+    try {
+      const product = await this.productRepository.deleteProductById(pId);
+      return product;
+    } catch (error) {
+      throw new Error(`Error al eliminar el producto: ${error}`);
+
+    }
+  };
 }
 
 export default ProductService;
-
-// deleteProductById = async (productId) => {
-//   try {
-//     const product = await ProductsModel.findById(productId);
-
-//     if (!product) {
-//       return null;
-//     }
-
-//     await ProductsModel.findByIdAndDelete(productId);
-//     return product;
-//   } catch (error) {
-//     throw new Error(`Error al eliminar el producto: ${error}`);
-//   }
-// };
