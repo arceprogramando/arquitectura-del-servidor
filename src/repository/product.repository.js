@@ -5,14 +5,14 @@ class ProductRepository {
     this.productModel = ProductModel;
   }
 
-  async createProduct(productData) {
+  createProduct = async (productData) => {
     try {
       const product = await this.productModel.create(productData);
       return product;
     } catch (error) {
       throw new Error(`Error al crear el producto en la base de datos: ${error.message}`);
     }
-  }
+  };
 
   getAllProducts = async () => {
     try {
