@@ -5,15 +5,24 @@ class ProductService {
     this.productRepository = new ProductRepository();
   }
 
-  async createProduct(productData) {
+  createProduct = async (productData) => {
     try {
-
       const createdProduct = await this.productRepository.createProduct(productData);
       return createdProduct;
     } catch (error) {
       throw new Error(`Error al crear el producto en el service: ${error.message}`);
     }
-  }
+  };
+
+  getAllProducts = async () => {
+    try {
+      const findProducts = await this.productRepository.getAllProducts();
+      return findProducts;
+    } catch (error) {
+      throw new Error(`Error al buscar todos los productos en el service: ${error.message}`);
+
+    }
+  };
 }
 
 export default ProductService;

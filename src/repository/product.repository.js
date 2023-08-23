@@ -13,18 +13,18 @@ class ProductRepository {
       throw new Error(`Error al crear el producto en la base de datos: ${error.message}`);
     }
   }
+
+  getAllProducts = async () => {
+    try {
+      const findProducts = await this.productModel.find({});
+      return findProducts;
+    } catch (error) {
+      throw new Error(`Error al obtener todos los productos de la base de datos: ${error.message}`);
+    }
+  };
 }
 
 export default ProductRepository;
-
-//   getAllProducts = async () => {
-//     try {
-//       const findProducts = await this.productModel.find({});
-//       return findProducts;
-//     } catch (error) {
-//       throw new Error(`Error al obtener todos los productos de la base de datos: ${error.message}`);
-//     }
-//   };
 
 //   getProductById = async (pId) => {
 //     try {

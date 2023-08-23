@@ -40,6 +40,16 @@ class ProductController {
       return res.status(500).json({ status: 'error', error: `Hubo un problema interno en el controlador al crear el productito. ${error}` });
     }
   };
+
+  getAllProducts = async (req, res) => {
+    try {
+      const products = await this.productService.getAllProducts();
+      res.status(200).json(products);
+
+    } catch (error) {
+      throw new Error(`Error al obtener los productos desde el service ${error}`);
+    }
+  };
 }
 
 export default ProductController;
@@ -50,15 +60,6 @@ export default ProductController;
 //     return res.redirect('/products');
 //   } catch (error) {
 //     return res.status(500).json({ status: 'error', error: 'Hubo un problema interno en el servidor al crear el producto.' });
-//   }
-// };
-
-// getAllProducts = async (req, res) => {
-//   try {
-//     const products = await ProductsModel.find({});
-//     res.status(200).json(products);
-//   } catch (error) {
-//     throw new Error('Error al obtener los productos');
 //   }
 // };
 

@@ -9,9 +9,9 @@ const router = Router();
 
 router.post('/', uploadMiddleware, productController.createProduct);
 
-export default router;
+router.get('/', productController.getAllProducts);
 
-// router.get('/', productController.getAllProducts);
+export default router;
 
 // router.get('/:pId', productController.getProductById);
 
