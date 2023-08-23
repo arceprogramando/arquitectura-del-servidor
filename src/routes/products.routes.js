@@ -13,9 +13,9 @@ router.get('/', productController.getAllProducts);
 
 router.get('/:pId', productController.getProductById);
 
-export default router;
+router.put('/:pId', uploadMiddleware, productController.updateProductById);
 
-// router.put('/:pId', uploadMiddleware, productController.updateProduct);
+export default router;
 
 // router.delete('/:pId', async (req, res) => {
 //   try {

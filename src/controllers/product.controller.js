@@ -67,41 +67,30 @@ class ProductController {
       return res.status(500).json({ error: `Error al obtener el producto en el controller: ${error}` });
     }
   };
+
+  updateProductById = async (req, res) => {
+    try {
+      const { pId } = req.params;
+      const newData = req.body;
+      if (req.file) {
+        const newImagePath = `/upload/${req.file.filename}`;
+        newData.thumbnails = newImagePath;
+      }
+      const updatedProduct = await this.productService.updateProductById(pId, newData);
+
+      if (!updatedProduct) {
+        return res.status(404).json({ error: 'No se encontró el producto para actualizar.' });
+      }
+
+      return res.status(200).json({ status: 'success', message: 'Producto actualizado correctamente.', updatedProduct });
+    } catch (error) {
+      return res.status(500).json({ error: `Error al actualizar el producto en el controller: ${error}` });
+    }
+  };
+
 }
 
 export default ProductController;
-
-// createProduct = async (req, res) => {
-
-//     await this.productService.createProduct(productData);
-//     return res.redirect('/products');
-//   } catch (error) {
-//     return res.status(500).json({ status: 'error', error: 'Hubo un problema interno en el servidor al crear el producto.' });
-//   }
-// };
-
-// updateProduct = async (req, res) => {
-//   try {
-//     const { pId } = req.params;
-//     const newData = req.body;
-
-//     if (req.file) {
-//       const newImagePath = `/upload/${req.file.filename}`;
-//       newData.thumbnails = newImagePath;
-//     }
-
-//     const updatedProduct = await this.productService.updateProduct(pId, newData);
-
-//     if (!updatedProduct) {
-//       return res.status(404).json({ error: 'No se encontró el producto para actualizar.' });
-//     }
-
-//     return res.status(200).json({ status: 'success', message: 'Producto actualizado correctamente.', updatedProduct });
-
-//   } catch (error) {
-//     return res.status(500).json({ error: `Error al actualizar el producto: ${error}` });
-//   }
-// };
 
 // deleteProduct = async (req, res) => {
 //   try {

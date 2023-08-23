@@ -34,22 +34,18 @@ class ProductService {
     }
   };
 
+  updateProductById = async (pId, newData) => {
+    try {
+      const updatedProduct = await this.productRepository.updateProductById(pId, newData, { new: true });
+      return updatedProduct;
+    } catch (error) {
+      throw new Error(`Error al actualizar el producto: ${error.message}`);
+    }
+  };
+
 }
 
 export default ProductService;
-
-// updateProduct = async (productId, newData) => {
-//   try {
-//     const updatedProduct = await ProductsModel.findByIdAndUpdate(
-//       productId,
-//       newData,
-//       { new: true },
-//     );
-//     return updatedProduct;
-//   } catch (error) {
-//     throw new Error(`Error al actualizar el producto: ${error.message}`);
-//   }
-// };
 
 // deleteProductById = async (productId) => {
 //   try {

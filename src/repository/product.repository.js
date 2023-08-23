@@ -31,6 +31,15 @@ class ProductRepository {
       throw new Error(`Error al obtener el producto con id: ${pId} en la base de datos: ${error.message}`);
     }
   };
+
+  updateProductById = async (pId, newData) => {
+    try {
+      const updatedProduct = await this.productModel.updateOne({ _id: pId }, newData);
+      return updatedProduct;
+    } catch (error) {
+      throw new Error(`Error al actualizar el producto con id: ${pId} en la base de datos: ${error.message}`);
+    }
+  };
 }
 
 export default ProductRepository;
