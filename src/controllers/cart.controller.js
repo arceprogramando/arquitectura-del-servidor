@@ -46,25 +46,25 @@ class CartController {
       return res.status(500).json({ error: `Error al obtener el carrito ${error.message}` });
     }
   };
+
+  updateCartById = async (req, res) => {
+    try {
+      const { cId } = req.params;
+      const updateData = req.body;
+      console.log('🚀 ~ file: cart.controller.js:54 ~ CartController ~ updateCartById= ~ updateData:', updateData);
+      const updatedCart = await this.cartService.updateCartById(cId, updateData);
+      if (!updatedCart) {
+        return res.status(404).json({ error: 'El carrito no existe' });
+      }
+      return res.status(200).json(updatedCart);
+    } catch (error) {
+      return res.status(500).json({ error: `Error al actualizar el carrito con el id proporcionado ${error}` });
+    }
+  };
+
 }
 
 export default CartController;
-
-// updateCartById = async (req, res) => {
-//   try {
-//     const { cId } = req.params;
-//     const { products } = req.body;
-
-//     const updatedCart = await this.cartService.updateCartById(cId, products);
-
-//     if (updatedCart) {
-//       return res.status(200).json(updatedCart);
-//     }
-//     return res.status(404).json({ error: 'El carrito no existe' });
-//   } catch (error) {
-//     return res.status(500).json({ error: 'Error al actualizar el carrito' });
-//   }
-// };
 
 // updateCartItemQuantity = async (req, res) => {
 //   try {

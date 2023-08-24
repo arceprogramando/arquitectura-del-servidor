@@ -34,6 +34,18 @@ class CartRepository {
       throw new Error(`Error al obtener el carrito con id: ${cId} desde la base de datos: ${error.message}`);
     }
   };
+
+  updateCartById = async (cId, updateData) => {
+    try {
+      const updatedCart = await this.cartModel.updateOne(
+        { _id: cId },
+        updateData,
+      );
+      return updatedCart;
+    } catch (error) {
+      throw new Error(`Error al actualizar el carrito ${error.message}`);
+    }
+  };
 }
 
 export default CartRepository;

@@ -36,21 +36,21 @@ class CartService {
       const cart = await this.cartRepository.getCartById(cId);
       return cart;
     } catch (error) {
-      throw new Error(`Error al obtener el carrito ${error.message}`);
+      throw new Error(`Error al obtener el carrito en el service${error.message}`);
+    }
+  };
+
+  updateCartById = async (cId, updateData) => {
+    try {
+      const updatedCart = await this.cartRepository.updateCartById(cId, updateData);
+      return updatedCart;
+    } catch (error) {
+      throw new Error(`Error al actualizar el carrito ${error.message}`);
     }
   };
 }
 
 export default CartService;
-
-// updateCartById = async (cartId, products) => {
-//   try {
-//     const updatedCart = await this.CartModel.findByIdAndUpdate(cartId, { products }, { new: true });
-//     return updatedCart;
-//   } catch (error) {
-//     throw new Error('Error al actualizar el carrito');
-//   }
-// };
 
 // deleteCart = async (cartId) => {
 //   try {
