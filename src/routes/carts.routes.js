@@ -13,12 +13,12 @@ router.get('/:cId', cartController.getCartById);
 
 router.put('/:cId', cartController.updateCartById);
 
+router.delete('/:cId', cartController.deleteCart);
+
 export default router;
 
 // router.post('/:cId/product/:pId', cartController.updateCartItem); Sin terminar correctamente
 
 // router.put('/:cId/product/:pId', cartController.updateCartItemQuantity);
-
-// router.delete('/:cId', cartController.deleteCart);
 
 // router.delete('/:cId/product/:pId', cartController.deleteCartItem);

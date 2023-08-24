@@ -46,6 +46,18 @@ class CartRepository {
       throw new Error(`Error al actualizar el carrito ${error.message}`);
     }
   };
+
+  deleteCart = async (cId) => {
+    try {
+      const deleteCartById = await this.cartModel.deleteOne({ _id: cId });
+      return {
+        id: cId,
+        success: deleteCartById.deletedCount === 1,
+      };
+    } catch (error) {
+      throw new Error(`Error al borrar  el carrito con el id ${cId} en la base de datos . Error: ${error.message}`);
+    }
+  };
 }
 
 export default CartRepository;

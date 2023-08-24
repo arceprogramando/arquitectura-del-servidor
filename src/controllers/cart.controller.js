@@ -62,6 +62,19 @@ class CartController {
     }
   };
 
+  deleteCart = async (req, res) => {
+    try {
+      const { cId } = req.params;
+      const deletedCart = await this.cartService.deleteCart(cId);
+      if (!deletedCart.success) {
+        return res.status(404).json({ error: 'La cart no existe' });
+      }
+      return res.status(200).json({ status: 'success', message: 'La cart ha sido eliminada' });
+    } catch (error) {
+      return res.status(500).json({ error: `Error al eliminar la cart en controller: ${error}` });
+    }
+  };
+
 }
 
 export default CartController;
@@ -76,21 +89,6 @@ export default CartController;
 //     return res.status(200).json(updatedCart);
 //   } catch (error) {
 //     return res.status(500).json({ error: 'Error al actualizar la cantidad de ejemplares del producto en el carrito' });
-//   }
-// };
-
-// deleteCart = async (req, res) => {
-//   try {
-//     const { cId } = req.params;
-
-//     const deletedCart = await this.cartService.deleteCart(cId);
-//     if (!deletedCart) {
-//       return res.status(404).json({ error: 'La cart no existe' });
-//     }
-
-//     return res.status(200).json({ status: 'success', message: 'La cart ha sido eliminada' });
-//   } catch (error) {
-//     return res.status(500).json({ error: 'Error al eliminar la cart' });
 //   }
 // };
 

@@ -48,18 +48,19 @@ class CartService {
       throw new Error(`Error al actualizar el carrito ${error.message}`);
     }
   };
+
+  deleteCart = async (cartId) => {
+    try {
+      const deletedCart = await this.cartRepository.deleteCart(cartId);
+      return deletedCart;
+    } catch (error) {
+      throw new Error(`Error al eliminar la cart en el services con error: ${error}`);
+    }
+  };
+
 }
 
 export default CartService;
-
-// deleteCart = async (cartId) => {
-//   try {
-//     const deletedCart = await this.CartModel.findByIdAndDelete(cartId);
-//     return deletedCart;
-//   } catch (error) {
-//     throw new Error('Error al eliminar la cart');
-//   }
-// };
 
 // deleteCartItem = async (cId, pId) => {
 //   try {
