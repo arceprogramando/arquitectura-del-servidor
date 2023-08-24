@@ -9,11 +9,11 @@ router.post('/', cartController.createCart);
 
 router.get('/', cartController.getCarts);
 
+router.get('/:cId', cartController.getCartById);
+
 export default router;
 
 // router.post('/:cId/product/:pId', cartController.updateCartItem); Sin terminar correctamente
-
-// router.get('/:cId', cartController.getCartById);
 
 // router.put('/:cId', cartController.updateCartById);
 

@@ -30,31 +30,18 @@ class CartService {
       throw new Error(`Error al obtener los carritos en el service: ${error.message}`);
     }
   };
+
+  getCartById = async (cId) => {
+    try {
+      const cart = await this.cartRepository.getCartById(cId);
+      return cart;
+    } catch (error) {
+      throw new Error(`Error al obtener el carrito ${error.message}`);
+    }
+  };
 }
 
 export default CartService;
-
-//   try {
-//     let query = this.CartModel.find({});
-
-//     if (limit) {
-//       query = query.limit(parseInt(limit, 10));
-//     }
-
-//     const carts = await query.exec();
-//     return carts;
-//   } catch (error) {
-//   }
-// };
-
-// getCartById = async (cartId) => {
-//   try {
-//     const cart = await this.CartModel.findById(cartId).populate('products.product');
-//     return cart;
-//   } catch (error) {
-//     throw new Error(`Error al obtener el carrito ${error.message}`);
-//   }
-// };
 
 // updateCartById = async (cartId, products) => {
 //   try {

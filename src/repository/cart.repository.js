@@ -25,6 +25,15 @@ class CartRepository {
       throw new Error(`Error al obtener los carritos desde la base de datos: ${error.message}`);
     }
   };
+
+  getCartById = async (cId) => {
+    try {
+      const cart = await this.cartModel.findOne({ id: cId });
+      return cart;
+    } catch (error) {
+      throw new Error(`Error al obtener el carrito con id: ${cId} desde la base de datos: ${error.message}`);
+    }
+  };
 }
 
 export default CartRepository;
