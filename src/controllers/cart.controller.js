@@ -112,16 +112,16 @@ class CartController {
       return res.status(500).json({ error: `Error al actualizar la cantidad del item en el controlador: ${error.message}` });
     }
   };
+
+  deleteItemInCart = async (req, res) => {
+    try {
+      const { cId, pId } = req.params;
+      const deleteItemInCart = await this.cartService.deleteItemInCart(cId, pId);
+      return res.status(200).json(deleteItemInCart);
+    } catch (error) {
+      return res.status(500).json({ error: `'Error al eliminar el producto del carrito en el controller ${error}'` });
+    }
+  };
 }
 
 export default CartController;
-
-// deleteCartItem = async (req, res) => {
-//   try {
-//     const { cId, pId } = req.params;
-//     const updatedCart = await this.cartService.deleteCartItem(cId, pId);
-//     return res.status(200).json(updatedCart);
-//   } catch (error) {
-//     return res.status(500).json({ error: `'Error al eliminar el producto del carrito ${error}'` });
-//   }
-// };

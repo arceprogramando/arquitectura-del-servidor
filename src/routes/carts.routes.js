@@ -19,6 +19,6 @@ router.post('/:cId/product/', cartController.createProductInCart);
 
 router.put('/:cId/product/:pId', cartController.updateCartItemQuantity);
 
-export default router;
+router.delete('/:cId/product/:pId', cartController.deleteItemInCart);
 
-// router.delete('/:cId/product/:pId', cartController.deleteCartItem);
+export default router;

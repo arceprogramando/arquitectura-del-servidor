@@ -84,6 +84,15 @@ class CartRepository {
       throw new Error(`Error al actualizar la cantidad del producto ${pId} en el carrito con el id ${cId} en la base de datos. Error: ${error.message}`);
     }
   };
+
+  deleteItemInCart = async (cId) => {
+    try {
+      const cartToUse = await this.cartModel.findById({ _id: cId });
+      return cartToUse;
+    } catch (error) {
+      throw new Error(`Error al traer la cart donde se encuentra el producto .id ${cId} en la base de datos. Error: ${error.message}`);
+    }
+  };
 }
 
 export default CartRepository;
