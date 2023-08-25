@@ -58,6 +58,15 @@ class CartService {
     }
   };
 
+  createProductInCart = async (cId, pId, quantity) => {
+    try {
+      const updatedCart = await this.cartRepository.createProductInCart(cId, pId, quantity);
+      return updatedCart;
+    } catch (error) {
+      throw new Error(`Error al crear un producot cart con id ${cId}, en el services con error: ${error}`);
+    }
+  };
+
 }
 
 export default CartService;

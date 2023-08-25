@@ -75,20 +75,43 @@ class CartController {
     }
   };
 
+  createProductInCart = async (req, res) => {
+    try {
+      const { cId } = req.params;
+      const { product, quantity } = req.body;
+
+      const updatedCart = await this.cartService.createProductInCart(cId, product, quantity);
+
+      if (!updatedCart) {
+        return res.status(404).json({ error: 'El carrito no existe' });
+      }
+
+      return res.status(200).json(updatedCart);
+    } catch (error) {
+      return res.status(500).json({ error: `Error al crear un producto en la cart en controller: ${error.message}` });
+    }
+  };
 }
 
 export default CartController;
-
 // updateCartItemQuantity = async (req, res) => {
 //   try {
 //     const { cId, pId } = req.params;
 //     const { quantity } = req.body;
 
+//     if (!quantity || typeof quantity !== 'number') {
+//       return res.status(400).json({ error: 'La cantidad proporcionada es inválida' });
+//     }
+
 //     const updatedCart = await this.cartService.updateCartItemQuantity(cId, pId, quantity);
 
-//     return res.status(200).json(updatedCart);
+//     if (!updatedCart) {
+//       return res.status(404).json({ error: 'El carrito o el producto no fueron encontrados' });
+//     }
+
+//     return res.status(200).json({ status: 'success', updatedCart });
 //   } catch (error) {
-//     return res.status(500).json({ error: 'Error al actualizar la cantidad de ejemplares del producto en el carrito' });
+//     return res.status(500).json({ error: `Error al actualizar la cantidad del item en el controlador: ${error.message}` });
 //   }
 // };
 
