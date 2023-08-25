@@ -51,7 +51,7 @@ class CartController {
     try {
       const { cId } = req.params;
       const updateData = req.body;
-      console.log('🚀 ~ file: cart.controller.js:54 ~ CartController ~ updateCartById= ~ updateData:', updateData);
+
       const updatedCart = await this.cartService.updateCartById(cId, updateData);
       if (!updatedCart) {
         return res.status(404).json({ error: 'El carrito no existe' });
@@ -91,29 +91,30 @@ class CartController {
       return res.status(500).json({ error: `Error al crear un producto en la cart en controller: ${error.message}` });
     }
   };
+
+  updateCartItemQuantity = async (req, res) => {
+    try {
+      const { cId, pId } = req.params;
+      const { quantity } = req.body;
+
+      if (!quantity || typeof quantity !== 'number') {
+        return res.status(400).json({ error: `La cantidad ${quantity} es invalida` });
+      }
+
+      const updatedCart = await this.cartService.updateCartItemQuantity(cId, pId, quantity);
+
+      if (!updatedCart) {
+        return res.status(404).json({ error: 'El carrito o el producto no fueron encontrados' });
+      }
+
+      return res.status(200).json({ status: 'success', updatedCart });
+    } catch (error) {
+      return res.status(500).json({ error: `Error al actualizar la cantidad del item en el controlador: ${error.message}` });
+    }
+  };
 }
 
 export default CartController;
-// updateCartItemQuantity = async (req, res) => {
-//   try {
-//     const { cId, pId } = req.params;
-//     const { quantity } = req.body;
-
-//     if (!quantity || typeof quantity !== 'number') {
-//       return res.status(400).json({ error: 'La cantidad proporcionada es inválida' });
-//     }
-
-//     const updatedCart = await this.cartService.updateCartItemQuantity(cId, pId, quantity);
-
-//     if (!updatedCart) {
-//       return res.status(404).json({ error: 'El carrito o el producto no fueron encontrados' });
-//     }
-
-//     return res.status(200).json({ status: 'success', updatedCart });
-//   } catch (error) {
-//     return res.status(500).json({ error: `Error al actualizar la cantidad del item en el controlador: ${error.message}` });
-//   }
-// };
 
 // deleteCartItem = async (req, res) => {
 //   try {

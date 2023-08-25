@@ -63,10 +63,18 @@ class CartService {
       const updatedCart = await this.cartRepository.createProductInCart(cId, pId, quantity);
       return updatedCart;
     } catch (error) {
-      throw new Error(`Error al crear un producot cart con id ${cId}, en el services con error: ${error}`);
+      throw new Error(`Error al crear un producto cart con id ${cId}, en el services con error: ${error}`);
     }
   };
 
+  updateCartItemQuantity = async (cId, pId, quantity) => {
+    try {
+      const updatedCart = await this.cartRepository.updateCartItemQuantity(cId, pId, quantity);
+      return updatedCart;
+    } catch (error) {
+      throw new Error(`Error al actualizar la cantidad del producto ${pId} en la cart con id ${cId}, en el services con error: ${error}`);
+    }
+  };
 }
 
 export default CartService;

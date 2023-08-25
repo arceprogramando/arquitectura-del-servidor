@@ -70,19 +70,20 @@ class CartRepository {
       throw new Error(`Error al agregar el producto al carrito en el repository: ${error.message}`);
     }
   };
+
+  updateCartItemQuantity = async (cId, pId, quantity) => {
+    try {
+      const updatedCart = await this.cartModel.findOneAndUpdate(
+        { _id: cId, 'products._id': pId },
+        { $set: { 'products.$.quantity': quantity } },
+        { new: true },
+      );
+
+      return updatedCart;
+    } catch (error) {
+      throw new Error(`Error al actualizar la cantidad del producto ${pId} en el carrito con el id ${cId} en la base de datos. Error: ${error.message}`);
+    }
+  };
 }
 
 export default CartRepository;
-
-// updateCartItemQuantity = async (cId, pId, quantity) => {
-//   try {
-//     const updatedCart = await this.cartModel.updateOne(
-//       { _id: cId, 'products.product': pId },
-//       { $set: { 'products.$.quantity': quantity } },
-//     );
-//     return updatedCart;
-//   } catch (error) {
-//     throw new Error(`Error al actualizar la cantidad del producto ${pId} en el carrito
-//       con el id ${cId} en la base de datos. Error: ${error.message}`);
-//   }
-// };
