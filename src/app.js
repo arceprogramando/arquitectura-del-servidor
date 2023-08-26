@@ -15,6 +15,7 @@ import sessionRoutes from './routes/session.routes.js';
 import initializePassport from './config/passport.config.js';
 import productRouter from './routes/products.routes.js';
 import cartRouter from './routes/carts.routes.js';
+import messageRouter from './routes/message.routes.js';
 import initializeDatabase from './dao/factory.js';
 
 const app = express();
@@ -69,3 +70,4 @@ app.use('/', viewsRouter);
 app.use('/api/session', sessionRoutes);
 app.use('/api/products', productRouter);
 app.use('/api/carts', cartRouter);
+app.use('/api/chat', messageRouter);

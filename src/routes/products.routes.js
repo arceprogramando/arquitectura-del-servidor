@@ -1,5 +1,4 @@
 import { Router } from 'express';
-// import ProductModel from '../model/products.models.js';
 import uploadMiddleware from '../middleware/uploader.js';
 import ProductController from '../controllers/product.controller.js';
 
