@@ -1,6 +1,5 @@
 import UserRepository from '../repository/user.repository.js';
 import encrypt from '../helpers/encrypt.js';
-// import UserModel from '../model/user.models.js';
 
 class UserService {
   constructor() {
@@ -27,21 +26,21 @@ class UserService {
     }
   };
 
-  // loginUser = async (email, password) => {
-  //   const user = await this.userModel.findOne({ email });
+  loginUser = async (email, password) => {
+    const user = await this.userRepository.loginUser(email);
 
-  //   if (!user || !encrypt.isValidPassword(user, password)) {
-  //     throw new Error('Invalid credentials');
-  //   }
+    if (!user || !encrypt.isValidPassword(user, password)) {
+      throw new Error('Invalid credentials');
+    }
 
-  //   return {
-  //     firstname: user.firstname,
-  //     lastname: user.lastname,
-  //     age: user.age,
-  //     email: user.email,
-  //     role: user.role,
-  //   };
-  // };
+    return {
+      firstname: user.firstname,
+      lastname: user.lastname,
+      age: user.age,
+      email: user.email,
+      role: user.role,
+    };
+  };
 
   // updatePassword = async (email, newPassword) => {
   //   const newPasswordHashed = await encrypt.createHash(newPassword);

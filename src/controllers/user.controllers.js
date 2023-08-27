@@ -25,36 +25,36 @@ class UserController {
     }
   };
 
-  // loginUser = async (req, res) => {
-  //   try {
-  //     const { email, password } = req.body;
-  //     const user = await this.userService.loginUser(email, password);
+  loginUser = async (req, res) => {
+    try {
+      const { email, password } = req.body;
+      const user = await this.userService.loginUser(email, password);
 
-  //     req.user.user = {
-  //       firstname: user.firstname,
-  //       lastname: user.lastname,
-  //       age: user.age,
-  //       email: user.email,
-  //       role: user.role,
-  //     };
+      req.user.user = {
+        firstname: user.firstname,
+        lastname: user.lastname,
+        age: user.age,
+        email: user.email,
+        role: user.role,
+      };
 
-  //     res.redirect('/products');
-  //   } catch (error) {
-  //     console.error('Error al iniciar sesión:', error);
-  //     res.status(400).send({ status: 'error', error: 'Credenciales inválidas en user' });
-  //   }
-  // };
+      res.redirect('/products');
+    } catch (error) {
+      console.error('Error al iniciar sesión:', error);
+      res.status(400).send({ status: 'error', error: 'Credenciales inválidas en user' });
+    }
+  };
 
-  // logoutUser = async (req, res) => {
-  //   try {
-  //     req.user.destroy();
+  logoutUser = async (req, res) => {
+    try {
+      req.session.destroy();
+      res.redirect('/');
 
-  //     return res.redirect('/');
-  //   } catch (error) {
-  //     console.error('Error al cerrar la sesión:', error);
-  //     return res.status(500).json({ status: 'Error al cerrar la sesión', error: error.message });
-  //   }
-  // };
+    } catch (error) {
+      console.error('Error al deslogear:', error);
+      res.status(400).send({ status: 'error', error: `Error al deslogear: ${error}` });
+    }
+  };
 
   // resetPassword = async (req, res) => {
   //   try {

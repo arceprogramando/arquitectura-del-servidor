@@ -1,19 +1,18 @@
 import { Router } from 'express';
 import passport from 'passport';
-// import UserController from '../controllers/user.controllers.js';
+import UserController from '../controllers/user.controllers.js';
 
 const router = Router();
-// const userController = new UserController();
 
-// Register con Passport y refactor
+const userController = new UserController();
 
-router.post('/register', passport.authenticate('local-register', { failureRedirect: '/register' }));
+router.post('/register', passport.authenticate('local-register', { failureRedirect: '/register', successRedirect: '/' }));
+
+router.post('/login', passport.authenticate('local-login', { failureRedirect: '/', successRedirect: '/products' }));
+
+router.get('/logout', userController.logoutUser);
 
 export default router;
-
-// router.post('/login', passport.authenticate('local-login', { failureRedirect: '/' }), userController.loginUser);
-
-// router.get('/logout', userController.logoutUser);
 
 // router.post('/recover-psw', userController.resetPassword);
 

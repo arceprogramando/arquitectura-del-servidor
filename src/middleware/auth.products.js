@@ -1,5 +1,5 @@
 const isLogged = (req, res, next) => {
-  if (req.session?.user && req.session?.user.role === 'USER') {
+  if (req.user && req.user.role === 'USER') {
     return next();
   }
   return res.redirect('/');

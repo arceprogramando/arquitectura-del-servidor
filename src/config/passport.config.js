@@ -49,7 +49,9 @@ const initializePassport = () => {
         if (user) {
           return done(null, false, { message: 'El correo electrónico ya está registrado.' });
         }
+
         const hashedPassword = await encrypt.createHash(password);
+
         const newUser = {
           firstname,
           lastname,
@@ -57,8 +59,9 @@ const initializePassport = () => {
           age,
           password: hashedPassword,
         };
+
         const createdUser = await UserModel.create(newUser);
-        req.redirect('/');
+
         return done(null, createdUser);
       } catch (error) {
         return done(error);
@@ -66,15 +69,24 @@ const initializePassport = () => {
     },
   ));
 
-  passport.use('local-login', new LocalStrategy({ usernameField: 'email' }, async (username, password, done) => {
+  passport.use('local-login', new LocalStrategy({ usernameField: 'email' }, async (email, password, done) => {
     try {
-      const user = await UserModel.findOne({ email: username });
+
+      const user = await UserModel.findOne({ email });
+
       if (!user) {
+
         return done(null, false);
       }
-      if (!encrypt.isValidPassword(user, password)) return done(null, false);
+
+      if (!encrypt.isValidPassword(user, password)) {
+
+        return done(null, false);
+      }
+
       return done(null, user);
     } catch (error) {
+      console.error('Error during login:', error);
       return done(error);
     }
   }));
