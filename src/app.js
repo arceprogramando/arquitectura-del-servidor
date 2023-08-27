@@ -11,7 +11,7 @@ import passport from 'passport';
 import configObject from './config/config.js';
 import __dirname from './utils.js';
 import viewsRouter from './routes/views.router.js';
-import sessionRoutes from './routes/session.routes.js';
+import userRoutes from './routes/user.routes.js';
 import initializePassport from './config/passport.config.js';
 import productRouter from './routes/products.routes.js';
 import cartRouter from './routes/carts.routes.js';
@@ -67,7 +67,7 @@ app.listen(app.get('PORT'), () => {
 });
 
 app.use('/', viewsRouter);
-app.use('/api/session', sessionRoutes);
+app.use('/api/user', userRoutes);
 app.use('/api/products', productRouter);
 app.use('/api/carts', cartRouter);
 app.use('/api/chat', messageRouter);

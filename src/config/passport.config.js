@@ -49,9 +49,7 @@ const initializePassport = () => {
         if (user) {
           return done(null, false, { message: 'El correo electrónico ya está registrado.' });
         }
-
         const hashedPassword = await encrypt.createHash(password);
-
         const newUser = {
           firstname,
           lastname,
@@ -59,9 +57,8 @@ const initializePassport = () => {
           age,
           password: hashedPassword,
         };
-
         const createdUser = await UserModel.create(newUser);
-
+        req.redirect('/');
         return done(null, createdUser);
       } catch (error) {
         return done(error);
