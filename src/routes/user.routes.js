@@ -14,8 +14,8 @@ router.get('/logout', userController.logoutUser);
 
 router.post('/recover-psw', userController.resetPassword);
 
+router.get('/github', passport.authenticate('github', { scope: ['user:email'] }));
+
+router.get('/github/callback', passport.authenticate('github', { failureRedirect: '/login', successRedirect: '/products' }));
+
 export default router;
-
-// router.get('/github', passport.authenticate('github', { scope: ['user:email'] }), userController.authenticateGitHub);
-
-// router.get('/github/callback', passport.authenticate('github', { failureRedirect: '/login' }), userController.handleGitHubCallback);
