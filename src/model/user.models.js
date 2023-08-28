@@ -34,25 +34,26 @@ const userSchema = new mongoose.Schema({
     type: mongoose.Types.ObjectId,
     ref: 'carts',
   },
-  notes: {
-    type: [
-      {
-        note: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: 'notes',
-        },
-      },
-    ],
-    default: [],
-  },
+
+  // notes: {
+  //   type: [
+  //     {
+  //       note: {
+  //         type: mongoose.Schema.Types.ObjectId,
+  //         ref: 'notes',
+  //       },
+  //     },
+  //   ],
+  //   default: [],
+  // },
 });
 
 userSchema.plugin(mongoosePaginate);
 
-userSchema.pre('find', function (next) {
-  this.populate('notes.note');
-  next();
-});
+// userSchema.pre('find', function (next) {
+//   this.populate('notes.note');
+//   next();
+// });
 
 const UserModel = mongoose.model(collectionName, userSchema);
 

@@ -1,64 +1,41 @@
 import UserRepository from '../repository/user.repository.js';
-import encrypt from '../helpers/encrypt.js';
 
 class UserService {
   constructor() {
     this.userRepository = new UserRepository();
   }
 
-  createUser = async (userData) => {
+  updatePassword = async (findUser, newPasswordHashed) => {
     try {
-      const {
-        firstname, lastname, email, age, password,
-      } = userData;
-      const hashedPassword = await encrypt.createHash(password);
-      const newUser = {
-        firstname,
-        lastname,
-        email,
-        age,
-        password: hashedPassword,
-      };
-      const createdUser = await this.userRepository.createUser(newUser);
-      return createdUser;
+      const updatedUser = await this.userRepository.updatePassword(findUser, newPasswordHashed);
+
+      if (!updatedUser) {
+        throw new Error('Problemas al actualizar la contraseña');
+      }
+
+      return updatedUser;
     } catch (error) {
-      throw new Error(`Error al crear el usuario: ${error.message}`);
+      throw new Error(`Error al actualizar la contraseña: ${error.message}`);
     }
   };
 
-  loginUser = async (email, password) => {
-    const user = await this.userRepository.loginUser(email);
-
-    if (!user || !encrypt.isValidPassword(user, password)) {
-      throw new Error('Invalid credentials');
+  findUserByEmail = async (email) => {
+    try {
+      const user = await this.userRepository.findUserByEmail(email);
+      return user;
+    } catch (error) {
+      throw new Error(`Error al buscar el email: ${error.message}`);
     }
-
-    return {
-      firstname: user.firstname,
-      lastname: user.lastname,
-      age: user.age,
-      email: user.email,
-      role: user.role,
-    };
   };
 
-  // updatePassword = async (email, newPassword) => {
-  //   const newPasswordHashed = await encrypt.createHash(newPassword);
-  //   const findUser = await this.userRepository.findOne({ email });
-
-  //   if (!findUser) {
-  //     throw new Error('Credenciales inválidas o erróneas');
-  //   }
-
-  //   const updateUser = await this.userRepository.findByIdAndUpdate(findUser._id, {
-  //     password: newPasswordHashed,
-  //   });
-
-  //   if (!updateUser) {
-  //     throw new Error('Problemas actualizando la contraseña');
-  //   }
-  // };
-
+  changePassword = async (findUser, newPasswordHashed) => {
+    try {
+      const updatedUser = await this.userRepository.changePassword(findUser, newPasswordHashed);
+      return updatedUser;
+    } catch (error) {
+      throw new Error(`Error al cambiar la contraseña: ${error.message}`);
+    }
+  };
 }
 
 export default UserService;
