@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import productsModel from '../model/products.models.js';
-import isLogged from '../middleware/auth.products.js';
+import { isAdmin, isUser } from '../middleware/auth.products.js';
 import MessageModel from '../model/message.models.js';
 import CartModel from '../model/carts.models.js';
 
@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/products', isLogged, async (req, res) => {
+router.get('/products', isUser, async (req, res) => {
   try {
     const limit = req.query.limit || 10;
     const page = req.query.page || 1;
@@ -42,11 +42,11 @@ router.get('/products', isLogged, async (req, res) => {
 
     let visit;
 
-    if (req.session.counter) {
-      req.session.counter += 1;
-      visit = `Se ha visitado el sitio ${req.session.counter} veces`;
+    if (req.user.counter) {
+      req.user.counter += 1;
+      visit = `Se ha visitado el sitio ${req.user.counter} veces`;
     } else {
-      req.session.counter = 1;
+      req.user.counter = 1;
       visit = 'Se ha visitado el sitio 1 vez';
     }
 
@@ -59,7 +59,7 @@ router.get('/products', isLogged, async (req, res) => {
       hasNextPage,
       prevPage,
       nextPage,
-      user: req.session.user,
+      user: req.user,
     });
 
   } catch (error) {
@@ -67,7 +67,7 @@ router.get('/products', isLogged, async (req, res) => {
   }
 });
 
-router.get('/chat', isLogged, async (req, res) => {
+router.get('/chat', async (req, res) => {
   try {
     const findmessage = await MessageModel.find({});
     const messages = findmessage.map((message) => message.toObject());
@@ -107,8 +107,8 @@ router.get('/recover', async (req, res) => {
   res.render('recover');
 });
 
-router.get('/profile', isLogged, async (req, res) => {
-  const { user } = req.session;
+router.get('/profile', async (req, res) => {
+  const { user } = req.user;
   res.render('profile', {
     followers: user.followers,
     lastname: user.firstname || user.login,
