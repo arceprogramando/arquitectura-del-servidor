@@ -36,6 +36,7 @@ class ViewRepository {
 
     }
   };
+
 }
 
 export default ViewRepository;

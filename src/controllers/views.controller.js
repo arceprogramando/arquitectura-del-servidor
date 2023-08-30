@@ -78,6 +78,37 @@ class ViewController {
       return res.status(500).json({ error: `Error al popular los mensajes en el views controller ${error}` });
     }
   };
+
+  viewRegister = async (req, res) => {
+    try {
+      return res.render('register');
+    } catch (error) {
+      return res.status(500).json({ error: `Error al visualizar el register en el controller del view ${error}` });
+
+    }
+  };
+
+  viewRecover = async (req, res) => {
+    try {
+      return res.render('recover');
+    } catch (error) {
+      return res.status(500).json({ error: `Error al visualizar el register en el controller del view ${error}` });
+    }
+  };
+
+  viewProfile = async (req, res) => {
+    try {
+      const { user } = req;
+      return res.render('profile', {
+        firstname: user.firstname,
+        lastname: user.lastname || user.login,
+        age: user.age,
+        email: user.email,
+      });
+    } catch (error) {
+      return res.status(500).json({ error: `Error al visualizar el perfil en el controlador de vista: ${error}` });
+    }
+  };
 }
 
 export default ViewController;
