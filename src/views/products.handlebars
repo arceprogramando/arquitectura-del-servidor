@@ -24,6 +24,8 @@
   </form>
 
 </div>
+
+{{#if user.admin }}ADMIN
 <div class="container h-100">
   <div class="row h-100">
     <div class="col-md-4 my-auto">
@@ -83,12 +85,6 @@
               <div class="d-flex justify-content-between">
                 <h1 class="h3 card-title">{{this.title}}</h1>
                 <p class="h5">${{this.price}}</p>
-                <!--
-                  <div> 
-                    <button class="btn btn-danger delete" data-id="{{this.code}}">delete</button>
-                    <button class="btn btn-secondary update" data-id="{{this.code}}">update</button>
-                  </div>
-                  -->
               </div>
               <p>{{this.description}}</p>
               <img src="{{this.thumbnails}}" alt="Product Image" class="image">
@@ -102,7 +98,7 @@
     </div>
 
   </div>
-
+{{else}}Usuario{{/if}}
   <script src="/socket.io/socket.io.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="/js/index.js"></script>

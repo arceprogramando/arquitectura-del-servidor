@@ -60,8 +60,8 @@ app.use(passport.session());
 
 app.listen(app.get('PORT'), () => {
   console.log(`=Encendido servidor en puerto ${app.get('PORT')}= \n====== http://localhost:${app.get('PORT')}/ =====`);
-  console.log(`==========ENV:${app.get('NODE_ENV')}==========`);
-  console.log(`==PERSISTENCE:${app.get('PERSISTENCE')}===============`);
+  console.log(`==========ENV:${app.get('NODE_ENV')}===========`);
+  console.log(`=======PERSISTENCE:${app.get('PERSISTENCE')}=============`);
   displayRoutes(app);
   initializeDatabase();
 });

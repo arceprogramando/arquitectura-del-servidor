@@ -27,25 +27,14 @@ Hasta ahora realice:
 - Contar con el botón de “agregar al carrito” directamente, sin necesidad de abrir una página adicional con los detalles del producto.(no se como hacer) ❌❔
 
 ## Observaciones
-
-- Aplicar las capas en views y message.
-- Cuando me logeo con github me aparece rol de usuario.. esta bien.. pero me aparece la opción de agregar un producto. Fijate de - agregarle la logica para que se vea cuando solo es admin.  O creas una nueva vista solo para el admin.. 
+pero me aparece la opción de agregar un producto. Fijate de - agregarle la logica para que se vea cuando solo es admin.  O creas una nueva vista solo para el admin.. 
 
 Asi vamos puliendo para la entrega final. 
 
 ## Tercera Entrega Del Proyecto Final 
-### Se profundizará sobre los roles de los usuarios, las autorizaciones y sobre la lógica de compra.
-### Mejorando la arquitectura del servidor
 ### Objetivos generales
-- Profesionalizar el servidor
-- Objetivos específicos
-- Aplicar una arquitectura profesional para nuestro servidor
-- Aplicar prácticas como patrones de diseño, mailing, variables de entorno. etc.
 ## Se debe entregar
-- Modificar nuestra capa de persistencia para aplicar los conceptos de Factory (opcional), DAO y DTO. 
-- El DAO seleccionado (por un parámetro en línea de comandos como lo hicimos anteriormente) será devuelto por una Factory para que la capa de negocio opere con él. (Factory puede ser opcional)
-- Implementar el patrón Repository para trabajar con el DAO en la lógica de negocio. 
-Modificar la ruta  /current Para evitar enviar información sensible, enviar un DTO del usuario sólo con la información necesaria.
+- Implementar el patrón Repository para trabajar con el DAO en la lógica de negocio. (falta cambiar el nombre de repository a dao y crear el verdadero repository)
 - Realizar un middleware que pueda trabajar en conjunto con la estrategia “current” para hacer un sistema de autorización y delimitar el acceso a dichos endpoints:
 - Sólo el administrador puede crear, actualizar y eliminar productos.
 - Sólo el usuario puede enviar mensajes al chat.
