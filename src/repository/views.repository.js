@@ -29,9 +29,7 @@ class ViewRepository {
 
   populateProductInCart = async (cId) => {
     try {
-      console.log(cId);
-      const populateProduct = await this.cartModel.findById({ _id: cId }).populate();
-      console.log(populateProduct);
+      const populateProduct = await CartModel.findById({ _id: cId }).populate('products.product');
       return populateProduct;
     } catch (error) {
       throw new Error(`Error al usar al buscar los mensajes para visualizar segun el modelo  de mensjaes en la base de datos: ${error.message}`);

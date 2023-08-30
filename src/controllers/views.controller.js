@@ -70,7 +70,10 @@ class ViewController {
     try {
       const { cId } = req.params;
       const populateProduct = await this.viewService.populateProductInCart(cId);
-      return populateProduct;
+      return res.render('carts', {
+        cart: populateProduct.toObject(),
+        style: '../../css/index.css',
+      });
     } catch (error) {
       return res.status(500).json({ error: `Error al popular los mensajes en el views controller ${error}` });
     }
