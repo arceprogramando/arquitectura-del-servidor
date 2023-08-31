@@ -35,17 +35,6 @@ const userSchema = new mongoose.Schema({
     ref: 'carts',
   },
 
-  // notes: {
-  //   type: [
-  //     {
-  //       note: {
-  //         type: mongoose.Schema.Types.ObjectId,
-  //         ref: 'notes',
-  //       },
-  //     },
-  //   ],
-  //   default: [],
-  // },
 });
 
 userSchema.plugin(mongoosePaginate);

@@ -8,7 +8,7 @@ const userController = new UserController();
 
 router.post('/register', passport.authenticate('local-register', { failureRedirect: '/register', successRedirect: '/' }));
 
-router.post('/login', passport.authenticate('local-login', { failureRedirect: '/', successRedirect: '/products' }));
+router.post('/login', passport.authenticate('local-login', { failureRedirect: '/', successRedirect: '/profile' }));
 
 router.get('/logout', userController.logoutUser);
 

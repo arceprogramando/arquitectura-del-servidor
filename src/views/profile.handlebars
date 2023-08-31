@@ -3,11 +3,18 @@
   <p>{{firstname}} {{lastname}}</p>
   <p>Edad: {{age}}</p>
   <p>Email: {{email}}</p>
+  <p>ROL: {{role}}</p>
   <div>
     <form action="/api/user/logout" method="get">
       <br />
       <button type="submit">Cerrar sesión</button>
     </form>
   </div>
-  <a href="/products">Ir a ver los productos</a>
+  <div>{{#if isAdmin}}
+  <a href="/products">Ir a administrar los productos</a>
+  {{else}}
+  <a href="/chat">Ir a enviar mensajes al chat</a>
+<h1>{{firstName}} {{lastName}}</h1>
+{{/if}}
+  </div>
 </div>

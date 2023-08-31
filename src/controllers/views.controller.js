@@ -110,14 +110,18 @@ class ViewController {
   viewProfile = async (req, res) => {
     try {
       const { user } = req;
+
+      const isAdmin = req.user.role === 'ADMIN';
       return res.render('profile', {
         firstname: user.firstname,
         lastname: user.lastname || user.login,
         age: user.age,
         email: user.email,
+        role: user.role,
+        isAdmin,
       });
     } catch (error) {
-      return res.status(500).json({ error: `Error al visualizar el perfil en el controlador de vista: ${error}` });
+      return res.redirect('/');
     }
   };
 }

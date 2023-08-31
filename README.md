@@ -2,7 +2,7 @@
 ## _Felipe Antonio Aleman Arce_
 ### Ejercicio 12 entregable , Tercera entrega del proyecto Final
 [![Coderhouse](https://res.cloudinary.com/hdsqazxtw/image/upload/v1570710978/coderhouse.jpg)](https://github.com/arceprogramando)
-Mi repositorio publico es  [arceprogramando][arceprogramando]
+- Mi repositorio publico es  [arceprogramando][arceprogramando]
 en github.
 
 Hasta ahora realice:
@@ -20,25 +20,8 @@ Hasta ahora realice:
 - Arquitectura del servidor: Diseño ✔️
 - Tercera entrega del proyecto Final (en progreso)
 
-## Cosas que me aun tengo sin funcionar o sin entender conceptos de anterior entregas:
-
-- Si se desea hacer la conexión de socket emits con HTTP, deberás buscar la forma de utilizar el servidor io de Sockets dentro de la petición POST. ¿Cómo utilizarás un emit dentro del POST?(sin terminar)❌❔
-- Llevar a una nueva vista con el producto seleccionado con su descripción completa, detalles de precio, categoría, etc. Además de un botón para agregar al carrito.
-- Contar con el botón de “agregar al carrito” directamente, sin necesidad de abrir una página adicional con los detalles del producto.(no se como hacer) ❌❔
-
-## Observaciones
-pero me aparece la opción de agregar un producto. Fijate de - agregarle la logica para que se vea cuando solo es admin.  O creas una nueva vista solo para el admin.. 
-
-Asi vamos puliendo para la entrega final. 
-
 ## Tercera Entrega Del Proyecto Final 
-### Objetivos generales
-## Se debe entregar
-- Implementar el patrón Repository para trabajar con el DAO en la lógica de negocio. (falta cambiar el nombre de repository a dao y crear el verdadero repository)
-- Realizar un middleware que pueda trabajar en conjunto con la estrategia “current” para hacer un sistema de autorización y delimitar el acceso a dichos endpoints:
-- Sólo el administrador puede crear, actualizar y eliminar productos.
-- Sólo el usuario puede enviar mensajes al chat.
-- Sólo el usuario puede agregar productos a su carrito.
+- Sólo el usuario puede agregar productos a su carrito.(como hacer esto)
 - Crear un modelo Ticket el cual contará con todas las formalizaciones de la compra. Éste contará con los campos
 Id (autogenerado por mongo)
 code: String debe autogenerarse y ser único
