@@ -1,11 +1,9 @@
-# Arquitectura del servidor: Diseño
+# Tercera entrega del proyecto Final
 ## _Felipe Antonio Aleman Arce_
-### Ejercicio 11 entregable , Arquitectura del servidor: Diseño
+### Ejercicio 12 entregable , Tercera entrega del proyecto Final
 [![Coderhouse](https://res.cloudinary.com/hdsqazxtw/image/upload/v1570710978/coderhouse.jpg)](https://github.com/arceprogramando)
-Mi repositorio publico es  [arceprogramando][arceprogramando]
+- Mi repositorio publico es  [arceprogramando][arceprogramando]
 en github.
-
-Estoy haciendo una limpieza de el codigo asi que hice una especie de reinicio para poder estar al dia con el codigo un poco mas limpio. 
 
 Hasta ahora realice:
 
@@ -20,42 +18,25 @@ Hasta ahora realice:
 - Estrategia de autenticacion por terceros ✔️
 - Segunda practica integradora (>‿◠) ✔️
 - Arquitectura del servidor: Diseño ✔️
-Cosas que me aun tengo sin funcionar o sin entender conceptos de anterior entregas:
+- Tercera entrega del proyecto Final (en progreso)
 
-- Si se desea hacer la conexión de socket emits con HTTP, deberás buscar la forma de utilizar el servidor io de Sockets dentro de la petición POST. ¿Cómo utilizarás un emit dentro del POST?(sin terminar)❌❔
-- Llevar a una nueva vista con el producto seleccionado con su descripción completa, detalles de precio, categoría, etc. Además de un botón para agregar al carrito.
-- Contar con el botón de “agregar al carrito” directamente, sin necesidad de abrir una página adicional con los detalles del producto.(no se como hacer) ❌❔
-
-##  Segunda practica integradora
-
-- Continuar sobre el proyecto que has trabajado para tu ecommerce y configurar los siguientes elementos:
-- Crear un modelo User el cual contará con los campos:
-first_name:String,
-last_name:String,
-email:String (único)
-age:Number,
-password:String(Hash)
-cart:Id con referencia a Carts
-role:String(default:’USER’)✔️
-Desarrollar las estrategias de Passport para que funcionen con este modelo de usuarios✔️
-- Modificar el sistema de login del usuario para poder trabajar con session o con jwt (a tu elección). ✔️
-
-### Use passportlocal 
-(Sólo para jwt) desarrollar una estrategia “current” para extraer la cookie que contiene el token para obtener el usuario asociado a dicho token, en caso de tener el token, devolver al usuario asociado al token, caso contrario devolver un error de passport, utilizar un extractor de cookie.
-Agregar al router /api/sessions/ la ruta /current, la cual utilizará el modelo de sesión que estés utilizando, para poder devolver en una respuesta el usuario actual.(use sessions por ahora)
-
-## Arquitectura del servidor: Diseño 
-### Aspectos a incluir
-- El proyecto debe contar con capas de
-routing, controlador, dao, con nuestras
-vistas bien separadas y con las
-responsabilidades correctamente
-delegadas.
-- Además, mover del proyecto todas las
-partes importantes y
-comprometedoras en un archivo .env
-para poder leerlo bajo variables de
-entorno en un archivo config.js
+## Tercera Entrega Del Proyecto Final 
+- Sólo el usuario puede agregar productos a su carrito.(como hacer esto)
+- Crear un modelo Ticket el cual contará con todas las formalizaciones de la compra. Éste contará con los campos
+Id (autogenerado por mongo)
+code: String debe autogenerarse y ser único
+purchase_datetime: Deberá guardar la fecha y hora exacta en la cual se formalizó la compra (básicamente es un created_at)
+amount: Number, total de la compra.
+purchaser: String, contendrá el correo del usuario asociado al carrito
+- Implementar, en el router de carts, la ruta /:cid/purchase, la cual permitirá finalizar el proceso de compra de dicho carrito.
+- La compra debe corroborar el stock del producto al momento de finalizarse
+- Si el producto tiene suficiente stock para la cantidad indicada en el producto del carrito, entonces restarlo del stock del producto y continuar.
+- Si el producto no tiene suficiente stock para la cantidad indicada en el producto del carrito, entonces no agregar el producto al proceso de compra. 
+- al final, utilizar el servicio de Tickets para poder generar un ticket con los datos de la compra.
+- En caso de existir una compra no completada, devolver el arreglo con los ids de los productos que no pudieron procesarse.
+- Una vez finalizada la compra, el carrito asociado al usuario que compró deberá contener sólo los productos que no pudieron comprarse. 
+  Es decir, se filtran los que sí se compraron y se quedan aquellos que no tenían disponibilidad.
+- Además, archivo .env para poder correr el proyecto.
 
 > Espero que Los ejercicios se encuentren
 > resueltos de buena forma y espero 

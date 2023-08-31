@@ -2,7 +2,7 @@ import passport from 'passport';
 import local from 'passport-local';
 import GitHubStrategy from 'passport-github2';
 import configObject from './config.js';
-import UserModel from '../dao/models/user.models.js';
+import UserModel from '../model/user.models.js';
 import encrypt from '../helpers/encrypt.js';
 
 const env = configObject;
@@ -13,10 +13,11 @@ const { GITHUB_CLIENT_SECRET } = env;
 const { PORT } = env;
 
 const initializePassport = () => {
+
   passport.use('github', new GitHubStrategy({
     clientID: GITHUB_CLIENT_ID,
     clientSecret: GITHUB_CLIENT_SECRET,
-    callbackURL: `http://localhost:${PORT}/api/session/github/callback`,
+    callbackURL: `http://localhost:${PORT}/api/user/github/callback`,
   }, async (accessToken, refreshToken, profile, done) => {
     try {
       const findUser = await UserModel.findOne({ email: profile._json?.email });
@@ -69,15 +70,24 @@ const initializePassport = () => {
     },
   ));
 
-  passport.use('local-login', new LocalStrategy({ usernameField: 'email' }, async (username, password, done) => {
+  passport.use('local-login', new LocalStrategy({ usernameField: 'email' }, async (email, password, done) => {
     try {
-      const user = await UserModel.findOne({ email: username });
+
+      const user = await UserModel.findOne({ email });
+
       if (!user) {
+
         return done(null, false);
       }
-      if (!encrypt.isValidPassword(user, password)) return done(null, false);
+
+      if (!encrypt.isValidPassword(user, password)) {
+
+        return done(null, false);
+      }
+
       return done(null, user);
     } catch (error) {
+      console.error('Error during login:', error);
       return done(error);
     }
   }));

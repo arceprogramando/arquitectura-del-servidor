@@ -15,15 +15,15 @@
   </div>
   {{/if}}
 </div>
-<p>Rol: {{#if user.admin}}Administrador{{else}}Usuario{{/if}}</p>
-<p>Visit : {{this.visit}}</p>
+<p>Rol: {{#if isAdmin}}Administrador{{else}}Usuario{{/if}}</p>
+<p>Visit : {{visit}}</p>
 <div>
   <h3>eliminando la Cuenta</h3>
-  <form action="/api/session/logout" method="get">
+  <form action="/api/user/logout" method="get">
     <button type="submit">clearSession</button>
   </form>
-
 </div>
+{{#if isAdmin}}
 <div class="container h-100">
   <div class="row h-100">
     <div class="col-md-4 my-auto">
@@ -36,8 +36,8 @@
             required>
         </div>
         <div class="form-group">
-          <label for="title">descripcion:</label>
-          <input type="text" id="description" name="description" placeholder="Escribe el titulo"
+          <label for="description">Descripción:</label>
+          <input type="text" id="description" name="description" placeholder="Escribe la descripción"
             class="form-control rounded-0 mb-1" required>
         </div>
         <div class="form-group">
@@ -81,17 +81,11 @@
           <div>
             <div class="card card-body rounded-2 mb-2 animate__animated animate__fadeInUp background">
               <div class="d-flex justify-content-between">
-                <h1 class="h3 card-title">{{this.title}}</h1>
-                <p class="h5">${{this.price}}</p>
-                <!--
-                  <div> 
-                    <button class="btn btn-danger delete" data-id="{{this.code}}">delete</button>
-                    <button class="btn btn-secondary update" data-id="{{this.code}}">update</button>
-                  </div>
-                  -->
+                <h1 class="h3 card-title">{{title}}</h1>
+                <p class="h5">${{price}}</p>
               </div>
-              <p>{{this.description}}</p>
-              <img src="{{this.thumbnails}}" alt="Product Image" class="image">
+              <p>{{description}}</p>
+              <img src="{{thumbnails}}" alt="Product Image" class="image">
             </div>
           </div>
           {{else}}
@@ -100,9 +94,9 @@
         </div>
       </div>
     </div>
-
   </div>
-
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="/js/index.js"></script>
+</div>
+{{/if}}
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/js/index.js"></script>

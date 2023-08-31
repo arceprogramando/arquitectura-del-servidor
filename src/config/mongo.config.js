@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import configObject from '../../../config/config.js';
+import configObject from './config.js';
 
 const {
   DB_CNN, DB_HOST, DB_PORT, DB_NAME,

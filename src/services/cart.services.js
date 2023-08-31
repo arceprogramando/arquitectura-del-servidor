@@ -1,8 +1,8 @@
-import CartModel from '../dao/models/carts.models.js';
+import CartRepository from '../repository/cart.repository.js';
 
 class CartService {
   constructor() {
-    this.CartModel = CartModel;
+    this.cartRepository = new CartRepository();
   }
 
   createCart = async (cartData) => {
@@ -12,62 +12,73 @@ class CartService {
         quantity: product.quantity,
       }));
 
-      const newCart = new this.CartModel({
+      const newCart = {
         products: cartItems,
-      });
-
-      const createdCart = await newCart.save();
+      };
+      const createdCart = await this.cartRepository.createCart(newCart);
       return createdCart;
     } catch (error) {
-      throw new Error(`Error al crear el carrito: ${error.message}`);
+      throw new Error(`Error al crear el carrito en el service: ${error.message}`);
     }
   };
 
   getCarts = async (limit) => {
     try {
-      let query = this.CartModel.find({});
-
-      if (limit) {
-        query = query.limit(parseInt(limit, 10));
-      }
-
-      const carts = await query.exec();
+      const carts = await this.cartRepository.getCarts(limit);
       return carts;
     } catch (error) {
-      throw new Error('Error al obtener los carritos');
+      throw new Error(`Error al obtener los carritos en el service: ${error.message}`);
     }
   };
 
-  getCartById = async (cartId) => {
+  getCartById = async (cId) => {
     try {
-      const cart = await this.CartModel.findById(cartId).populate('products.product');
+      const cart = await this.cartRepository.getCartById(cId);
       return cart;
     } catch (error) {
-      throw new Error(`Error al obtener el carrito ${error.message}`);
+      throw new Error(`Error al obtener el carrito en el service${error.message}`);
     }
   };
 
-  updateCartById = async (cartId, products) => {
+  updateCartById = async (cId, updateData) => {
     try {
-      const updatedCart = await this.CartModel.findByIdAndUpdate(cartId, { products }, { new: true });
+      const updatedCart = await this.cartRepository.updateCartById(cId, updateData);
       return updatedCart;
     } catch (error) {
-      throw new Error('Error al actualizar el carrito');
+      throw new Error(`Error al actualizar el carrito ${error.message}`);
     }
   };
 
   deleteCart = async (cartId) => {
     try {
-      const deletedCart = await this.CartModel.findByIdAndDelete(cartId);
+      const deletedCart = await this.cartRepository.deleteCart(cartId);
       return deletedCart;
     } catch (error) {
-      throw new Error('Error al eliminar la cart');
+      throw new Error(`Error al eliminar la cart en el services con error: ${error}`);
     }
   };
 
-  deleteCartItem = async (cId, pId) => {
+  createProductInCart = async (cId, pId, quantity) => {
     try {
-      const cart = await this.CartModel.findById(cId);
+      const updatedCart = await this.cartRepository.createProductInCart(cId, pId, quantity);
+      return updatedCart;
+    } catch (error) {
+      throw new Error(`Error al crear un producto cart con id ${cId}, en el services con error: ${error}`);
+    }
+  };
+
+  updateCartItemQuantity = async (cId, pId, quantity) => {
+    try {
+      const updatedCart = await this.cartRepository.updateCartItemQuantity(cId, pId, quantity);
+      return updatedCart;
+    } catch (error) {
+      throw new Error(`Error al actualizar la cantidad del producto ${pId} en la cart con id ${cId}, en el services con error: ${error}`);
+    }
+  };
+
+  deleteItemInCart = async (cId, pId) => {
+    try {
+      const cart = await this.cartRepository.deleteItemInCart(cId);
       if (!cart) {
         throw new Error('El carrito no existe');
       }
@@ -85,7 +96,6 @@ class CartService {
       throw new Error('Error al eliminar el producto del carrito');
     }
   };
-
 }
 
 export default CartService;
