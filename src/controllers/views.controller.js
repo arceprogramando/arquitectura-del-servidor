@@ -17,27 +17,38 @@ class ViewController {
 
   getProducts = async (req, res) => {
     try {
-      const {
-        limit, page, sort, query,
-      } = req.query;
+      const limit = req.query.limit || 10;
+      const page = req.query.page || 1;
+      const sort = req.query.sort || 'desc';
+
+      const query = {};
+
+      if (req.query.query) {
+        query.title = { $regex: req.query.query, $options: 'i' };
+      }
+
+      const options = { page, limit, lean: true };
+
+      if (sort === 'asc') {
+        options.sort = { price: 1 };
+      } else if (sort === 'desc') {
+        options.sort = { price: -1 };
+      }
+      let visitCount = parseInt(req.cookies.visitCount, 10) || 0;
+
+      visitCount += 1;
+
+      res.cookie('visitCount', visitCount);
+
+      const visit = `Se ha visitado el sitio ${visitCount} ${visitCount === 1 ? 'vez' : 'veces'}`;
 
       const {
         docs, hasPrevPage, hasNextPage, prevPage, nextPage,
-      } = await this.viewService.getProducts(limit, page, sort, query);
+      } = await this.viewService.getProducts(query, options);
 
-      let visit;
+      const isAdmin = req.user.role === 'ADMIN';
 
-      if (req.session.counter) {
-        req.session.counter += 1;
-        visit = `Se ha visitado el sitio ${req.session.counter} veces`;
-      } else {
-        req.session.counter = 1;
-        visit = 'Se ha visitado el sitio 1 vez';
-      }
-
-      const admin = req.session.user === 'ADMIN';
-
-      res.render('products', {
+      return res.render('products', {
         visit,
         products: docs,
         style: 'index.css',
@@ -46,10 +57,10 @@ class ViewController {
         hasNextPage,
         prevPage,
         nextPage,
-        admin,
+        isAdmin,
       });
     } catch (error) {
-      res.status(500).json({ error: `Error al obtener los productos en el views controller ${error}` });
+      return res.redirect('/');
     }
   };
 

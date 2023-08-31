@@ -11,7 +11,8 @@ class ViewRepository {
 
   getProducts = async (query, options) => {
     try {
-      return await this.productsModel.paginate(query, options);
+      const findProduct = await this.productsModel.paginate(query, options);
+      return findProduct;
     } catch (error) {
       throw new Error(`Error al usar el metodo paginate en el modelo de productos de la base de datos: ${error.message}`);
 

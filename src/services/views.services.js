@@ -5,21 +5,12 @@ class ViewService {
     this.viewRepository = new ViewRepository();
   }
 
-  getProducts = async (limit, page, sort, query) => {
+  getProducts = async (query, options) => {
     try {
-      const options = { page, limit, lean: true };
-
-      if (sort === 'asc') {
-        options.sort = { price: 1 };
-      } else if (sort === 'desc') {
-        options.sort = { price: -1 };
-      }
-
-      return await this.viewRepository.getProducts(query, options);
+      const findProduct = await this.viewRepository.getProducts(query, options);
+      return findProduct;
     } catch (error) {
-
-      throw new Error(`Error al tomar los productos en views Services: ${error.message}`);
-
+      throw new Error(`Error al tomar los productos desde el views Services: ${error.message}`);
     }
   };
 
