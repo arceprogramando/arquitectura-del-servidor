@@ -5,7 +5,7 @@ export const isUser = (req, res, next) => {
   return res.status(200);
 };
 
-export const isAdmin = (req, res, next) => {
+export const isAdmin = (req, res) => {
   if (req.user && req.user.role === 'ADMIN') {
     return res.status(200).redirect('/products');
   }

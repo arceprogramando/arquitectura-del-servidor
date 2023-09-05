@@ -30,19 +30,20 @@ const userSchema = new mongoose.Schema({
     enum: Object.values(roleType),
     default: 'USER',
   },
-  cart: {
-    type: mongoose.Types.ObjectId,
-    ref: 'carts',
+  carts: {
+    type: [
+      {
+        cart: {
+          type: mongoose.Types.ObjectId,
+          ref: 'carts',
+        },
+      },
+    ],
+    default: [],
   },
-
 });
 
 userSchema.plugin(mongoosePaginate);
-
-// userSchema.pre('find', function (next) {
-//   this.populate('notes.note');
-//   next();
-// });
 
 const UserModel = mongoose.model(collectionName, userSchema);
 

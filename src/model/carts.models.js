@@ -22,10 +22,4 @@ const cartSchema = new mongoose.Schema({
 
 const CartModel = mongoose.model(cartsCollection, cartSchema);
 
-/* Tambien puedo usar (
-Schema.pre('find',function(){
-  this.populate('notes.note')
-}) // Para hacer generico el populate
-  */
-
 export default CartModel;

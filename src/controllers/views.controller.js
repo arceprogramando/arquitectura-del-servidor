@@ -1,8 +1,12 @@
 import ViewService from '../services/views.services.js';
+import ProductModel from '../model/products.models.js';
 
 class ViewController {
+
   constructor() {
     this.viewService = new ViewService();
+    this.productModel = ProductModel;
+
   }
 
   showLoginPage = async (req, res) => {
@@ -121,6 +125,36 @@ class ViewController {
         isAdmin,
       });
     } catch (error) {
+      return res.redirect('/');
+    }
+  };
+
+  viewCartUser = async (req, res) => {
+    try {
+      const { user } = req;
+      const isUser = req.user.role === 'USER';
+      const findProducts = await this.productModel.find({});
+
+      console.log(findProducts);
+      const products = findProducts.map((product) => ({
+        title: product.title,
+        description: product.description,
+        price: product.price,
+        _id: product._id,
+        image: product.thumbnails,
+        stock: product.stock,
+      }));
+
+      return res.render('cartsuser', {
+        firstname: user.firstname,
+        lastname: user.lastname,
+        role: user.role,
+        isUser,
+        products,
+        style: '../../css/index.css',
+      });
+    } catch (error) {
+      console.log('🚀 ~ file: views.controller.js:138 ~ ViewController ~ viewCartUser= ~ error:', error);
       return res.redirect('/');
     }
   };

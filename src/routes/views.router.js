@@ -18,4 +18,6 @@ router.get('/recover', viewController.viewRecover);
 
 router.get('/profile', viewController.viewProfile);
 
+router.get('/cartsuser', viewController.viewCartUser);
+
 export default router;
