@@ -15,10 +15,10 @@ router.put('/:cId', cartController.updateCartById);
 
 router.delete('/:cId', cartController.deleteCart);
 
-router.post('/:cId/product/', cartController.createProductInCart);
+router.post('/:cId/products/', cartController.createProductInCart);
 
-router.put('/:cId/product/:pId', cartController.updateCartItemQuantity);
+router.put('/:cId/products/:pId', cartController.updateCartItemQuantity);
 
-router.delete('/:cId/product/:pId', cartController.deleteItemInCart);
+router.delete('/:cId/products/:pId', cartController.deleteItemInCart);
 
 export default router;

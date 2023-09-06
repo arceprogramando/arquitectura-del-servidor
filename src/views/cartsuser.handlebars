@@ -1,37 +1,47 @@
 <main>
-    hola {{firstname}} {{lastname}}
-    {{#if isUser}}
-    <p>rol: {{role}}</p>
-    {{else}}
-    <p>No puede ver este contenido</p>
-    {{/if}}
+    <div>
 
-    <div class="col-md-5 py-3 overflow-auto h-80">
-        <div id="notes">
-            <div>
-                {{#each products}}
+        <p>hola {{firstname}} {{lastname}}</p>
+        {{#if isUser}}
+        <p>rol: {{role}}</p>
+        {{else}}
+        <p>No puede ver este contenido</p>
+        {{/if}}
+    </div>
+    <div class="d-flex">
+        <div class="d-flex py-3  h-80">
+            <div id="notes">
                 <div>
-                    <div class="card card-body rounded-2 mb-2 animate__animated animate__fadeInUp background">
-                        <div class="d-flex justify-content-between">
-                            <h1 class="h3 card-title">{{this.title}}</h1>
-                            <p class="h5">${{this.price}}</p>
+                    {{#each products}}
+                    <div>
+                        <div class="card card-body rounded-2 mb-2 animate__animated animate__fadeInUp background">
+                            <div class="d-flex justify-content-between">
+                                <h1 class="h3 card-title">{{this.title}}</h1>
+                                <p class="h5">${{this.price}}</p>
+                            </div>
+                            <p>{{this.description}}</p>
+                            <img src="http://localhost:8080/{{this.image}}" alt="{{this.title}}" class="image">
+                            <p>STOCK: {{stock}} </p>
+
+                            <button class="add-to-cart" data-product-id="{{this._id}}">Agregar al carrito</button>
                         </div>
-                        <p>{{this.description}}</p>
-                        <img src="http://localhost:8080/{{this.image}}" alt="{{this.title}}" class="image">
-                        <p>STOCK: {{stock}} </p>
-
                     </div>
-                </div>
-                <button class="add-to-cart" data-product-id="{{this._id}}">Agregar al carrito</button>
 
-                {{else}}
-                <p>No hay productos disponibles.</p>
+                    {{else}}
+                    <p>No hay productos disponibles.</p>
+                </div>
                 {{/each}}
             </div>
         </div>
+        <div class="col-md-5 py-3 overflow-auto h-80" data-cart-id="{{cId}}">
+            {{#each productsInCart}}
+            {{else}}
+            <p>No Agregaste ningun producto a tu carrito </p>
+            {{/each}}
+        </div>
+
     </div>
 </main>
 
-<script src="/socket.io/socket.io.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="/js/index.js"></script>
+
+<script src="/js/cartuser.js"></script>

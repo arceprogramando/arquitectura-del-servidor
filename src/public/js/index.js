@@ -1,17 +1,8 @@
-// Cliente
-import { Socket } from 'socket.io';
-
-const io = Socket();
-
-io.emit('message', '!Hola, me estoy conectando desde un el cliente');
-
 document.getElementById('noteForm').addEventListener('submit', async (e) => {
   e.preventDefault();
 
   const form = e.target;
   const formData = new FormData(form);
-  // eslint-disable-next-line no-console
-  console.log(formData);
   try {
     const response = await fetch('/api/products', {
       method: 'POST',
@@ -19,21 +10,12 @@ document.getElementById('noteForm').addEventListener('submit', async (e) => {
     });
 
     if (response.ok) {
-      const data = await response.json();
-
-      io.emit('nuevoProducto', data);
-
-      form.reset();
-
-      // eslint-disable-next-line no-undef
-      Swal.fire('Éxito', 'El producto se agregó correctamente', 'success');
+      console.log('La solicitud fue exitosa');
     } else {
-      throw new Error('Error al enviar el formulario');
+
+      console.error('La solicitud falló con un código de estado', response.status);
     }
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.log(error);
-    // eslint-disable-next-line no-undef
-    Swal.fire('Error', 'Hubo un problema al agregar el producto', 'error');
+    console.error('Error al enviar la solicitud:', error);
   }
 });

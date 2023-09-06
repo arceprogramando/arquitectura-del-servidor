@@ -4,6 +4,7 @@ import GitHubStrategy from 'passport-github2';
 import configObject from './config.js';
 import UserModel from '../model/user.models.js';
 import encrypt from '../helpers/encrypt.js';
+import CartModel from '../model/carts.models.js';
 
 const env = configObject;
 const LocalStrategy = local.Strategy;
@@ -53,12 +54,17 @@ const initializePassport = () => {
 
         const hashedPassword = await encrypt.createHash(password);
 
+        const newCart = new CartModel();
+
+        await newCart.save();
+
         const newUser = {
           firstname,
           lastname,
           email,
           age,
           password: hashedPassword,
+          carts: [{ cart: newCart._id }],
         };
 
         const createdUser = await UserModel.create(newUser);
@@ -69,7 +75,6 @@ const initializePassport = () => {
       }
     },
   ));
-
   passport.use('local-login', new LocalStrategy({ usernameField: 'email' }, async (email, password, done) => {
     try {
 
