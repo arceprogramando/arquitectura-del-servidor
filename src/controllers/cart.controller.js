@@ -122,6 +122,7 @@ class CartController {
       return res.status(500).json({ error: `'Error al eliminar el producto del carrito en el controller ${error}'` });
     }
   };
+
 }
 
 export default CartController;

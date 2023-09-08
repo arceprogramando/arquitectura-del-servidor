@@ -1,4 +1,5 @@
 import CartModel from '../model/carts.models.js';
+// import TicketModel from '../model/ticket.models.js';
 
 class CartRepository {
   constructor() {
@@ -93,6 +94,7 @@ class CartRepository {
       throw new Error(`Error al traer la cart donde se encuentra el producto .id ${cId} en la base de datos. Error: ${error.message}`);
     }
   };
+
 }
 
 export default CartRepository;

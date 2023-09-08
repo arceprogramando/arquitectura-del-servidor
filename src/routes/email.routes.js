@@ -22,9 +22,6 @@ const transporter = nodemailer.createTransport({
 
 router.post('/', async (req, res) => {
   try {
-    const { body } = req;
-
-    console.log('hola');
 
     const result = await transporter.sendMail({
       from: EMAIL,
@@ -37,15 +34,12 @@ router.post('/', async (req, res) => {
       `,
     });
 
-    // Verifica si el correo electrónico se envió correctamente
     if (result.accepted.length > 0) {
       console.log(`Email sent to ${req.body.email}`);
       return res.send({ ok: true, message: `Email sent to ${req.body.email}` });
     }
-    // Hubo un error al enviar el correo electrónico
     console.error('Error sending email:', result.rejected);
 
-    // Devuelve el error como parte de la respuesta para obtener detalles
     return res.status(500).send({ ok: false, message: 'Error sending email', error: result.rejected });
 
   } catch (error) {
