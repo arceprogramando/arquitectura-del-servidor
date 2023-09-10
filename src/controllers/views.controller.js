@@ -135,15 +135,10 @@ class ViewController {
   viewCartUser = async (req, res) => {
     try {
       const { user } = req;
-      // Saca el req del usuario
       const uId = user?._id.toString();
-      // Saca el uId(User Id) del user
       const isUser = req.user?.role === 'USER';
-      // Valida si el rol dentro de req.user.role es user y lo entrega como isUser a el booleano true o false
       const findProducts = await this.productModel.find({});
-      // Traigo todos los productos actuales
 
-      // guardo en products el mapeo de la búsqueda de productos y guardo en variables el contenido que voy a usar
       const products = findProducts.map((product) => ({
         title: product.title,
         description: product.description,
@@ -153,16 +148,16 @@ class ViewController {
         stock: product.stock,
       }));
 
-      // Hago una búsqueda del usuario por su ID
       const findUser = await this.userModel.findOne({ _id: uId });
-
       const userCart = findUser.carts[0];
-
-      // Aquí puedes acceder al ID del carrito
       const cartId = userCart.cart.toString();
-      console.log('🚀 ~ file: views.controller.js:163 ~ ViewController ~ viewCartUser= ~ cartId:', cartId);
 
-      // Resto del código
+      const findCartsOfUser = await this.cartModel.find({ user: uId }).populate('products');
+      console.log('🚀 ~ file: views.controller.js:156 ~ ViewController ~ viewCartUser= ~ findCartsOfUser:', findCartsOfUser);
+      const cartsOfUser = findCartsOfUser.map((cart) => ({
+        _id: cart._id,
+
+      }));
 
       return res.render('cartsuser', {
         firstname: user.firstname,
@@ -170,12 +165,12 @@ class ViewController {
         role: user.role,
         isUser,
         products,
-        productsInCart: cartId, // Pasa el ID del carrito en lugar de todo el objeto de carrito
+        cartsOfUser,
         style: '../../css/index.css',
         cId: cartId,
       });
     } catch (error) {
-      console.log('🚀 ~ file: views.controller.js:158 ~ ViewController ~ viewCartUser= ~ error:', error);
+      console.error('Error en viewCartUser:', error);
       return res.redirect('/');
     }
   };

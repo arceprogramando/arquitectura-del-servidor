@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { v4 as uuidv4 } from 'uuid';
 
 const ticketCollection = 'ticket';
 
@@ -12,10 +13,12 @@ const ticketSchema = new mongoose.Schema({
     type: mongoose.Types.String,
     unique: true,
     required: true,
+    default: uuidv4(),
   },
   purchase_datetime: {
     type: mongoose.Types.Date,
     required: true,
+    default: Date.now,
   },
   total: {
     type: mongoose.Types.Number,
