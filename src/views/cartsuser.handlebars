@@ -1,0 +1,61 @@
+<main>
+    <div>
+
+        <p>hola {{firstname}} {{lastname}}</p>
+        {{#if isUser}}
+        <p>rol: {{role}}</p>
+        {{else}}
+        <p>No puede ver este contenido</p>
+        {{/if}}
+    </div>
+    <div class="d-flex">
+        <div>
+            <h2>Agregar al carrito</h2>
+            <div class="d-flex py-3 h-80">
+                <div id="notes">
+                    <div>
+                        {{#each products}}
+                        <div>
+                            <div class="card card-body rounded-2 mb-2 animate__animated animate__fadeInUp background">
+                                <div class="d-flex justify-content-between">
+                                    <h1 class="h3 card-title">{{this.title}}</h1>
+                                    <p class="h5">${{this.price}}</p>
+                                </div>
+                                <p>{{this.description}}</p>
+                                <img src="http://localhost:8080/{{this.image}}" alt="{{this.title}}" class="image">
+                                <p>STOCK: {{stock}} </p>
+                                <button class="add-to-cart" data-product-id="{{this._id}}">Agregar al carrito</button>
+                            </div>
+                        </div>
+                        {{else}}
+                        <p>No hay productos disponibles.</p>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="">
+            <!-- Contenido del carrito -->
+            <div class="">
+
+                <h1>Carrito de Compras de {{firstname}} {{lastname}}</h1>
+                <div class="d-flex flex-wrap py-3 overflow-auto " data-cart-id="{{cId}}">
+                    {{#each cartsOfUser}}
+                    <div class="d-flex flex-column justify-content-center card card-body rounded-2 mb-2 animate__animated animate__fadeInUp background-2">
+                        <h2 class="h3 card-title">{{this.title}}</h2>
+                        <p class="h5">Valor:{{this.price}}</p>
+                        <h3>Cantidad por comprar: {{this.quantity}}</h3>
+                    </div>
+                    {{else}}
+                    <p>No Agregaste ningun producto a tu carrito </p>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+
+<script src="/js/cartuser.js"></script>

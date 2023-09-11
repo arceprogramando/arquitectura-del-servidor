@@ -1,8 +1,15 @@
 import ViewService from '../services/views.services.js';
+import ProductModel from '../model/products.models.js';
+import CartModel from '../model/carts.models.js';
+import UserModel from '../model/user.models.js';
 
 class ViewController {
+
   constructor() {
     this.viewService = new ViewService();
+    this.productModel = ProductModel;
+    this.cartModel = CartModel;
+    this.userModel = UserModel;
   }
 
   showLoginPage = async (req, res) => {
@@ -121,6 +128,59 @@ class ViewController {
         isAdmin,
       });
     } catch (error) {
+      return res.redirect('/');
+    }
+  };
+
+  viewCartUser = async (req, res) => {
+    try {
+      // Traigo al user del request
+      const { user } = req;
+      // Accedo al objeto _id y lo paso a string al objeto que es en un objeto de mongo
+      const uId = user?._id.toString();
+      // Reviso si el request de user contiene el role con un nombre igual a USER
+      const isUser = req.user?.role === 'USER';
+
+      // Traigo todos los productos con mi modelo de productos de Mongoose
+      const findProducts = await this.productModel.find({});
+
+      // Hago el map de findProduct para que por cada producto traiga el titulo ,descripccion , precio , id de mongo , image , y stock
+
+      const products = findProducts.map((product) => ({
+        title: product.title,
+        description: product.description,
+        price: product.price,
+        _id: product._id,
+        image: product.thumbnails,
+        stock: product.stock,
+      }));
+
+      // segun el usuario que se haya conectado utilizo mi modelo busco su usuario y le doy un populate a carts
+      const findUser = await this.userModel
+        .findOne({ _id: uId })
+        .populate('carts');
+
+      const cId = findUser.carts[0]?.cart._id.toString();
+
+      const findCart = await this.cartModel.findOne({ _id: cId }).populate('products.product');
+      const findCartProducts = findCart.products.map((cartProduct) => ({
+        title: cartProduct.product.title,
+        price: cartProduct.product.price,
+        quantity: cartProduct.quantity,
+      }));
+
+      return res.render('cartsuser', {
+        firstname: user.firstname,
+        lastname: user.lastname,
+        role: user.role,
+        isUser,
+        products,
+        cartsOfUser: findCartProducts,
+        style: '../../css/index.css',
+        // cId: cartId,
+      });
+    } catch (error) {
+      console.error('Error en viewCartUser:', error);
       return res.redirect('/');
     }
   };

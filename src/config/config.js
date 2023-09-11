@@ -14,6 +14,8 @@ const {
   GITHUB_CLIENT_ID,
   GITHUB_CLIENT_SECRET,
   PERSISTENCE,
+  EMAIL,
+  PSW_EMAIL,
 } = process.env;
 
 const configObject = {
@@ -26,6 +28,8 @@ const configObject = {
   GITHUB_CLIENT_ID,
   GITHUB_CLIENT_SECRET,
   PERSISTENCE,
+  EMAIL,
+  PSW_EMAIL,
 };
 
 export default configObject;

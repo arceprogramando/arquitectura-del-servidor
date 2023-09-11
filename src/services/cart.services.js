@@ -96,6 +96,7 @@ class CartService {
       throw new Error('Error al eliminar el producto del carrito');
     }
   };
+
 }
 
 export default CartService;

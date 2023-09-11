@@ -21,7 +21,6 @@ Hasta ahora realice:
 - Tercera entrega del proyecto Final (en progreso)
 
 ## Tercera Entrega Del Proyecto Final 
-- Sólo el usuario puede agregar productos a su carrito.(como hacer esto)
 - Crear un modelo Ticket el cual contará con todas las formalizaciones de la compra. Éste contará con los campos
 Id (autogenerado por mongo)
 code: String debe autogenerarse y ser único
