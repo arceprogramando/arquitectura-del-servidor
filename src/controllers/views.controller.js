@@ -134,10 +134,17 @@ class ViewController {
 
   viewCartUser = async (req, res) => {
     try {
+      // Traigo al user del request
       const { user } = req;
+      // Accedo al objeto _id y lo paso a string al objeto que es en un objeto de mongo
       const uId = user?._id.toString();
+      // Reviso si el request de user contiene el role con un nombre igual a USER
       const isUser = req.user?.role === 'USER';
+
+      // Traigo todos los productos con mi modelo de productos de Mongoose
       const findProducts = await this.productModel.find({});
+
+      // Hago el map de findProduct para que por cada producto traiga el titulo ,descripccion , precio , id de mongo , image , y stock
 
       const products = findProducts.map((product) => ({
         title: product.title,
@@ -148,15 +155,18 @@ class ViewController {
         stock: product.stock,
       }));
 
-      const findUser = await this.userModel.findOne({ _id: uId });
-      const userCart = findUser.carts[0];
-      const cartId = userCart.cart.toString();
+      // segun el usuario que se haya conectado utilizo mi modelo busco su usuario y le doy un populate a carts
+      const findUser = await this.userModel
+        .findOne({ _id: uId })
+        .populate('carts');
 
-      const findCartsOfUser = await this.cartModel.find({ user: uId }).populate('products');
-      console.log('🚀 ~ file: views.controller.js:156 ~ ViewController ~ viewCartUser= ~ findCartsOfUser:', findCartsOfUser);
-      const cartsOfUser = findCartsOfUser.map((cart) => ({
-        _id: cart._id,
+      const cId = findUser.carts[0]?.cart._id.toString();
 
+      const findCart = await this.cartModel.findOne({ _id: cId }).populate('products.product');
+      const findCartProducts = findCart.products.map((cartProduct) => ({
+        title: cartProduct.product.title,
+        price: cartProduct.product.price,
+        quantity: cartProduct.quantity,
       }));
 
       return res.render('cartsuser', {
@@ -165,16 +175,15 @@ class ViewController {
         role: user.role,
         isUser,
         products,
-        cartsOfUser,
+        cartsOfUser: findCartProducts,
         style: '../../css/index.css',
-        cId: cartId,
+        // cId: cartId,
       });
     } catch (error) {
       console.error('Error en viewCartUser:', error);
       return res.redirect('/');
     }
   };
-
 }
 
 export default ViewController;

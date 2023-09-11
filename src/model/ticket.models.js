@@ -10,18 +10,18 @@ const ticketSchema = new mongoose.Schema({
     required: true,
   },
   code: {
-    type: mongoose.Types.String,
+    type: String,
     unique: true,
     required: true,
     default: uuidv4(),
   },
   purchase_datetime: {
-    type: mongoose.Types.Date,
+    type: Date,
     required: true,
     default: Date.now,
   },
-  total: {
-    type: mongoose.Types.Number,
+  amount: {
+    type: Number,
     required: true,
   },
   products: {
@@ -33,18 +33,18 @@ const ticketSchema = new mongoose.Schema({
           required: true,
         },
         price: {
-          type: mongoose.Types.Number,
+          type: Number,
           required: true,
         },
         quantity: {
-          type: mongoose.Types.Number,
+          type: Number,
           default: 1,
         },
       },
     ],
   },
   purchaser: {
-    type: mongoose.Types.String,
+    type: String,
     required: true,
   },
 });

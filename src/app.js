@@ -17,6 +17,7 @@ import productRouter from './routes/products.routes.js';
 import cartRouter from './routes/carts.routes.js';
 import messageRouter from './routes/message.routes.js';
 import sendEmail from './routes/email.routes.js';
+import ticketRouter from './routes/ticket.routes.js';
 import initializeDatabase from './dao/factory.js';
 
 const app = express();
@@ -73,3 +74,4 @@ app.use('/api/products', productRouter);
 app.use('/api/carts', cartRouter);
 app.use('/api/chat', messageRouter);
 app.use('/api/email', sendEmail);
+app.use('/api/tickets', ticketRouter);
