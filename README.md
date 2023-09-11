@@ -61,14 +61,16 @@ Para realizar este Ejercicio
 - [connect-mongo] es un módulo de Node.js que se utiliza como almacén de sesiones 
 - [express-session] esencial para manejar sesiones de usuario en aplicaciones web creadas con Express.js
 - [passport-local] estrategia de passport para manejar el inicio de sesion local
+- [uuid] libreria para crear ids aleatorios
 
-### Todos los paquetes 
+### Todos los paquetes
+ 
 ```sh
 npm init @eslint/config
 
 npm install cross-env nodemon -D
 
-npm install express cors dotenv cookie-parser express-handlebars mongoose mongoose-paginate-v2 multer bcrypt passport passport-github2 connect-mongo express-session
+npm install express cors dotenv cookie-parser express-handlebars mongoose mongoose-paginate-v2 multer bcrypt passport passport-github2 connect-mongo express-session uuid
 
 ```
 
@@ -92,3 +94,4 @@ npm install express cors dotenv cookie-parser express-handlebars mongoose mongoo
   [connect-mongo]:<https://www.npmjs.com/package/connect-mongo>
   [express-session]:<https://www.npmjs.com/package/express-session>
   [passport-local]:<https://www.passportjs.org/packages/passport-local/>
+  [uuid]:<https://www.npmjs.com/package/uuid>
