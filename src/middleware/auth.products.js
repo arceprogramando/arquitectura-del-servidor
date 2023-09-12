@@ -1,13 +1,33 @@
 export const isUser = (req, res, next) => {
-  if (req.user && req.user.role === 'USER') {
-    return next();
+  try {
+    if (req.user && (req.user.role === 'USER' || req.user.role === 'ADMIN')) {
+      return next();
+    }
+    return res.status(403).redirect('/');
+  } catch (error) {
+    return res.status(500).send('Error interno del servidor');
   }
-  return res.status(200);
 };
 
-export const isAdmin = (req, res) => {
-  if (req.user && req.user.role === 'ADMIN') {
-    return res.status(200).redirect('/products');
+export const isAdmin = (req, res, next) => {
+  try {
+    if (req.user && req.user.role === 'ADMIN') {
+      return next();
+    }
+    return res.status(403).redirect('/');
+  } catch (error) {
+    return res.status(500).send('Error interno del servidor');
   }
-  return res.redirect('/');
+};
+
+export const isAuthenticated = (req, res, next) => {
+  try {
+    if (req.isAuthenticated()) {
+      return next();
+    }
+    return res.status(401).redirect('/');
+
+  } catch (error) {
+    return res.status(500).send('Error interno del servidor');
+  }
 };
