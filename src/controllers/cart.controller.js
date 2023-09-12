@@ -33,7 +33,7 @@ class CartController {
 
   getCartById = async (req, res) => {
     try {
-      const { cId } = req.params.cId;
+      const { cId } = req.params;
 
       const cart = await this.cartService.getCartById(cId);
 
