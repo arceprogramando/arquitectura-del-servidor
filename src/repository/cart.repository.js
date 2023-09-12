@@ -29,7 +29,7 @@ class CartRepository {
 
   getCartById = async (cId) => {
     try {
-      const cart = await this.cartModel.findOne({ id: cId });
+      const cart = await this.cartModel.find({ id: cId });
       return cart;
     } catch (error) {
       throw new Error(`Error al obtener el carrito con id: ${cId} desde la base de datos: ${error.message}`);

@@ -1,6 +1,6 @@
 export const isUser = (req, res, next) => {
   try {
-    if (req.user && (req.user.role === 'USER' || req.user.role === 'ADMIN')) {
+    if (req.user && req.user.role === 'USER') {
       return next();
     }
     return res.status(403).redirect('/');

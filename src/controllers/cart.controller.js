@@ -125,6 +125,8 @@ class CartController {
 
   purchaseCart = async (req, res) => {
     try {
+      // La compra debe corroborar el stock del producto al momento de finalizarse
+
       const { cId } = req.params;
       const purchaseCart = await this.cartService.getCartById({ _Id: cId }).populate('products.product');
       console.log('🚀 ~ file: cart.controller.js:130 ~ CartController ~ purchaseCart= ~ purchaseCart:', purchaseCart);
