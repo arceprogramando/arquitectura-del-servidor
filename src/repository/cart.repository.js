@@ -95,6 +95,15 @@ class CartRepository {
     }
   };
 
+  purchaseCart = async (cId) => {
+    try {
+      const purchaseCart = await this.cartModel.findById({ _id: cId });
+      return purchaseCart;
+    } catch (error) {
+      throw new Error(`Error al comprar la cart con id ${cId} en la base de datos. Error: ${error.message}`);
+
+    }
+  };
 }
 
 export default CartRepository;

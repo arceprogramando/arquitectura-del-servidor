@@ -123,6 +123,18 @@ class CartController {
     }
   };
 
+  purchaseCart = async (req, res) => {
+    try {
+      const { cId } = req.params;
+      const purchaseCart = await this.cartService.getCartById({ _Id: cId }).populate('products.product');
+      console.log('🚀 ~ file: cart.controller.js:130 ~ CartController ~ purchaseCart= ~ purchaseCart:', purchaseCart);
+
+      return purchaseCart;
+    } catch (error) {
+      return res.status(500).json({ error: `'Error al comprar los productos del carrito en el controller ${error}'` });
+
+    }
+  };
 }
 
 export default CartController;

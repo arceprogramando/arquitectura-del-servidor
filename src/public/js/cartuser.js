@@ -6,9 +6,12 @@ document.querySelectorAll('.add-to-cart').forEach((button) => {
     const cartId = document.querySelector('[data-cart-id]').getAttribute('data-cart-id');
     const endpoint = `/api/carts/${cartId}/products/`;
 
+    const quantity = document.querySelector('#quantity').value;
+    console.log('🚀 ~ file: cartuser.js:10 ~ button.addEventListener ~ quantity:', quantity);
+
     const data = {
       product: productId,
-      quantity: 1,
+      quantity: quantity || 1,
     };
 
     try {

@@ -167,6 +167,7 @@ class ViewController {
         title: cartProduct.product.title,
         price: cartProduct.product.price,
         quantity: cartProduct.quantity,
+        stock: cartProduct.stock,
       }));
 
       return res.render('cartsuser', {
@@ -177,7 +178,7 @@ class ViewController {
         products,
         cartsOfUser: findCartProducts,
         style: '../../css/index.css',
-        // cId: cartId,
+        cId,
       });
     } catch (error) {
       console.error('Error en viewCartUser:', error);
