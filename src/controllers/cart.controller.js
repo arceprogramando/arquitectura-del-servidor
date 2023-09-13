@@ -1,9 +1,12 @@
 import CartService from '../services/cart.services.js';
+import TicketController from './ticket.controller.js';
 
 class CartController {
 
   constructor() {
     this.cartService = new CartService();
+    this.ticketController = new TicketController();
+
   }
 
   createCart = async (req, res) => {
@@ -125,18 +128,46 @@ class CartController {
 
   purchaseCart = async (req, res) => {
     try {
-      // La compra debe corroborar el stock del producto al momento de finalizarse
-
       const { cId } = req.params;
-      const purchaseCart = await this.cartService.getCartById({ _Id: cId }).populate('products.product');
-      console.log('🚀 ~ file: cart.controller.js:130 ~ CartController ~ purchaseCart= ~ purchaseCart:', purchaseCart);
+      const { user } = req.user;
+      console.log('🚀 ~ file: cart.controller.js:133 ~ CartController ~ purchaseCart= ~ user:', user);
+      const cart = await this.cartService.getCartById(cId);
 
-      return purchaseCart;
+      if (!cart) {
+        return res.status(404).json({ error: 'Carrito no encontrado' });
+      }
+
+      const updatedProducts = cart.products.map((cartItem) => {
+        const { product, quantity } = cartItem;
+        const maxQuantity = Math.min(product.stock, quantity);
+
+        product.stock -= maxQuantity;
+
+        return { ...cartItem, quantity: maxQuantity };
+      });
+
+      const updatedCart = await this.cartService.updateCartById(cId, {
+        products: updatedProducts.filter((cartItem) => cartItem.quantity > 0),
+      });
+
+      const ticketData = {
+        user,
+        purchaser: user.firstname,
+        products: cart.products.map((cartItem) => ({
+          product: cartItem.product._id,
+          price: cartItem.product.price,
+          quantity: cartItem.quantity,
+        })),
+      };
+
+      const createdTicket = await this.ticketController.createTicket(ticketData);
+
+      return res.status(200).json({ status: 'success', purchaseCart: updatedCart, ticket: createdTicket });
     } catch (error) {
-      return res.status(500).json({ error: `'Error al comprar los productos del carrito en el controller ${error}'` });
-
+      return res.status(500).json({ error: `Error al comprar el carrito: ${error.message}` });
     }
   };
+
 }
 
 export default CartController;

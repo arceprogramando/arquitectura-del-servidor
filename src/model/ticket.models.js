@@ -7,22 +7,18 @@ const ticketSchema = new mongoose.Schema({
   user: {
     type: mongoose.Types.ObjectId,
     ref: 'user',
-    required: true,
   },
   code: {
     type: String,
     unique: true,
-    required: true,
     default: uuidv4(),
   },
   purchase_datetime: {
     type: Date,
-    required: true,
     default: Date.now,
   },
   amount: {
     type: Number,
-    required: true,
   },
   products: {
     type: [
@@ -45,7 +41,6 @@ const ticketSchema = new mongoose.Schema({
   },
   purchaser: {
     type: String,
-    required: true,
   },
 });
 

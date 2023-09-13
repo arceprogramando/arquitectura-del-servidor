@@ -8,7 +8,8 @@ class TicketController {
 
   createTicket = async (req, res) => {
     try {
-      const ticketData = req.body;
+      const { ticketData } = req.body;
+      console.log('🚀 ~ file: ticket.controller.js:12 ~ TicketController ~ createTicket= ~ ticketData:', ticketData);
       const createTicket = await this.ticketService.createTicket(ticketData);
       return res.status(201).json({ status: 'success', cart: createTicket });
     } catch (error) {

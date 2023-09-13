@@ -1,3 +1,4 @@
+import ProductDTO from '../dto/product.dto.js';
 import ProductService from '../services/product.services.js';
 
 class ProductController {
@@ -7,9 +8,13 @@ class ProductController {
 
   createProduct = async (req, res) => {
     try {
-      const {
-        title, description, code, price, status, stock, category,
-      } = req.body;
+      const productDTO = new ProductDTO(req.body);
+
+      if (!productDTO.isValid()) {
+        return res.status(400).json({
+          error: 'Todos los campos son requeridos y deben ser válidos para crear un producto.',
+        });
+      }
 
       let thumbnails = null;
 
@@ -17,27 +22,20 @@ class ProductController {
         thumbnails = `/upload/${req.file.filename}`;
       }
 
-      if (!(title && description && code && price && status && stock && category && thumbnails)) {
-        return res.status(400).json({
-          error: 'Todos los campos son requeridos para crear un producto.',
-        });
-      }
-
       const productData = {
-        title,
-        description,
-        code,
-        price,
-        status,
-        stock,
-        category,
+        title: productDTO.title,
+        description: productDTO.description,
+        price: productDTO.price,
+        status: productDTO.status,
+        stock: productDTO.stock,
+        category: productDTO.category,
         thumbnails,
       };
       await this.productService.createProduct(productData);
 
-      return res.redirect('/products');
+      return res.redirect('/profile');
     } catch (error) {
-      return res.status(500).json({ status: 'error', error: `Hubo un problema interno en el controlador al crear el productito. ${error}` });
+      return res.status(500).json({ status: 'error', error: `Hubo un problema interno en el controlador al crear el producto. ${error}` });
     }
   };
 

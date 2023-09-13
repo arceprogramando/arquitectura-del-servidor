@@ -1,5 +1,4 @@
 import CartModel from '../model/carts.models.js';
-// import TicketModel from '../model/ticket.models.js';
 
 class CartRepository {
   constructor() {
@@ -98,11 +97,10 @@ class CartRepository {
 
   purchaseCart = async (cId) => {
     try {
-      const purchaseCart = await this.cartModel.findById({ _id: cId });
+      const purchaseCart = await this.cartModel.findById({ _id: cId }).populate('products.product');
       return purchaseCart;
     } catch (error) {
       throw new Error(`Error al comprar la cart con id ${cId} en la base de datos. Error: ${error.message}`);
-
     }
   };
 }
