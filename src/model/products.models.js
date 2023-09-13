@@ -22,7 +22,10 @@ const productsSchema = new mongoose.Schema({
     required: true,
     index: true, // Con index: true se indexa
   },
-  status: Boolean,
+  status: {
+    type: Boolean,
+    default: true,
+  },
   stock: Number,
   category: String,
   thumbnails: String,

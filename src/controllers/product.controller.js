@@ -26,7 +26,6 @@ class ProductController {
         title: productDTO.title,
         description: productDTO.description,
         price: productDTO.price,
-        status: productDTO.status,
         stock: productDTO.stock,
         category: productDTO.category,
         thumbnails,
