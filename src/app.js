@@ -23,7 +23,10 @@ import initializeDatabase from './dao/factory.js';
 const app = express();
 const env = configObject;
 
-app.use(cors());
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+}));
 app.use(cookieParser());
 
 app.use(express.static(`${__dirname}/public`));
