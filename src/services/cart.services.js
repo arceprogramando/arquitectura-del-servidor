@@ -104,9 +104,8 @@ class CartService {
       // Desestructuro el data user
       const { email, carts } = DataUser;
 
-      // Verifica si hay carritos en DataUser
       if (carts && carts.length > 0) {
-        const firstCart = carts[0]; // Suponiendo que solo haya un carrito
+        const firstCart = carts[0];
         const cId = firstCart.cart.toString();
 
         // Populo La cart traída por id
@@ -146,17 +145,15 @@ class CartService {
           cart: carts,
         };
 
-        // Crea el ticket antes de actualizar el carrito
         const createTicket = await this.ticketService.createTicket(DataTicket);
 
-        // Actualiza el carrito del usuario con los productos que se pudieron comprar
-        const updatedCartData = { products: [] }; // Deja el carrito vacío
+        const updatedCartData = { products: [] };
         const updatedCart = await this.updateCartById(cId, updatedCartData);
 
         return { updatedCart, createTicket };
       }
 
-      throw new Error('No se encontraron carritos en el usuario.');
+      throw new Error('No se encontraron carritos del usuario.');
     } catch (error) {
       throw new Error(`Error al comprar el carrito en el servicio: ${error}`);
     }
