@@ -18,8 +18,8 @@ class TicketController {
 
   createTicket = async (req, res) => {
     try {
-      const UserData = req.user;
-      const createdTicket = await this.ticketService.createTicket(UserData);
+      const DataTicket = req.user;
+      const createdTicket = await this.ticketService.createTicket(DataTicket);
       return res.status(201).json({ status: 'success', cart: createdTicket });
     } catch (error) {
       return res.status(500).json({ error: `Error al obtener el carrito  en el controlador${error.message}` });

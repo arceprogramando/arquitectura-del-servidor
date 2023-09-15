@@ -18,15 +18,14 @@ class TicketService {
     }
   };
 
-  createTicket = async (userData) => {
+  createTicket = async (DataTicket) => {
     try {
-      const { email } = userData;
-      const { carts } = userData;
-      const cartId = carts[0].cart.toString();
+      const { email, cart } = DataTicket;
+      const cartId = cart[0].cart.toString();
 
-      const cart = await this.cartModel.findById({ _id: cartId }).populate('products.product');
+      const cartDocument = await this.cartModel.findById({ _id: cartId }).populate('products.product');
 
-      const productsInCart = cart.products;
+      const productsInCart = cartDocument.products;
 
       const totalAmount = productsInCart.reduce((total, cartItem) => {
         const { product } = cartItem;

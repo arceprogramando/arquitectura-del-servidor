@@ -95,12 +95,12 @@ class CartRepository {
     }
   };
 
-  purchaseCart = async (cId) => {
+  getCartByIdPopulate = async (cId) => {
     try {
-      const purchaseCart = await this.cartModel.findById({ _id: cId }).populate('products.product');
-      return purchaseCart;
+      const getCartByIdPopulate = await this.cartModel.findById({ _id: cId }).populate('products.product');
+      return getCartByIdPopulate;
     } catch (error) {
-      throw new Error(`Error al comprar la cart con id ${cId} en la base de datos. Error: ${error.message}`);
+      throw new Error(`Error al popular la cart con id ${cId} en la base de datos. Error: ${error.message}`);
     }
   };
 }

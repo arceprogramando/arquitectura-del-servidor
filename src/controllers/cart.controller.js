@@ -128,46 +128,15 @@ class CartController {
 
   purchaseCart = async (req, res) => {
     try {
-      const { cId } = req.params;
-      const { user } = req.user;
-      console.log('🚀 ~ file: cart.controller.js:133 ~ CartController ~ purchaseCart= ~ user:', user);
-      const cart = await this.cartService.getCartById(cId);
+      const DataUser = req.user;
+      const purchaseCart = await this.cartService.purchaseCart(DataUser);
 
-      if (!cart) {
-        return res.status(404).json({ error: 'Carrito no encontrado' });
-      }
-
-      const updatedProducts = cart.products.map((cartItem) => {
-        const { product, quantity } = cartItem;
-        const maxQuantity = Math.min(product.stock, quantity);
-
-        product.stock -= maxQuantity;
-
-        return { ...cartItem, quantity: maxQuantity };
-      });
-
-      const updatedCart = await this.cartService.updateCartById(cId, {
-        products: updatedProducts.filter((cartItem) => cartItem.quantity > 0),
-      });
-
-      const ticketData = {
-        user,
-        purchaser: user.firstname,
-        products: cart.products.map((cartItem) => ({
-          product: cartItem.product._id,
-          price: cartItem.product.price,
-          quantity: cartItem.quantity,
-        })),
-      };
-
-      const createdTicket = await this.ticketController.createTicket(ticketData);
-
-      return res.status(200).json({ status: 'success', purchaseCart: updatedCart, ticket: createdTicket });
+      return res.status(201).json({ status: 'success', purchasecart: purchaseCart });
     } catch (error) {
-      return res.status(500).json({ error: `Error al comprar el carrito: ${error.message}` });
+      return res.status(500).json({ error: `'Error al comprar el carrito en el controller ${error}'` });
+
     }
   };
-
 }
 
 export default CartController;
