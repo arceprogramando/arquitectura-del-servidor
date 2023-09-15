@@ -41,21 +41,9 @@
             class="form-control rounded-0 mb-1" required>
         </div>
         <div class="form-group">
-          <label for="code">Código:</label>
-          <input type="text" id="code" name="code" placeholder="Ingresa el código" class="form-control rounded-0 mb-1"
-            required>
-        </div>
-        <div class="form-group">
           <label for="price">Precio:</label>
           <input type="number" id="price" name="price" placeholder="Ingresa el precio"
             class="form-control rounded-0 mb-1" required>
-        </div>
-        <div class="form-group">
-          <label for="status">Status:</label>
-          <select name="status" id="status" class="form-control rounded-0 mb-1">
-            <option value="true">true</option>
-            <option value="false">false</option>
-          </select>
         </div>
         <div class="form-group">
           <label for="stock">Stock:</label>
@@ -84,6 +72,7 @@
                 <h1 class="h3 card-title">{{title}}</h1>
                 <p class="h5">${{price}}</p>
               </div>
+                <p class="h5">STOCK {{stock}}</p>
               <p>{{description}}</p>
               <img src="{{thumbnails}}" alt="Product Image" class="image">
             </div>

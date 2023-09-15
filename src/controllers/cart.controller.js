@@ -1,9 +1,12 @@
 import CartService from '../services/cart.services.js';
+import TicketController from './ticket.controller.js';
 
 class CartController {
 
   constructor() {
     this.cartService = new CartService();
+    this.ticketController = new TicketController();
+
   }
 
   createCart = async (req, res) => {
@@ -33,7 +36,7 @@ class CartController {
 
   getCartById = async (req, res) => {
     try {
-      const { cId } = req.params.cId;
+      const { cId } = req.params;
 
       const cart = await this.cartService.getCartById(cId);
 
@@ -123,6 +126,17 @@ class CartController {
     }
   };
 
+  purchaseCart = async (req, res) => {
+    try {
+      const DataUser = req.user;
+      const purchaseCart = await this.cartService.purchaseCart(DataUser);
+
+      return res.status(201).json({ status: 'success', purchasecart: purchaseCart });
+    } catch (error) {
+      return res.status(500).json({ error: `'Error al comprar el carrito en el controller ${error}'` });
+
+    }
+  };
 }
 
 export default CartController;

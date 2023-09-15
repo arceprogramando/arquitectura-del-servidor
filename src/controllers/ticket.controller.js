@@ -6,11 +6,21 @@ class TicketController {
     this.ticketService = new TicketService();
   }
 
+  getAllTicket = async (req, res) => {
+    try {
+      const getAllTicket = await this.ticketService.getAllTicket();
+      return getAllTicket;
+    } catch (error) {
+      return res.status(500).json({ error: `Error al obtener todos los tickets   en el controlador${error.message}` });
+
+    }
+  };
+
   createTicket = async (req, res) => {
     try {
-      const ticketData = req.body;
-      const createTicket = await this.ticketService.createTicket(ticketData);
-      return res.status(201).json({ status: 'success', cart: createTicket });
+      const DataTicket = req.user;
+      const createdTicket = await this.ticketService.createTicket(DataTicket);
+      return res.status(201).json({ status: 'success', cart: createdTicket });
     } catch (error) {
       return res.status(500).json({ error: `Error al obtener el carrito  en el controlador${error.message}` });
     }

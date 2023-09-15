@@ -1,8 +1,10 @@
 import CartRepository from '../repository/cart.repository.js';
+import TicketService from './ticket.services.js';
 
 class CartService {
   constructor() {
     this.cartRepository = new CartRepository();
+    this.ticketService = new TicketService();
   }
 
   createCart = async (cartData) => {
@@ -94,6 +96,66 @@ class CartService {
       return updatedCart;
     } catch (error) {
       throw new Error('Error al eliminar el producto del carrito');
+    }
+  };
+
+  purchaseCart = async (DataUser) => {
+    try {
+      // Desestructuro el data user
+      const { email, carts } = DataUser;
+
+      if (carts && carts.length > 0) {
+        const firstCart = carts[0];
+        const cId = firstCart.cart.toString();
+
+        // Populo La cart traída por id
+        const cart = await this.cartRepository.getCartByIdPopulate(cId);
+
+        // Entro a los productos dentro de la cart
+        const productsInCart = cart.products;
+
+        // Realizo una operación para cada uno
+        const productsProcessed = productsInCart.reduce((processed, cartItem) => {
+          // Traigo el producto
+          const { product } = cartItem;
+
+          // Traigo la cantidad de producto que quiero comprar
+          const quantityToPurchase = cartItem.quantity;
+
+          // Si el stock del producto es mayor o igual a la cantidad de producto que quiero comprar
+          if (product.stock >= quantityToPurchase) {
+            // Hago una resta del stock del producto la cantidad a comprar
+            product.stock -= quantityToPurchase;
+            // y uso el método process para pushear el cambio de cantidad
+            processed.push({ product: product._id, quantity: quantityToPurchase });
+          }
+
+          return processed;
+        }, []);
+
+        const totalAmount = productsProcessed.reduce((total, cartItem) => {
+          const { product } = cartItem;
+          const productTotal = product.price * cartItem.quantity;
+          return total + productTotal;
+        }, 0);
+
+        const DataTicket = {
+          email,
+          totalAmount,
+          cart: carts,
+        };
+
+        const createTicket = await this.ticketService.createTicket(DataTicket);
+
+        const updatedCartData = { products: [] };
+        const updatedCart = await this.updateCartById(cId, updatedCartData);
+
+        return { updatedCart, createTicket };
+      }
+
+      throw new Error('No se encontraron carritos del usuario.');
+    } catch (error) {
+      throw new Error(`Error al comprar el carrito en el servicio: ${error}`);
     }
   };
 

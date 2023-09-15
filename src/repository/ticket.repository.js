@@ -5,6 +5,16 @@ class TicketRepository {
     this.ticketModel = TicketModel;
   }
 
+  getAllTicket = async () => {
+    try {
+      const getAllTicket = await this.ticketModel.find({});
+      return getAllTicket;
+    } catch (error) {
+      throw new Error(`Error al crear al traer todos los tickets en la base de datos: ${error.message}`);
+
+    }
+  };
+
   createTicket = async (newTicket) => {
     try {
       const createdTicket = await this.ticketModel.create(newTicket);

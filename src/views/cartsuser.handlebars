@@ -24,7 +24,9 @@
                                 <p>{{this.description}}</p>
                                 <img src="http://localhost:8080/{{this.image}}" alt="{{this.title}}" class="image">
                                 <p>STOCK: {{stock}} </p>
+                                <input type="number" max="{{stock}}"  id="quantity" value='1'>
                                 <button class="add-to-cart" data-product-id="{{this._id}}">Agregar al carrito</button>
+                                
                             </div>
                         </div>
                         {{else}}
@@ -35,14 +37,14 @@
             </div>
         </div>
 
-        <div class="">
-            <!-- Contenido del carrito -->
-            <div class="">
+        <div>
+            <div>
 
                 <h1>Carrito de Compras de {{firstname}} {{lastname}}</h1>
                 <div class="d-flex flex-wrap py-3 overflow-auto " data-cart-id="{{cId}}">
                     {{#each cartsOfUser}}
-                    <div class="d-flex flex-column justify-content-center card card-body rounded-2 mb-2 animate__animated animate__fadeInUp background-2">
+                    <div
+                        class="d-flex flex-column justify-content-center card card-body rounded-2 mb-2 animate__animated animate__fadeInUp background-2">
                         <h2 class="h3 card-title">{{this.title}}</h2>
                         <p class="h5">Valor:{{this.price}}</p>
                         <h3>Cantidad por comprar: {{this.quantity}}</h3>
@@ -56,6 +58,5 @@
     </div>
 
 </main>
-
 
 <script src="/js/cartuser.js"></script>

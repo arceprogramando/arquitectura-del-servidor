@@ -1,5 +1,4 @@
 import CartModel from '../model/carts.models.js';
-// import TicketModel from '../model/ticket.models.js';
 
 class CartRepository {
   constructor() {
@@ -29,7 +28,8 @@ class CartRepository {
 
   getCartById = async (cId) => {
     try {
-      const cart = await this.cartModel.findOne({ id: cId });
+
+      const cart = await this.cartModel.findOne({ _id: cId });
       return cart;
     } catch (error) {
       throw new Error(`Error al obtener el carrito con id: ${cId} desde la base de datos: ${error.message}`);
@@ -95,6 +95,14 @@ class CartRepository {
     }
   };
 
+  getCartByIdPopulate = async (cId) => {
+    try {
+      const getCartByIdPopulate = await this.cartModel.findById({ _id: cId }).populate('products.product');
+      return getCartByIdPopulate;
+    } catch (error) {
+      throw new Error(`Error al popular la cart con id ${cId} en la base de datos. Error: ${error.message}`);
+    }
+  };
 }
 
 export default CartRepository;
