@@ -47,6 +47,9 @@ Para realizar este Ejercicio
 - [passport-local] estrategia de passport para manejar el inicio de sesion local
 - [uuid] libreria para crear ids aleatorios
 - [nodemailer] Libreria para trabajar con mails 
+- [express-compression] Para comprimir 
+- [http-status-codes] Para las respuestas http en el EnumError
+- [@faker-js/faker] Como variable de entorno para hacer prueba de mocking de productos 
 
 ## Instalacion 
 ```sh
@@ -59,11 +62,11 @@ npm run start:prod
 ### Todos los paquetes desde cero
  
 ```sh
-npm init @eslint/config
+npm init @eslint/config 
 
-npm install cross-env nodemon -D
+npm install cross-env  nodemon  @faker-js/faker -D
 
-npm install express cors dotenv cookie-parser express-handlebars mongoose mongoose-paginate-v2 multer bcrypt passport passport-github2 connect-mongo express-session uuid nodemailer
+npm install express cors dotenv cookie-parser express-handlebars mongoose mongoose-paginate-v2 multer bcrypt passport passport-github2 connect-mongo express-session uuid nodemailer express-compression http-status-codes
 
 ```
 
@@ -89,3 +92,6 @@ npm install express cors dotenv cookie-parser express-handlebars mongoose mongoo
   [passport-local]:<https://www.passportjs.org/packages/passport-local/>
   [uuid]:<https://www.npmjs.com/package/uuid>
   [nodemailer]:<https://www.npmjs.com/package/nodemailer>
+  [express-compression]:<https://www.npmjs.com/package/express-compression>
+  [@faker-js/faker]:<https://www.npmjs.com/package/@faker-js/faker> 
+  [http-status-codes]:<https://www.npmjs.com/package/http-status-codes>
