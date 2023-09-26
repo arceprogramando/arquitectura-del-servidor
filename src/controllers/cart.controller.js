@@ -82,6 +82,23 @@ class CartController {
     }
   };
 
+  deleteAllProductsInCart = async (req, res) => {
+    try {
+      const { cId } = req.params;
+      const deleteAllProductsInCart = await this.cartService.deleteAllProductsInCart(cId);
+
+      if (!deleteAllProductsInCart.success) {
+        return this.httpResponse.NOT_FOUND(res, `${this.enumError.DB_ERROR}La cart con id ${cId} no se encuentra o no se pudo vaciar`);
+      }
+
+      return this.httpResponse.OK(res, `La cart con id ${cId} ha sido vaciada`);
+
+    } catch (error) {
+      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR}error al vaciar el carrito con el id proporcionado `, { error });
+
+    }
+  };
+
   createProductInCart = async (req, res) => {
     try {
       const { cId } = req.params;

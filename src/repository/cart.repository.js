@@ -60,6 +60,29 @@ class CartRepository {
     }
   };
 
+  deleteAllProductsInCart = async (cId) => {
+    try {
+      const updatedCart = await this.cartModel.updateOne(
+        { _id: cId },
+        { $set: { products: [] } },
+      );
+
+      if (updatedCart.nModified === 1) {
+        return {
+          id: cId,
+          success: true,
+        };
+      }
+      return {
+        id: cId,
+        success: false,
+      };
+
+    } catch (error) {
+      throw new Error(`Error al vaciar el carrito con el id ${cId} en la base de datos. Error: ${error.message}`);
+    }
+  };
+
   createProductInCart = async (cId, pId, quantity) => {
     try {
       const updatedCart = await this.cartModel.updateOne(
