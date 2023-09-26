@@ -17,7 +17,15 @@ class HttpResponse {
     });
   }
 
-  NotFound(res, message, data) {
+  CREATED(res, message, data) {
+    return res.status(StatusCodes.CREATED).json({
+      status: StatusCodes.CREATED,
+      statusMessage: message,
+      data,
+    });
+  }
+
+  NOT_FOUND(res, message, data) {
     return res.status(StatusCodes.NOT_FOUND).json({
       status: StatusCodes.NOT_FOUND,
       statusMessage: message,
@@ -33,7 +41,7 @@ class HttpResponse {
     });
   }
 
-  Forbiden(res, message, data) {
+  Forbidden(res, message, data) {
     return res.status(StatusCodes.FORBIDDEN).json({
       status: StatusCodes.FORBIDDEN,
       statusMessage: message,
@@ -41,7 +49,7 @@ class HttpResponse {
     });
   }
 
-  BadRequest(res, message, data) {
+  BAD_REQUEST(res, message, data) {
     return res.status(StatusCodes.BAD_REQUEST).json({
       status: StatusCodes.BAD_REQUEST,
       statusMessage: message,
@@ -49,7 +57,7 @@ class HttpResponse {
     });
   }
 
-  Error(res, message, data) {
+  ERROR(res, message, data) {
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
       status: StatusCodes.INTERNAL_SERVER_ERROR,
       statusMessage: message,
@@ -58,4 +66,9 @@ class HttpResponse {
   }
 }
 
-export default { EnumError, HttpResponse };
+const Responses = {
+  EnumError,
+  HttpResponse,
+};
+
+export default Responses;

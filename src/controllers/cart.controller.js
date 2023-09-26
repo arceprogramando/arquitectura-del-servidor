@@ -1,21 +1,23 @@
 import CartService from '../services/cart.services.js';
 import TicketController from './ticket.controller.js';
+import Responses from '../middleware/error.handlers.js';
 
 class CartController {
 
   constructor() {
     this.cartService = new CartService();
     this.ticketController = new TicketController();
-
+    this.httpResponse = new Responses.HttpResponse();
   }
 
   createCart = async (req, res) => {
     try {
       const cartData = req.body;
       const createCart = await this.cartService.createCart(cartData);
-      return res.status(201).json({ status: 'success', cart: createCart });
+      return this.httpResponse.OK(res, 'creando carrito', { cart: createCart });
+
     } catch (error) {
-      return res.status(500).json({ error: `Error al crear el carrito: ${error.message}` });
+      return this.httpResponse.ERROR(res, 'error al crear el carrito', { error: error.message });
     }
   };
 
@@ -25,28 +27,26 @@ class CartController {
       const carts = await this.cartService.getCarts(limit);
       if (limit) {
         const limitedCarts = carts.slice(0, limit);
-        res.status(200).json(limitedCarts);
-      } else {
-        res.status(200).json(carts);
+        return this.httpResponse.OK(res, 'Tomando Carritos', { carts: limitedCarts });
       }
+      return this.httpResponse.OK(res, 'Tomando Carritos', { carts });
+
     } catch (error) {
-      res.status(500).json({ error: `Error al obtener los carritos en el controller ${error}` });
+      return this.httpResponse.ERROR(res, 'error al traer los carritos', { error: error.message });
     }
   };
 
   getCartById = async (req, res) => {
     try {
       const { cId } = req.params;
-
       const cart = await this.cartService.getCartById(cId);
-
       if (!cart) {
-        return res.status(404).json({ error: 'Carrito no encontrado en validacion del controller' });
+        return this.httpResponse.NOT_FOUND(res, `La cart con id  ${cId} no existe`);
       }
-
-      return res.status(200).json(cart);
+      return this.httpResponse.OK(res, `Se encontro la cart con id:${cId} `, { cart });
     } catch (error) {
-      return res.status(500).json({ error: `Error al obtener el carrito ${error.message}` });
+      return this.httpResponse.ERROR(res, 'error al traer el carrito ', { error: error.message });
+
     }
   };
 
@@ -57,11 +57,12 @@ class CartController {
 
       const updatedCart = await this.cartService.updateCartById(cId, updateData);
       if (!updatedCart) {
-        return res.status(404).json({ error: 'El carrito no existe' });
+        return this.httpResponse.NOT_FOUND(res, `Error al actualizar la cart  con id  ${cId} `);
       }
-      return res.status(200).json(updatedCart);
+      return this.httpResponse.OK(res, `Actualizada  la cart  con id  ${cId} `, { data: updatedCart });
+
     } catch (error) {
-      return res.status(500).json({ error: `Error al actualizar el carrito con el id proporcionado ${error}` });
+      return this.httpResponse.ERROR(res, 'error al actualizar el carrito con el id proporcionado ', { error });
     }
   };
 
@@ -70,11 +71,12 @@ class CartController {
       const { cId } = req.params;
       const deletedCart = await this.cartService.deleteCart(cId);
       if (!deletedCart.success) {
-        return res.status(404).json({ error: 'La cart no existe' });
+        return this.httpResponse.NOT_FOUND(res, `La cart  con id  ${cId} no se encuentra o no se pudo borrar `);
       }
-      return res.status(200).json({ status: 'success', message: 'La cart ha sido eliminada' });
+
+      return this.httpResponse.OK(res, `La cart  con id  ${cId} ha sido borrada `);
     } catch (error) {
-      return res.status(500).json({ error: `Error al eliminar la cart en controller: ${error}` });
+      return this.httpResponse.ERROR(res, 'error al Eliminar el carrito con el id proporcionado ', { error });
     }
   };
 
@@ -86,12 +88,13 @@ class CartController {
       const updatedCart = await this.cartService.createProductInCart(cId, product, quantity);
 
       if (!updatedCart) {
-        return res.status(404).json({ error: 'El carrito no existe' });
+        return this.httpResponse.NOT_FOUND(res, `Error al crear un actualizar cart  con id  ${cId} `);
       }
 
-      return res.status(200).json(updatedCart);
+      return this.httpResponse.OK(res, `El producto dentro de la cart con el id  ${cId} ha sido creado `);
     } catch (error) {
-      return res.status(500).json({ error: `Error al crear un producto en la cart en controller: ${error.message}` });
+      return this.httpResponse.ERROR(res, 'error al Crear un producto dentro de la cart ', { error });
+
     }
   };
 
@@ -101,18 +104,18 @@ class CartController {
       const { quantity } = req.body;
 
       if (!quantity || typeof quantity !== 'number') {
-        return res.status(400).json({ error: `La cantidad ${quantity} es invalida` });
+        return this.httpResponse.BAD_REQUEST(res, `La cantidad ${quantity} es invalida`);
       }
 
       const updatedCart = await this.cartService.updateCartItemQuantity(cId, pId, quantity);
 
       if (!updatedCart) {
-        return res.status(404).json({ error: 'El carrito o el producto no fueron encontrados' });
+        return this.httpResponse.NOT_FOUND(res, `Error al crear un actualizar cart  con id  ${cId} `);
       }
 
-      return res.status(200).json({ status: 'success', updatedCart });
+      return this.httpResponse.OK(res, `La cart  con id  ${cId} ha sido borrada `, { data: updatedCart });
     } catch (error) {
-      return res.status(500).json({ error: `Error al actualizar la cantidad del item en el controlador: ${error.message}` });
+      return this.httpResponse.ERROR(res, 'Error al actualizar la cantidad del item en el controlador:  ', { error });
     }
   };
 
@@ -120,21 +123,22 @@ class CartController {
     try {
       const { cId, pId } = req.params;
       const deleteItemInCart = await this.cartService.deleteItemInCart(cId, pId);
-      return res.status(200).json(deleteItemInCart);
+      return this.httpResponse.OK(res, `El item con id ${pId} en la cart ${cId} ha sido borrado `, { data: deleteItemInCart });
     } catch (error) {
-      return res.status(500).json({ error: `'Error al eliminar el producto del carrito en el controller ${error}'` });
+      return this.httpResponse.ERROR(res, 'Error al eliminar el producto del carrito en el controller  ', { error });
     }
   };
 
   purchaseCart = async (req, res) => {
     try {
+      const { cId } = req.params;
       const DataUser = req.user;
+
       const purchaseCart = await this.cartService.purchaseCart(DataUser);
 
-      return res.status(201).json({ status: 'success', purchasecart: purchaseCart });
+      return this.httpResponse.CREATED(res, `La cart con ${cId} ha sido comprado`, { purchasecart: purchaseCart });
     } catch (error) {
-      return res.status(500).json({ error: `'Error al comprar el carrito en el controller ${error}'` });
-
+      return this.httpResponse.ERROR(res, 'Error al comprar el carrito en el controller ', { error });
     }
   };
 }
