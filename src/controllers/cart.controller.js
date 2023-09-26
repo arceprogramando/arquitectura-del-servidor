@@ -8,6 +8,7 @@ class CartController {
     this.cartService = new CartService();
     this.ticketController = new TicketController();
     this.httpResponse = new Responses.HttpResponse();
+    this.enumError = Responses.EnumError;
   }
 
   createCart = async (req, res) => {
@@ -17,7 +18,7 @@ class CartController {
       return this.httpResponse.OK(res, 'creando carrito', { cart: createCart });
 
     } catch (error) {
-      return this.httpResponse.ERROR(res, 'error al crear el carrito', { error: error.message });
+      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR}error al crear el carrito`, { error: error.message });
     }
   };
 
@@ -32,7 +33,7 @@ class CartController {
       return this.httpResponse.OK(res, 'Tomando Carritos', { carts });
 
     } catch (error) {
-      return this.httpResponse.ERROR(res, 'error al traer los carritos', { error: error.message });
+      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR}error al traer los carritos`, { error: error.message });
     }
   };
 
@@ -41,11 +42,11 @@ class CartController {
       const { cId } = req.params;
       const cart = await this.cartService.getCartById(cId);
       if (!cart) {
-        return this.httpResponse.NOT_FOUND(res, `La cart con id  ${cId} no existe`);
+        return this.httpResponse.NOT_FOUND(res, `${this.enumError.INVALID_PARAMS}La cart con id  ${cId} no existe`);
       }
       return this.httpResponse.OK(res, `Se encontro la cart con id:${cId} `, { cart });
     } catch (error) {
-      return this.httpResponse.ERROR(res, 'error al traer el carrito ', { error: error.message });
+      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR}error al traer el carrito `, { error: error.message });
 
     }
   };
@@ -62,7 +63,7 @@ class CartController {
       return this.httpResponse.OK(res, `Actualizada  la cart  con id  ${cId} `, { data: updatedCart });
 
     } catch (error) {
-      return this.httpResponse.ERROR(res, 'error al actualizar el carrito con el id proporcionado ', { error });
+      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR}error al actualizar el carrito con el id proporcionado `, { error });
     }
   };
 
@@ -70,13 +71,14 @@ class CartController {
     try {
       const { cId } = req.params;
       const deletedCart = await this.cartService.deleteCart(cId);
+
       if (!deletedCart.success) {
-        return this.httpResponse.NOT_FOUND(res, `La cart  con id  ${cId} no se encuentra o no se pudo borrar `);
+        return this.httpResponse.NOT_FOUND(res, `${this.enumError.DB_ERROR}La cart con id ${cId} no se encuentra o no se pudo borrar`);
       }
 
       return this.httpResponse.OK(res, `La cart  con id  ${cId} ha sido borrada `);
     } catch (error) {
-      return this.httpResponse.ERROR(res, 'error al Eliminar el carrito con el id proporcionado ', { error });
+      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR}error al Eliminar el carrito con el id proporcionado `, { error });
     }
   };
 
@@ -88,12 +90,12 @@ class CartController {
       const updatedCart = await this.cartService.createProductInCart(cId, product, quantity);
 
       if (!updatedCart) {
-        return this.httpResponse.NOT_FOUND(res, `Error al crear un actualizar cart  con id  ${cId} `);
+        return this.httpResponse.NOT_FOUND(res, `${this.enumError.INVALID_PARAMS}Error al crear un actualizar cart  con id  ${cId} `);
       }
 
       return this.httpResponse.OK(res, `El producto dentro de la cart con el id  ${cId} ha sido creado `);
     } catch (error) {
-      return this.httpResponse.ERROR(res, 'error al Crear un producto dentro de la cart ', { error });
+      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR}error al Crear un producto dentro de la cart `, { error });
 
     }
   };
@@ -110,12 +112,12 @@ class CartController {
       const updatedCart = await this.cartService.updateCartItemQuantity(cId, pId, quantity);
 
       if (!updatedCart) {
-        return this.httpResponse.NOT_FOUND(res, `Error al crear un actualizar cart  con id  ${cId} `);
+        return this.httpResponse.NOT_FOUND(res, `${this.enumError.INVALID_PARAMS}Error al actualizar cart  con id  ${cId} `);
       }
 
       return this.httpResponse.OK(res, `La cart  con id  ${cId} ha sido borrada `, { data: updatedCart });
     } catch (error) {
-      return this.httpResponse.ERROR(res, 'Error al actualizar la cantidad del item en el controlador:  ', { error });
+      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR}Error al actualizar la cantidad del item en el controlador:  `, { error });
     }
   };
 
@@ -125,7 +127,7 @@ class CartController {
       const deleteItemInCart = await this.cartService.deleteItemInCart(cId, pId);
       return this.httpResponse.OK(res, `El item con id ${pId} en la cart ${cId} ha sido borrado `, { data: deleteItemInCart });
     } catch (error) {
-      return this.httpResponse.ERROR(res, 'Error al eliminar el producto del carrito en el controller  ', { error });
+      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR}Error al eliminar el producto del carrito en el controller `, { error });
     }
   };
 
@@ -135,10 +137,12 @@ class CartController {
       const DataUser = req.user;
 
       const purchaseCart = await this.cartService.purchaseCart(DataUser);
-
+      if (!purchaseCart) {
+        return this.httpResponse.BAD_REQUEST(res, `${this.enumError.DB_ERROR} Error al actualizar cart  con id  ${cId} `);
+      }
       return this.httpResponse.CREATED(res, `La cart con ${cId} ha sido comprado`, { purchasecart: purchaseCart });
     } catch (error) {
-      return this.httpResponse.ERROR(res, 'Error al comprar el carrito en el controller ', { error });
+      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR}Error al comprar el carrito en el controller `, { error });
     }
   };
 }
