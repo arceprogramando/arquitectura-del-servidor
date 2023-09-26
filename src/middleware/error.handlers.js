@@ -25,9 +25,9 @@ class HttpResponse {
     });
   }
 
-  NOT_FOUND(res, message, data) {
-    return res.status(StatusCodes.NOT_FOUND).json({
-      status: StatusCodes.NOT_FOUND,
+  BAD_REQUEST(res, message, data) {
+    return res.status(StatusCodes.BAD_REQUEST).json({
+      status: StatusCodes.BAD_REQUEST,
       statusMessage: message,
       data,
     });
@@ -41,17 +41,17 @@ class HttpResponse {
     });
   }
 
-  Forbidden(res, message, data) {
-    return res.status(StatusCodes.FORBIDDEN).json({
-      status: StatusCodes.FORBIDDEN,
+  NOT_FOUND(res, message, data) {
+    return res.status(StatusCodes.NOT_FOUND).json({
+      status: StatusCodes.NOT_FOUND,
       statusMessage: message,
       data,
     });
   }
 
-  BAD_REQUEST(res, message, data) {
-    return res.status(StatusCodes.BAD_REQUEST).json({
-      status: StatusCodes.BAD_REQUEST,
+  Forbidden(res, message, data) {
+    return res.status(StatusCodes.FORBIDDEN).json({
+      status: StatusCodes.FORBIDDEN,
       statusMessage: message,
       data,
     });
