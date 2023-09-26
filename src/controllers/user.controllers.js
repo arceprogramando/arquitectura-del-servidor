@@ -6,7 +6,7 @@ class UserController {
   constructor() {
     this.userService = new UserService();
     this.httpResponse = new Responses.HttpResponse();
-
+    this.enumError = Responses.EnumError;
   }
 
   logoutUser = async (req, res) => {
@@ -14,7 +14,7 @@ class UserController {
       req.session.destroy();
       return res.redirect('/');
     } catch (error) {
-      return this.httpResponse.ERROR(res, 'error al crear el carrito', { error: error.message });
+      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR}error al crear el carrito`, { error: error.message });
     }
   };
 
@@ -25,21 +25,22 @@ class UserController {
       const findUser = await this.userService.findUserByEmail(email);
 
       if (!findUser) {
-        return this.httpResponse.NOT_FOUND(res, `El usuario con EMAIL: ${email} no fue encontrado`);
+        return this.httpResponse.NOT_FOUND(res, `${this.enumError.DB_ERROR} El usuario con EMAIL: ${email} no fue encontrado`);
 
       }
 
       const updateUser = await this.userService.changePassword(findUser, newPasswordHashed);
 
       if (!updateUser) {
-        return this.httpResponse.ERROR(res, 'error al actualizar el carrito el carrito');
+        return this.httpResponse.ERROR(res, `${this.enumError.DB_ERROR} error al actualizar el carrito `);
 
       }
 
       return res.redirect('/');
     } catch (error) {
-      return this.httpResponse.ERROR(res, 'error al resetear la contraseña');
+      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR} 'error al resetear la contraseña`);
     }
   };
 }
+
 export default UserController;

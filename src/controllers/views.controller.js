@@ -12,6 +12,7 @@ class ViewController {
     this.cartModel = CartModel;
     this.userModel = UserModel;
     this.httpResponse = new Responses.HttpResponse();
+    this.enumError = Responses.EnumError;
   }
 
   showLoginPage = async (req, res) => {
@@ -20,7 +21,7 @@ class ViewController {
         style: 'index.css',
       });
     } catch (error) {
-      return this.httpResponse.ERROR(res, 'error al visualizar el login ', { error: error.message });
+      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR} error al visualizar el login `, { error: error.message });
     }
   };
 
@@ -82,7 +83,7 @@ class ViewController {
         style: 'index.css',
       });
     } catch (error) {
-      return this.httpResponse.ERROR(res, 'Error al obtener los mensajes en el views controller ', { error: error.message });
+      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR} Error al obtener los mensajes en el views controller `, { error: error.message });
 
     }
   };
@@ -96,7 +97,7 @@ class ViewController {
         style: '../../css/index.css',
       });
     } catch (error) {
-      return this.httpResponse.ERROR(res, 'Error al popular los mensajes en el views controller ', { error: error.message });
+      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR}Error al popular los mensajes en el views controller `, { error: error.message });
     }
   };
 
@@ -104,7 +105,7 @@ class ViewController {
     try {
       return res.render('register');
     } catch (error) {
-      return this.httpResponse.ERROR(res, 'Error al visualizar el register en el controller del view ', { error: error.message });
+      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR} Error al visualizar el register en el controller del view `, { error: error.message });
     }
   };
 
@@ -112,7 +113,7 @@ class ViewController {
     try {
       return res.render('recover');
     } catch (error) {
-      return this.httpResponse.ERROR(res, 'Error al visualizar el register en el controller del view ', { error: error.message });
+      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR}Error al visualizar el register en el controller del view `, { error: error.message });
     }
   };
 
