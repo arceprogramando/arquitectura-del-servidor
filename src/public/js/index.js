@@ -11,8 +11,8 @@ document.getElementById('noteForm').addEventListener('submit', async (e) => {
 
     if (response.ok) {
       console.log('La solicitud fue exitosa');
+      window.location.reload();
     } else {
-
       console.error('La solicitud falló con un código de estado', response.status);
     }
   } catch (error) {

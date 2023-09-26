@@ -24,9 +24,9 @@
                                 <p>{{this.description}}</p>
                                 <img src="http://localhost:8080/{{this.image}}" alt="{{this.title}}" class="image">
                                 <p>STOCK: {{stock}} </p>
-                                <input type="number" max="{{stock}}"  id="quantity" value='1'>
+                                <input type="number" max="{{stock}}" id="quantity" value='1'>
                                 <button class="add-to-cart" data-product-id="{{this._id}}">Agregar al carrito</button>
-                                
+
                             </div>
                         </div>
                         {{else}}
@@ -39,8 +39,8 @@
 
         <div>
             <div>
-
-                <h1>Carrito de Compras de {{firstname}} {{lastname}}</h1>
+                <h1>Carrito de Compras de {{firstname}} {{lastname}}</h1> <br>
+                <button class="btn btn-danger mt-3" id="delete-cart">Borrar Carrito</button>
                 <div class="d-flex flex-wrap py-3 overflow-auto " data-cart-id="{{cId}}">
                     {{#each cartsOfUser}}
                     <div
