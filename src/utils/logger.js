@@ -1,7 +1,7 @@
 import winston from 'winston';
 import configObject from '../config/config.js';
 
-const env = configObject.NODE_ENV;
+const environment = configObject.NODE_ENV;
 
 const customLevels = {
   fatal: 0,
@@ -25,67 +25,50 @@ winston.addColors(customColors);
 
 const prodLogger = winston.createLogger({
   levels: customLevels,
+  level: 'info',
   format: winston.format.combine(
-    winston.format.colorize({ all: true }),
+    winston.format.colorize({ all: true, colors: customColors }),
     winston.format.simple(),
   ),
   transports: [
     new winston.transports.Console({ level: 'info' }),
     new winston.transports.File({
       filename: './error-prod.log',
-      level: 'warn',
+      level: 'info',
     }),
   ],
 });
 
 const devLogger = winston.createLogger({
   levels: customLevels,
+  level: 'debug',
   format: winston.format.combine(
-    winston.format.colorize({ all: true }),
-    winston.format.simple(),
-  ),
-  transports: [new winston.transports.Console({ level: 'debug' })],
-});
-
-const qaLogger = winston.createLogger({
-  levels: customLevels,
-  format: winston.format.combine(
-    winston.format.colorize({ all: true }),
-    winston.format.simple(),
-  ),
-  transports: [new winston.transports.Console({ level: 'debug' })],
-});
-
-const testLogger = winston.createLogger({
-  levels: customLevels,
-  format: winston.format.combine(
-    winston.format.colorize({ all: true }),
+    winston.format.colorize({ all: true, colors: customColors }),
     winston.format.simple(),
   ),
   transports: [
     new winston.transports.Console({ level: 'debug' }),
     new winston.transports.File({
-      filename: './error-test.log',
-      level: 'warn',
+      filename: './error-dev.log',
+      level: 'debug',
     }),
   ],
 });
 
 const loggerLevels = {
   prod: prodLogger,
-  qa: qaLogger,
   dev: devLogger,
-  test: testLogger,
 };
 
 const setLogger = (req, res, next) => {
   try {
-    const logger = loggerLevels[env];
-    if (!logger) {
-      throw new Error(`Logger no encontrado para el entorno: ${env}`);
-    }
+    req.logger = loggerLevels[environment];
 
-    req.logger = logger;
+    req.logger.http(
+      `Method: ${req.method}, url: ${
+        req.url
+      } - time: ${new Date().toLocaleTimeString()}`,
+    );
     next();
   } catch (error) {
     console.error(`Error en setLogger: ${error}`);

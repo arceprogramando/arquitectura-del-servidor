@@ -22,6 +22,7 @@ import ticketRouter from './routes/ticket.routes.js';
 import mockingRouter from './routes/mocking.routes.js';
 import initializeDatabase from './dao/factory.js';
 import setLogger from './utils/logger.js';
+import loggerRouter from './routes/logger.routes.js';
 
 const app = express();
 const env = configObject;
@@ -87,3 +88,4 @@ app.use('/api/chat', messageRouter);
 app.use('/api/email', sendEmail);
 app.use('/api/tickets', ticketRouter);
 app.use('/mockingproducts', mockingRouter);
+app.use('/loggertest', loggerRouter);

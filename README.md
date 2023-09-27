@@ -1,4 +1,4 @@
-# Implementación de logger (en proceso)
+# Implementación de logger 
 ## _Felipe Antonio Aleman Arce_
 ### Ejercicio 14 entregable , Implementación de logger
 [![Coderhouse](https://res.cloudinary.com/hdsqazxtw/image/upload/v1570710978/coderhouse.jpg)](https://github.com/arceprogramando)
@@ -20,7 +20,7 @@ Hasta ahora realice:
 - 11-Arquitectura del servidor: Diseño ✔️
 - 12-Tercera entrega del proyecto Final ✔️
 - 13-Mocking y manejo de errores ✔️
-- 14-Implementación de logger(en proceso)
+- 14-Implementación de logger ✔️
 
 > Espero que Los ejercicios se encuentren
 > resueltos de buena forma y espero 
