@@ -1,6 +1,6 @@
-# Implementación de logger 
+# Implementación de logger (Finalizado)
 ## _Felipe Antonio Aleman Arce_
-### Ejercicio 14 entregable , Implementación de logger
+### Ejercicio 14 entregable , Implementación de logger(Finalizado)
 [![Coderhouse](https://res.cloudinary.com/hdsqazxtw/image/upload/v1570710978/coderhouse.jpg)](https://github.com/arceprogramando)
 - Mi repositorio publico es  [arceprogramando][arceprogramando]
 en github.
