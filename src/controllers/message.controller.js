@@ -12,10 +12,14 @@ class messageController {
     try {
       const { user, message } = req.body;
       if (!user) {
-        return this.httpResponse.BAD_REQUEST(res, `${this.enumError.INVALID_PARAMS} El campo "user" es obligatorio`);
+        const errorMessage = `${this.enumError.INVALID_PARAMS} El campo "user" es obligatorio`;
+        req.logger.warn(errorMessage);
+        return this.httpResponse.BAD_REQUEST(res, errorMessage);
       }
       if (!message) {
-        return this.httpResponse.BAD_REQUEST(res, `${this.enumError.INVALID_PARAMS} El campo "message" es obligatorio`);
+        const errorMessage = `${this.enumError.INVALID_PARAMS} El campo "message" es obligatorio`;
+        req.logger.warn(errorMessage);
+        return this.httpResponse.BAD_REQUEST(res, errorMessage);
       }
 
       const newMessage = {
@@ -24,10 +28,13 @@ class messageController {
       };
 
       const createdMessage = await this.messageServices.createMessage(newMessage);
+      req.logger.info('Mensaje creado:', createdMessage);
       return this.httpResponse.CREATED(res, 'Mensaje Creado', { data: createdMessage });
     } catch (error) {
+      req.logger.error('Error al crear el mensaje:', error);
       return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR} No se ha podido crear el mensaje`, { dataerror: error });
     }
   };
 }
+
 export default messageController;
