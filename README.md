@@ -1,4 +1,4 @@
-# Mocking y manejo de errores (en proceso)
+# Mocking y manejo de errores 
 ## _Felipe Antonio Aleman Arce_
 ### Ejercicio 13 entregable , Mocking y manejo de errores 
 [![Coderhouse](https://res.cloudinary.com/hdsqazxtw/image/upload/v1570710978/coderhouse.jpg)](https://github.com/arceprogramando)
@@ -19,7 +19,7 @@ Hasta ahora realice:
 - 10-Segunda practica integradora (>‿◠) ✔️
 - 11-Arquitectura del servidor: Diseño ✔️
 - 12-Tercera entrega del proyecto Final ✔️
-- 13-Mocking y manejo de errores (en proceso)
+- 13-Mocking y manejo de errores ✔️
 
 > Espero que Los ejercicios se encuentren
 > resueltos de buena forma y espero 

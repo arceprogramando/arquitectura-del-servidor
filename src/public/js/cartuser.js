@@ -40,21 +40,66 @@ document.getElementById('delete-cart').addEventListener('click', async (event) =
   event.preventDefault();
 
   const cartId = document.querySelector('[data-cart-id]').getAttribute('data-cart-id');
-  const endpoint = `/api/carts/${cartId}`;
+  const endpoint = `/api/carts/${cartId}/deleteproducts`;
 
   try {
     const response = await fetch(endpoint, {
       method: 'DELETE',
     });
+    setTimeout(() => {
+      window.location.reload();
+    }, 500);
+    return response;
+  } catch (error) {
+    return console.error('Error al borrar el carrito:', error);
+  }
+});
+
+document.querySelectorAll('.btn-delete-product').forEach((deleteButton) => {
+  deleteButton.addEventListener('click', async (event) => {
+    event.preventDefault();
+
+    const productId = deleteButton.getAttribute('data-product-id');
+    const cartId = document.querySelector('[data-cart-id]').getAttribute('data-cart-id');
+    const endpoint = `/api/carts/${cartId}/products/${productId}`;
+
+    console.log(endpoint);
+    try {
+      const response = await fetch(endpoint, {
+        method: 'DELETE',
+      });
+
+      if (response.ok) {
+        console.log('Producto borrado exitosamente del carrito', response);
+
+        window.location.reload();
+      } else {
+        console.error('Error al borrar el producto del carrito', response);
+      }
+    } catch (error) {
+      console.error('Error al borrar el producto del carrito:', error);
+    }
+  });
+});
+
+document.querySelector('.btn-purchase').addEventListener('click', async (event) => {
+  event.preventDefault();
+
+  const cartId = document.querySelector('[data-cart-id]').getAttribute('data-cart-id');
+  const endpoint = `/api/carts/${cartId}/purchase`;
+
+  try {
+    const response = await fetch(endpoint, {
+      method: 'GET',
+    });
 
     if (response.ok) {
-      console.log('Carrito borrado exitosamente', response);
+      console.log('Compra realizada con éxito', response);
 
-      window.location.reload();
     } else {
-      console.error('Error al borrar el carrito', response);
+      console.error('Error al realizar la compra', response);
     }
   } catch (error) {
-    console.error('Error al borrar el carrito:', error);
+    console.error('Error al realizar la compra:', error);
   }
 });

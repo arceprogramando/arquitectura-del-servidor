@@ -6,7 +6,7 @@ class GenerateFakerService {
     this.productsModel = ProductsModel;
   }
 
-  generateFakerProducts = async (count = 3) => {
+  generateFakerProducts = async (count = 100) => {
     try {
       const imageUrls = [
         '/upload/AppleMacBookPro.webp',

@@ -45,14 +45,17 @@
                     {{#each cartsOfUser}}
                     <div
                         class="d-flex flex-column justify-content-center card card-body rounded-2 mb-2 animate__animated animate__fadeInUp background-2">
+                        <button class="btn btn-danger btn-delete-product" data-product-id="{{this.productsid}}"
+                            style="border: 1px solid black; font-size: 12px;">Eliminar Producto</button>
                         <h2 class="h3 card-title">{{this.title}}</h2>
                         <p class="h5">Valor:{{this.price}}</p>
                         <h3>Cantidad por comprar: {{this.quantity}}</h3>
                     </div>
-                    {{else}}
-                    <p>No Agregaste ningun producto a tu carrito </p>
-                    {{/each}}
                 </div>
+                <button class="btn btn-success btn-purchase">Comprar Carrito</button>
+                {{else}}
+                <p>No Agregaste ningun producto a tu carrito </p>
+                {{/each}}
             </div>
         </div>
     </div>

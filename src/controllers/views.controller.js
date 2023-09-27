@@ -164,6 +164,7 @@ class ViewController {
         price: cartProduct.product.price,
         quantity: cartProduct.quantity,
         stock: cartProduct.stock,
+        productsid: cartProduct._id,
       }));
 
       return res.render('cartsuser', {
