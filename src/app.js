@@ -21,6 +21,8 @@ import sendEmail from './routes/email.routes.js';
 import ticketRouter from './routes/ticket.routes.js';
 import mockingRouter from './routes/mocking.routes.js';
 import initializeDatabase from './dao/factory.js';
+import setLogger from './utils/logger.js';
+import loggerRouter from './routes/logger.routes.js';
 
 const app = express();
 const env = configObject;
@@ -34,6 +36,8 @@ app.use(compression(
   { brotli: { enable: true, zlib: {} } },
 
 ));
+app.use(setLogger);
+
 app.use(express.static(`${__dirname}/public`));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -84,3 +88,4 @@ app.use('/api/chat', messageRouter);
 app.use('/api/email', sendEmail);
 app.use('/api/tickets', ticketRouter);
 app.use('/mockingproducts', mockingRouter);
+app.use('/loggertest', loggerRouter);

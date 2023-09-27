@@ -9,6 +9,10 @@ class CartService {
 
   createCart = async (cartData) => {
     try {
+      if (!cartData || !Array.isArray(cartData) || cartData.length === 0) {
+        throw new Error('No se puede crear una cart sin ningún dato');
+      }
+
       const cartItems = cartData.map((product) => ({
         product: product.product,
         quantity: product.quantity,
@@ -17,6 +21,7 @@ class CartService {
       const newCart = {
         products: cartItems,
       };
+
       const createdCart = await this.cartRepository.createCart(newCart);
       return createdCart;
     } catch (error) {

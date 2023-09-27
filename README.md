@@ -1,6 +1,6 @@
-# Mocking y manejo de errores 
+# Implementación de logger 
 ## _Felipe Antonio Aleman Arce_
-### Ejercicio 13 entregable , Mocking y manejo de errores 
+### Ejercicio 14 entregable , Implementación de logger
 [![Coderhouse](https://res.cloudinary.com/hdsqazxtw/image/upload/v1570710978/coderhouse.jpg)](https://github.com/arceprogramando)
 - Mi repositorio publico es  [arceprogramando][arceprogramando]
 en github.
@@ -20,6 +20,7 @@ Hasta ahora realice:
 - 11-Arquitectura del servidor: Diseño ✔️
 - 12-Tercera entrega del proyecto Final ✔️
 - 13-Mocking y manejo de errores ✔️
+- 14-Implementación de logger ✔️
 
 > Espero que Los ejercicios se encuentren
 > resueltos de buena forma y espero 
@@ -50,6 +51,7 @@ Para realizar este Ejercicio
 - [express-compression] Para comprimir 
 - [http-status-codes] Para las respuestas http en el EnumError
 - [@faker-js/faker] Como variable de entorno para hacer prueba de mocking de productos 
+- [winston] universasl loggin library como storage de logs
 
 ## Instalacion 
 ```sh
@@ -66,7 +68,7 @@ npm init @eslint/config
 
 npm install cross-env  nodemon  @faker-js/faker -D
 
-npm install express cors dotenv cookie-parser express-handlebars mongoose mongoose-paginate-v2 multer bcrypt passport passport-github2 connect-mongo express-session uuid nodemailer express-compression http-status-codes
+npm install express cors dotenv cookie-parser express-handlebars mongoose mongoose-paginate-v2 multer bcrypt passport passport-github2 connect-mongo express-session uuid nodemailer express-compression http-status-codes winston
 
 ```
 
@@ -95,3 +97,4 @@ npm install express cors dotenv cookie-parser express-handlebars mongoose mongoo
   [express-compression]:<https://www.npmjs.com/package/express-compression>
   [@faker-js/faker]:<https://www.npmjs.com/package/@faker-js/faker> 
   [http-status-codes]:<https://www.npmjs.com/package/http-status-codes>
+  [winston]:<https://www.npmjs.com/package/winston>
