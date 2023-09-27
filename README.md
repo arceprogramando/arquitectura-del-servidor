@@ -1,6 +1,6 @@
-# Mocking y manejo de errores 
+# Implementación de logger (en proceso)
 ## _Felipe Antonio Aleman Arce_
-### Ejercicio 13 entregable , Mocking y manejo de errores 
+### Ejercicio 14 entregable , Implementación de logger
 [![Coderhouse](https://res.cloudinary.com/hdsqazxtw/image/upload/v1570710978/coderhouse.jpg)](https://github.com/arceprogramando)
 - Mi repositorio publico es  [arceprogramando][arceprogramando]
 en github.
@@ -20,6 +20,7 @@ Hasta ahora realice:
 - 11-Arquitectura del servidor: Diseño ✔️
 - 12-Tercera entrega del proyecto Final ✔️
 - 13-Mocking y manejo de errores ✔️
+- 15-Implementación de logger(en proceso)
 
 > Espero que Los ejercicios se encuentren
 > resueltos de buena forma y espero 
