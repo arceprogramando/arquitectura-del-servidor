@@ -1,9 +1,13 @@
 import ProductDTO from '../dto/product.dto.js';
 import ProductService from '../services/product.services.js';
+import Responses from '../middleware/error.handlers.js';
 
 class ProductController {
   constructor() {
     this.productService = new ProductService();
+    this.httpResponse = new Responses.HttpResponse();
+    this.enumError = Responses.EnumError;
+
   }
 
   createProduct = async (req, res) => {
@@ -11,9 +15,7 @@ class ProductController {
       const productDTO = new ProductDTO(req.body);
 
       if (!productDTO.isValid()) {
-        return res.status(400).json({
-          error: 'Todos los campos son requeridos y deben ser válidos para crear un producto.',
-        });
+        return this.httpResponse.BAD_REQUEST(res, `${this.enumError.INVALID_PARAMS}Todos los campos son requeridos y deben ser válidos para crear un producto.`);
       }
 
       let thumbnails = null;
@@ -34,17 +36,16 @@ class ProductController {
 
       return res.redirect('/profile');
     } catch (error) {
-      return res.status(500).json({ status: 'error', error: `Hubo un problema interno en el controlador al crear el producto. ${error}` });
+      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR}Error al crear el producto `, { error: error.message });
     }
   };
 
   getAllProducts = async (req, res) => {
     try {
       const products = await this.productService.getAllProducts();
-      res.status(200).json(products);
-
+      return this.httpResponse.OK(res, 'Tomando productos agregados por el administrador', { products });
     } catch (error) {
-      throw new Error(`Error al obtener los productos desde el controller ${error}`);
+      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR}Error al traer los productos `, { error: error.message });
     }
   };
 
@@ -55,13 +56,12 @@ class ProductController {
       const product = await this.productService.getProductById(pId);
 
       if (!product) {
-        return res.status(404).json({ error: 'El producto solicitado no existe.' });
+        return this.httpResponse.BAD_REQUEST(res, `${this.enumError.INVALID_PARAMS} El producto solicitado no existe.`);
       }
 
-      return res.status(200).json(product);
-
+      return this.httpResponse.OK(res, 'El producto fue encontrado ', { product });
     } catch (error) {
-      return res.status(500).json({ error: `Error al obtener el producto en el controller: ${error}` });
+      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR} Error al obtener el producto `, { error: error.message });
     }
   };
 
@@ -76,12 +76,14 @@ class ProductController {
       const updatedProduct = await this.productService.updateProductById(pId, newData);
 
       if (!updatedProduct) {
-        return res.status(404).json({ error: 'No se encontró el producto para actualizar.' });
+        return this.httpResponse.BAD_REQUEST(res, `${this.enumError.INVALID_PARAMS} No se encontró o no se pudo actualizar el producto solicitado.`);
       }
 
-      return res.status(200).json({ status: 'success', message: 'Producto actualizado correctamente.', updatedProduct });
+      return this.httpResponse.OK(res, 'El producto fue actualizado correctamente ', { updatedProduct });
+
     } catch (error) {
-      return res.status(500).json({ error: `Error al actualizar el producto en el controller: ${error}` });
+      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR} Error al actualizar el producto `, { error: error.message });
+
     }
   };
 
@@ -92,14 +94,13 @@ class ProductController {
       const deletedProduct = await this.productService.deleteProductById(pId);
 
       if (!deletedProduct) {
-        return res.status(404).json({ error: 'No se encontró el producto que se intenta eliminar.' });
+        return this.httpResponse.BAD_REQUEST(res, `${this.enumError.DB_ERROR} No se encontro o se pudo eliminar el producto solicitado.`);
       }
 
-      return res.status(200).json({ status: 'success', message: 'Producto eliminado correctamente.' });
+      return this.httpResponse.OK(res, 'El producto fue eliminado correctamente ');
 
     } catch (error) {
-      return res.status(500).json({ error: `Error al eliminar el producto: ${error.message}` });
-
+      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR}error al eliminar el producto `, { error: error.message });
     }
   };
 }

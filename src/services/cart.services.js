@@ -60,6 +60,15 @@ class CartService {
     }
   };
 
+  deleteAllProductsInCart = async (cId) => {
+    try {
+      const deleteAllProductsInCart = await this.cartRepository.deleteAllProductsInCart(cId);
+      return deleteAllProductsInCart;
+    } catch (error) {
+      throw new Error(`Error al eliminar la cart en el services con error: ${error}`);
+    }
+  };
+
   createProductInCart = async (cId, pId, quantity) => {
     try {
       const updatedCart = await this.cartRepository.createProductInCart(cId, pId, quantity);

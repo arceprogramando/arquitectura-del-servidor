@@ -1,24 +1,25 @@
-# Tercera entrega del proyecto Final
+# Mocking y manejo de errores 
 ## _Felipe Antonio Aleman Arce_
-### Ejercicio 12 entregable , Tercera entrega del proyecto Final
+### Ejercicio 13 entregable , Mocking y manejo de errores 
 [![Coderhouse](https://res.cloudinary.com/hdsqazxtw/image/upload/v1570710978/coderhouse.jpg)](https://github.com/arceprogramando)
 - Mi repositorio publico es  [arceprogramando][arceprogramando]
 en github.
 
 Hasta ahora realice:
 
-- Nuevas funcionalidades de los lenguajes ECMAScritpt✔️
-- Manejo de archivos en JavaScript✔️
-- Servidor con Express ✔️
-- Router y Multer✔️
-- Motores de plantillas✔️
-- Primera practica integradora ((>‿◠)✌) ✔️
-- Post de Practica Integadora ((>‿◠)✌) ✔️
-- Login Por Formulario ✔️
-- Estrategia de autenticacion por terceros ✔️
-- Segunda practica integradora (>‿◠) ✔️
-- Arquitectura del servidor: Diseño ✔️
-- Tercera entrega del proyecto Final ✔️
+- 1-Nuevas funcionalidades de los lenguajes ECMAScritpt✔️
+- 2-Manejo de archivos en JavaScript✔️
+- 3-Servidor con Express ✔️
+- 4-Router y Multer✔️
+- 5-Motores de plantillas✔️
+- 6-Primera practica integradora ((>‿◠)✌) ✔️
+- 7-Post de Practica Integadora ((>‿◠)✌) ✔️
+- 8-Login Por Formulario ✔️
+- 9-Estrategia de autenticacion por terceros ✔️
+- 10-Segunda practica integradora (>‿◠) ✔️
+- 11-Arquitectura del servidor: Diseño ✔️
+- 12-Tercera entrega del proyecto Final ✔️
+- 13-Mocking y manejo de errores ✔️
 
 > Espero que Los ejercicios se encuentren
 > resueltos de buena forma y espero 
@@ -45,15 +46,27 @@ Para realizar este Ejercicio
 - [express-session] esencial para manejar sesiones de usuario en aplicaciones web creadas con Express.js
 - [passport-local] estrategia de passport para manejar el inicio de sesion local
 - [uuid] libreria para crear ids aleatorios
+- [nodemailer] Libreria para trabajar con mails 
+- [express-compression] Para comprimir 
+- [http-status-codes] Para las respuestas http en el EnumError
+- [@faker-js/faker] Como variable de entorno para hacer prueba de mocking de productos 
 
-### Todos los paquetes
+## Instalacion 
+```sh
+
+npm install
+
+npm run start:prod
+
+```
+### Todos los paquetes desde cero
  
 ```sh
-npm init @eslint/config
+npm init @eslint/config 
 
-npm install cross-env nodemon -D
+npm install cross-env  nodemon  @faker-js/faker -D
 
-npm install express cors dotenv cookie-parser express-handlebars mongoose mongoose-paginate-v2 multer bcrypt passport passport-github2 connect-mongo express-session uuid
+npm install express cors dotenv cookie-parser express-handlebars mongoose mongoose-paginate-v2 multer bcrypt passport passport-github2 connect-mongo express-session uuid nodemailer express-compression http-status-codes
 
 ```
 
@@ -78,3 +91,7 @@ npm install express cors dotenv cookie-parser express-handlebars mongoose mongoo
   [express-session]:<https://www.npmjs.com/package/express-session>
   [passport-local]:<https://www.passportjs.org/packages/passport-local/>
   [uuid]:<https://www.npmjs.com/package/uuid>
+  [nodemailer]:<https://www.npmjs.com/package/nodemailer>
+  [express-compression]:<https://www.npmjs.com/package/express-compression>
+  [@faker-js/faker]:<https://www.npmjs.com/package/@faker-js/faker> 
+  [http-status-codes]:<https://www.npmjs.com/package/http-status-codes>

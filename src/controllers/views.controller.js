@@ -2,6 +2,7 @@ import ViewService from '../services/views.services.js';
 import ProductModel from '../model/products.models.js';
 import CartModel from '../model/carts.models.js';
 import UserModel from '../model/user.models.js';
+import Responses from '../middleware/error.handlers.js';
 
 class ViewController {
 
@@ -10,6 +11,8 @@ class ViewController {
     this.productModel = ProductModel;
     this.cartModel = CartModel;
     this.userModel = UserModel;
+    this.httpResponse = new Responses.HttpResponse();
+    this.enumError = Responses.EnumError;
   }
 
   showLoginPage = async (req, res) => {
@@ -18,7 +21,7 @@ class ViewController {
         style: 'index.css',
       });
     } catch (error) {
-      return res.status(500).json({ error: 'Error al visualizar el login' });
+      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR} error al visualizar el login `, { error: error.message });
     }
   };
 
@@ -80,7 +83,8 @@ class ViewController {
         style: 'index.css',
       });
     } catch (error) {
-      return res.status(500).json({ error: `Error al obtener los mensajes en el views controller ${error}` });
+      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR} Error al obtener los mensajes en el views controller `, { error: error.message });
+
     }
   };
 
@@ -93,7 +97,7 @@ class ViewController {
         style: '../../css/index.css',
       });
     } catch (error) {
-      return res.status(500).json({ error: `Error al popular los mensajes en el views controller ${error}` });
+      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR}Error al popular los mensajes en el views controller `, { error: error.message });
     }
   };
 
@@ -101,8 +105,7 @@ class ViewController {
     try {
       return res.render('register');
     } catch (error) {
-      return res.status(500).json({ error: `Error al visualizar el register en el controller del view ${error}` });
-
+      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR} Error al visualizar el register en el controller del view `, { error: error.message });
     }
   };
 
@@ -110,7 +113,7 @@ class ViewController {
     try {
       return res.render('recover');
     } catch (error) {
-      return res.status(500).json({ error: `Error al visualizar el register en el controller del view ${error}` });
+      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR}Error al visualizar el register en el controller del view `, { error: error.message });
     }
   };
 
@@ -119,6 +122,7 @@ class ViewController {
       const { user } = req;
 
       const isAdmin = req.user.role === 'ADMIN';
+
       return res.render('profile', {
         firstname: user.firstname,
         lastname: user.lastname || user.login,
@@ -134,17 +138,10 @@ class ViewController {
 
   viewCartUser = async (req, res) => {
     try {
-      // Traigo al user del request
       const { user } = req;
-      // Accedo al objeto _id y lo paso a string al objeto que es en un objeto de mongo
       const uId = user?._id.toString();
-      // Reviso si el request de user contiene el role con un nombre igual a USER
       const isUser = req.user?.role === 'USER';
-
-      // Traigo todos los productos con mi modelo de productos de Mongoose
       const findProducts = await this.productModel.find({});
-
-      // Hago el map de findProduct para que por cada producto traiga el titulo ,descripccion , precio , id de mongo , image , y stock
 
       const products = findProducts.map((product) => ({
         title: product.title,
@@ -155,7 +152,6 @@ class ViewController {
         stock: product.stock,
       }));
 
-      // segun el usuario que se haya conectado utilizo mi modelo busco su usuario y le doy un populate a carts
       const findUser = await this.userModel
         .findOne({ _id: uId })
         .populate('carts');
@@ -168,6 +164,7 @@ class ViewController {
         price: cartProduct.product.price,
         quantity: cartProduct.quantity,
         stock: cartProduct.stock,
+        productsid: cartProduct._id,
       }));
 
       return res.render('cartsuser', {
@@ -181,7 +178,6 @@ class ViewController {
         cId,
       });
     } catch (error) {
-      console.error('Error en viewCartUser:', error);
       return res.redirect('/');
     }
   };

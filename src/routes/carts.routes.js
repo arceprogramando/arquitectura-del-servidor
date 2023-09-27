@@ -16,6 +16,8 @@ router.put('/:cId', cartController.updateCartById);
 
 router.delete('/:cId', cartController.deleteCart);
 
+router.delete('/:cId/deleteproducts', cartController.deleteAllProductsInCart);
+
 router.post('/:cId/products/', cartController.createProductInCart);
 
 router.put('/:cId/products/:pId', cartController.updateCartItemQuantity);

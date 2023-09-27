@@ -8,6 +8,7 @@ import mongoStore from 'connect-mongo';
 import displayRoutes from 'express-routemap';
 import { engine } from 'express-handlebars';
 import passport from 'passport';
+import compression from 'express-compression';
 import configObject from './config/config.js';
 import __dirname from './utils.js';
 import viewsRouter from './routes/views.router.js';
@@ -18,6 +19,7 @@ import cartRouter from './routes/carts.routes.js';
 import messageRouter from './routes/message.routes.js';
 import sendEmail from './routes/email.routes.js';
 import ticketRouter from './routes/ticket.routes.js';
+import mockingRouter from './routes/mocking.routes.js';
 import initializeDatabase from './dao/factory.js';
 
 const app = express();
@@ -28,7 +30,10 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
 }));
 app.use(cookieParser());
+app.use(compression(
+  { brotli: { enable: true, zlib: {} } },
 
+));
 app.use(express.static(`${__dirname}/public`));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -78,3 +83,4 @@ app.use('/api/carts', cartRouter);
 app.use('/api/chat', messageRouter);
 app.use('/api/email', sendEmail);
 app.use('/api/tickets', ticketRouter);
+app.use('/mockingproducts', mockingRouter);
