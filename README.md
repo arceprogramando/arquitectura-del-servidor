@@ -20,7 +20,7 @@ Hasta ahora realice:
 - 11-Arquitectura del servidor: Diseño ✔️
 - 12-Tercera entrega del proyecto Final ✔️
 - 13-Mocking y manejo de errores ✔️
-- 15-Implementación de logger(en proceso)
+- 14-Implementación de logger(en proceso)
 
 > Espero que Los ejercicios se encuentren
 > resueltos de buena forma y espero 
