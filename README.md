@@ -1,6 +1,7 @@
-# Implementación de logger (Finalizado)
+# Tercera Practica Integradora (En proceso)
 ## _Felipe Antonio Aleman Arce_
-### Ejercicio 14 entregable , Implementación de logger(Finalizado)
+### Ejercicio 15 entregable , Tercera Practica Integradora (En proceso)
+
 [![Coderhouse](https://res.cloudinary.com/hdsqazxtw/image/upload/v1570710978/coderhouse.jpg)](https://github.com/arceprogramando)
 - Mi repositorio publico es  [arceprogramando][arceprogramando]
 en github.
@@ -10,17 +11,18 @@ Hasta ahora realice:
 - 1-Nuevas funcionalidades de los lenguajes ECMAScritpt✔️
 - 2-Manejo de archivos en JavaScript✔️
 - 3-Servidor con Express ✔️
-- 4-Router y Multer✔️
+- 4-Router y Multer ✔️
 - 5-Motores de plantillas✔️
-- 6-Primera practica integradora ((>‿◠)✌) ✔️
-- 7-Post de Practica Integadora ((>‿◠)✌) ✔️
+- 6-Primera practica integradora ✔️
+- 7-Post de Practica Integadora ✔️
 - 8-Login Por Formulario ✔️
 - 9-Estrategia de autenticacion por terceros ✔️
-- 10-Segunda practica integradora (>‿◠) ✔️
+- 10-Segunda practica integradora ✔️
 - 11-Arquitectura del servidor: Diseño ✔️
 - 12-Tercera entrega del proyecto Final ✔️
 - 13-Mocking y manejo de errores ✔️
 - 14-Implementación de logger ✔️
+- 15-Tercera practica Integradora (en proceso)
 
 > Espero que Los ejercicios se encuentren
 > resueltos de buena forma y espero 
@@ -51,7 +53,7 @@ Para realizar este Ejercicio
 - [express-compression] Para comprimir 
 - [http-status-codes] Para las respuestas http en el EnumError
 - [@faker-js/faker] Como variable de entorno para hacer prueba de mocking de productos 
-- [winston] universasl loggin library como storage de logs
+- [winston] universal loggin library como storage de logs
 
 ## Instalacion 
 ```sh
@@ -66,7 +68,7 @@ npm run start:prod
 ```sh
 npm init @eslint/config 
 
-npm install cross-env  nodemon  @faker-js/faker -D
+npm install cross-env  nodemon  @faker-js/faker artillery -D
 
 npm install express cors dotenv cookie-parser express-handlebars mongoose mongoose-paginate-v2 multer bcrypt passport passport-github2 connect-mongo express-session uuid nodemailer express-compression http-status-codes winston
 
@@ -98,3 +100,4 @@ npm install express cors dotenv cookie-parser express-handlebars mongoose mongoo
   [@faker-js/faker]:<https://www.npmjs.com/package/@faker-js/faker> 
   [http-status-codes]:<https://www.npmjs.com/package/http-status-codes>
   [winston]:<https://www.npmjs.com/package/winston>
+  [artillery]:<https://www.npmjs.com/package/artillery>

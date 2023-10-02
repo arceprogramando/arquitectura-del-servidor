@@ -1,0 +1,29 @@
+version: '3.0'
+
+services:
+  # Servicio de MongoDB
+  mongodb:
+    image: mongo
+    container_name: arquitectura_del_servidor_mongodb
+    ports:
+      - "27017:27017"
+    restart: always
+    volumes:
+      - arquitectura_del_servidor_configdb:/data/configdb
+      - arquitectura_del_servidor_mongo_db:/data/db
+
+  # Servicio de la aplicación
+  api:
+    build: .
+    container_name: arquitectura_del_servidor_api
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongodb
+    restart: always
+    volumes:
+      - .:/usr/src/app
+# Definición de volúmenes
+volumes:
+  arquitectura_del_servidor_configdb: {}
+  arquitectura_del_servidor_mongo_db: {}
