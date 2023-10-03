@@ -1,6 +1,6 @@
-# Tercera Practica Integradora (Terminada pero sin todas las consignas hechas)
+# Tercera Practica Integradora (en proceso)
 ## _Felipe Antonio Aleman Arce_
-### Ejercicio 15 entregable , Tercera Practica Integradora (Terminada pero sin todas las consignas hechas)
+### Ejercicio 15 entregable , Tercera Practica Integradora (en proceso)
 
 [![Coderhouse](https://res.cloudinary.com/hdsqazxtw/image/upload/v1570710978/coderhouse.jpg)](https://github.com/arceprogramando)
 - Mi repositorio publico es  [arceprogramando][arceprogramando]
@@ -23,6 +23,7 @@ Hasta ahora realice:
 - 13-Mocking y manejo de errores ✔️
 - 14-Implementación de logger ✔️
 - 15-Tercera practica Integradora (Terminada pero sin todas las consignas hechas)
+- 16-Documentar La api (en proceso)
 
 > Espero que Los ejercicios se encuentren
 > resueltos de buena forma y espero 
