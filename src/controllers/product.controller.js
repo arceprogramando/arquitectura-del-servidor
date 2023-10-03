@@ -15,7 +15,10 @@ class ProductController {
       const productDTO = new ProductDTO(req.body);
 
       if (!productDTO.isValid()) {
-        return this.httpResponse.BAD_REQUEST(res, `${this.enumError.INVALID_PARAMS}Todos los campos son requeridos y deben ser válidos para crear un producto.`);
+        return this.httpResponse.BAD_REQUEST(
+          res,
+          `${this.enumError.INVALID_PARAMS} Todos los campos son requeridos y deben ser válidos para crear un producto.`,
+        );
       }
 
       let thumbnails = null;
@@ -32,11 +35,23 @@ class ProductController {
         category: productDTO.category,
         thumbnails,
       };
+
+      if (req.user && req.user.role === 'PREMIUM') {
+        productData.owner = req.user.email;
+      } else {
+        productData.owner = 'ADMIN';
+      }
+      console.log(req.user.email);
+
       await this.productService.createProduct(productData);
 
       return res.redirect('/profile');
     } catch (error) {
-      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR}Error al crear el producto `, { error: error.message });
+      return this.httpResponse.ERROR(
+        res,
+        `${this.enumError.CONTROLER_ERROR}Error al crear el producto `,
+        { error: error.message },
+      );
     }
   };
 

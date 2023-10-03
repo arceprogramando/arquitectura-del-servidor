@@ -3,6 +3,7 @@ import UserService from '../services/user.services.js';
 import Responses from '../middleware/error.handlers.js';
 import EmailServices from '../services/email.services.js';
 import UserModel from '../model/user.models.js';
+import generateRecoveryToken from '../utils/generatetimetoken.js';
 
 class UserController {
   constructor() {
@@ -29,15 +30,21 @@ class UserController {
 
       if (!findUser) {
         return this.httpResponse.NOT_FOUND(res, `${this.enumError.DB_ERROR} El usuario con EMAIL: ${email} no fue encontrado`);
-
       }
 
-      await this.emailService.sendEmail(email);
+      const recoveryToken = generateRecoveryToken();
+      const tokenExpiration = new Date();
+      tokenExpiration.setHours(tokenExpiration.getHours() + 1);
+
+      findUser.recoveryToken = recoveryToken;
+      findUser.tokenExpiration = tokenExpiration;
+      await findUser.save();
+
+      await this.emailService.sendRecoveryEmail(email, recoveryToken);
 
       return res.redirect('/checkyouremail');
     } catch (error) {
-      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR} 'error al enviar recuperacion al email`, error);
-
+      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR} 'error al enviar recuperación al email`, error);
     }
   };
 
@@ -73,6 +80,29 @@ class UserController {
     }
   };
 
+  changeRoleWithId = async (req, res) => {
+    try {
+      const { uId } = req.params;
+
+      const findUser = await this.userModel.findById(uId);
+
+      if (!findUser) {
+        return this.httpResponse.NOT_FOUND(res, `${this.enumError.DB_ERROR} Usuario no encontrado`);
+      }
+
+      if (findUser.role === 'USER') {
+        findUser.role = 'PREMIUM';
+      } else if (findUser.role === 'PREMIUM') {
+        findUser.role = 'USER';
+      }
+
+      await findUser.save();
+
+      return this.httpResponse.OK(res, `Rol de ${findUser.email} cambiado con éxito a ${findUser.role}`);
+    } catch (error) {
+      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR} Error al cambiar el rol de premium a user o viceversa: ${error.message}`);
+    }
+  };
 }
 
 export default UserController;

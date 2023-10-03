@@ -6,7 +6,7 @@ const collectionName = 'user';
 const roleType = {
   USER: 'USER',
   ADMIN: 'ADMIN',
-  PUBLIC: 'PUBLIC',
+  PREMIUM: 'PREMIUM',
 };
 
 const userSchema = new mongoose.Schema({

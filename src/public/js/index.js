@@ -19,3 +19,27 @@ document.getElementById('noteForm').addEventListener('submit', async (e) => {
     console.error('Error al enviar la solicitud:', error);
   }
 });
+
+document.querySelectorAll('.btn-delete-product').forEach((deleteButton) => {
+  deleteButton.addEventListener('click', async (event) => {
+    event.preventDefault();
+
+    const productId = deleteButton.getAttribute('data-product-id');
+    const endpoint = `/api/products/${productId}`;
+    try {
+      const response = await fetch(endpoint, {
+        method: 'DELETE',
+      });
+
+      if (response.ok) {
+        console.log('Producto borrado exitosamente del carrito', response);
+
+        window.location.reload();
+      } else {
+        console.error('Error al borrar el producto del carrito', response);
+      }
+    } catch (error) {
+      console.error('Error al borrar el producto del carrito:', error);
+    }
+  });
+});

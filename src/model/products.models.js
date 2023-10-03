@@ -20,11 +20,15 @@ const productsSchema = new mongoose.Schema({
   price: {
     type: Number,
     required: true,
-    index: true, // Con index: true se indexa
+    index: true,
   },
   status: {
     type: Boolean,
     default: true,
+  },
+  owner: {
+    type: String,
+    default: 'ADMIN',
   },
   stock: Number,
   category: String,

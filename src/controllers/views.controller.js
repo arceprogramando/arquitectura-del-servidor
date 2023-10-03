@@ -56,7 +56,9 @@ class ViewController {
         docs, hasPrevPage, hasNextPage, prevPage, nextPage,
       } = await this.viewService.getProducts(query, options);
 
-      const isAdmin = req.user.role === 'ADMIN';
+      const productIds = docs.map((product) => product._id);
+
+      const isAdminOrPremium = req.user.role === 'ADMIN' || req.user.role === 'PREMIUM';
 
       return res.render('products', {
         visit,
@@ -67,7 +69,8 @@ class ViewController {
         hasNextPage,
         prevPage,
         nextPage,
-        isAdmin,
+        isAdminOrPremium,
+        productsid: productIds,
       });
     } catch (error) {
       return res.redirect('/');
@@ -145,6 +148,8 @@ class ViewController {
 
       const isAdmin = req.user.role === 'ADMIN';
 
+      const isPremium = req.user.role === 'PREMIUM';
+
       return res.render('profile', {
         firstname: user.firstname,
         lastname: user.lastname || user.login,
@@ -152,6 +157,7 @@ class ViewController {
         email: user.email,
         role: user.role,
         isAdmin,
+        isPremium,
       });
     } catch (error) {
       return res.redirect('/');

@@ -1,12 +1,12 @@
 import { Router } from 'express';
 import TicketController from '../controllers/ticket.controller.js';
-import { isAdmin } from '../middleware/auth.products.js';
+import { isAdminOrPremium } from '../middleware/auth.products.js';
 
 const router = Router();
 
 const ticketController = new TicketController();
 
-router.get('/', isAdmin, ticketController.getAllTicket);
+router.get('/', isAdminOrPremium, ticketController.getAllTicket);
 
 router.post('/', ticketController.createTicket);
 
