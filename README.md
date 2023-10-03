@@ -64,7 +64,7 @@ Para realizar este Ejercicio
 - [@faker-js/faker] Como variable de entorno para hacer prueba de mocking de productos 
 - [winston] universal loggin library como storage de logs
 - [swagger-jsdoc]  Para documentar la API
-- [swagger-ui-express] Para documentar la API
+- [swagger-ui-express] Para documentar la AP
 
 ## Instalacion 
 ```sh

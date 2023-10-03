@@ -1,0 +1,172 @@
+openapi: 3.0.0
+info:
+  title: API de Productos
+  version: 1.0.0
+paths:
+  /api/products/:
+    get:
+      summary: Obtener todos los productos
+      tags:
+        - products
+      responses:
+        '200':
+          description: Lista de todos los productos
+        '401':
+          description: No autorizado
+        '500':
+          description: Error del lado del servidor
+    post:
+      summary: Crear un nuevo producto
+      tags:
+        - products
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        '201':
+          description: Producto creado exitosamente
+        '401':
+          description: No autorizado
+        '500':
+          description: Error del lado del servidor
+
+    
+
+  /api/products/{pId}:
+    get:
+      summary: Obtener un producto por ID
+      tags:
+        - products
+      parameters:
+        - name: pId
+          in: path
+          required: true
+          description: ID del producto
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Producto obtenido exitosamente
+        '404':
+          description: Producto no encontrado
+        '500':
+          description: Error del lado del servidor
+
+    put:
+      summary: Actualizar un producto por ID
+      tags:
+        - products
+      parameters:
+        - name: pId
+          in: path
+          required: true
+          description: ID del producto
+          schema:
+            type: string
+        - in: body
+          name: product
+          required: true
+          description: Información del producto a actualizar
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+      responses:
+        '200':
+          description: Producto actualizado exitosamente
+        '401':
+          description: No autorizado
+        '404':
+          description: Producto no encontrado
+        '500':
+          description: Error del lado del servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerError'
+
+    delete:
+      summary: Eliminar un producto por ID
+      tags:
+        - products
+      parameters:
+        - name: pId
+          in: path
+          required: true
+          description: ID del producto
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Producto eliminado exitosamente
+        '401':
+          description: No autorizado
+        '404':
+          description: Producto no encontrado
+        '500':
+          description: Error del lado del servidor
+
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        _id:
+          type: string
+          format: objectId
+          description: ID generado por MongoDB
+        title:
+          type: string
+          description: Título del producto
+        description:
+          type: string
+          description: Descripción del producto
+        code:
+          type: string
+          description: Código del producto
+        price:
+          type: number
+          description: Precio del producto
+        status:
+          type: boolean
+          description: Estado del producto
+        owner:
+          type: string
+          description: Propietario del producto
+        stock:
+          type: number
+          description: Cantidad en stock del producto
+        category:
+          type: string
+          description: Categoría del producto
+        thumbnails:
+          type: string
+          description: URL de las miniaturas del producto
+      example:
+        _id:
+          "$oid": "651b7b750dc7508ccd33f424"
+        title: "Chips"
+        description: "Ergonomic executive chair upholstered in bonded black leather and PVC padded seat and back for all-day comfort and support"
+        code: "3e80d679-19d2-45a2-a9cd-264ffeb625e2"
+        price: 175137.273
+        status: true
+        owner: "ADMIN"
+        stock: 570
+        category: "Electronics"
+        thumbnails: "/upload/milka.webp"
+
+    ServerError:
+      type: object
+      properties:
+        status:
+          type: integer
+          description: Código de estado 500
+        message:
+          type: string
+          description: Descripción del error del lado del servidor
+      example:
+        status: 500
+        message: Error del lado del servidor
