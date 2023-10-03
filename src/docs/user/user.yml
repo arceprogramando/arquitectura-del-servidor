@@ -1,0 +1,161 @@
+paths:
+  /api/user/login:
+    post:
+      summary: Log in as a user
+      tags:
+        - user
+      parameters:
+        - in: body
+          name: user
+          required: true
+          description: User login information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: User logged in successfully
+        '401':
+          description: Unauthorized
+        '500':
+          description: Server-side error
+
+  /api/user/recover-psw:
+    post:
+      summary: Recover password
+      tags:
+        - user
+      parameters:
+        - in: body
+          name: user
+          required: true
+          description: User email for password recovery
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+      responses:
+        '200':
+          description: Password recovery email sent successfully
+        '404':
+          description: User not found
+        '500':
+          description: Server-side error
+
+  /api/user/recoverwithemail:
+    post:
+      summary: Recover with email
+      tags:
+        - user
+      parameters:
+        - in: body
+          name: user
+          required: true
+          description: User email for recovery
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+      responses:
+        '200':
+          description: Recovery email sent successfully
+        '404':
+          description: User not found
+        '500':
+          description: Server-side error
+
+  /api/user/premium/{uid}:
+    get:
+      summary: Get premium user by ID
+      tags:
+        - user
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: User ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Premium user retrieved successfully
+        '404':
+          description: User not found
+        '500':
+          description: Server-side error
+
+  /api/user/github:
+    get:
+      summary: Authenticate with GitHub
+      tags:
+        - authentication with passport
+      responses:
+        '500':
+          description: Server-side error
+
+  /api/user/callback:
+    get:
+      summary: GitHub callback
+      tags:
+        - authentication with passport
+      responses:
+        '500':
+          description: Server-side error
+
+  /api/user/logout:
+    get:
+      summary: Log out a user
+      tags:
+        - authentication with passport
+      responses:
+        '500':
+          description: Server-side error
+
+  /api/user/register:
+    post:
+      summary: Register with passport
+      tags:
+        - authentication with passport
+      responses:
+        '500':
+          description: Server-side error
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        _id:
+          type: string
+          format: objectId
+          description: ID generado por MongoDB
+        firstname:
+          type: string
+        lastname:
+          type: string
+        email:
+          type: string
+        age:
+          type: integer
+        password:
+          type: string
+        role:
+          type: string
+          enum:
+            - USER
+            - ADMIN
+            - PREMIUM
+        carts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Cart'
+
+    Cart:
+      type: object
+      properties:
+        cart:
+          type: string
+          description: ID del carrito
