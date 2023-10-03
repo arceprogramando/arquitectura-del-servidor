@@ -16,6 +16,7 @@ const {
   PERSISTENCE,
   EMAIL,
   PSW_EMAIL,
+  BASE_URL,
 } = process.env;
 
 const configObject = {
@@ -30,6 +31,7 @@ const configObject = {
   PERSISTENCE,
   EMAIL,
   PSW_EMAIL,
+  BASE_URL,
 };
 
 export default configObject;

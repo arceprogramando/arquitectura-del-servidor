@@ -117,6 +117,28 @@ class ViewController {
     }
   };
 
+  viewEmailToRecover = async (req, res) => {
+    try {
+
+      return res.render('emailwithrecover');
+
+    } catch (error) {
+      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR}Error al visualizar el register 
+      en el controller del view `, { error: error.message });
+
+    }
+  };
+
+  viewCheckYourEmail = async (req, res) => {
+    try {
+      return res.render('checkyouremail');
+
+    } catch (error) {
+      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR}Error al visualizar el register 
+      en el controller del view `, { error: error.message });
+    }
+  };
+
   viewProfile = async (req, res) => {
     try {
       const { user } = req;

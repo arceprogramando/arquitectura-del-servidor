@@ -52,6 +52,7 @@ app.set('NODE_ENV', env.NODE_ENV || 'development');
 app.set('DB_CNN', env.DB_CNN);
 app.set('DB_NAME', env.DB_NAME);
 app.set('PERSISTENCE', env.PERSISTENCE);
+app.set('BASE_URL', env.BASE_URL || 'http://localhost:8080');
 
 app.use(
   session({
@@ -85,7 +86,7 @@ if (cluster.isPrimary) {
   });
 } else {
   app.listen(app.get('PORT'), () => {
-    console.log(`=Encendido servidor en puerto ${app.get('PORT')}= \n====== http://localhost:${app.get('PORT')}/ =====`);
+    console.log(`=Encendido servidor en puerto ${app.get('PORT')}= \n====== ${app.get('BASE_URL')}${app.get('PORT')}/ =====`);
     console.log(`==========ENV:${app.get('NODE_ENV')}===========`);
     console.log(`=======PERSISTENCE:${app.get('PERSISTENCE')}=============`);
     console.log(`=======PROCESS:${process.pid}=============`);

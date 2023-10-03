@@ -1,4 +1,5 @@
 import UserRepository from '../repository/user.repository.js';
+import encrypt from '../helpers/encrypt.js';
 
 class UserService {
   constructor() {
@@ -34,6 +35,15 @@ class UserService {
       return updatedUser;
     } catch (error) {
       throw new Error(`Error al cambiar la contraseña: ${error.message}`);
+    }
+  };
+
+  comparePassword = async (newpassword, findUser) => {
+    try {
+      const match = await encrypt.isValidPassword(findUser, newpassword);
+      return match;
+    } catch (error) {
+      throw new Error(`Error al comparar las contraseñas: ${error.message}`);
     }
   };
 }

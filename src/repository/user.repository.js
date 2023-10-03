@@ -27,6 +27,7 @@ class UserRepository {
       throw new Error(`Error al cambiar la contraseña en la base de datos: ${error.message}`);
     }
   };
+
 }
 
 export default UserRepository;

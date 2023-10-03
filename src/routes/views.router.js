@@ -16,6 +16,10 @@ router.get('/register', viewController.viewRegister);
 
 router.get('/recover', viewController.viewRecover);
 
+router.get('/emailwithrecover', viewController.viewEmailToRecover);
+
+router.get('/checkyouremail', viewController.viewCheckYourEmail);
+
 router.get('/profile', viewController.viewProfile);
 
 router.get('/cartsuser', viewController.viewCartUser);
