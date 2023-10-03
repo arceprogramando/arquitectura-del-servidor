@@ -63,6 +63,8 @@ Para realizar este Ejercicio
 - [http-status-codes] Para las respuestas http en el EnumError
 - [@faker-js/faker] Como variable de entorno para hacer prueba de mocking de productos 
 - [winston] universal loggin library como storage de logs
+- [swagger-jsdoc]  Para documentar la API
+- [swagger-ui-express] Para documentar la API
 
 ## Instalacion 
 ```sh
@@ -79,7 +81,7 @@ npm init @eslint/config
 
 npm install cross-env  nodemon  @faker-js/faker artillery -D
 
-npm install express cors dotenv cookie-parser express-handlebars mongoose mongoose-paginate-v2 multer bcrypt passport passport-github2 connect-mongo express-session uuid nodemailer express-compression http-status-codes winston
+npm install express cors dotenv cookie-parser express-handlebars mongoose mongoose-paginate-v2 multer bcrypt passport passport-github2 connect-mongo express-session uuid nodemailer express-compression http-status-codes winston swagger-jsdoc swagger-ui-express
 
 ```
 
@@ -110,3 +112,5 @@ npm install express cors dotenv cookie-parser express-handlebars mongoose mongoo
   [http-status-codes]:<https://www.npmjs.com/package/http-status-codes>
   [winston]:<https://www.npmjs.com/package/winston>
   [artillery]:<https://www.npmjs.com/package/artillery>
+  [swagger-jsdoc]:<https://www.npmjs.com/package/swagger-jsdoc>
+  [swagger-ui-express]:<https://www.npmjs.com/package/swagger-ui-express>

@@ -10,6 +10,8 @@ import displayRoutes from 'express-routemap';
 import { engine } from 'express-handlebars';
 import passport from 'passport';
 import compression from 'express-compression';
+import swaggerJSDoc from 'swagger-jsdoc';
+import swaggerUi from 'swagger-ui-express';
 import configObject from './config/config.js';
 import __dirname from './utils.js';
 import viewsRouter from './routes/views.router.js';
@@ -24,6 +26,7 @@ import mockingRouter from './routes/mocking.routes.js';
 import initializeDatabase from './dao/factory.js';
 import setLogger from './utils/logger.js';
 import loggerRouter from './routes/logger.routes.js';
+import swaggerOpts from './config/swagger.config.js';
 
 const app = express();
 const env = configObject;
@@ -95,6 +98,8 @@ if (cluster.isPrimary) {
   });
 }
 
+const specs = swaggerJSDoc(swaggerOpts);
+
 app.use('/', viewsRouter);
 app.use('/api/user', userRoutes);
 app.use('/api/products', productRouter);
@@ -104,3 +109,4 @@ app.use('/api/email', sendEmail);
 app.use('/api/tickets', ticketRouter);
 app.use('/mockingproducts', mockingRouter);
 app.use('/loggertest', loggerRouter);
+app.use('/api/docs/', swaggerUi.serve, swaggerUi.setup(specs));

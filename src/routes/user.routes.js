@@ -20,6 +20,6 @@ router.post('/recover-psw', userController.resetPassword);
 
 router.post('/recoverwithemail', userController.recoverWithEmail);
 
-router.get('/premium/:uId', userController.changeRoleWithId);
+router.get('/premium/:uid', userController.changeRoleWithId);
 
 export default router;
