@@ -1,6 +1,6 @@
-# Tercera Practica Integradora (En proceso)
+# Tercera Practica Integradora (Terminada pero sin todas las consignas hechas)
 ## _Felipe Antonio Aleman Arce_
-### Ejercicio 15 entregable , Tercera Practica Integradora (En proceso)
+### Ejercicio 15 entregable , Tercera Practica Integradora (Terminada pero sin todas las consignas hechas)
 
 [![Coderhouse](https://res.cloudinary.com/hdsqazxtw/image/upload/v1570710978/coderhouse.jpg)](https://github.com/arceprogramando)
 - Mi repositorio publico es  [arceprogramando][arceprogramando]
@@ -22,13 +22,21 @@ Hasta ahora realice:
 - 12-Tercera entrega del proyecto Final ✔️
 - 13-Mocking y manejo de errores ✔️
 - 14-Implementación de logger ✔️
-- 15-Tercera practica Integradora (en proceso)
+- 15-Tercera practica Integradora (Terminada pero sin todas las consignas hechas)
 
 > Espero que Los ejercicios se encuentren
 > resueltos de buena forma y espero 
 > que lo haya solucionado de forma optima
 
+# Falto terminar:
+## 15
+- Si el link expiró, debe redirigir a una vista que le permita generar nuevamente el correo de restablecimiento, el cual contará con una nueva duración de 1 hora.
+- Un usuario premium sólo pueda borrar los productos que le pertenecen.
+- Además, modificar la lógica de carrito para que un usuario premium NO pueda agregar a su carrito un producto que le pertenece
+
+
 Para realizar este Ejercicio
+
 
 - [Coderhouse]  - Se vieron las clases de coderhouse Correspondientes!
 - [node.js] - Se uso instalo a nivel local Node Js
