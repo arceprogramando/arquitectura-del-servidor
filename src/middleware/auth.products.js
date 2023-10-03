@@ -9,9 +9,9 @@ export const isUser = (req, res, next) => {
   }
 };
 
-export const isAdmin = (req, res, next) => {
+export const isAdminOrPremium = (req, res, next) => {
   try {
-    if (req.user && req.user.role === 'ADMIN') {
+    if (req.user && (req.user.role === 'ADMIN' || req.user.role === 'PREMIUM')) {
       return next();
     }
     return res.status(403).redirect('/');

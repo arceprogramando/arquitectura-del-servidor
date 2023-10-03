@@ -56,7 +56,9 @@ class ViewController {
         docs, hasPrevPage, hasNextPage, prevPage, nextPage,
       } = await this.viewService.getProducts(query, options);
 
-      const isAdmin = req.user.role === 'ADMIN';
+      const productIds = docs.map((product) => product._id);
+
+      const isAdminOrPremium = req.user.role === 'ADMIN' || req.user.role === 'PREMIUM';
 
       return res.render('products', {
         visit,
@@ -67,7 +69,8 @@ class ViewController {
         hasNextPage,
         prevPage,
         nextPage,
-        isAdmin,
+        isAdminOrPremium,
+        productsid: productIds,
       });
     } catch (error) {
       return res.redirect('/');
@@ -117,11 +120,35 @@ class ViewController {
     }
   };
 
+  viewEmailToRecover = async (req, res) => {
+    try {
+
+      return res.render('emailwithrecover');
+
+    } catch (error) {
+      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR}Error al visualizar el register 
+      en el controller del view `, { error: error.message });
+
+    }
+  };
+
+  viewCheckYourEmail = async (req, res) => {
+    try {
+      return res.render('checkyouremail');
+
+    } catch (error) {
+      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR}Error al visualizar el register 
+      en el controller del view `, { error: error.message });
+    }
+  };
+
   viewProfile = async (req, res) => {
     try {
       const { user } = req;
 
       const isAdmin = req.user.role === 'ADMIN';
+
+      const isPremium = req.user.role === 'PREMIUM';
 
       return res.render('profile', {
         firstname: user.firstname,
@@ -130,6 +157,7 @@ class ViewController {
         email: user.email,
         role: user.role,
         isAdmin,
+        isPremium,
       });
     } catch (error) {
       return res.redirect('/');

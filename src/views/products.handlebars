@@ -15,7 +15,7 @@
   </div>
   {{/if}}
 </div>
-<p>Rol: {{#if isAdmin}}Administrador{{else}}Usuario{{/if}}</p>
+<p>Rol: {{#if isAdminOrPremium}}Administrador{{else}}Usuario{{/if}}</p>
 <p>Visit : {{visit}}</p>
 <div>
   <h3>eliminando la Cuenta</h3>
@@ -23,7 +23,7 @@
     <button type="submit">clearSession</button>
   </form>
 </div>
-{{#if isAdmin}}
+{{#if isAdminOrPremium}}
 <div class="container h-100">
   <div class="row h-100">
     <div class="col-md-4 my-auto">
@@ -68,11 +68,13 @@
           {{#each products}}
           <div>
             <div class="card card-body rounded-2 mb-2 animate__animated animate__fadeInUp background">
+            <button class="btn btn-danger btn-delete-product" data-product-id="{{id}}"
+              style="border: 1px solid black; font-size: 12px;">Eliminar Producto</button>
               <div class="d-flex justify-content-between">
                 <h1 class="h3 card-title">{{title}}</h1>
                 <p class="h5">${{price}}</p>
               </div>
-                <p class="h5">STOCK {{stock}}</p>
+              <p class="h5">STOCK {{stock}}</p>
               <p>{{description}}</p>
               <img src="{{thumbnails}}" alt="Product Image" class="image">
             </div>

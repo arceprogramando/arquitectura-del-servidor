@@ -10,14 +10,23 @@
       <button type="submit">Cerrar sesión</button>
     </form>
   </div>
-  <div>{{#if isAdmin}}
-  <a href="/products">Ir a administrar los productos</a>
-  {{else}}
   <div>
-  <a href="/chat">Ir a enviar mensajes al chat</a> <br>
-  <a href="/cartsuser">Ir a ver mi carrito</a>
-  </div>
-<h1>{{firstName}} {{lastName}}</h1>
-{{/if}}
+    {{#if isAdmin}}
+    <a href="/products">Ir a administrar los productos</a>
+    {{else}}
+      {{#if isPremium}}
+      <a href="/products">Ir a administrar los productos</a>
+      <div>
+        <a href="/chat">Ir a enviar mensajes al chat</a> <br>
+        <a href="/cartsuser">Ir a ver mi carrito</a>
+      </div>
+      {{else}}
+      <div>
+        <a href="/chat">Ir a enviar mensajes al chat</a> <br>
+        <a href="/cartsuser">Ir a ver mi carrito</a>
+      </div>
+      <h1>{{firstName}} {{lastName}}</h1>
+      {{/if}}
+    {{/if}}
   </div>
 </div>

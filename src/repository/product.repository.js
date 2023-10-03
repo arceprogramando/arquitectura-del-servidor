@@ -43,7 +43,7 @@ class ProductRepository {
 
   deleteProductById = async (pId) => {
     try {
-      const deleteProductById = await this.productModel.deleteOne({ _pid: pId });
+      const deleteProductById = await this.productModel.deleteOne({ _id: pId });
       return deleteProductById;
     } catch (error) {
       throw new Error(`Error al eliminar el producto con id: ${pId} en la base de datos: ${error.message}`);
