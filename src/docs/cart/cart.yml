@@ -1,0 +1,163 @@
+paths:
+  /api/carts/:
+    get:
+      summary: Obtener todos los carritos
+      tags:
+        - carts
+      responses:
+        '200':
+          description: Lista de todos los carritos
+        '401':
+          description: No autorizado
+        '500':
+          description: Error del lado del servidor
+    post:
+      summary: Crear un nuevo carrito
+      tags:
+        - carts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cart'
+      responses:
+        '201':
+          description: Carrito creado exitosamente
+        '401':
+          description: No autorizado
+        '500':
+          description: Error del lado del servidor
+
+    
+
+  /api/carts/{cId}:
+    get:
+      summary: Obtener un carrito por ID
+      tags:
+        - carts
+      parameters:
+        - name: cId
+          in: path
+          required: true
+          description: ID del carrito
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Carrito obtenido exitosamente
+        '404':
+          description: Carrito no encontrado
+        '500':
+          description: Error del lado del servidor
+
+    put:
+      summary: Actualizar un carrito por ID
+      tags:
+        - carts
+      parameters:
+        - name: cId
+          in: path
+          required: true
+          description: ID del carrito
+          schema:
+            type: string
+        - in: body
+          name: cart
+          required: true
+          description: Información del carrito a actualizar
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+      responses:
+        '200':
+          description: Carrito actualizado exitosamente
+        '401':
+          description: No autorizado
+        '404':
+          description: Carrito no encontrado
+        '500':
+          description: Error del lado del servidor
+
+    delete:
+      summary: Eliminar un carrito por ID
+      tags:
+        - carts
+      parameters:
+        - name: cId
+          in: path
+          required: true
+          description: ID del carrito
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Carrito eliminado exitosamente
+        '401':
+          description: No autorizado
+        '404':
+          description: Carrito no encontrado
+        '500':
+          description: Error del lado del servidor
+
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        _id:
+          type: string
+          format: objectId
+          description: ID generado por MongoDB
+        title:
+          type: string
+          description: Título del producto
+        description:
+          type: string
+          description: Descripción del producto
+        code:
+          type: string
+          description: Código del producto
+        price:
+          type: number
+          description: Precio del producto
+        status:
+          type: boolean
+          description: Estado del producto
+        owner:
+          type: string
+          description: Propietario del producto
+        stock:
+          type: number
+          description: Cantidad en stock del producto
+        category:
+          type: string
+          description: Categoría del producto
+        thumbnails:
+          type: string
+          description: URL de las miniaturas del producto
+      example:
+        _id:
+          "$oid": "651b7b750dc7508ccd33f424"
+        title: "Chips"
+        description: "Ergonomic executive chair upholstered in bonded black leather and PVC padded seat and back for all-day comfort and support"
+        code: "3e80d679-19d2-45a2-a9cd-264ffeb625e2"
+        price: 175137.273
+        status: true
+        owner: "ADMIN"
+        stock: 570
+        category: "Electronics"
+        thumbnails: "/upload/milka.webp"
+
+    Cart:
+      type: object
+      properties:
+        _id:
+          type: string
+          format: objectId
+          description: ID generado por MongoDB para el carrito
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/CartItem'
