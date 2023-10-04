@@ -1,29 +1,33 @@
+openapi: 3.0.0
+info:
+  title: API de Productos
+  version: 1.0.0
 paths:
-  /api/carts/:
+  /api/products/:
     get:
-      summary: Obtener todos los carritos
+      summary: Obtener todos los productos
       tags:
-        - carts
+        - products
       responses:
         '200':
-          description: Lista de todos los carritos
+          description: Lista de todos los productos
         '401':
           description: No autorizado
         '500':
           description: Error del lado del servidor
     post:
-      summary: Crear un nuevo carrito
+      summary: Crear un nuevo producto
       tags:
-        - carts
+        - products
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Cart'
+              $ref: '#/components/schemas/Product'
       responses:
         '201':
-          description: Carrito creado exitosamente
+          description: Producto creado exitosamente
         '401':
           description: No autorizado
         '500':
@@ -31,73 +35,77 @@ paths:
 
     
 
-  /api/carts/{cId}:
+  /api/products/{pId}:
     get:
-      summary: Obtener un carrito por ID
+      summary: Obtener un producto por ID
       tags:
-        - carts
+        - products
       parameters:
-        - name: cId
+        - name: pId
           in: path
           required: true
-          description: ID del carrito
+          description: ID del producto
           schema:
             type: string
       responses:
         '200':
-          description: Carrito obtenido exitosamente
+          description: Producto obtenido exitosamente
         '404':
-          description: Carrito no encontrado
+          description: Producto no encontrado
         '500':
           description: Error del lado del servidor
 
     put:
-      summary: Actualizar un carrito por ID
+      summary: Actualizar un producto por ID
       tags:
-        - carts
+        - products
       parameters:
-        - name: cId
+        - name: pId
           in: path
           required: true
-          description: ID del carrito
+          description: ID del producto
           schema:
             type: string
         - in: body
-          name: cart
+          name: product
           required: true
-          description: Información del carrito a actualizar
+          description: Información del producto a actualizar
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Cart'
+                $ref: '#/components/schemas/Product'
       responses:
         '200':
-          description: Carrito actualizado exitosamente
+          description: Producto actualizado exitosamente
         '401':
           description: No autorizado
         '404':
-          description: Carrito no encontrado
+          description: Producto no encontrado
         '500':
           description: Error del lado del servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerError'
 
     delete:
-      summary: Eliminar un carrito por ID
+      summary: Eliminar un producto por ID
       tags:
-        - carts
+        - products
       parameters:
-        - name: cId
+        - name: pId
           in: path
           required: true
-          description: ID del carrito
+          description: ID del producto
           schema:
             type: string
       responses:
         '204':
-          description: Carrito eliminado exitosamente
+          description: Producto eliminado exitosamente
         '401':
           description: No autorizado
         '404':
-          description: Carrito no encontrado
+          description: Producto no encontrado
         '500':
           description: Error del lado del servidor
 
@@ -150,14 +158,15 @@ components:
         category: "Electronics"
         thumbnails: "/upload/milka.webp"
 
-    Cart:
+    ServerError:
       type: object
       properties:
-        _id:
+        status:
+          type: integer
+          description: Código de estado 500
+        message:
           type: string
-          format: objectId
-          description: ID generado por MongoDB para el carrito
-        products:
-          type: array
-          items:
-            $ref: '#/components/schemas/CartItem'
+          description: Descripción del error del lado del servidor
+      example:
+        status: 500
+        message: Error del lado del servidor

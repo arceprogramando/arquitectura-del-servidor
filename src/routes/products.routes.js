@@ -7,11 +7,11 @@ const productController = new ProductController();
 
 const router = Router();
 
+router.get('/', productController.getAllProducts);
+
 router.post('/', isAuthenticated, uploadMiddleware, productController.createProduct);
 
-router.get('/', isAuthenticated, productController.getAllProducts);
-
-router.get('/:pId', isAuthenticated, productController.getProductById);
+router.get('/:pId', productController.getProductById);
 
 router.put('/:pId', isAdminOrPremium, uploadMiddleware, productController.updateProductById);
 
