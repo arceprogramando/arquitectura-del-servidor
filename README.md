@@ -1,8 +1,9 @@
-# Tercera Practica Integradora 
+# Testing Avanzado (en proceso)
 ## _Felipe Antonio Aleman Arce_
-### Ejercicio 16 entregable , Documentar La api
+### Ejercicio 17 entregable , Testing Avanzado (en proceso)
 
 [![Coderhouse](https://res.cloudinary.com/hdsqazxtw/image/upload/v1570710978/coderhouse.jpg)](https://github.com/arceprogramando)
+
 - Mi repositorio publico es  [arceprogramando][arceprogramando]
 en github.
 
@@ -24,17 +25,30 @@ Hasta ahora realice:
 - 14-Implementación de logger ✔️
 - 15-Tercera practica Integradora (Terminada pero sin todas las consignas hechas)
 - 16-Documentar La api ✔️
+- 17-Testing Avanzado (en proceso) 
 
 > Espero que Los ejercicios se encuentren
 > resueltos de buena forma y espero 
 > que lo haya solucionado de forma optima
 
 # Falto terminar:
+
 ## 15
 
 - Si el link expiró, debe redirigir a una vista que le permita generar nuevamente el correo de restablecimiento, el cual contará con una nueva duración de 1 hora.
 - Un usuario premium sólo pueda borrar los productos que le pertenecen.
 - Además, modificar la lógica de carrito para que un usuario premium NO pueda agregar a su carrito un producto que le pertenece
+
+# 16 Recomendaciones del tutor
+
+- Lo unico que encontre es que cuando soy un usuario comun, no me deja comprar el carrito. 
+Despues de pasarme a premium si me deja. 
+
+- Otra cosa que vi, es que como usuario veo todos los productos disponibles. 
+Acordate de ponerle paginación. Sino pone poquitos productos
+
+Pone la ruta de esta documentación para que la muestre el displayRoutes. 
+
 
 
 Para realizar este Ejercicio
@@ -80,9 +94,9 @@ npm run start:prod
 ```sh
 npm init @eslint/config 
 
-npm install cross-env  nodemon  @faker-js/faker artillery -D
+npm install cross-env  nodemon  @faker-js/faker chai mocha -D
 
-npm install express cors dotenv cookie-parser express-handlebars mongoose mongoose-paginate-v2 multer bcrypt passport passport-github2 connect-mongo express-session uuid nodemailer express-compression http-status-codes winston swagger-jsdoc swagger-ui-express
+npm install express cors dotenv cookie-parser express-handlebars mongoose mongoose-paginate-v2 multer bcrypt passport passport-github2 connect-mongo express-session uuid nodemailer express-compression http-status-codes winston swagger-jsdoc swagger-ui-express supertest
 
 ```
 
@@ -115,3 +129,6 @@ npm install express cors dotenv cookie-parser express-handlebars mongoose mongoo
   [artillery]:<https://www.npmjs.com/package/artillery>
   [swagger-jsdoc]:<https://www.npmjs.com/package/swagger-jsdoc>
   [swagger-ui-express]:<https://www.npmjs.com/package/swagger-ui-express>
+  [supertest]:<https://www.npmjs.com/package/supertest>
+  [chai]:<https://www.npmjs.com/package/chai>
+  [mocha]:<https://www.npmjs.com/package/mocha>
