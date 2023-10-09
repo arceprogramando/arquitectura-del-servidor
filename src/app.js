@@ -31,15 +31,14 @@ import swaggerOpts from './config/swagger.config.js';
 const app = express();
 const env = configObject;
 
-app.use(cors({
-  origin: '*',
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
-}));
+app.use(
+  cors({
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+  }),
+);
 app.use(cookieParser());
-app.use(compression(
-  { brotli: { enable: true, zlib: {} } },
-
-));
+app.use(compression({ brotli: { enable: true, zlib: {} } }));
 app.use(setLogger);
 
 app.use(express.static(`${__dirname}/public`));
@@ -89,7 +88,9 @@ if (cluster.isPrimary) {
   });
 } else {
   app.listen(app.get('PORT'), () => {
-    console.log(`=Encendido servidor en puerto ${app.get('PORT')}= \n====== ${app.get('BASE_URL')}${app.get('PORT')}/ =====`);
+    console.log(
+      `=Encendido servidor en puerto ${app.get('PORT')}= \n====== ${app.get('BASE_URL')}${app.get('PORT')}/ =====`,
+    );
     console.log(`==========ENV:${app.get('NODE_ENV')}===========`);
     console.log(`=======PERSISTENCE:${app.get('PERSISTENCE')}=============`);
     console.log(`=======PROCESS:${process.pid}=============`);
