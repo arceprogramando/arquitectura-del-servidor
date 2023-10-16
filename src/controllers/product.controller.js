@@ -7,7 +7,6 @@ class ProductController {
     this.productService = new ProductService();
     this.httpResponse = new Responses.HttpResponse();
     this.enumError = Responses.EnumError;
-
   }
 
   createProduct = async (req, res) => {
@@ -41,17 +40,14 @@ class ProductController {
       } else {
         productData.owner = 'ADMIN';
       }
-      console.log(req.user.email);
 
-      await this.productService.createProduct(productData);
+      const createdProduct = await this.productService.createProduct(productData);
 
-      return res.redirect('/profile');
+      return this.httpResponse.OK(res, 'Agregando productos a la base de datos', { createdProduct });
     } catch (error) {
-      return this.httpResponse.ERROR(
-        res,
-        `${this.enumError.CONTROLER_ERROR}Error al crear el producto `,
-        { error: error.message },
-      );
+      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR}Error al crear el producto `, {
+        error: error.message,
+      });
     }
   };
 
@@ -60,7 +56,9 @@ class ProductController {
       const products = await this.productService.getAllProducts();
       return this.httpResponse.OK(res, 'Tomando productos agregados por el administrador', { products });
     } catch (error) {
-      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR}Error al traer los productos `, { error: error.message });
+      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR}Error al traer los productos `, {
+        error: error.message,
+      });
     }
   };
 
@@ -76,7 +74,9 @@ class ProductController {
 
       return this.httpResponse.OK(res, 'El producto fue encontrado ', { product });
     } catch (error) {
-      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR} Error al obtener el producto `, { error: error.message });
+      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR} Error al obtener el producto `, {
+        error: error.message,
+      });
     }
   };
 
@@ -91,14 +91,17 @@ class ProductController {
       const updatedProduct = await this.productService.updateProductById(pId, newData);
 
       if (!updatedProduct) {
-        return this.httpResponse.BAD_REQUEST(res, `${this.enumError.INVALID_PARAMS} No se encontró o no se pudo actualizar el producto solicitado.`);
+        return this.httpResponse.BAD_REQUEST(
+          res,
+          `${this.enumError.INVALID_PARAMS} No se encontró o no se pudo actualizar el producto solicitado.`,
+        );
       }
 
       return this.httpResponse.OK(res, 'El producto fue actualizado correctamente ', { updatedProduct });
-
     } catch (error) {
-      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR} Error al actualizar el producto `, { error: error.message });
-
+      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR} Error al actualizar el producto `, {
+        error: error.message,
+      });
     }
   };
 
@@ -109,13 +112,17 @@ class ProductController {
       const deletedProduct = await this.productService.deleteProductById(pId);
 
       if (!deletedProduct) {
-        return this.httpResponse.BAD_REQUEST(res, `${this.enumError.DB_ERROR} No se encontro o se pudo eliminar el producto solicitado.`);
+        return this.httpResponse.BAD_REQUEST(
+          res,
+          `${this.enumError.DB_ERROR} No se encontro o se pudo eliminar el producto solicitado.`,
+        );
       }
 
       return this.httpResponse.OK(res, 'El producto fue eliminado correctamente ');
-
     } catch (error) {
-      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR}error al eliminar el producto `, { error: error.message });
+      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR}error al eliminar el producto `, {
+        error: error.message,
+      });
     }
   };
 }
