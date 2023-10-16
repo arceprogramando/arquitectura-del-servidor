@@ -5,7 +5,7 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "start": "cross-env NODE_ENV=dev .src/app.js",
+    "start": "cross-env NODE_ENV=dev ./src/app.js",
     "start:prod": "cross-env NODE_ENV=prod nodemon ./src/app.js",
     "start:qa": "cross-env NODE_ENV=qa nodemon ./src/app.js",
     "start:dev": "cross-env NODE_ENV=dev nodemon ./src/app.js",
