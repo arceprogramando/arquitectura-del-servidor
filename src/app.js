@@ -1,7 +1,6 @@
 // Server
 
 import express from 'express';
-import cluster from 'cluster';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
@@ -76,28 +75,16 @@ initializePassport();
 app.use(passport.initialize());
 app.use(passport.session());
 
-const numWorkers = 1;
-
-if (cluster.isPrimary) {
-  for (let i = 0; i < numWorkers; i += 1) {
-    cluster.fork();
-  }
-
-  cluster.on('exit', (worker) => {
-    console.log(`Worker ${worker.process.pid} ha salido y se ha creado un nuevo worker.`);
-  });
-} else {
-  app.listen(app.get('PORT'), () => {
-    console.log(
-      `=Encendido servidor en puerto ${app.get('PORT')}= \n====== ${app.get('BASE_URL')}${app.get('PORT')}/ =====`,
-    );
-    console.log(`==========ENV:${app.get('NODE_ENV')}===========`);
-    console.log(`=======PERSISTENCE:${app.get('PERSISTENCE')}=============`);
-    console.log(`=======PROCESS:${process.pid}=============`);
-    displayRoutes(app);
-    initializeDatabase();
-  });
-}
+app.listen(app.get('PORT'), () => {
+  console.log(
+    `=Encendido servidor en puerto ${app.get('PORT')}= \n====== ${app.get('BASE_URL')}${app.get('PORT')}/ =====`,
+  );
+  console.log(`==========ENV:${app.get('NODE_ENV')}===========`);
+  console.log(`=======PERSISTENCE:${app.get('PERSISTENCE')}=============`);
+  console.log(`=======PROCESS:${process.pid}=============`);
+  displayRoutes(app);
+  initializeDatabase();
+});
 
 const specs = swaggerJSDoc(swaggerOpts);
 

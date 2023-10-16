@@ -5,12 +5,15 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
+    "start": "cross-env NODE_ENV=dev .src/app.js",
     "start:prod": "cross-env NODE_ENV=prod nodemon ./src/app.js",
     "start:qa": "cross-env NODE_ENV=qa nodemon ./src/app.js",
     "start:dev": "cross-env NODE_ENV=dev nodemon ./src/app.js",
-    "start:test": "cross-env NODE_ENV=test nodemon ./src/app.js",
-    "test": "mocha test/supertest.test.js",
-    "test:single": "mocha --watch --timeout 30000"
+    "start:test": "cross-env NODE_ENV=dev nodemon ./src/app.js",
+    "test": "cross-env NODE_ENV=dev mocha './src/**/*.test.js'",
+    "test:unit": "cross-env NODE_ENV=dev mocha",
+    "test:integration": "cross-env NODE_ENV=dev mocha test/supertest.test.js",
+    "test:single": "cross-env NODE_ENV=dev mocha --watch --timeout 30000"
   },
   "keywords": [],
   "author": "Felipe Arce",
@@ -48,6 +51,7 @@
     "eslint-plugin-import": "^2.28.0",
     "mocha": "^10.2.0",
     "nodemon": "^3.0.1",
+    "sinon": "^16.1.0",
     "supertest": "^6.3.3"
   }
 }

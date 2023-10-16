@@ -4,11 +4,12 @@
   "tabWidth": 2,
   "useTabs": false,
   "trailingComma": "all",
+
   "overrides": [
     {
       "files": "*.js",
       "options": {
-        "printWidth": 120
+        "printWidth": 100
       }
     }
   ]
