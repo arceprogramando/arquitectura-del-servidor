@@ -39,11 +39,11 @@ class HttpResponse {
     });
   }
 
-  ERROR(res, message, data) {
+  ERROR(res, message, dataError) {
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
       status: StatusCodes.INTERNAL_SERVER_ERROR,
       statusMessage: message,
-      data,
+      dataError,
     });
   }
 }

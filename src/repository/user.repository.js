@@ -10,7 +10,9 @@ class UserRepository {
       const find = await this.userModel.find({ email });
       return find;
     } catch (error) {
-      throw new Error(`Error al buscar el email en la base de datos base de datos: ${error.message}`);
+      throw new Error(
+        `Error al buscar el email en la base de datos base de datos: ${error.message}`,
+      );
     }
   };
 
@@ -28,6 +30,29 @@ class UserRepository {
     }
   };
 
+  updatePasswordResetRequestAt = async (findUser) => {
+    try {
+      if (findUser) {
+        const resetRequestedAt = new Date();
+        const updatedUser = await this.userModel.findOneAndUpdate(
+          { _id: findUser[0]._id },
+          { passwordResetRequestAt: resetRequestedAt },
+          { new: true },
+        );
+
+        if (!updatedUser) {
+          throw new Error('Usuario no encontrado en la base de datos');
+        }
+
+        return updatedUser;
+      }
+      return null;
+    } catch (error) {
+      throw new Error(
+        `Error al actualizar la fecha de restauración de contraseña: ${error.message}`,
+      );
+    }
+  };
 }
 
 export default UserRepository;

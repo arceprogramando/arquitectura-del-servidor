@@ -41,6 +41,10 @@ const userSchema = new mongoose.Schema({
     ],
     default: [],
   },
+  passwordResetRequestAt: {
+    type: Date,
+    default: null,
+  },
 });
 
 userSchema.plugin(mongoosePaginate);

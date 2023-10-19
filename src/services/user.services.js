@@ -1,5 +1,4 @@
 import UserRepository from '../repository/user.repository.js';
-// import encrypt from '../helpers/encrypt.js';
 
 class UserService {
   constructor() {
@@ -38,22 +37,14 @@ class UserService {
     }
   };
 
-  // comparePassword = async (newpassword, findUser) => {
-  //   try {
-  //     const encryptNewPassword = await encrypt.createHash(newpassword);
-
-  //     const findUserPassword = findUser[0].password;
-  //     const newPasswordHashed = await encrypt.createHash(newpassword);
-  //     if (newPasswordHashed === findUser.password) {
-  //       return true;
-  //     }
-
-  //     const match = encrypt.isValidPassword(findUser, newpassword);
-  //     return match;
-  //   } catch (error) {
-  //     throw new Error(`Error al comparar las contraseñas: ${error.message}`);
-  //   }
-  // };
+  updatePasswordResetRequestAt = async (findUser) => {
+    try {
+      const updateUser = await this.userRepository.updatePasswordResetRequestAt(findUser);
+      return updateUser;
+    } catch (error) {
+      throw new Error(`Error al hacer el ResetRequest at: ${error.message}`);
+    }
+  };
 }
 
 export default UserService;

@@ -18,7 +18,11 @@ class UserController {
       req.session.destroy();
       return res.redirect('/');
     } catch (error) {
-      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR}error al crear el carrito`, { error: error.message });
+      return this.httpResponse.ERROR(
+        res,
+        `${this.enumError.CONTROLER_ERROR}error al crear el carrito`,
+        { error: error.message },
+      );
     }
   };
 
@@ -28,16 +32,23 @@ class UserController {
       const findUser = await this.userService.findUserByEmail(email);
 
       if (!findUser) {
-        return this.httpResponse.NOT_FOUND(res, `${this.enumError.DB_ERROR} El usuario con EMAIL: ${email} no fue encontrado`);
-
+        return this.httpResponse.NOT_FOUND(
+          res,
+          `${this.enumError.DB_ERROR} El usuario con EMAIL: ${email} no fue encontrado`,
+        );
       }
 
+      await this.userService.updatePasswordResetRequestAt(findUser);
       await this.emailService.sendEmail(email);
 
       return res.redirect('/checkyouremail');
     } catch (error) {
-      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR} 'error al enviar recuperacion al email`, error);
-
+      console.log(error);
+      return this.httpResponse.ERROR(
+        res,
+        `${this.enumError.CONTROLER_ERROR} 'error al enviar recuperacion al email `,
+        error.message,
+      );
     }
   };
 
@@ -48,7 +59,20 @@ class UserController {
       const findUser = await UserModel.findOne({ email });
 
       if (!findUser) {
-        return this.httpResponse.NOT_FOUND(res, `${this.enumError.DB_ERROR} El usuario con EMAIL: ${email} no fue encontrado`);
+        return this.httpResponse.NOT_FOUND(
+          res,
+          `${this.enumError.DB_ERROR} El usuario con EMAIL: ${email} no fue encontrado`,
+        );
+      }
+
+      const resetRequestedAt = findUser.passwordResetRequestAt;
+      const currentTime = new Date();
+      const timeDifference = currentTime - resetRequestedAt;
+
+      const timeLimit = 60 * 60 * 1000;
+
+      if (timeDifference > timeLimit) {
+        return res.status(400).redirect('/emailwithrecover');
       }
 
       const findUserPasswordHashed = findUser.password;
@@ -64,12 +88,18 @@ class UserController {
       const updateUser = await this.userService.changePassword(findUser, newPasswordHashed);
 
       if (!updateUser) {
-        return this.httpResponse.ERROR(res, `${this.enumError.DB_ERROR} error al actualizar la contraseña.`);
+        return this.httpResponse.ERROR(
+          res,
+          `${this.enumError.DB_ERROR} error al actualizar la contraseña.`,
+        );
       }
 
       return res.redirect('/');
     } catch (error) {
-      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR} error al resetear la contraseña: ${error.message}`);
+      return this.httpResponse.ERROR(
+        res,
+        `${this.enumError.CONTROLER_ERROR} error al resetear la contraseña: ${error.message}`,
+      );
     }
   };
 
@@ -91,9 +121,15 @@ class UserController {
 
       await findUser.save();
 
-      return this.httpResponse.OK(res, `Rol de ${findUser.email} cambiado con éxito a ${findUser.role}`);
+      return this.httpResponse.OK(
+        res,
+        `Rol de ${findUser.email} cambiado con éxito a ${findUser.role}`,
+      );
     } catch (error) {
-      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR} Error al cambiar el rol de premium a user o viceversa: ${error.message}`);
+      return this.httpResponse.ERROR(
+        res,
+        `${this.enumError.CONTROLER_ERROR} Error al cambiar el rol de premium a user o viceversa: ${error.message}`,
+      );
     }
   };
 }

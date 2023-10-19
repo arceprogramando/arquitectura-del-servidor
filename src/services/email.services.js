@@ -1,4 +1,3 @@
-// EmailServices.js
 import configObject from '../config/config.js';
 import TransporterData from '../config/nodemailer.config.js';
 import Responses from '../middleware/error.handlers.js';
@@ -28,7 +27,6 @@ class EmailServices {
       return result;
     } catch (error) {
       throw new Error(`Error al enviar el email de recuperacion en el service: ${error.message}`);
-
     }
   };
 }
