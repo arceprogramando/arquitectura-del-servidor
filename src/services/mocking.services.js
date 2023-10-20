@@ -6,11 +6,11 @@ class GenerateFakerService {
     this.productsModel = ProductsModel;
   }
 
-  generateFakerProducts = async (count = 30) => {
+  generateFakerProducts = async (count = 10) => {
     try {
       const imageUrls = [
-        '/upload/AppleMacBookPro.webp',
-        '/upload/celular.webp',
+        '/upload/bermuda_short.webp',
+        '/upload/auricular.webp',
         '/upload/chocolate.webp',
         '/upload/milka.webp',
         '/upload/royalcanning.webp',
