@@ -77,7 +77,7 @@ app.use(passport.session());
 
 app.listen(app.get('PORT'), () => {
   console.log(
-    `=Encendido servidor en puerto ${app.get('PORT')}= \n====== ${app.get('BASE_URL')}${app.get('PORT')}/ =====`,
+    `=Encendido servidor en puerto ${app.get('PORT')}= \n====== ${app.get('BASE_URL')}/ =====`,
   );
   console.log(`==========ENV:${app.get('NODE_ENV')}===========`);
   console.log(`=======PERSISTENCE:${app.get('PERSISTENCE')}=============`);

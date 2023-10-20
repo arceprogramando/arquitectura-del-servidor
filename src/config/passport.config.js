@@ -21,6 +21,8 @@ if (RAILWAY_APP_URL && RAILWAY_APP_URL.trim() !== '') {
   callbackURL = `${BASE_URL}:${PORT}/api/user/github/callback`;
 }
 
+console.log(callbackURL);
+
 const initializePassport = () => {
 
   passport.use('github', new GitHubStrategy({
