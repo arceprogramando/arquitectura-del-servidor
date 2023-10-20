@@ -10,7 +10,7 @@
     "start:qa": "cross-env NODE_ENV=qa nodemon ./src/app.js",
     "start:dev": "cross-env NODE_ENV=dev nodemon ./src/app.js",
     "start:test": "cross-env NODE_ENV=dev nodemon ./src/app.js",
-    "test": "cross-env NODE_ENV=dev mocha './src/**/*.test.js'",
+    "test": "cross-env NODE_ENV=dev mocha test/supertest.test.js",
     "test:unit": "cross-env NODE_ENV=dev mocha",
     "test:integration": "cross-env NODE_ENV=dev mocha test/supertest.test.js",
     "test:single": "cross-env NODE_ENV=dev mocha --watch --timeout 30000"

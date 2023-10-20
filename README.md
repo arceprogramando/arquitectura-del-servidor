@@ -1,6 +1,6 @@
-# Testing Avanzado (en proceso)
+# Testing Avanzado
 ## _Felipe Antonio Aleman Arce_
-### Ejercicio 17 entregable , Testing Avanzado (en proceso)
+### Ejercicio 17 entregable , Testing Avanzado
 
 [![Coderhouse](https://res.cloudinary.com/hdsqazxtw/image/upload/v1570710978/coderhouse.jpg)](https://github.com/arceprogramando)
 
@@ -23,9 +23,9 @@ Hasta ahora realice:
 - 12-Tercera entrega del proyecto Final ✔️
 - 13-Mocking y manejo de errores ✔️
 - 14-Implementación de logger ✔️
-- 15-Tercera practica Integradora (Terminada pero sin todas las consignas hechas)
+- 15-Tercera practica Integradora ✔️
 - 16-Documentar La api ✔️
-- 17-Testing Avanzado (en proceso) 
+- 17-Testing Avanzado ✔️
 
 > Espero que Los ejercicios se encuentren
 > resueltos de buena forma y espero 
@@ -35,21 +35,12 @@ Hasta ahora realice:
 
 ## 15
 
-- Si el link expiró, debe redirigir a una vista que le permita generar nuevamente el correo de restablecimiento, el cual contará con una nueva duración de 1 hora.
 - Un usuario premium sólo pueda borrar los productos que le pertenecen.
 - Además, modificar la lógica de carrito para que un usuario premium NO pueda agregar a su carrito un producto que le pertenece
 
-# 16 Recomendaciones del tutor
+# 16
 
-- Lo unico que encontre es que cuando soy un usuario comun, no me deja comprar el carrito. 
-Despues de pasarme a premium si me deja. 
-
-- Otra cosa que vi, es que como usuario veo todos los productos disponibles. 
-Acordate de ponerle paginación. Sino pone poquitos productos
-
-Pone la ruta de esta documentación para que la muestre el displayRoutes. 
-
-
+- Pone la ruta de esta documentación para que la muestre el displayRoutes. 
 
 Para realizar este Ejercicio
 
