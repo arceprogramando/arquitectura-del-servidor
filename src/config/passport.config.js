@@ -14,7 +14,8 @@ const { GITHUB_CLIENT_SECRET } = env;
 const { PORT, BASE_URL, RAILWAY_APP_URL } = env;
 
 let callbackURL;
-if (RAILWAY_APP_URL) {
+
+if (RAILWAY_APP_URL && RAILWAY_APP_URL.trim() !== '') {
   callbackURL = `${RAILWAY_APP_URL}/api/user/github/callback`;
 } else {
   callbackURL = `${BASE_URL}:${PORT}/api/user/github/callback`;
