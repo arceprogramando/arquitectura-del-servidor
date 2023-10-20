@@ -6,6 +6,7 @@ import configObject from '../src/config/config.js';
 const env = configObject;
 const BASE_API_URL = `${env.BASE_URL}${env.PORT}/`;
 const PRODUCTS_ROUTE = 'api/products';
+const CARTS_ROUTE = 'api/carts';
 
 describe('Functional Test for Products Endpoints', () => {
   let requester;
@@ -67,4 +68,49 @@ describe('Functional Test for Products Endpoints', () => {
     expect(response.statusCode).to.eq(200);
     expect(response._body.data.createdProduct).to.have.property('_id');
   });
+});
+
+describe('Functional Test for Carts Endpoints', () => {
+  let requester;
+
+  before(() => {
+    requester = supertest(BASE_API_URL);
+  });
+
+  it('should get all cars via GET request', async () => {
+    const response = await requester.get(CARTS_ROUTE);
+    expect(response.statusCode).to.equal(200);
+    expect(response.body).to.be.an('object');
+    expect(response.body.status).to.equal(200);
+    expect(response.body.data).to.be.an('object');
+  });
+
+  it('should no create  a new product via POST request and return status 500', async () => {
+    const bodyCarts = {
+    };
+
+    const response = await requester.post(CARTS_ROUTE).send(bodyCarts);
+    expect(response.statusCode).to.equal(500);
+  });
+
+  it('should create a new cart via POST request and return status 200', async () => {
+    const validCartBody = {
+      products: [
+        {
+          product: '653084d6113b14f3c1ede247',
+          quantity: 2,
+        },
+      ],
+    };
+
+    const response = await requester.post(CARTS_ROUTE).send(validCartBody);
+    expect(response.statusCode).to.equal(200);
+    expect(response.body).to.be.an('object');
+    expect(response.body.status).to.equal(200);
+    expect(response.body.data).to.be.an('object');
+  });
+});
+
+describe('Functional Test for Session user Endpoints', () => {
+
 });

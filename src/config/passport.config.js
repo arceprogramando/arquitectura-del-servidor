@@ -75,11 +75,10 @@ const initializePassport = () => {
       }
     },
   ));
+
   passport.use('local-login', new LocalStrategy({ usernameField: 'email' }, async (email, password, done) => {
     try {
-
       const findUser = await UserModel.findOne({ email });
-
       if (!findUser) {
 
         return done(null, false);
@@ -89,10 +88,8 @@ const initializePassport = () => {
 
         return done(null, false);
       }
-
       return done(null, findUser);
     } catch (error) {
-      console.error('Error during login:', error);
       return done(error);
     }
   }));

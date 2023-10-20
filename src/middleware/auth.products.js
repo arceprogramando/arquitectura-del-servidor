@@ -19,15 +19,3 @@ export const isAdminOrPremium = (req, res, next) => {
     return res.status(500).send('Error interno del servidor');
   }
 };
-
-export const isAuthenticated = (req, res, next) => {
-  try {
-    if (req.isAuthenticated()) {
-      return next();
-    }
-    return res.status(401).redirect('/');
-
-  } catch (error) {
-    return res.status(500).send('Error interno del servidor');
-  }
-};
