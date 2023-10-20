@@ -9,23 +9,18 @@ class CartService {
 
   createCart = async (cartData) => {
     try {
-      if (!cartData || !Array.isArray(cartData) || cartData.length === 0) {
-        throw new Error('No se puede crear una cart sin ningún dato');
+      if (!cartData || !cartData.products) {
+        throw new Error('El parámetro cartData debe contener una propiedad "products" con un array de productos');
       }
 
-      const cartItems = cartData.map((product) => ({
-        product: product.product,
-        quantity: product.quantity,
-      }));
-
       const newCart = {
-        products: cartItems,
+        products: cartData.products,
       };
 
       const createdCart = await this.cartRepository.createCart(newCart);
       return createdCart;
     } catch (error) {
-      throw new Error(`Error al crear el carrito en el service: ${error.message}`);
+      throw new Error(`Error al crear el carrito en el servicio: ${error.message}`);
     }
   };
 

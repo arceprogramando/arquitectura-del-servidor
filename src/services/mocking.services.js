@@ -6,7 +6,7 @@ class GenerateFakerService {
     this.productsModel = ProductsModel;
   }
 
-  generateFakerProducts = async (count = 100) => {
+  generateFakerProducts = async (count = 30) => {
     try {
       const imageUrls = [
         '/upload/AppleMacBookPro.webp',
@@ -30,7 +30,6 @@ class GenerateFakerService {
           stock: faker.number.int({ min: 10, max: 10000 }),
           category: faker.commerce.department(),
           thumbnails: getRandomImageUrl(),
-
         };
 
         this.productsModel.create(fakerProduct);
@@ -41,7 +40,6 @@ class GenerateFakerService {
       throw new Error(`Hubo un problema al generar productos ficticios: ${error}`);
     }
   };
-
 }
 
 export default GenerateFakerService;

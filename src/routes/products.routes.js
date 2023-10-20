@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import uploadMiddleware from '../middleware/uploader.js';
 import ProductController from '../controllers/product.controller.js';
-import { isAdminOrPremium, isAuthenticated } from '../middleware/auth.products.js';
+import { isAdminOrPremium } from '../middleware/auth.products.js';
 
 const productController = new ProductController();
 
@@ -9,7 +9,7 @@ const router = Router();
 
 router.get('/', productController.getAllProducts);
 
-router.post('/', isAuthenticated, uploadMiddleware, productController.createProduct);
+router.post('/', uploadMiddleware, productController.createProduct);
 
 router.get('/:pId', productController.getProductById);
 
