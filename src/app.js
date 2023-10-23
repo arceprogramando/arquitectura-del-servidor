@@ -20,6 +20,7 @@ import productRouter from './routes/products.routes.js';
 import cartRouter from './routes/carts.routes.js';
 import messageRouter from './routes/message.routes.js';
 import sendEmail from './routes/email.routes.js';
+import sessionRouter from './routes/session.routes.js';
 import ticketRouter from './routes/ticket.routes.js';
 import mockingRouter from './routes/mocking.routes.js';
 import initializeDatabase from './dao/factory.js';
@@ -90,6 +91,7 @@ const specs = swaggerJSDoc(swaggerOpts);
 
 app.use('/', viewsRouter);
 app.use('/api/user', userRoutes);
+app.use('/api/session', sessionRouter);
 app.use('/api/products', productRouter);
 app.use('/api/carts', cartRouter);
 app.use('/api/chat', messageRouter);

@@ -13,7 +13,7 @@ const { GITHUB_CLIENT_ID } = env;
 const { GITHUB_CLIENT_SECRET } = env;
 const { BASE_URL } = env;
 
-const callbackURL = `${BASE_URL}/api/user/github/callback`;
+const callbackURL = `${BASE_URL}/api/session/github/callback`;
 
 const initializePassport = () => {
 
