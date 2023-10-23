@@ -12,8 +12,6 @@ class GenerateFakerService {
         '/upload/bermuda_short.webp',
         '/upload/auricular.webp',
         '/upload/chocolate.webp',
-        '/upload/milka.webp',
-        '/upload/royalcanning.webp',
       ];
 
       const getRandomImageUrl = () => {

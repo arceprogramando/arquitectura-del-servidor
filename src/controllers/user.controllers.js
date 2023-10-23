@@ -15,7 +15,12 @@ class UserController {
 
   logoutUser = async (req, res) => {
     try {
+      const { user } = req;
+      req.user.last_connection = new Date();
+      await user.save();
+
       req.session.destroy();
+
       return res.redirect('/');
     } catch (error) {
       return this.httpResponse.ERROR(
