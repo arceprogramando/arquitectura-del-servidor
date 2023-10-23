@@ -30,6 +30,20 @@ const userSchema = new mongoose.Schema({
     enum: Object.values(roleType),
     default: 'USER',
   },
+  uploadedDocuments: {
+    identification: {
+      type: Boolean,
+      default: false,
+    },
+    addressProof: {
+      type: Boolean,
+      default: false,
+    },
+    proofOfAccountStatus: {
+      type: Boolean,
+      default: false,
+    },
+  },
   carts: {
     type: [
       {
@@ -44,6 +58,9 @@ const userSchema = new mongoose.Schema({
   passwordResetRequestAt: {
     type: Date,
     default: null,
+  },
+  last_connection: {
+    type: Date,
   },
 });
 

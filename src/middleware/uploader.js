@@ -6,7 +6,17 @@ const uploadPath = join(__dirname, 'public', 'upload');
 
 const storage = multer.diskStorage({
   destination(req, file, cb) {
-    cb(null, uploadPath);
+    let uploadFolder = uploadPath;
+
+    if (file.fieldname === 'profileImage') {
+      uploadFolder = join(uploadPath, 'profiles');
+    } else if (file.fieldname === 'productImage') {
+      uploadFolder = join(uploadPath, 'products');
+    } else if (file.fieldname === 'document') {
+      uploadFolder = join(uploadPath, 'documents');
+    }
+
+    cb(null, uploadFolder);
   },
   filename(req, file, cb) {
     cb(null, file.originalname);
@@ -23,8 +33,8 @@ const uploadMiddleware = multer({
     if (mimetype && extname) {
       return cb(null, true);
     }
-    return cb(new Error('Error: El archivo no es una imagen valida'));
+    return cb(new Error('Error: El archivo no es una imagen válida'));
   },
-}).single('image');
+}).single('productImage');
 
 export default uploadMiddleware;

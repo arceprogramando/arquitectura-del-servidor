@@ -33,12 +33,14 @@ class TicketService {
         const productTotal = product.price * cartItem.quantity;
 
         return total + productTotal;
-
       }, 0);
+
+      const purchaseDatetime = new Date();
 
       const newTicket = {
         purchaser: email,
         amount: totalAmount,
+        purchaseDatetime,
       };
 
       const createTicket = await this.ticketRepository.createTicket(newTicket);

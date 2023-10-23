@@ -20,7 +20,7 @@ class EmailServices {
         <div>
             <h1>Recuperación de contraseña</h1>
             <p>Haz clic en el siguiente enlace para restablecer tu contraseña:</p>
-            <a href="${env.BASE_URL}${env.PORT}/recover">Restablecer Contraseña</a>
+            <a href="${env.BASE_URL}/recover">Restablecer Contraseña</a>
         </div>
         `,
       });

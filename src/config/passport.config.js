@@ -90,6 +90,9 @@ const initializePassport = () => {
 
         return done(null, false);
       }
+
+      findUser.last_connection = new Date();
+      await findUser.save();
       return done(null, findUser);
     } catch (error) {
       return done(error);

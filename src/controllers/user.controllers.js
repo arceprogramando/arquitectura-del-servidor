@@ -15,7 +15,12 @@ class UserController {
 
   logoutUser = async (req, res) => {
     try {
+      const { user } = req;
+      req.user.last_connection = new Date();
+      await user.save();
+
       req.session.destroy();
+
       return res.redirect('/');
     } catch (error) {
       return this.httpResponse.ERROR(
@@ -129,6 +134,29 @@ class UserController {
       return this.httpResponse.ERROR(
         res,
         `${this.enumError.CONTROLER_ERROR} Error al cambiar el rol de premium a user o viceversa: ${error.message}`,
+      );
+    }
+  };
+
+  uploadDocuments = async (req, res) => {
+    try {
+      const { uId } = req.params;
+
+      const findUser = await this.userModel.findById(uId);
+
+      if (!findUser) {
+        return this.httpResponse.NOT_FOUND(res, `${this.enumError.DB_ERROR} Usuario no encontrado`);
+      }
+
+      return this.httpResponse.OK(
+        res,
+        `Archivos  de documentos  de  ${findUser.email} cambiado con éxito a ${findUser.role}`,
+      );
+
+    } catch (error) {
+      return this.httpResponse.ERROR(
+        res,
+        `${this.enumError.CONTROLER_ERROR} Error al subir al cargar los documentos${error.message}`,
       );
     }
   };
