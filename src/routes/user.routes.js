@@ -5,8 +5,8 @@ const router = Router();
 
 const userController = new UserController();
 
-router.get('/premium/:uid', userController.changeRoleWithId);
+router.get('/premium/:uId', userController.changeRoleWithId);
 
-// router.post('/:uid/documents`, userController.');
+router.post('/:uId/documents', userController.uploadDocuments);
 
 export default router;

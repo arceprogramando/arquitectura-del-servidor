@@ -11,6 +11,7 @@ class ProductController {
 
   createProduct = async (req, res) => {
     try {
+      console.log('🚀 ~ file: product.controller.js:13 ~ ProductController ~ createProduct= ~ req:', req.file);
       const productDTO = new ProductDTO(req.body);
 
       if (!productDTO.isValid()) {
@@ -23,7 +24,7 @@ class ProductController {
       let thumbnails = null;
 
       if (req.file) {
-        thumbnails = `/upload/${req.file.filename}`;
+        thumbnails = `/upload/products/${req.file.filename}`;
       }
 
       const productData = {
@@ -85,7 +86,7 @@ class ProductController {
       const { pId } = req.params;
       const newData = req.body;
       if (req.file) {
-        const newImagePath = `/upload/${req.file.filename}`;
+        const newImagePath = `/upload/products/${req.file.filename}`;
         newData.thumbnails = newImagePath;
       }
       const updatedProduct = await this.productService.updateProductById(pId, newData);

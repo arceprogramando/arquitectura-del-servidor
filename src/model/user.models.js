@@ -44,16 +44,6 @@ const userSchema = new mongoose.Schema({
       default: false,
     },
   },
-  documents: [
-    {
-      name: {
-        type: String,
-      },
-      reference: {
-        type: String,
-      },
-    },
-  ],
   carts: {
     type: [
       {

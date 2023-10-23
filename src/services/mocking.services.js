@@ -9,9 +9,12 @@ class GenerateFakerService {
   generateFakerProducts = async (count = 10) => {
     try {
       const imageUrls = [
-        '/upload/bermuda_short.webp',
         '/upload/auricular.webp',
-        '/upload/chocolate.webp',
+        '/upload/bermuda_short.webp',
+        '/upload/notebook.webp',
+        '/upload/short.webp',
+        '/upload/ventilador.webp',
+        '/upload/xiaomi.webp',
       ];
 
       const getRandomImageUrl = () => {

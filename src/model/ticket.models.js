@@ -6,12 +6,10 @@ const ticketCollection = 'ticket';
 const ticketSchema = new mongoose.Schema({
   code: {
     type: String,
-    unique: true,
-    default: uuidv4(),
+    default: () => `${uuidv4()}-${Math.floor(Math.random() * 1000000)}`,
   },
-  purchase_datetime: {
+  purchaseDatetime: {
     type: Date,
-    default: Date.now,
   },
   amount: {
     type: Number,
