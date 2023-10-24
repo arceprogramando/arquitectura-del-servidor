@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import UserController from '../controllers/user.controllers.js';
+import { uploadDocuments } from '../middleware/uploader.js';
 
 const router = Router();
 
@@ -7,6 +8,11 @@ const userController = new UserController();
 
 router.get('/premium/:uId', userController.changeRoleWithId);
 
-router.post('/:uId/documents', userController.uploadDocuments);
+router.post('/:uId/documents', uploadDocuments.fields([
+  { name: 'profileImage', maxCount: 1 },
+  { name: 'identificationImage', maxCount: 1 },
+  { name: 'residenceImage', maxCount: 1 },
+  { name: 'accountstatusImage', maxCount: 1 },
+]), userController.uploadDocuments);
 
 export default router;

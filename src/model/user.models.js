@@ -31,15 +31,15 @@ const userSchema = new mongoose.Schema({
     default: 'USER',
   },
   uploadedDocuments: {
-    identification: {
+    identificationImage: {
       type: Boolean,
       default: false,
     },
-    addressProof: {
+    residenceImage: {
       type: Boolean,
       default: false,
     },
-    proofOfAccountStatus: {
+    accountStatusImage: {
       type: Boolean,
       default: false,
     },

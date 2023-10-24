@@ -209,6 +209,26 @@ class ViewController {
       return res.redirect('/');
     }
   };
+
+  viewUpdateCompleteProfile = async (req, res) => {
+    try {
+      const { user } = req;
+      const uId = user?._id.toString();
+      return res.render('completeprofile', {
+        firstname: user.firstname,
+        lastname: user.lastname,
+        age: user.age,
+        email: user.email,
+        uId,
+        identification: user.uploadedDocuments.identificationImage,
+        residence: user.uploadedDocuments.residenceImage,
+        accountstatus: user.uploadedDocuments.accountStatusImage,
+      });
+    } catch (error) {
+      return res.redirect('/profile');
+
+    }
+  };
 }
 
 export default ViewController;

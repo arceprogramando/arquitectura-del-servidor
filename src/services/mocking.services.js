@@ -12,7 +12,6 @@ class GenerateFakerService {
         '/upload/products/auricular.webp',
         '/upload/products/bermuda_short.webp',
         '/upload/products/notebook.webp',
-        '/upload/products/short.webp',
         '/upload/products/ventilador.webp',
         '/upload/products/xiaomi.webp',
       ];

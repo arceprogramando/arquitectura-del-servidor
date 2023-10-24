@@ -3,6 +3,7 @@ import ProductService from '../services/product.services.js';
 import Responses from '../middleware/error.handlers.js';
 
 class ProductController {
+
   constructor() {
     this.productService = new ProductService();
     this.httpResponse = new Responses.HttpResponse();
@@ -11,7 +12,6 @@ class ProductController {
 
   createProduct = async (req, res) => {
     try {
-      console.log('🚀 ~ file: product.controller.js:13 ~ ProductController ~ createProduct= ~ req:', req.file);
       const productDTO = new ProductDTO(req.body);
 
       if (!productDTO.isValid()) {
@@ -24,7 +24,15 @@ class ProductController {
       let thumbnails = null;
 
       if (req.file) {
-        thumbnails = `/upload/products/${req.file.filename}`;
+        let uploadFolder = '';
+        if (req.file.fieldname === 'profileImage') {
+          uploadFolder = 'profiles';
+        } else if (req.file.fieldname === 'productImage') {
+          uploadFolder = 'products';
+        } else if (req.file.fieldname === 'document') {
+          uploadFolder = 'documents';
+        }
+        thumbnails = `/upload/${uploadFolder}/${req.file.filename}`;
       }
 
       const productData = {
