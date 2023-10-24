@@ -9,8 +9,6 @@ import displayRoutes from 'express-routemap';
 import { engine } from 'express-handlebars';
 import passport from 'passport';
 import compression from 'express-compression';
-import swaggerJSDoc from 'swagger-jsdoc';
-import swaggerUi from 'swagger-ui-express';
 import configObject from './config/config.js';
 import __dirname from './utils.js';
 import viewsRouter from './routes/views.router.js';
@@ -23,10 +21,10 @@ import sendEmail from './routes/email.routes.js';
 import sessionRouter from './routes/session.routes.js';
 import ticketRouter from './routes/ticket.routes.js';
 import mockingRouter from './routes/mocking.routes.js';
+import docsRouter from './routes/docs.routes.js';
 import initializeDatabase from './dao/factory.js';
 import setLogger from './utils/logger.js';
 import loggerRouter from './routes/logger.routes.js';
-import swaggerOpts from './config/swagger.config.js';
 
 const app = express();
 const env = configObject;
@@ -87,10 +85,8 @@ app.listen(app.get('PORT'), () => {
   initializeDatabase();
 });
 
-const specs = swaggerJSDoc(swaggerOpts);
-
 app.use('/', viewsRouter);
-app.use('/api/user', userRoutes);
+app.use('/api/users', userRoutes);
 app.use('/api/session', sessionRouter);
 app.use('/api/products', productRouter);
 app.use('/api/carts', cartRouter);
@@ -99,4 +95,4 @@ app.use('/api/email', sendEmail);
 app.use('/api/tickets', ticketRouter);
 app.use('/mockingproducts', mockingRouter);
 app.use('/loggertest', loggerRouter);
-app.use('/api/docs/', swaggerUi.serve, swaggerUi.setup(specs));
+app.use('/api/docs', docsRouter);

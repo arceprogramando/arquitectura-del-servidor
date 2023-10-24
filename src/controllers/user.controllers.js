@@ -143,9 +143,6 @@ class UserController {
       const { uId } = req.params;
       const { user } = req;
 
-      const findUser = await this.userModel.findById(uId);
-      console.log('🚀 ~ file: user.controllers.js:147 ~ UserController ~ uploadDocuments= ~ findUser:', findUser);
-
       const { newData } = req.body;
 
       const newImagePath = `/upload/${req.file.filename}`;

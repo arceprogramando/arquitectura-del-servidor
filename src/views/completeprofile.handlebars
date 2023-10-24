@@ -15,7 +15,7 @@
     <div class="col-md-4 my-auto">
         {{#if profileImage}}
         {{else}}
-        <form class="card card-body rounded-0" id="profileForm" action="/api/user/{{uId}}/documents" method="POST" enctype="multipart/form-data">
+        <form class="card card-body rounded-0" id="profileForm" action="/api/users/{{uId}}/documents" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="profileImage">Cargar Imagen de Perfil:</label>
                 <input type="file" name="profileImage" accept="image/*" class="form-control rounded-0 mb-1">
@@ -28,7 +28,7 @@
     <div class="col-md-4 my-auto">
         {{#if identificationImage}}
         {{else}}
-        <form class="card card-body rounded-0" id="identificationForm" action="/api/user/{{uId}}/documents"
+        <form class="card card-body rounded-0" id="identificationForm" action="/api/users/{{uId}}/documents"
             method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="identificationImage">Subir identificación:</label>
@@ -42,7 +42,7 @@
     <div class="col-md-4 my-auto">
         {{#if residenceImage}}
         {{else}}
-        <form class="card card-body rounded-0" id="residenceForm" action="/api/user/{{uId}}/documents" method="POST"
+        <form class="card card-body rounded-0" id="residenceForm" action="/api/users/{{uId}}/documents" method="POST"
             enctype="multipart/form-data">
             <div class="form-group">
                 <label for="residenceImage">Comprobante de domicilio:</label>
@@ -56,7 +56,7 @@
     <div class="col-md-4 my-auto">
         {{#if accountstatusImage}}
         {{else}}
-        <form class="card card-body rounded-0" id="accountstatusForm" action="/api/user/{{uId}}/documents" method="POST"
+        <form class="card card-body rounded-0" id="accountstatusForm" action="/api/users/{{uId}}/documents" method="POST"
             enctype="multipart/form-data">
             <div class="form-group">
                 <label for="accountstatusImage">Comprobante de estado de cuenta:</label>

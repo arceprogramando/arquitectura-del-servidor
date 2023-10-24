@@ -9,7 +9,7 @@ profileForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   const formData = new FormData(profileForm);
   try {
-    await fetch(`/api/user/${uId}/documents`, {
+    await fetch(`/api/users/${uId}/documents`, {
       method: 'POST',
       body: formData,
     });
@@ -27,7 +27,7 @@ identificationForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   const formData = new FormData(identificationForm);
   try {
-    await fetch(`/api/user/${uId}/documents`, {
+    await fetch(`/api/users/${uId}/documents`, {
       method: 'POST',
       body: formData,
     });
@@ -44,7 +44,7 @@ residenceImage.addEventListener('submit', async (e) => {
   e.preventDefault();
   const formData = new FormData(residenceImage);
   try {
-    await fetch(`/api/user/${uId}/documents`, {
+    await fetch(`/api/users/${uId}/documents`, {
       method: 'POST',
       body: formData,
     });
@@ -60,7 +60,7 @@ accountstatusImage.addEventListener('submit', async (e) => {
   e.preventDefault();
   const formData = new FormData(accountstatusImage);
   try {
-    await fetch(`/api/user/${uId}/documents`, {
+    await fetch(`/api/users/${uId}/documents`, {
       method: 'POST',
       body: formData,
     });
