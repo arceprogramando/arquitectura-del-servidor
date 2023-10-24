@@ -142,30 +142,32 @@ class UserController {
     try {
       const { uId } = req.params;
       const { user } = req;
+
+      const findUser = await this.userModel.findById(uId);
+      console.log('🚀 ~ file: user.controllers.js:147 ~ UserController ~ uploadDocuments= ~ findUser:', findUser);
+
       const { newData } = req.body;
-      if (req.file) {
-        const newImagePath = `/upload/${req.file.filename}`;
-        newData.thumbnails = newImagePath;
 
-        let uploadFolder = '';
+      const newImagePath = `/upload/${req.file.filename}`;
+      newData.thumbnails = newImagePath;
 
-        if (req.file.fieldname === 'profileImage') {
-          uploadFolder = 'profiles';
-          user.uploadedDocuments.identification = true;
-        } else if (req.file.fieldname === 'identificationImage') {
-          uploadFolder = 'documents/identificationImage';
-          user.uploadedDocuments.addressProof = true;
-        } else if (req.file.fieldname === 'residenceImage') {
-          uploadFolder = 'documents/residenceImage';
-          user.uploadedDocuments.proofOfAccountStatus = true;
-        } else if (req.file.fieldname === 'accountstatusImage') {
-          uploadFolder = 'documents/accountStatusImage';
-          user.uploadedDocuments.accountstatusImage = true;
-        }
-
-        const thumbnails = `/upload/${uploadFolder}/${req.file.filename}`;
-        newData.document = thumbnails;
+      let uploadFolder = '';
+      if (req.file.fieldname === 'profileImage') {
+        uploadFolder = 'profiles';
+        user.uploadedDocuments.identification = true;
+      } else if (req.file.fieldname === 'identificationImage') {
+        uploadFolder = 'documents/identificationImage';
+        user.uploadedDocuments.addressProof = true;
+      } else if (req.file.fieldname === 'residenceImage') {
+        uploadFolder = 'documents/residenceImage';
+        user.uploadedDocuments.proofOfAccountStatus = true;
+      } else if (req.file.fieldname === 'accountstatusImage') {
+        uploadFolder = 'documents/accountStatusImage';
+        user.uploadedDocuments.accountstatusImage = true;
       }
+      await user.save();
+      const thumbnails = `/upload/${uploadFolder}/${req.file.filename}`;
+      newData.document = thumbnails;
 
       await this.userModel.findByIdAndUpdate(uId, newData);
 
