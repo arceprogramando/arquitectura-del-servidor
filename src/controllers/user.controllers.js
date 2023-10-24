@@ -141,25 +141,43 @@ class UserController {
   uploadDocuments = async (req, res) => {
     try {
       const { uId } = req.params;
+      const { user } = req;
+      const { newData } = req.body;
+      if (req.file) {
+        const newImagePath = `/upload/${req.file.filename}`;
+        newData.thumbnails = newImagePath;
 
-      const findUser = await this.userModel.findById(uId);
+        let uploadFolder = '';
 
-      if (!findUser) {
-        return this.httpResponse.NOT_FOUND(res, `${this.enumError.DB_ERROR} Usuario no encontrado`);
+        if (req.file.fieldname === 'profileImage') {
+          uploadFolder = 'profiles';
+          user.uploadedDocuments.identification = true;
+        } else if (req.file.fieldname === 'identificationImage') {
+          uploadFolder = 'documents/identificationImage';
+          user.uploadedDocuments.addressProof = true;
+        } else if (req.file.fieldname === 'residenceImage') {
+          uploadFolder = 'documents/residenceImage';
+          user.uploadedDocuments.proofOfAccountStatus = true;
+        } else if (req.file.fieldname === 'accountstatusImage') {
+          uploadFolder = 'documents/accountStatusImage';
+          user.uploadedDocuments.accountstatusImage = true;
+        }
+
+        const thumbnails = `/upload/${uploadFolder}/${req.file.filename}`;
+        newData.document = thumbnails;
       }
 
-      return this.httpResponse.OK(
-        res,
-        `Archivos  de documentos  de  ${findUser.email} cambiado con éxito a ${findUser.role}`,
-      );
+      await this.userModel.findByIdAndUpdate(uId, newData);
 
+      return this.httpResponse.OK(res, 'Documentos cargados exitosamente');
     } catch (error) {
       return this.httpResponse.ERROR(
         res,
-        `${this.enumError.CONTROLER_ERROR} Error al subir al cargar los documentos${error.message}`,
+        `${this.enumError.CONTROLER_ERROR} Error al subir al cargar los documentos: ${error.message}`,
       );
     }
   };
+
 }
 
 export default UserController;

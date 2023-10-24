@@ -7,7 +7,6 @@ document.querySelectorAll('.add-to-cart').forEach((button) => {
     const endpoint = `/api/carts/${cartId}/products/`;
 
     const quantity = document.querySelector('#quantity').value;
-    console.log('🚀 ~ file: cartuser.js:10 ~ button.addEventListener ~ quantity:', quantity);
 
     const data = {
       product: productId,
@@ -63,7 +62,6 @@ document.querySelectorAll('.btn-delete-product').forEach((deleteButton) => {
     const cartId = document.querySelector('[data-cart-id]').getAttribute('data-cart-id');
     const endpoint = `/api/carts/${cartId}/products/${productId}`;
 
-    console.log(endpoint);
     try {
       const response = await fetch(endpoint, {
         method: 'DELETE',

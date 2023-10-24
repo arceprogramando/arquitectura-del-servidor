@@ -17,7 +17,6 @@ const initializeDatabase = async (req, res) => {
         // TODO: Hacer conexion con filesystem
         return Database;
       default:
-        console.log('Using the default persistence (MongoDB).');
         Database = await mongoDBConnection();
         return Database;
     }

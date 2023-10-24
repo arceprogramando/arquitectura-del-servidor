@@ -13,9 +13,12 @@ describe('Functional Test for Products Endpoints', () => {
   let requester;
 
   const imageUrls = [
-    '/upload/bermuda_short.webp',
     '/upload/auricular.webp',
-    '/upload/short.webp',
+    '/upload/bermuda_short.webp',
+    '/upload/notebook.webp',
+    '/upload/sillagamer.webp',
+    '/upload/ventilador.webp',
+    '/upload/xiaomi.webp',
   ];
 
   const getRandomImageUrl = () => {
