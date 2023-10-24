@@ -12,7 +12,7 @@ router.post('/:uId/documents', uploadDocuments.fields([
   { name: 'profileImage', maxCount: 1 },
   { name: 'identificationImage', maxCount: 1 },
   { name: 'residenceImage', maxCount: 1 },
-  { name: 'accountstatusImage', maxCount: 1 },
+  { name: 'accountStatusImage', maxCount: 1 },
 ]), userController.uploadDocuments);
 
 export default router;

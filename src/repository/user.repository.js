@@ -16,6 +16,17 @@ class UserRepository {
     }
   };
 
+  findUserById = async (uId) => {
+    try {
+      const find = await this.userModel.findOne({ _id: uId });
+      return find;
+    } catch (error) {
+      throw new Error(
+        `Error al buscar el email en la base de datos base de datos: ${error.message}`,
+      );
+    }
+  };
+
   changePassword = async (userId, newPasswordHashed) => {
     try {
       const updatedUser = await this.userModel.findByIdAndUpdate(
@@ -47,6 +58,17 @@ class UserRepository {
         return updatedUser;
       }
       return null;
+    } catch (error) {
+      throw new Error(
+        `Error al actualizar la fecha de restauración de contraseña: ${error.message}`,
+      );
+    }
+  };
+
+  updateUserById = async (uId, newData) => {
+    try {
+      const updateUser = await this.userModel.findByIdAndUpdate(uId, newData, { new: true });
+      return updateUser;
     } catch (error) {
       throw new Error(
         `Error al actualizar la fecha de restauración de contraseña: ${error.message}`,

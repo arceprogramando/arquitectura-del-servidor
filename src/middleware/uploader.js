@@ -17,8 +17,8 @@ const storage = multer.diskStorage({
       uploadFolder = join(uploadPathDocuments, 'identificationImage');
     } else if (file.fieldname === 'residenceImage') {
       uploadFolder = join(uploadPathDocuments, 'residenceImage');
-    } else if (file.fieldname === 'accountstatusImage') {
-      uploadFolder = join(uploadPathDocuments, 'accountstatusImage');
+    } else if (file.fieldname === 'accountStatusImage') {
+      uploadFolder = join(uploadPathDocuments, 'accountStatusImage');
     }
 
     cb(null, uploadFolder);

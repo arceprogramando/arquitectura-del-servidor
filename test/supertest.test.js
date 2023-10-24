@@ -4,10 +4,10 @@ import { expect } from 'chai';
 import configObject from '../src/config/config.js';
 
 const env = configObject;
-const BASE_API_URL = `${env.BASE_URL}${env.PORT}/`;
+const BASE_API_URL = `${env.BASE_URL}/`;
 const PRODUCTS_ROUTE = 'api/products';
 const CARTS_ROUTE = 'api/carts';
-const USER_ROUTE = 'api/user';
+const SESSION_ROUTE = 'api/session';
 
 describe('Functional Test for Products Endpoints', () => {
   let requester;
@@ -133,7 +133,7 @@ describe('Functional Test for Session user Endpoints', () => {
       password: 'testpassword',
     };
 
-    const response = await requester.post(`${USER_ROUTE}/register`).send(userData);
+    const response = await requester.post(`${SESSION_ROUTE}/register`).send(userData);
     expect(response.statusCode).to.equal(302);
   });
 

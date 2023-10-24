@@ -54,11 +54,11 @@ residenceImage.addEventListener('submit', async (e) => {
   }
 });
 
-// accountstatusImage
-const accountstatusImage = document.getElementById('accountstatusForm');
-accountstatusImage.addEventListener('submit', async (e) => {
+// accountStatusImage
+const accountStatusImage = document.getElementById('accountStatusForm');
+accountStatusImage.addEventListener('submit', async (e) => {
   e.preventDefault();
-  const formData = new FormData(accountstatusImage);
+  const formData = new FormData(accountStatusImage);
   try {
     await fetch(`/api/users/${uId}/documents`, {
       method: 'POST',
@@ -66,6 +66,6 @@ accountstatusImage.addEventListener('submit', async (e) => {
     });
     window.location.reload();
   } catch (error) {
-    console.error('Error al enviar la imagen desde la accountstatusImage:', error);
+    console.error('Error al enviar la imagen desde la accountStatusImage:', error);
   }
 });

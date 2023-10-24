@@ -1,0 +1,61 @@
+paths:
+  /api/users/premium/{uId}:
+    get:
+      summary: Cambiar el rol de usuario a premium por ID
+      tags:
+        - users
+      parameters:
+        - name: uId
+          in: path
+          required: true
+          description: ID del usuario
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Cambio exitoso del rol del usuario a premium
+        '404':
+          description: Usuario no encontrado
+        '500':
+          description: Error del lado del servidor
+
+  /api/users/{uId}/documents:
+    post:
+      summary: Cargar documentos del usuario por ID
+      tags:
+        - users
+      parameters:
+        - name: uId
+          in: path
+          required: true
+          description: ID del usuario
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                profileImage:
+                  type: file
+                  description: Imagen de perfil
+                identificationImage:
+                  type: file
+                  description: Imagen de identificación
+                residenceImage:
+                  type: file
+                  description: Imagen de residencia
+                accountStatusImage:
+                  type: file
+                  description: Imagen del estado de la cuenta
+      responses:
+        '200':
+          description: Documentos cargados exitosamente
+        '400':
+          description: Solicitud incorrecta
+        '404':
+          description: Usuario no encontrado
+        '500':
+          description: Error del lado del servidor

@@ -1,0 +1,106 @@
+paths:
+  /:
+    get:
+      summary: Vista de renderizado de Login
+      tags:
+        - views
+      responses:
+        "200":
+          description: Visualizar la página de inicio de sesión
+
+  /products:
+    get:
+      summary: Vista de productos
+      tags:
+        - views
+      responses:
+        "200":
+          description: Visualizar la página de productos
+
+  /chat:
+    get:
+      summary: Vista de chat
+      tags:
+        - views
+      responses:
+        "200":
+          description: Visualizar la página de chat
+
+  /carts/{cId}:
+    get:
+      summary: Vista de carrito
+      tags:
+        - views
+      parameters:
+        - name: cId
+          in: path
+          required: true
+          description: ID del carrito
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Visualizar la página del carrito
+
+  /register:
+    get:
+      summary: Vista de registro
+      tags:
+        - views
+      responses:
+        "200":
+          description: Visualizar la página de registro
+
+  /recover:
+    get:
+      summary: Vista de recuperación de contraseña
+      tags:
+        - views
+      responses:
+        "200":
+          description: Visualizar la página de recuperación de contraseña
+
+  /emailwithrecover:
+    get:
+      summary: Vista de correo para recuperación de contraseña
+      tags:
+        - views
+      responses:
+        "200":
+          description: Visualizar la página de correo para recuperación de contraseña
+
+  /checkyouremail:
+    get:
+      summary: Vista de verificación de correo
+      tags:
+        - views
+      responses:
+        "200":
+          description: Visualizar la página de verificación de correo
+
+  /profile:
+    get:
+      summary: Vista de perfil
+      tags:
+        - views
+      responses:
+        "200":
+          description: Visualizar la página de perfil
+
+  /cartsuser:
+    get:
+      summary: Vista de carrito del usuario
+      tags:
+        - views
+      responses:
+        "200":
+          description: Visualizar la página de carrito del usuario
+
+  /completeProfile:
+    get:
+      summary: Vista de perfil completo
+      tags:
+        - views
+      responses:
+        "200":
+          description: Visualizar la página de perfil completo

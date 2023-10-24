@@ -28,6 +28,15 @@ class UserService {
     }
   };
 
+  findUserById = async (uId) => {
+    try {
+      const user = await this.userRepository.findUserById(uId);
+      return user;
+    } catch (error) {
+      throw new Error(`Error al buscar el email: ${error.message}`);
+    }
+  };
+
   changePassword = async (findUser, newPasswordHashed) => {
     try {
       const updatedUser = await this.userRepository.changePassword(findUser, newPasswordHashed);
@@ -43,6 +52,15 @@ class UserService {
       return updateUser;
     } catch (error) {
       throw new Error(`Error al hacer el ResetRequest at: ${error.message}`);
+    }
+  };
+
+  updateUserById = async (uId, newData) => {
+    try {
+      const updateUser = await this.userRepository.updateUserById(uId, newData);
+      return updateUser;
+    } catch (error) {
+      throw new Error(`Error al actualizar el usuario: ${error.message}`);
     }
   };
 }

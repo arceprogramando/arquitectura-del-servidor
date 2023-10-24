@@ -9,22 +9,17 @@ const roleType = {
   PREMIUM: 'PREMIUM',
 };
 
+const documentSchema = new mongoose.Schema({
+  name: String,
+  reference: String,
+});
+
 const userSchema = new mongoose.Schema({
-  firstname: {
-    type: String,
-  },
-  lastname: {
-    type: String,
-  },
-  email: {
-    type: String,
-  },
-  age: {
-    type: Number,
-  },
-  password: {
-    type: String,
-  },
+  firstname: String,
+  lastname: String,
+  email: String,
+  age: Number,
+  password: String,
   role: {
     type: String,
     enum: Object.values(roleType),
@@ -44,24 +39,20 @@ const userSchema = new mongoose.Schema({
       default: false,
     },
   },
-  carts: {
-    type: [
-      {
-        cart: {
-          type: mongoose.Types.ObjectId,
-          ref: 'carts',
-        },
+  carts: [
+    {
+      cart: {
+        type: mongoose.Types.ObjectId,
+        ref: 'carts',
       },
-    ],
-    default: [],
-  },
+    },
+  ],
   passwordResetRequestAt: {
     type: Date,
     default: null,
   },
-  last_connection: {
-    type: Date,
-  },
+  last_connection: Date,
+  documents: [documentSchema],
 });
 
 userSchema.plugin(mongoosePaginate);

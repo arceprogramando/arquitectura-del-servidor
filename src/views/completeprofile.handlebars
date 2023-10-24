@@ -1,17 +1,6 @@
 <div>
     <h1 data-uId="{{uId}}">PERFIL DEL USUARIO</h1>
-    <p>{{firstname}} {{lastname}}</p>
-    <p>Edad: {{age}}</p>
-    <p>Email: {{email}}</p>
-    <div>
-        <form action="/api/session/logout" method="get">
-            <br />
-            <button type="submit">Cerrar sesión</button>
-        </form>
-    </div>
 
-    <h2>Actualizar Usuario</h2>
-    
     <div class="col-md-4 my-auto">
         {{#if profileImage}}
         {{else}}
@@ -25,6 +14,18 @@
         {{/if}}
     </div>
 
+    <p>{{firstname}} {{lastname}}</p>
+    <p>Edad: {{age}}</p>
+    <p>Email: {{email}}</p>
+    <div>
+        <form action="/api/session/logout" method="get">
+            <br />
+            <button type="submit">Cerrar sesión</button>
+        </form>
+    </div>
+
+    <h2>Actualizar Usuario para pasarse a premium</h2>
+    
     <div class="col-md-4 my-auto">
         {{#if identificationImage}}
         {{else}}
@@ -46,7 +47,7 @@
             enctype="multipart/form-data">
             <div class="form-group">
                 <label for="residenceImage">Comprobante de domicilio:</label>
-                <input type="file" name="document" accept="image/*" class="form-control rounded-0 mb-1">
+                <input type="file" name="residenceImage" accept="image/*" class="form-control rounded-0 mb-1">
             </div>
             <button class="btn btn-dark rounded-0">Enviar</button>
         </form>
@@ -54,13 +55,13 @@
     </div>
 
     <div class="col-md-4 my-auto">
-        {{#if accountstatusImage}}
+        {{#if accountStatusImage}}
         {{else}}
-        <form class="card card-body rounded-0" id="accountstatusForm" action="/api/users/{{uId}}/documents" method="POST"
+        <form class="card card-body rounded-0" id="accountStatusForm" action="/api/users/{{uId}}/documents" method="POST"
             enctype="multipart/form-data">
             <div class="form-group">
-                <label for="accountstatusImage">Comprobante de estado de cuenta:</label>
-                <input type="file" id="document" name="accountstatusImage" accept="image/*"
+                <label for="accountStatusImage">Comprobante de estado de cuenta:</label>
+                <input type="file" id="document" name="accountStatusImage" accept="image/*"
                     class="form-control rounded-0 mb-1">
             </div>
             <button class="btn btn-dark rounded-0">Enviar</button>

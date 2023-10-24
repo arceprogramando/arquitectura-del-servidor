@@ -222,7 +222,7 @@ class ViewController {
         uId,
         identification: user.uploadedDocuments.identificationImage,
         residence: user.uploadedDocuments.residenceImage,
-        accountstatus: user.uploadedDocuments.accountStatusImage,
+        accountStatus: user.uploadedDocuments.accountStatusImage,
       });
     } catch (error) {
       return res.redirect('/profile');
