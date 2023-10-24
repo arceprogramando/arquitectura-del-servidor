@@ -38,8 +38,7 @@ Hasta ahora realice:
 
 - Un usuario premium sólo pueda borrar los productos que le pertenecen.
 - Además, modificar la lógica de carrito para que un usuario premium NO pueda agregar a su carrito un producto que le pertenece
-# 16
-- Pone la ruta de esta documentación para que la muestre el displayRoutes. 
+
 # 17
 - Hacer test para session
 
