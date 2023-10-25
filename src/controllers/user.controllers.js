@@ -181,6 +181,25 @@ class UserController {
     }
   };
 
+  getAllUsers = async (req, res) => {
+    try {
+      const findUser = await this.userService.getAllUsers();
+
+      const simplifiedUsers = findUser.map((user) => ({
+        firstname: user.firstname,
+        lastname: user.lastname,
+        email: user.email,
+        role: user.role,
+      }));
+
+      return this.httpResponse.OK(res, 'Usuarios traidos exitosamente', { simplifiedUsers });
+    } catch (error) {
+      return this.httpResponse.ERROR(
+        res,
+        `${this.enumError.CONTROLER_ERROR} Error al traer a todos los usuarios ${error.message}`,
+      );
+    }
+  };
 }
 
 export default UserController;

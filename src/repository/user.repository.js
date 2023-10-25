@@ -75,6 +75,17 @@ class UserRepository {
       );
     }
   };
+
+  getAllUsers = async () => {
+    try {
+      const getAllUsers = await this.userModel.find({});
+      return getAllUsers;
+    } catch (error) {
+      throw new Error(
+        `Error al traer a todos los usuarios${error.message}`,
+      );
+    }
+  };
 }
 
 export default UserRepository;

@@ -63,6 +63,16 @@ class UserService {
       throw new Error(`Error al actualizar el usuario: ${error.message}`);
     }
   };
+
+  getAllUsers = async () => {
+    try {
+      const getAllUsers = await this.userRepository.getAllUsers();
+      return getAllUsers;
+    } catch (error) {
+      throw new Error(`Error al traer a los usuarios ${error.message}`);
+
+    }
+  };
 }
 
 export default UserService;

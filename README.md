@@ -28,6 +28,7 @@ Hasta ahora realice:
 - 17-Testing Avanzado ✔️
 - 18-Cuarta práctica Integradora
 - 19-Proyecto Final (en progreso)
+
 > Espero que Los ejercicios se encuentren
 > resueltos de buena forma y espero 
 > que lo haya solucionado de forma optima
