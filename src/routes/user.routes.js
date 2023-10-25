@@ -17,4 +17,6 @@ router.post('/:uId/documents', uploadDocuments.fields([
 
 router.get('/', userController.getAllUsers);
 
+router.delete('/', userController.deleteInactiveUsersAndNotify);
+
 export default router;

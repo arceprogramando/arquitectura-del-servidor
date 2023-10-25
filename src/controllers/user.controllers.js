@@ -200,6 +200,25 @@ class UserController {
       );
     }
   };
+
+  deleteInactiveUsersAndNotify = async (req, res) => {
+    try {
+
+      const inactiveUsers = await this.userService.findInactiveUsers();
+      const inactiveUserIds = inactiveUsers.map((user) => user._id.toString());
+      const inactiveUserEmails = inactiveUsers.map((user) => user.email);
+
+      await this.userService.notifyDeleteWithEmail(inactiveUserEmails);
+      const deleteUsers = await this.userService.deleteManyUsers(inactiveUserIds);
+
+      return this.httpResponse.OK(res, 'Usuarios inactivos borrados correctamente', { deleteUsers });
+    } catch (error) {
+      return this.httpResponse.ERROR(
+        res,
+        `${this.enumError.CONTROLER_ERROR} Error al borrar los usuarios inactivos o notificar${error.message}`,
+      );
+    }
+  };
 }
 
 export default UserController;

@@ -73,6 +73,45 @@ class UserService {
 
     }
   };
+
+  findInactiveUsers = async () => {
+    try {
+      const findInactiveUsers = await this.userRepository.findInactiveUsers();
+      return findInactiveUsers;
+    } catch (error) {
+      throw new Error(`Error al traer a los usuarios inactivos ${error.message}`);
+
+    }
+  };
+
+  deleteManyUsers = async (inactiveUserIds) => {
+    try {
+      const deleteManyUsers = await this.userRepository.deleteManyUsers(inactiveUserIds);
+      return deleteManyUsers;
+    } catch (error) {
+      throw new Error(`Error al  eliminar el usuario o varios usuarios ${error.message}`);
+
+    }
+  };
+
+  notifyDeleteWithEmail = async (inactiveUserEmails) => {
+    try {
+      const notifyDeleteWithEmail = await this.userRepository.notifyDeleteWithEmail(inactiveUserEmails);
+      return notifyDeleteWithEmail;
+    } catch (error) {
+      throw new Error(`Error al notificar a travez del email ${error.message}`);
+
+    }
+  };
+
+  deleteInactiveUsersAndNotify = async () => {
+    try {
+      const deleteInactiveUsersAndNotify = await this.userRepository.deleteInactiveUsersAndNotify();
+      return deleteInactiveUsersAndNotify;
+    } catch (error) {
+      throw new Error(`Error al eliminar los usuarios o informarles ${error.message}`);
+    }
+  };
 }
 
 export default UserService;
