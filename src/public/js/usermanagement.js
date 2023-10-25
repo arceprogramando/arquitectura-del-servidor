@@ -22,3 +22,28 @@ document.querySelectorAll('.btn-delete-user').forEach((deleteButton) => {
     }
   });
 });
+
+document.querySelectorAll('.btn-rol-user').forEach((rolUserButton) => {
+  rolUserButton.addEventListener('click', async (event) => {
+    event.preventDefault();
+
+    const userId = rolUserButton.getAttribute('data-user-id');
+    const endpoint = `/api/users/${userId}/changerole`;
+
+    try {
+      const response = await fetch(endpoint, {
+        method: 'PUT',
+      });
+
+      if (response.ok) {
+        console.log('Rol de usuario modificado exitosamente', response);
+
+        window.location.reload();
+      } else {
+        console.error('Error al modificar el rol del usuario', response);
+      }
+    } catch (error) {
+      console.error('Error al modificar el rol del usuario:', error);
+    }
+  });
+});

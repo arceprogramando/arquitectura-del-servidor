@@ -58,8 +58,8 @@ class ViewController {
 
       const productIds = docs.map((product) => product._id);
 
-      const isAdminOrPremium = req.user.role === 'ADMIN' || req.user.role === 'PREMIUM';
-
+      const isAdminOrPremium = req.user.role;
+      const { firstname } = req.user;
       return res.render('products', {
         visit,
         products: docs,
@@ -71,6 +71,7 @@ class ViewController {
         nextPage,
         isAdminOrPremium,
         productsid: productIds,
+        firstname,
       });
     } catch (error) {
       return res.redirect('/');
@@ -178,6 +179,7 @@ class ViewController {
         _id: product._id,
         image: product.thumbnails,
         stock: product.stock,
+
       }));
 
       const findUser = await this.userModel

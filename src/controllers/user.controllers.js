@@ -235,6 +235,21 @@ class UserController {
       );
     }
   };
+
+  adminChangerRoles = async (req, res) => {
+    try {
+      const { uId } = req.params;
+
+      const changeRole = await this.userService.adminChangerRoles(uId);
+      return this.httpResponse.OK(res, 'Usuarios inactivos borrados correctamente', { changeRole });
+
+    } catch (error) {
+      return this.httpResponse.ERROR(
+        res,
+        `${this.enumError.CONTROLER_ERROR} Error al cambiar el rol de usuario${error.message}`,
+      );
+    }
+  };
 }
 
 export default UserController;

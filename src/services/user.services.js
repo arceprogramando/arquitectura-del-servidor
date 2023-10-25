@@ -122,6 +122,16 @@ class UserService {
 
     }
   };
+
+  adminChangerRoles = async (uId) => {
+    try {
+      const adminChangerRoles = await this.userRepository.adminChangerRoles(uId);
+      return adminChangerRoles;
+    } catch (error) {
+      throw new Error(`Error al cambiar el rol siendo el admin al usuario con el id ${uId}{error.message}`);
+
+    }
+  };
 }
 
 export default UserService;

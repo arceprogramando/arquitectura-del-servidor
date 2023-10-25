@@ -37,7 +37,16 @@ Hasta ahora realice:
 
 ### 17
 
-- Hacer test para session
+- Hacer 2 test  para session 
+
+### 18
+
+- Utilizar el middleware de Multer para poder recibir los documentos que se carguen y actualizar en el usuario su status para hacer saber que ya subió algún documento en particular.
+
+- Si se sube una imagen de perfil, deberá guardarlo en una carpeta profiles, en caso de recibir la imagen de un producto, deberá guardarlo en una carpeta products, mientras que ahora al cargar un documento, multer los guardará en una carpeta documents.
+
+-  Modificar el endpoint */api/users/premium/:uid* para que sólo actualice al usuario a premium si ya ha cargado los siguientes documentos:
+-   Identificación, Comprobante de domicilio, Comprobante de estado de cuenta
 
 ### Para realizar este Ejercicio
 

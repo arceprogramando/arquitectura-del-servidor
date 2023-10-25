@@ -1,8 +1,11 @@
 import ProductModel from '../model/products.models.js';
+import EmailServices from '../services/email.services.js';
 
 class ProductRepository {
   constructor() {
     this.productModel = ProductModel;
+    this.emailService = new EmailServices();
+
   }
 
   createProduct = async (productData) => {
@@ -47,6 +50,16 @@ class ProductRepository {
       return deleteProductById;
     } catch (error) {
       throw new Error(`Error al eliminar el producto con id: ${pId} en la base de datos: ${error.message}`);
+    }
+  };
+
+  sendEmailDeleteProduct = async (emailProduct) => {
+    try {
+      const sendEmailDeleteProduct = await this.emailService.sendDeleteProduct(emailProduct);
+      return sendEmailDeleteProduct;
+    } catch (error) {
+      throw new Error(`Error al enviar el email de borrado de producto ${emailProduct}  ${error.message}`);
+
     }
   };
 }

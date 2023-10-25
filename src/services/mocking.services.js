@@ -6,7 +6,7 @@ class GenerateFakerService {
     this.productsModel = ProductsModel;
   }
 
-  generateFakerProducts = async (count = 10) => {
+  generateFakerProducts = async (email, role, count) => {
     try {
       const imageUrls = [
         '/upload/products/auricular.webp',
@@ -30,6 +30,8 @@ class GenerateFakerService {
           stock: faker.number.int({ min: 10, max: 10000 }),
           category: faker.commerce.department(),
           thumbnails: getRandomImageUrl(),
+          owner: role,
+          email,
         };
 
         this.productsModel.create(fakerProduct);

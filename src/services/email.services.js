@@ -57,6 +57,26 @@ class EmailServices {
         </div>
         `,
   });
+
+  sendDeleteProduct = async (email) => {
+    try {
+      const result = await TransporterData.Transporter.sendMail({
+        from: TransporterData.EMAIL,
+        to: email,
+        subject: 'Enviando email de que se borro un producto de un usuario premium',
+        html: `
+        <div>
+            <h1>Recuperación de contraseña</h1>
+            <p>Hola  ${email}  se ha borrado un producto del carro de creacion de productos:</p>
+            <a href="${env.BASE_URL}/products">Ver Productos</a>
+        </div>
+        `,
+      });
+      return result;
+    } catch (error) {
+      throw new Error(`Error al enviar el email de recuperacion en el service: ${error.message}`);
+    }
+  };
 }
 
 export default EmailServices;
