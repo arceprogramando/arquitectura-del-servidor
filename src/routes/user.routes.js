@@ -15,4 +15,8 @@ router.post('/:uId/documents', uploadDocuments.fields([
   { name: 'accountStatusImage', maxCount: 1 },
 ]), userController.uploadDocuments);
 
+router.get('/', userController.getAllUsers);
+
+router.delete('/', userController.deleteInactiveUsersAndNotify);
+
 export default router;

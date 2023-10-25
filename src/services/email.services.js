@@ -29,6 +29,34 @@ class EmailServices {
       throw new Error(`Error al enviar el email de recuperacion en el service: ${error.message}`);
     }
   };
+
+  sendDeleteEMail = async (emails) => {
+    try {
+      if (Array.isArray(emails)) {
+        const sendManyDeleteEmails = await Promise.all(
+          emails.map((email) => this.sendSingleDeleteEmail(email)),
+        );
+        return sendManyDeleteEmails;
+      }
+      return this.sendSingleDeleteEmail(emails);
+
+    } catch (error) {
+      throw new Error(`Error al enviar el email de eliminación de cuenta en el servicio: ${error.message}`);
+    }
+  };
+
+  sendSingleDeleteEmail = async (email) => TransporterData.Transporter.sendMail({
+    from: TransporterData.EMAIL,
+    to: email,
+    subject: 'Enviando email de borrado de cuenta por no conectarse',
+    html: `
+        <div>
+            <h1>Borrado de cuenta </h1>
+            <p> Hola  ${email} la cuenta fue borrada por inactividad </p>
+            <a href="${env.BASE_URL}/">Iniciar sesión nuevamente</a>
+        </div>
+        `,
+  });
 }
 
 export default EmailServices;

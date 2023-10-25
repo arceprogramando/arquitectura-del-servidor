@@ -181,6 +181,44 @@ class UserController {
     }
   };
 
+  getAllUsers = async (req, res) => {
+    try {
+      const findUser = await this.userService.getAllUsers();
+
+      const simplifiedUsers = findUser.map((user) => ({
+        firstname: user.firstname,
+        lastname: user.lastname,
+        email: user.email,
+        role: user.role,
+      }));
+
+      return this.httpResponse.OK(res, 'Usuarios traidos exitosamente', { simplifiedUsers });
+    } catch (error) {
+      return this.httpResponse.ERROR(
+        res,
+        `${this.enumError.CONTROLER_ERROR} Error al traer a todos los usuarios ${error.message}`,
+      );
+    }
+  };
+
+  deleteInactiveUsersAndNotify = async (req, res) => {
+    try {
+
+      const inactiveUsers = await this.userService.findInactiveUsers();
+      const inactiveUserIds = inactiveUsers.map((user) => user._id.toString());
+      const inactiveUserEmails = inactiveUsers.map((user) => user.email);
+
+      await this.userService.notifyDeleteWithEmail(inactiveUserEmails);
+      const deleteUsers = await this.userService.deleteManyUsers(inactiveUserIds);
+
+      return this.httpResponse.OK(res, 'Usuarios inactivos borrados correctamente', { deleteUsers });
+    } catch (error) {
+      return this.httpResponse.ERROR(
+        res,
+        `${this.enumError.CONTROLER_ERROR} Error al borrar los usuarios inactivos o notificar${error.message}`,
+      );
+    }
+  };
 }
 
 export default UserController;
