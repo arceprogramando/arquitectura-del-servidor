@@ -1,6 +1,6 @@
 # Proyecto FInal
 ## _Felipe Antonio Aleman Arce_
-### Ejercicio 18 entregable , Proyecto FInal
+### Ejercicio 19 entregable , Proyecto FInal
 
 [![Coderhouse](https://res.cloudinary.com/hdsqazxtw/image/upload/v1570710978/coderhouse.jpg)](https://github.com/arceprogramando)
 
@@ -26,8 +26,8 @@ Hasta ahora realice:
 - 15-Tercera practica Integradora ✔️
 - 16-Documentar La api ✔️
 - 17-Testing Avanzado ✔️
-- 18-Cuarta práctica Integradora
-- 19-Proyecto Final (en progreso)
+- 18-Cuarta práctica Integradora ✔️
+- 19-Proyecto Final ✔️
 
 > Espero que Los ejercicios se encuentren
 > resueltos de buena forma y espero 
@@ -38,8 +38,6 @@ Hasta ahora realice:
 ### 17
 
 - Hacer test para session
-
-### 18
 
 ### Para realizar este Ejercicio
 
