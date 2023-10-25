@@ -27,4 +27,6 @@ router.get('/cartsuser', viewController.viewCartUser);
 
 router.get('/completeProfile', uploadDocuments.single('document'), viewController.viewUpdateCompleteProfile);
 
+router.get('/usermanagement', viewController.viewUserManagement);
+
 export default router;

@@ -112,6 +112,16 @@ class UserService {
       throw new Error(`Error al eliminar los usuarios o informarles ${error.message}`);
     }
   };
+
+  deleteUserById = async (uId) => {
+    try {
+      const deleteUserById = await this.userRepository.deleteUserById(uId);
+      return deleteUserById;
+    } catch (error) {
+      throw new Error(`Error al eliminar usuario con el id ${uId}{error.message}`);
+
+    }
+  };
 }
 
 export default UserService;

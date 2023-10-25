@@ -219,6 +219,22 @@ class UserController {
       );
     }
   };
+
+  deleteUserbyId = async (req, res) => {
+    try {
+      const { uId } = req.params;
+
+      const deleteUser = await this.userService.deleteUserById(uId);
+
+      return this.httpResponse.OK(res, 'Usuarios inactivos borrados correctamente', { deleteUser });
+
+    } catch (error) {
+      return this.httpResponse.ERROR(
+        res,
+        `${this.enumError.CONTROLER_ERROR} Error al borrar al usuario${error.message}`,
+      );
+    }
+  };
 }
 
 export default UserController;
