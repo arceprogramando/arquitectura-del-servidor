@@ -150,6 +150,24 @@ class UserRepository {
       );
     }
   };
+
+  adminChangerRoles = async (uId) => {
+    try {
+      const user = await this.userModel.findById(uId);
+
+      if (!user) {
+        throw new Error('Usuario no encontrado');
+      }
+
+      user.role = user.role === 'USER' ? 'PREMIUM' : 'USER';
+
+      const updatedUser = await user.save();
+
+      return updatedUser;
+    } catch (error) {
+      throw new Error(`Error al cambiar el rol del usuario siendo admin ${uId}: ${error.message}`);
+    }
+  };
 }
 
 export default UserRepository;

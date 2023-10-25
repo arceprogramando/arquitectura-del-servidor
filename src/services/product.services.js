@@ -48,10 +48,20 @@ class ProductService {
       const product = await this.productRepository.deleteProductById(pId);
       return product;
     } catch (error) {
-      throw new Error(`Error al eliminar el producto: ${error}`);
+      throw new Error(`Error al eliminar el producto: ${error.message}`);
 
     }
   };
+
+  sendEmailDeleteProduct = async (emailProduct) => {
+    try {
+      const sendEmailDeleteProduct = await this.productRepository.sendEmailDeleteProduct(emailProduct);
+      return sendEmailDeleteProduct;
+    } catch (error) {
+      throw new Error(`Error al enviar el email al usuario premium ${error.message}`);
+    }
+  };
+
 }
 
 export default ProductService;

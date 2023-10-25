@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import UserController from '../controllers/user.controllers.js';
 import { uploadDocuments } from '../middleware/uploader.js';
+import { isAdmin } from '../middleware/auth.products.js';
 
 const router = Router();
 
@@ -20,4 +21,7 @@ router.get('/', userController.getAllUsers);
 router.delete('/', userController.deleteInactiveUsersAndNotify);
 
 router.delete('/:uId', userController.deleteUserbyId);
+
+router.put('/:uId/changerole', isAdmin, userController.adminChangerRoles);
+
 export default router;

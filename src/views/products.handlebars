@@ -1,26 +1,16 @@
-<div class="d-flex">
-  {{#if hasPrevPage}}
-  <div class="pagination-container">
-    <p class="pagination-text">Página previa: {{prevPage}}</p>
-    <a href="/products?page={{prevPage}}"><button>Anterior</button></a>
-  </div>
-  {{/if}}
-  <div class="pagination-container">
-    <p class="pagination-text">Página actual: {{page}}</p>
-  </div>
-  {{#if hasNextPage}}
-  <div class="pagination-container">
-    <p class="pagination-text">Página siguiente: {{nextPage}}</p>
-    <a href="/products?page={{nextPage}}"><button>Siguiente</button></a>
-  </div>
-  {{/if}}
-</div>
-<p>Rol: {{#if isAdminOrPremium}}Administrador{{else}}Usuario{{/if}}</p>
+<p>Rol: {{isAdminOrPremium}} </p>
+<p>Nombre: {{firstname}}</p>
 <p>Visit : {{visit}}</p>
 <div>
   <h3>eliminando la Cuenta</h3>
   <form action="/api/session/logout" method="get">
     <button type="submit">clearSession</button>
+  </form>
+</div>
+<div>
+  <h3>Mockear Productos</h3>
+  <form action="/mockingproducts" method="get">
+    <button type="submit">Mockear Productos</button>
   </form>
 </div>
 {{#if isAdminOrPremium}}
@@ -57,37 +47,78 @@
         </div>
         <div class="form-group">
           <label for="image">Imagen:</label>
-          <input type="file" id="image" name="productImage" accept="image/*" class="form-control rounded-0 mb-1" required>
+          <input type="file" id="image" name="productImage" accept="image/*" class="form-control rounded-0 mb-1"
+            required>
 
         </div>
         <button class="btn btn-dark rounded-0">Enviar</button>
       </form>
     </div>
+
     <div class="col-md-5 py-3 overflow-auto h-80">
-      <div id="notes">
-        <div>
-          {{#each products}}
-          <div>
-            <div class="card card-body rounded-2 mb-2 animate__animated animate__fadeInUp background">
-            <button class="btn btn-danger btn-delete-product" data-product-id="{{id}}"
-              style="border: 1px solid black; font-size: 12px;">Eliminar Producto</button>
-              <div class="d-flex justify-content-between">
-                <h1 class="h3 card-title">{{title}}</h1>
-                <p class="h5">${{price}}</p>
-              </div>
-              <p class="h5">STOCK {{stock}}</p>
-              <p>{{description}}</p>
-              <img src="{{thumbnails}}" alt="Product Image" class="image">
-            </div>
-          </div>
-          {{else}}
-          <p>No hay productos disponibles.</p>
-          {{/each}}
+      <div class="d-flex justify-content-center">
+        {{#if hasPrevPage}}
+        <div class="pagination-container">
+          <p class="pagination-text">Página previa: {{prevPage}}</p>
+          <a href="/products?page={{prevPage}}"><button>Anterior</button></a>
         </div>
+        {{/if}}
+        <div class="pagination-container">
+          <p class="pagination-text">Página actual: {{page}}</p>
+        </div>
+        {{#if hasNextPage}}
+        <div class="pagination-container">
+          <p class="pagination-text">Página siguiente: {{nextPage}}</p>
+          <a href="/products?page={{nextPage}}"><button>Siguiente</button></a>
+        </div>
+        {{/if}}
+      </div>
+      <div>
+        <div id="notes">
+          <div>
+            {{#each products}}
+            <div>
+              <div class="card card-body rounded-2 mb-2 animate__animated animate__fadeInUp background">
+                <button class="btn btn-danger btn-delete-product" data-product-id="{{id}}"
+                  style="border: 1px solid black; font-size: 12px;">Eliminar Producto</button>
+                <div class="d-flex justify-content-between">
+                  <h1 class="h3 card-title">{{title}}</h1>
+                  <p class="h5">${{price}}</p>
+                </div>
+                <p class="h5">STOCK {{stock}}</p>
+                <p>{{description}}</p>
+                <img src="{{thumbnails}}" alt="Product Image" class="image">
+                <p>Creador: {{email}}</p>
+                <p>role: {{owner}}</p>
+
+                
+              </div>
+            </div>
+            {{else}}
+            <p>No hay productos disponibles.</p>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center">
+        {{#if hasPrevPage}}
+        <div class="pagination-container">
+          <p class="pagination-text">Página previa: {{prevPage}}</p>
+          <a href="/products?page={{prevPage}}"><button>Anterior</button></a>
+        </div>
+        {{/if}}
+        <div class="pagination-container">
+          <p class="pagination-text">Página actual: {{page}}</p>
+        </div>
+        {{#if hasNextPage}}
+        <div class="pagination-container">
+          <p class="pagination-text">Página siguiente: {{nextPage}}</p>
+          <a href="/products?page={{nextPage}}"><button>Siguiente</button></a>
+        </div>
+        {{/if}}
       </div>
     </div>
   </div>
-</div>
-{{/if}}
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="/js/index.js"></script>
+  {{/if}}
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="/js/index.js"></script>

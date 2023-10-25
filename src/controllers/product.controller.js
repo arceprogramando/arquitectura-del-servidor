@@ -1,6 +1,7 @@
 import ProductDTO from '../dto/product.dto.js';
 import ProductService from '../services/product.services.js';
 import Responses from '../middleware/error.handlers.js';
+import UserModel from '../model/user.models.js';
 
 class ProductController {
 
@@ -8,6 +9,7 @@ class ProductController {
     this.productService = new ProductService();
     this.httpResponse = new Responses.HttpResponse();
     this.enumError = Responses.EnumError;
+    this.userModel = UserModel;
   }
 
   createProduct = async (req, res) => {
@@ -117,7 +119,10 @@ class ProductController {
   deleteProductById = async (req, res) => {
     try {
       const { pId } = req.params;
+      const findUserProduct = await this.productService.getProductById(pId);
+      const emailProduct = findUserProduct.email;
 
+      await this.productService.sendEmailDeleteProduct(emailProduct);
       const deletedProduct = await this.productService.deleteProductById(pId);
 
       if (!deletedProduct) {

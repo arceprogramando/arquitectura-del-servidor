@@ -30,6 +30,9 @@ const productsSchema = new mongoose.Schema({
     type: String,
     default: 'ADMIN',
   },
+  email: {
+    type: String,
+  },
   stock: Number,
   category: String,
   thumbnails: String,

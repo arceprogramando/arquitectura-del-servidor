@@ -10,7 +10,9 @@ class GenerateFakerController {
 
   generateFakerProducts = async (req, res) => {
     try {
-      const generateProduct = await this.generateFakerService.generateFakerProducts();
+      const { email, role } = req.user;
+      const count = 10;
+      const generateProduct = await this.generateFakerService.generateFakerProducts(email, role, count);
       return this.httpResponse.OK(res, 'Generando productos con faker', { generateProducts: generateProduct });
     } catch (error) {
       return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR}No se han podido crear los productos con faker `, { dataerror: error });
