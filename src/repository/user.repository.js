@@ -139,6 +139,17 @@ class UserRepository {
       );
     }
   };
+
+  deleteUserById = async (uId) => {
+    try {
+      const deleteUserById = await this.userModel.deleteOne({ _id: uId });
+      return deleteUserById;
+    } catch (error) {
+      throw new Error(
+        `Error al borrar el usuario por id ${uId}: ${error.message}`,
+      );
+    }
+  };
 }
 
 export default UserRepository;

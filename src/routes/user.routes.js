@@ -19,4 +19,5 @@ router.get('/', userController.getAllUsers);
 
 router.delete('/', userController.deleteInactiveUsersAndNotify);
 
+router.delete('/:uId', userController.deleteUserbyId);
 export default router;

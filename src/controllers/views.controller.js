@@ -229,6 +229,33 @@ class ViewController {
 
     }
   };
+
+  viewUserManagement = async (req, res) => {
+    try {
+      const { user } = req;
+      const findUser = await this.userModel.find({});
+
+      const filteredUsers = findUser.filter((userItem) => userItem.role !== 'ADMIN');
+
+      const usermap = filteredUsers.map((userItem) => ({
+        firstname: userItem.firstname,
+        lastname: userItem.lastname,
+        email: userItem.email,
+        id: userItem._id,
+        role: userItem.role,
+        isAdmin: userItem.role === 'ADMIN',
+      }));
+
+      return res.render('usermanagement', {
+        firstname: user.firstname,
+        lastname: user.lastname,
+        usermap,
+      });
+    } catch (error) {
+      return res.redirect('/');
+    }
+  };
+
 }
 
 export default ViewController;
