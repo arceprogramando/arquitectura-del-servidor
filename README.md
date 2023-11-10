@@ -1,43 +1,19 @@
-# Proyecto FInal
+# Arquitectura De un Servidor
 ## _Felipe Antonio Aleman Arce_
-### Ejercicio 19 entregable , Proyecto FInal
 
-[![Coderhouse](https://res.cloudinary.com/hdsqazxtw/image/upload/v1570710978/coderhouse.jpg)](https://github.com/arceprogramando)
+
+[![arceprogramando](https://static.zerochan.net/Spy.%C3%97.Family.full.4049834.jpg)](https://github.com/arceprogramando)
 
 - Mi repositorio publico es  [arceprogramando][arceprogramando]
 en github.
 
 Hasta ahora realice:
 
-- 1-Nuevas funcionalidades de los lenguajes ECMAScritpt✔️
-- 2-Manejo de archivos en JavaScript✔️
-- 3-Servidor con Express ✔️
-- 4-Router y Multer ✔️
-- 5-Motores de plantillas✔️
-- 6-Primera practica integradora ✔️
-- 7-Post de Practica Integadora ✔️
-- 8-Login Por Formulario ✔️
-- 9-Estrategia de autenticacion por terceros ✔️
-- 10-Segunda practica integradora ✔️
-- 11-Arquitectura del servidor: Diseño ✔️
-- 12-Tercera entrega del proyecto Final ✔️
-- 13-Mocking y manejo de errores ✔️
-- 14-Implementación de logger ✔️
-- 15-Tercera practica Integradora ✔️
-- 16-Documentar La api ✔️
-- 17-Testing Avanzado ✔️
-- 18-Cuarta práctica Integradora ✔️
-- 19-Proyecto Final ✔️
-
-> Espero que Los ejercicios se encuentren
-> resueltos de buena forma y espero 
-> que lo haya solucionado de forma optima
-
-## Faltaron hacer
+# Cosas por  hacer
 
 ### 17
 
-- Hacer 2 test  para session 
+- Hacer test  para session 
 
 ### 18
 
@@ -48,10 +24,8 @@ Hasta ahora realice:
 -  Modificar el endpoint */api/users/premium/:uid* para que sólo actualice al usuario a premium si ya ha cargado los siguientes documentos:
 -   Identificación, Comprobante de domicilio, Comprobante de estado de cuenta
 
-### Para realizar este Ejercicio
+### Para realizar este Arquitectura
 
-
-- [Coderhouse]  - Se vieron las clases de coderhouse Correspondientes!
 - [node.js] - Se uso instalo a nivel local Node Js
 - [express] - Se uso la libreria Express de Node
 - [nodemon] - Se instalo globalmente Nodemon Se instalo como paquete de desarrollo
@@ -121,8 +95,6 @@ PERSISTENCE=MONGO(example)
 EMAIL=cndograepromaar@gmail.com(example)
 PSW_EMAIL=gugybzlvfagaarua(example)
 BASE_URL=http://localhost:8080(example)
-
-# ADMIN ES : arceprogramando@gmail.com  contraseña 123
 
   [Coderhouse]: <https://plataforma.coderhouse.com/cursos/43335/programacion-backend>
   [arceprogramando]: <https://github.com/arceprogramando>
