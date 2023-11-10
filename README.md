@@ -107,6 +107,23 @@ npm install express cors dotenv cookie-parser express-handlebars mongoose mongoo
 - 🚀 Refactor: Marca commits que mejoren el rendimiento de la aplicación o cambios funcionales.
 - 🚧 Work in Progress: Usarlo para indicar que el commit contiene trabajo en progreso que no está listo para ser implementado.
 
+### Estructura Variables de entorno
+
+PORT=8080(example)
+DB_PORT=27017(example)
+DB_CNN=mongodb+srv://Example:Example@ecommerce.mhqm9ea.mongodb.net/
+DB_HOST=localhost(example)
+DB_NAME=ecommerceexample(example)
+NODE_ENV=devexample(example)
+GITHUB_CLIENT_ID=26cefeb1545d2aa3581a(example)
+GITHUB_CLIENT_SECRET=b855264f7625130617f1604c340b88(example)
+PERSISTENCE=MONGO(example)
+EMAIL=cndograepromaar@gmail.com(example)
+PSW_EMAIL=gugybzlvfagaarua(example)
+BASE_URL=http://localhost:8080(example)
+
+# ADMIN ES : arceprogramando@gmail.com  contraseña 123
+
   [Coderhouse]: <https://plataforma.coderhouse.com/cursos/43335/programacion-backend>
   [arceprogramando]: <https://github.com/arceprogramando>
   [node.js]: <http://nodejs.org>
