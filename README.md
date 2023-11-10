@@ -1,13 +1,53 @@
 # Arquitectura De un Servidor
 ## _Felipe Antonio Aleman Arce_
 
-
-[![arceprogramando](https://static.zerochan.net/Spy.%C3%97.Family.full.4049834.jpg)](https://github.com/arceprogramando)
-
 - Mi repositorio publico es  [arceprogramando][arceprogramando]
 en github.
 
-Hasta ahora realice:
+## Instalacion 
+```sh
+
+npm install
+
+npm run start:prod
+
+```
+### Todos los paquetes desde cero
+ 
+```sh
+npm init @eslint/config 
+
+npm install cross-env  nodemon  @faker-js/faker chai mocha -D
+
+npm install express cors dotenv cookie-parser express-handlebars mongoose mongoose-paginate-v2 multer bcrypt passport passport-github2 connect-mongo express-session uuid nodemailer express-compression http-status-codes winston swagger-jsdoc swagger-ui-express supertest
+
+```
+
+# Estructura Variables de entorno
+
+- **PORT=8080** (example)
+- **DB_PORT=27017** (example)
+- **DB_CNN=mongodb+srv://Example:Example@ecommerce.mhqm9ea.mongodb.net/**
+- **DB_HOST=localhost** (example)
+- **DB_NAME=ecommerceexample** (example)
+- **NODE_ENV=devexample** (example)
+- **GITHUB_CLIENT_ID=26cefeb1545d2aa3581a** (example)
+- **GITHUB_CLIENT_SECRET=b855264f7625130617f1604c340b88** (example)
+- **PERSISTENCE=MONGO** (example)
+- **EMAIL=cndograepromaar@gmail.com** (example)
+- **PSW_EMAIL=gugybzlvfagaarua** (example)
+- **BASE_URL=http://localhost:8080** (example)
+
+
+### Como seguir estructura de commits a futuro
+
+- 🌈 Change Styles: Úsarlo para commits que afecten principalmente la apariencia o el diseño de la aplicación.
+- ✨ New Features: Usarlo cuando agregue una nueva característica o funcionalidad a la aplicación.
+- ⛔ Critical Changes: usarlo cuando se  que contengan cambios críticos que puedan afectar gravemente el funcionamiento de la aplicación.
+- 🐛 Error Fix: Para commits que solucionen problemas o errores en el código existente.
+- 🧼 Cleanup: Utiliza este emoji cuando realices tareas delimpieza de código, sin cambios funcionales.
+- 🚀 Refactor: Marca commits que mejoren el rendimiento de la aplicación o cambios funcionales.
+- 🚧 Work in Progress: Usarlo para indicar que el commit contiene trabajo en progreso que no está listo para ser implementado.
 
 # Cosas por  hacer
 
@@ -35,7 +75,7 @@ Hasta ahora realice:
 - [cookie-parser] que se utiliza para analizar las cookies en las solicitudes entrantes y hacerlas accesibles en req.cookies.
 - [mongoose] interacción con la base de datos y proporciona una serie de características que facilitan el desarrollo de aplicaciones web y API que utilizan MongoDB 
 - [mongoose-paginate-v2] es una libreria para poder paginar que contiene un wrapper de paginas de diferentes estilos
-- [bootstrap] bootstrap incluido en CDN para crear diseño mas atractivo
+- [tailwind] tailwind incluido en CDN para crear diseño mas atractivo
 - [multer] para la configuracion de subida de archivos a travez del front , y manipularlos desde el server
 - [bcrypt] una libreria para poder hashear contraseñas
 - [passport] una libreria que funciona como middleware para hacer autentificacion de login , ya sea con esta misma o con sus extensiones.
@@ -52,49 +92,6 @@ Hasta ahora realice:
 - [swagger-jsdoc]  Para documentar la API
 - [swagger-ui-express] Para documentar la API
 
-## Instalacion 
-```sh
-
-npm install
-
-npm run start:prod
-
-```
-### Todos los paquetes desde cero
- 
-```sh
-npm init @eslint/config 
-
-npm install cross-env  nodemon  @faker-js/faker chai mocha -D
-
-npm install express cors dotenv cookie-parser express-handlebars mongoose mongoose-paginate-v2 multer bcrypt passport passport-github2 connect-mongo express-session uuid nodemailer express-compression http-status-codes winston swagger-jsdoc swagger-ui-express supertest
-
-```
-
-### Como seguir estructura de commits a futuro
-
-- 🌈 Change Styles: Úsarlo para commits que afecten principalmente la apariencia o el diseño de la aplicación.
-- ✨ New Features: Usarlo cuando agregue una nueva característica o funcionalidad a la aplicación.
-- ⛔ Critical Changes: usarlo cuando se  que contengan cambios críticos que puedan afectar gravemente el funcionamiento de la aplicación.
-- 🐛 Error Fix: Para commits que solucionen problemas o errores en el código existente.
-- 🧼 Cleanup: Utiliza este emoji cuando realices tareas delimpieza de código, sin cambios funcionales.
-- 🚀 Refactor: Marca commits que mejoren el rendimiento de la aplicación o cambios funcionales.
-- 🚧 Work in Progress: Usarlo para indicar que el commit contiene trabajo en progreso que no está listo para ser implementado.
-
-### Estructura Variables de entorno
-
-PORT=8080(example)
-DB_PORT=27017(example)
-DB_CNN=mongodb+srv://Example:Example@ecommerce.mhqm9ea.mongodb.net/
-DB_HOST=localhost(example)
-DB_NAME=ecommerceexample(example)
-NODE_ENV=devexample(example)
-GITHUB_CLIENT_ID=26cefeb1545d2aa3581a(example)
-GITHUB_CLIENT_SECRET=b855264f7625130617f1604c340b88(example)
-PERSISTENCE=MONGO(example)
-EMAIL=cndograepromaar@gmail.com(example)
-PSW_EMAIL=gugybzlvfagaarua(example)
-BASE_URL=http://localhost:8080(example)
 
   [Coderhouse]: <https://plataforma.coderhouse.com/cursos/43335/programacion-backend>
   [arceprogramando]: <https://github.com/arceprogramando>
@@ -108,7 +105,7 @@ BASE_URL=http://localhost:8080(example)
   [express-handlebars]:<https://www.npmjs.com/package/express-handlebars>
   [mongoose]:<https://www.npmjs.com/package/mongoose>
   [mongoose-paginate-v2]:<https://www.npmjs.com/package/mongoose-paginate-v2>
-  [bootstrap]:<https://getbootstrap.com>
+  [tailwind]:<https://tailwindcss.com>
   [multer]:<https://www.npmjs.com/package/multer>
   [bcrypt]:<https://www.npmjs.com/package/bcrypt>
   [passport]:<https://www.npmjs.com/package/passport>
