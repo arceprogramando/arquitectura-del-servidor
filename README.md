@@ -49,20 +49,6 @@ npm install express cors dotenv cookie-parser express-handlebars mongoose mongoo
 - 🚀 Refactor: Marca commits que mejoren el rendimiento de la aplicación o cambios funcionales.
 - 🚧 Work in Progress: Usarlo para indicar que el commit contiene trabajo en progreso que no está listo para ser implementado.
 
-# Cosas por  hacer
-
-### 17
-
-- Hacer test  para session 
-
-### 18
-
-- Utilizar el middleware de Multer para poder recibir los documentos que se carguen y actualizar en el usuario su status para hacer saber que ya subió algún documento en particular.
-
-- Si se sube una imagen de perfil, deberá guardarlo en una carpeta profiles, en caso de recibir la imagen de un producto, deberá guardarlo en una carpeta products, mientras que ahora al cargar un documento, multer los guardará en una carpeta documents.
-
--  Modificar el endpoint */api/users/premium/:uid* para que sólo actualice al usuario a premium si ya ha cargado los siguientes documentos:
--   Identificación, Comprobante de domicilio, Comprobante de estado de cuenta
 
 ### Para realizar este Arquitectura
 
@@ -92,6 +78,13 @@ npm install express cors dotenv cookie-parser express-handlebars mongoose mongoo
 - [swagger-jsdoc]  Para documentar la API
 - [swagger-ui-express] Para documentar la API
 
+# Tareas Pendientes
+
+- Hacer test  para session 
+- Utilizar el middleware de Multer para poder recibir los documentos que se carguen y actualizar en el usuario su status para hacer saber que ya subió algún documento en particular.
+- Si se sube una imagen de perfil, deberá guardarlo en una carpeta profiles, en caso de recibir la imagen de un producto, deberá guardarlo en una carpeta products, mientras que ahora al cargar un documento, multer los guardará en una carpeta documents.
+-  Modificar el endpoint */api/users/premium/:uid* para que sólo actualice al usuario a premium si ya ha cargado los siguientes documentos:
+-   Identificación, Comprobante de domicilio, Comprobante de estado de cuenta
 
   [Coderhouse]: <https://plataforma.coderhouse.com/cursos/43335/programacion-backend>
   [arceprogramando]: <https://github.com/arceprogramando>
