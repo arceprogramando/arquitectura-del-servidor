@@ -17,7 +17,6 @@ const {
   EMAIL,
   PSW_EMAIL,
   BASE_URL,
-  RAILWAY_APP_URL,
 } = process.env;
 
 const configObject = {
@@ -33,7 +32,6 @@ const configObject = {
   EMAIL,
   PSW_EMAIL,
   BASE_URL,
-  RAILWAY_APP_URL,
 };
 
 export default configObject;

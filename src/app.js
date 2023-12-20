@@ -80,7 +80,6 @@ app.listen(app.get('PORT'), () => {
   );
   console.log(`==========ENV:${app.get('NODE_ENV')}===========`);
   console.log(`=======PERSISTENCE:${app.get('PERSISTENCE')}=============`);
-  console.log(`=======PROCESS:${process.pid}=============`);
   displayRoutes(app);
   initializeDatabase();
 });
