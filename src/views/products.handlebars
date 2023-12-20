@@ -26,8 +26,8 @@
   </div>
 
   {{#if isAdminOrPremium}}
-    <div class='flex container max-w-6xl justify-between mx-auto'>
-      <div class='w-full md:w-1/2'>
+    <div class='flex container max-w-6xl justify-between mx-auto '>
+      <div class='w-full md:w-1/2 '>
         <form
           id='noteForm'
           action='/api/products'
@@ -126,7 +126,7 @@
         </form>
       </div>
 
-      <div class='w-full md:w-1/2 ml-4'>
+      <div class='w-full md:w-1/2 ml-4 overflow-y-auto max-h-[500px]'>
         <div>
           <p class='text-lg font-semibold'>Página actual: {{page}}</p>
         </div>
@@ -159,7 +159,7 @@
               <div class='relative'>
                 <button
                   data-product-id='{{id}}'
-                  class='absolute top-2 right-2 bg-red-500 hover:bg-red-600 text-white font-semibold py-1 px-2 rounded-full focus:outline-none focus:shadow-outline-red'
+                  class='absolute top-2 right-2 bg-red-500 hover:bg-red-600 text-white font-semibold py-1 px-2 rounded-full focus:outline-none focus:shadow-outline-red btn-delete-product'
                 >
                   Eliminar
                 </button>
