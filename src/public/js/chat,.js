@@ -1,6 +1,3 @@
-// eslint-disable-next-line no-undef
-const socket = io();
-
 document.getElementById('noteForm').addEventListener('submit', async (e) => {
   e.preventDefault();
 
