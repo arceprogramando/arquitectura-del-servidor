@@ -23,6 +23,7 @@ document.getElementById('noteForm').addEventListener('submit', async (e) => {
 document.querySelectorAll('.btn-delete-product').forEach((deleteButton) => {
   deleteButton.addEventListener('click', async (event) => {
     event.preventDefault();
+    console.log('🚀 ~ file: index.js:26 ~ deleteButton.addEventListener ~ event:', event);
 
     const productId = deleteButton.getAttribute('data-product-id');
     const endpoint = `/api/products/${productId}`;

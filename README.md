@@ -1,82 +1,8 @@
-# Proyecto FInal
+# Arquitectura De un Servidor
 ## _Felipe Antonio Aleman Arce_
-### Ejercicio 19 entregable , Proyecto FInal
-
-[![Coderhouse](https://res.cloudinary.com/hdsqazxtw/image/upload/v1570710978/coderhouse.jpg)](https://github.com/arceprogramando)
 
 - Mi repositorio publico es  [arceprogramando][arceprogramando]
 en github.
-
-Hasta ahora realice:
-
-- 1-Nuevas funcionalidades de los lenguajes ECMAScritpt✔️
-- 2-Manejo de archivos en JavaScript✔️
-- 3-Servidor con Express ✔️
-- 4-Router y Multer ✔️
-- 5-Motores de plantillas✔️
-- 6-Primera practica integradora ✔️
-- 7-Post de Practica Integadora ✔️
-- 8-Login Por Formulario ✔️
-- 9-Estrategia de autenticacion por terceros ✔️
-- 10-Segunda practica integradora ✔️
-- 11-Arquitectura del servidor: Diseño ✔️
-- 12-Tercera entrega del proyecto Final ✔️
-- 13-Mocking y manejo de errores ✔️
-- 14-Implementación de logger ✔️
-- 15-Tercera practica Integradora ✔️
-- 16-Documentar La api ✔️
-- 17-Testing Avanzado ✔️
-- 18-Cuarta práctica Integradora ✔️
-- 19-Proyecto Final ✔️
-
-> Espero que Los ejercicios se encuentren
-> resueltos de buena forma y espero 
-> que lo haya solucionado de forma optima
-
-## Faltaron hacer
-
-### 17
-
-- Hacer 2 test  para session 
-
-### 18
-
-- Utilizar el middleware de Multer para poder recibir los documentos que se carguen y actualizar en el usuario su status para hacer saber que ya subió algún documento en particular.
-
-- Si se sube una imagen de perfil, deberá guardarlo en una carpeta profiles, en caso de recibir la imagen de un producto, deberá guardarlo en una carpeta products, mientras que ahora al cargar un documento, multer los guardará en una carpeta documents.
-
--  Modificar el endpoint */api/users/premium/:uid* para que sólo actualice al usuario a premium si ya ha cargado los siguientes documentos:
--   Identificación, Comprobante de domicilio, Comprobante de estado de cuenta
-
-### Para realizar este Ejercicio
-
-
-- [Coderhouse]  - Se vieron las clases de coderhouse Correspondientes!
-- [node.js] - Se uso instalo a nivel local Node Js
-- [express] - Se uso la libreria Express de Node
-- [nodemon] - Se instalo globalmente Nodemon Se instalo como paquete de desarrollo
-- [cross-env] - Para ejecutar scripts que establecen y utilizan variables de entorno en diferentes plataformas
-- [cors] - Para que funcione como middleware que especifica los origenes permitidos, como servicios externos(no se tanto su funcionamiento)
-- [dotenv] - para cargar variables de entorno desde archivos de configuración locales.
-- [cookie-parser] que se utiliza para analizar las cookies en las solicitudes entrantes y hacerlas accesibles en req.cookies.
-- [mongoose] interacción con la base de datos y proporciona una serie de características que facilitan el desarrollo de aplicaciones web y API que utilizan MongoDB 
-- [mongoose-paginate-v2] es una libreria para poder paginar que contiene un wrapper de paginas de diferentes estilos
-- [bootstrap] bootstrap incluido en CDN para crear diseño mas atractivo
-- [multer] para la configuracion de subida de archivos a travez del front , y manipularlos desde el server
-- [bcrypt] una libreria para poder hashear contraseñas
-- [passport] una libreria que funciona como middleware para hacer autentificacion de login , ya sea con esta misma o con sus extensiones.
-- [passport-github2] Estrategia de passport para poder poder hacer uso de el logeo con github
-- [connect-mongo] es un módulo de Node.js que se utiliza como almacén de sesiones 
-- [express-session] esencial para manejar sesiones de usuario en aplicaciones web creadas con Express.js
-- [passport-local] estrategia de passport para manejar el inicio de sesion local
-- [uuid] libreria para crear ids aleatorios
-- [nodemailer] Libreria para trabajar con mails 
-- [express-compression] Para comprimir 
-- [http-status-codes] Para las respuestas http en el EnumError
-- [@faker-js/faker] Como variable de entorno para hacer prueba de mocking de productos 
-- [winston] universal loggin library como storage de logs
-- [swagger-jsdoc]  Para documentar la API
-- [swagger-ui-express] Para documentar la API
 
 ## Instalacion 
 ```sh
@@ -97,6 +23,22 @@ npm install express cors dotenv cookie-parser express-handlebars mongoose mongoo
 
 ```
 
+# Estructura Variables de entorno
+
+- **PORT=8080** (example)
+- **DB_PORT=27017** (example)
+- **DB_CNN=mongodb+srv://Example:Example@ecommerce.mhqm9ea.mongodb.net/**
+- **DB_HOST=localhost** (example)
+- **DB_NAME=ecommerceexample** (example)
+- **NODE_ENV=devexample** (example)
+- **GITHUB_CLIENT_ID=26cefeb1545d2aa3581a** (example)
+- **GITHUB_CLIENT_SECRET=b855264f7625130617f1604c340b88** (example)
+- **PERSISTENCE=MONGO** (example)
+- **EMAIL=cndograepromaar@gmail.com** (example)
+- **PSW_EMAIL=gugybzlvfagaarua** (example)
+- **BASE_URL=http://localhost:8080** (example)
+
+
 ### Como seguir estructura de commits a futuro
 
 - 🌈 Change Styles: Úsarlo para commits que afecten principalmente la apariencia o el diseño de la aplicación.
@@ -106,6 +48,43 @@ npm install express cors dotenv cookie-parser express-handlebars mongoose mongoo
 - 🧼 Cleanup: Utiliza este emoji cuando realices tareas delimpieza de código, sin cambios funcionales.
 - 🚀 Refactor: Marca commits que mejoren el rendimiento de la aplicación o cambios funcionales.
 - 🚧 Work in Progress: Usarlo para indicar que el commit contiene trabajo en progreso que no está listo para ser implementado.
+
+
+### Para realizar este Arquitectura
+
+- [node.js] - Se uso instalo a nivel local Node Js
+- [express] - Se uso la libreria Express de Node
+- [nodemon] - Se instalo globalmente Nodemon Se instalo como paquete de desarrollo
+- [cross-env] - Para ejecutar scripts que establecen y utilizan variables de entorno en diferentes plataformas
+- [cors] - Para que funcione como middleware que especifica los origenes permitidos, como servicios externos(no se tanto su funcionamiento)
+- [dotenv] - para cargar variables de entorno desde archivos de configuración locales.
+- [cookie-parser] que se utiliza para analizar las cookies en las solicitudes entrantes y hacerlas accesibles en req.cookies.
+- [mongoose] interacción con la base de datos y proporciona una serie de características que facilitan el desarrollo de aplicaciones web y API que utilizan MongoDB 
+- [mongoose-paginate-v2] es una libreria para poder paginar que contiene un wrapper de paginas de diferentes estilos
+- [tailwind] tailwind incluido en CDN para crear diseño mas atractivo
+- [multer] para la configuracion de subida de archivos a travez del front , y manipularlos desde el server
+- [bcrypt] una libreria para poder hashear contraseñas
+- [passport] una libreria que funciona como middleware para hacer autentificacion de login , ya sea con esta misma o con sus extensiones.
+- [passport-github2] Estrategia de passport para poder poder hacer uso de el logeo con github
+- [connect-mongo] es un módulo de Node.js que se utiliza como almacén de sesiones 
+- [express-session] esencial para manejar sesiones de usuario en aplicaciones web creadas con Express.js
+- [passport-local] estrategia de passport para manejar el inicio de sesion local
+- [uuid] libreria para crear ids aleatorios
+- [nodemailer] Libreria para trabajar con mails 
+- [express-compression] Para comprimir 
+- [http-status-codes] Para las respuestas http en el EnumError
+- [@faker-js/faker] Como variable de entorno para hacer prueba de mocking de productos 
+- [winston] universal loggin library como storage de logs
+- [swagger-jsdoc]  Para documentar la API
+- [swagger-ui-express] Para documentar la API
+
+# Tareas Pendientes
+
+- Hacer test  para session 
+- Utilizar el middleware de Multer para poder recibir los documentos que se carguen y actualizar en el usuario su status para hacer saber que ya subió algún documento en particular.
+- Si se sube una imagen de perfil, deberá guardarlo en una carpeta profiles, en caso de recibir la imagen de un producto, deberá guardarlo en una carpeta products, mientras que ahora al cargar un documento, multer los guardará en una carpeta documents.
+-  Modificar el endpoint */api/users/premium/:uid* para que sólo actualice al usuario a premium si ya ha cargado los siguientes documentos:
+-   Identificación, Comprobante de domicilio, Comprobante de estado de cuenta
 
   [Coderhouse]: <https://plataforma.coderhouse.com/cursos/43335/programacion-backend>
   [arceprogramando]: <https://github.com/arceprogramando>
@@ -119,7 +98,7 @@ npm install express cors dotenv cookie-parser express-handlebars mongoose mongoo
   [express-handlebars]:<https://www.npmjs.com/package/express-handlebars>
   [mongoose]:<https://www.npmjs.com/package/mongoose>
   [mongoose-paginate-v2]:<https://www.npmjs.com/package/mongoose-paginate-v2>
-  [bootstrap]:<https://getbootstrap.com>
+  [tailwind]:<https://tailwindcss.com>
   [multer]:<https://www.npmjs.com/package/multer>
   [bcrypt]:<https://www.npmjs.com/package/bcrypt>
   [passport]:<https://www.npmjs.com/package/passport>

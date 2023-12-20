@@ -18,7 +18,6 @@ class ViewController {
   showLoginPage = async (req, res) => {
     try {
       return res.render('login', {
-        style: 'index.css',
       });
     } catch (error) {
       return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR} error al visualizar el login `, { error: error.message });
@@ -63,7 +62,6 @@ class ViewController {
       return res.render('products', {
         visit,
         products: docs,
-        style: 'index.css',
         page,
         hasPrevPage,
         hasNextPage,
@@ -84,7 +82,6 @@ class ViewController {
       const messages = findmessage.map((message) => message.toObject());
       return res.render('chat', {
         messages,
-        style: 'index.css',
       });
     } catch (error) {
       return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR} Error al obtener los mensajes en el views controller `, { error: error.message });
@@ -98,7 +95,6 @@ class ViewController {
       const populateProduct = await this.viewService.populateProductInCart(cId);
       return res.render('carts', {
         cart: populateProduct.toObject(),
-        style: '../../css/index.css',
       });
     } catch (error) {
       return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR}Error al popular los mensajes en el views controller `, { error: error.message });
@@ -204,7 +200,6 @@ class ViewController {
         isUser,
         products,
         cartsOfUser: findCartProducts,
-        style: '../../css/index.css',
         cId,
       });
     } catch (error) {
