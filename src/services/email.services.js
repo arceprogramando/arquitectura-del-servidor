@@ -1,4 +1,4 @@
-import configObject from '../config/config.js';
+import configObject from '../config/configenvironment.js';
 import TransporterData from '../config/nodemailer.config.js';
 import Responses from '../middleware/error.handlers.js';
 

@@ -1,5 +1,5 @@
 import winston from 'winston';
-import configObject from '../config/config.js';
+import configObject from '../config/configenvironment.js';
 
 const environment = configObject.NODE_ENV;
 

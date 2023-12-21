@@ -1,7 +1,7 @@
 import supertest from 'supertest';
 import { describe, before, it } from 'mocha';
 import { expect } from 'chai';
-import configObject from '../src/config/config.js';
+import configObject from '../src/config/configenvironment.js';
 
 const env = configObject;
 const BASE_API_URL = `${env.BASE_URL}/`;

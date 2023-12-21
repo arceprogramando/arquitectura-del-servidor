@@ -1,5 +1,5 @@
 import mongoDBConnection from '../config/mongo.config.js';
-import configObject from '../config/config.js';
+import configObject from '../config/configenvironment.js';
 
 const env = configObject;
 

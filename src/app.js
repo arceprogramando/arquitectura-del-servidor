@@ -9,7 +9,7 @@ import displayRoutes from 'express-routemap';
 import { engine } from 'express-handlebars';
 import passport from 'passport';
 import compression from 'express-compression';
-import configObject from './config/config.js';
+import configObject from './config/configenvironment.js';
 import __dirname from './utils.js';
 import viewsRouter from './routes/views.router.js';
 import userRoutes from './routes/user.routes.js';
