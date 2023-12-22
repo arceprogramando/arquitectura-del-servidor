@@ -16,14 +16,7 @@
       </button>
     </form>
   </div>
-  <div>
-    <form action='/mockingproducts' method='get'>
-      <button
-        type='submit'
-        class='border border-gray-200 bg-black text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-gray-800 focus:outline-none focus:shadow-outline'
-      >Mockear Productos</button>
-    </form>
-  </div>
+  
 
   {{#if isAdminOrPremium}}
     <div class='flex container max-w-6xl justify-between mx-auto '>
@@ -114,7 +107,7 @@
             <input
               type='file'
               id='image'
-              name='productImage'
+              name='image'
               accept='image/*'
               required
               class='w-full p-2 border rounded'

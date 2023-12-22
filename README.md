@@ -73,7 +73,6 @@ npm install express cors dotenv cookie-parser express-handlebars mongoose mongoo
 - [nodemailer] Libreria para trabajar con mails 
 - [express-compression] Para comprimir 
 - [http-status-codes] Para las respuestas http en el EnumError
-- [@faker-js/faker] Como variable de entorno para hacer prueba de mocking de productos 
 - [winston] universal loggin library como storage de logs
 - [swagger-jsdoc]  Para documentar la API
 - [swagger-ui-express] Para documentar la API
@@ -109,7 +108,6 @@ npm install express cors dotenv cookie-parser express-handlebars mongoose mongoo
   [uuid]:<https://www.npmjs.com/package/uuid>
   [nodemailer]:<https://www.npmjs.com/package/nodemailer>
   [express-compression]:<https://www.npmjs.com/package/express-compression>
-  [@faker-js/faker]:<https://www.npmjs.com/package/@faker-js/faker> 
   [http-status-codes]:<https://www.npmjs.com/package/http-status-codes>
   [winston]:<https://www.npmjs.com/package/winston>
   [artillery]:<https://www.npmjs.com/package/artillery>
