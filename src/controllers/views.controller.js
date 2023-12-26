@@ -185,12 +185,14 @@ class ViewController {
       const cId = findUser.carts[0]?.cart._id.toString();
 
       const findCart = await this.cartModel.findOne({ _id: cId }).populate('products.product');
+
       const findCartProducts = findCart.products.map((cartProduct) => ({
         title: cartProduct.product.title,
         price: cartProduct.product.price,
         quantity: cartProduct.quantity,
         stock: cartProduct.stock,
         productsid: cartProduct._id,
+        image: cartProduct.thumbnails,
       }));
 
       return res.render('cartsuser', {

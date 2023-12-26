@@ -1,19 +1,22 @@
-<div>
-  <h1>Cart por id</h1>
-  <div>
-    {{#each cart.products}}
-      <div class="card card-body rounded-2 mb-2 animate__animated animate__fadeInUp background">
-        <div class="d-flex justify-content-between">
-          <h1 class="h3 card-title">{{this.product.title}}</h1>
-          <p class="h5">Quantity: {{this.quantity}}</p>
+<div class='min-h-screen flex items-center justify-center bg-gray-100'>
+  <div class='bg-white p-8 rounded shadow-md w-96'>
+    <h1 class='text-2xl font-semibold mb-6'>Cart por ID</h1>
+
+    <div>
+      {{#each cart.products}}
+      <div class='card card-body rounded-2 mb-2 animate__animated animate__fadeInUp background'>
+        <div class='flex justify-between'>
+          <h1 class='text-lg font-semibold'>{{this.product.title}}</h1>
+          <p class='text-base'>Quantity: {{this.quantity}}</p>
         </div>
-        <p>Description: {{this.product.description}}</p>
-        <p>Code: {{this.product.code}}</p>
-        <p>Price: {{this.product.price}}</p>
-        <p>Status: {{this.product.status}}</p>
-        <p>Category: {{this.product.category}}</p>
-        <img src="{{this.product.thumbnails}}" alt="Product Image" class="img-thumbnail">
+        <p class='text-sm'>Description: {{this.product.description}}</p>
+        <p class='text-sm'>Code: {{this.product.code}}</p>
+        <p class='text-sm'>Price: {{this.product.price}}</p>
+        <p class='text-sm'>Status: {{this.product.status}}</p>
+        <p class='text-sm'>Category: {{this.product.category}}</p>
+        <img src='{{this.product.thumbnails}}' alt='Product Image' class='w-full h-auto mt-2' />
       </div>
-    {{/each}}
+      {{/each}}
+    </div>
   </div>
 </div>

@@ -50,7 +50,6 @@ app.set('PORT', env.PORT || 8080);
 app.set('NODE_ENV', env.NODE_ENV || 'development');
 app.set('DB_CNN', env.DB_CNN);
 app.set('DB_NAME', env.DB_NAME);
-app.set('PERSISTENCE', env.PERSISTENCE);
 app.set('BASE_URL', env.BASE_URL);
 
 app.use(
@@ -77,8 +76,6 @@ app.listen(app.get('PORT'), () => {
   console.log(
     `====== ${app.get('BASE_URL')}/ =====`,
   );
-  console.log(`==========ENV:${app.get('NODE_ENV')}===========`);
-  console.log(`=======PERSISTENCE:${app.get('PERSISTENCE')}=============`);
   displayRoutes(app);
   initializeDatabase();
 });

@@ -1,25 +1,24 @@
-<div>
-  <h1>Recuperacion de Contraseña</h1>
+<div class="min-h-screen flex items-center justify-center bg-gray-100">
+  <div class="bg-white p-8 rounded shadow-md w-96 text-center">
+    <h1 class="text-2xl font-semibold mb-6">Recuperación de Contraseña</h1>
 
-  <div>
     <form action="/api/session/recover-psw" method="post">
-    <label for="email">Correo</label><br>
-    <input 
-      type="email"
-      name="email"
-      id="email"
-      placeholder="Introduzca su correo"  
-        >
-    <label for="newpassword">Contraseña</label>
-    <input 
-    type="password"
-    name="newpassword"
-    id="newpassword"
-    placeholder="Introduzca su nueva contraseña" 
-      required >
-    <br>
+      <div class="mb-4">
+        <label for="email" class="block text-sm font-medium text-gray-600">Correo</label>
+        <input type="email" name="email" id="email" placeholder="Introduzca su correo"
+          class="mt-1 p-2 w-full border rounded-md">
+      </div>
 
-    <button type="submit">Actualizar Contraseña</button>
+      <div class="mb-4">
+        <label for="newpassword" class="block text-sm font-medium text-gray-600">Contraseña</label>
+        <input type="password" name="newpassword" id="newpassword" placeholder="Introduzca su nueva contraseña" required
+          class="mt-1 p-2 w-full border rounded-md">
+      </div>
+
+      <button type="submit"
+        class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">
+        Actualizar Contraseña
+      </button>
     </form>
   </div>
 </div>

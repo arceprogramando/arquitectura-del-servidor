@@ -8,197 +8,118 @@
     <p>Rol: {{isAdminOrPremium}}</p>
     <p>Nombre: {{firstname}}</p>
     <form action='/api/session/logout' method='get'>
-      <button
-        type='submit'
-        class='border border-gray-200 bg-gray-200 text-gray-700 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-gray-300 focus:outline-none focus:shadow-outline'
-      >
+      <button type='submit'
+        class='border border-gray-200 bg-gray-200 text-gray-700 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-gray-300 focus:outline-none focus:shadow-outline'>
         Cerrar session
       </button>
     </form>
   </div>
-  
+
 
   {{#if isAdminOrPremium}}
-    <div class='flex container max-w-6xl justify-between mx-auto '>
-      <div class='w-full md:w-1/2 '>
-        <form
-          id='noteForm'
-          action='/api/products'
-          method='POST'
-          enctype='multipart/form-data'
-          class='max-w-md mx-auto p-8 bg-white rounded shadow-md'
-        >
-          <div class='mb-6'>
-            <label
-              for='title'
-              class='block text-gray-600 text-sm font-semibold mb-2'
-            >Titulo:</label>
-            <input
-              type='text'
-              id='title'
-              name='title'
-              placeholder='Escribe el titulo'
-              required
-              class='w-full p-2 border rounded'
-            />
-          </div>
-          <div class='mb-6'>
-            <label
-              for='description'
-              class='block text-gray-600 text-sm font-semibold mb-2'
-            >Descripción:</label>
-            <input
-              type='text'
-              id='description'
-              name='description'
-              placeholder='Escribe la descripción'
-              required
-              class='w-full p-2 border rounded'
-            />
-          </div>
-          <div class='mb-6'>
-            <label
-              for='price'
-              class='block text-gray-600 text-sm font-semibold mb-2'
-            >Precio:</label>
-            <input
-              type='number'
-              id='price'
-              name='price'
-              placeholder='Ingresa el precio'
-              required
-              class='w-full p-2 border rounded'
-            />
-          </div>
-          <div class='mb-6'>
-            <label
-              for='stock'
-              class='block text-gray-600 text-sm font-semibold mb-2'
-            >Stock:</label>
-            <input
-              type='number'
-              id='stock'
-              name='stock'
-              min='0'
-              placeholder='Ingresa la cantidad de stock'
-              required
-              class='w-full p-2 border rounded'
-            />
-          </div>
-          <div class='mb-6'>
-            <label
-              for='category'
-              class='block text-gray-600 text-sm font-semibold mb-2'
-            >Categoría:</label>
-            <input
-              type='text'
-              id='category'
-              name='category'
-              placeholder='Ingresa la categoría'
-              required
-              class='w-full p-2 border rounded'
-            />
-          </div>
-          <div class='mb-6'>
-            <label
-              for='image'
-              class='block text-gray-600 text-sm font-semibold mb-2'
-            >Imagen:</label>
-            <input
-              type='file'
-              id='image'
-              name='image'
-              accept='image/*'
-              required
-              class='w-full p-2 border rounded'
-            />
-          </div>
-          <button
-            class='w-full bg-blue-500 text-white p-3 rounded hover:bg-blue-600'
-          >Enviar</button>
-        </form>
+  <div class='flex container max-w-6xl justify-between mx-auto '>
+    <div class='w-full md:w-1/2 '>
+      <form id='noteForm' action='/api/products' method='POST' enctype='multipart/form-data'
+        class='max-w-md mx-auto p-8 bg-white rounded shadow-md'>
+        <div class='mb-6'>
+          <label for='title' class='block text-gray-600 text-sm font-semibold mb-2'>Titulo:</label>
+          <input type='text' id='title' name='title' placeholder='Escribe el titulo' required
+            class='w-full p-2 border rounded' />
+        </div>
+        <div class='mb-6'>
+          <label for='description' class='block text-gray-600 text-sm font-semibold mb-2'>Descripción:</label>
+          <input type='text' id='description' name='description' placeholder='Escribe la descripción' required
+            class='w-full p-2 border rounded' />
+        </div>
+        <div class='mb-6'>
+          <label for='price' class='block text-gray-600 text-sm font-semibold mb-2'>Precio:</label>
+          <input type='number' id='price' name='price' placeholder='Ingresa el precio' required
+            class='w-full p-2 border rounded' />
+        </div>
+        <div class='mb-6'>
+          <label for='stock' class='block text-gray-600 text-sm font-semibold mb-2'>Stock:</label>
+          <input type='number' id='stock' name='stock' min='0' placeholder='Ingresa la cantidad de stock' required
+            class='w-full p-2 border rounded' />
+        </div>
+        <div class='mb-6'>
+          <label for='category' class='block text-gray-600 text-sm font-semibold mb-2'>Categoría:</label>
+          <input type='text' id='category' name='category' placeholder='Ingresa la categoría' required
+            class='w-full p-2 border rounded' />
+        </div>
+        <div class='mb-6'>
+          <label for='image' class='block text-gray-600 text-sm font-semibold mb-2'>Imagen:</label>
+          <input type='file' id='image' name='image' accept='image/*' required class='w-full p-2 border rounded' />
+        </div>
+        <button class='w-full bg-blue-500 text-white p-3 rounded hover:bg-blue-600'>Enviar</button>
+      </form>
+    </div>
+
+    <div class='w-full md:w-1/2 ml-4 overflow-y-auto max-h-[500px]'>
+      <div>
+        <p class='text-lg font-semibold'>Página actual: {{page}}</p>
       </div>
 
-      <div class='w-full md:w-1/2 ml-4 overflow-y-auto max-h-[500px]'>
-        <div>
-          <p class='text-lg font-semibold'>Página actual: {{page}}</p>
+      <div class='flex justify-between items-center mt-8'>
+        {{#if hasPrevPage}}
+        <div class='flex items-center'>
+          <p class='mr-2'>Página previa: {{prevPage}}</p>
+          <a href='/products?page={{prevPage}}'
+            class='bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600'>Anterior</a>
         </div>
+        {{/if}}
 
-        <div class='flex justify-between items-center mt-8'>
-          {{#if hasPrevPage}}
-            <div class='flex items-center'>
-              <p class='mr-2'>Página previa: {{prevPage}}</p>
-              <a
-                href='/products?page={{prevPage}}'
-                class='bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600'
-              >Anterior</a>
-            </div>
-          {{/if}}
-
-          {{#if hasNextPage}}
-            <div class='flex items-center'>
-              <p class='mr-2'>Página siguiente: {{nextPage}}</p>
-              <a
-                href='/products?page={{nextPage}}'
-                class='bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600'
-              >Siguiente</a>
-            </div>
-          {{/if}}
+        {{#if hasNextPage}}
+        <div class='flex items-center'>
+          <p class='mr-2'>Página siguiente: {{nextPage}}</p>
+          <a href='/products?page={{nextPage}}'
+            class='bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600'>Siguiente</a>
         </div>
+        {{/if}}
+      </div>
 
-        <div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6'>
-          {{#each products}}
-            <div class='bg-white rounded-lg overflow-hidden shadow-md'>
-              <div class='relative'>
-                <button
-                  data-product-id='{{id}}'
-                  class='absolute top-2 right-2 bg-red-500 hover:bg-red-600 text-white font-semibold py-1 px-2 rounded-full focus:outline-none focus:shadow-outline-red btn-delete-product'
-                >
-                  Eliminar
-                </button>
-                <img
-                  src='{{thumbnails}}'
-                  alt='Product Image'
-                  class='w-full h-48 object-contain'
-                />
-              </div>
-              <div class='p-4'>
-                <h1 class='text-xl font-semibold mb-2'>{{title}}</h1>
-                <p class='text-gray-700'>${{price}}</p>
-                <p class='text-gray-700 mt-2'>STOCK {{stock}}</p>
-                <p class='text-gray-700'>{{description}}</p>
-                <p class='text-gray-700 mt-2'>Creador: {{email}}</p>
-                <p class='text-gray-700'>Rol: {{owner}}</p>
-              </div>
-            </div>
-          {{else}}
-            <p class='text-center'>No hay productos disponibles.</p>
-          {{/each}}
+      <div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6'>
+        {{#each products}}
+        <div class='bg-white rounded-lg overflow-hidden shadow-md'>
+          <div class='relative'>
+            <button data-product-id='{{id}}'
+              class='absolute top-2 right-2 bg-red-500 hover:bg-red-600 text-white font-semibold py-1 px-2 rounded-full focus:outline-none focus:shadow-outline-red btn-delete-product'>
+              Eliminar
+            </button>
+            <img src='{{thumbnails}}' alt='Product Image' class='w-full h-48 object-contain' />
+          </div>
+          <div class='p-4'>
+            <h1 class='text-xl font-semibold mb-2'>{{title}}</h1>
+            <p class='text-gray-700'>${{price}}</p>
+            <p class='text-gray-700 mt-2'>STOCK {{stock}}</p>
+            <p class='text-gray-700'>{{description}}</p>
+            <p class='text-gray-700 mt-2'>Creador: {{email}}</p>
+            <p class='text-gray-700'>Rol: {{owner}}</p>
+          </div>
         </div>
+        {{else}}
+        <p class='text-center'>No hay productos disponibles.</p>
+        {{/each}}
+      </div>
 
-        <div class='flex justify-between items-center mt-8'>
-          {{#if hasPrevPage}}
-            <div class='flex items-center'>
-              <p class='mr-2'>Página previa: {{prevPage}}</p>
-              <a
-                href='/products?page={{prevPage}}'
-                class='bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600'
-              >Anterior</a>
-            </div>
-          {{/if}}
-
-          {{#if hasNextPage}}
-            <div class='flex items-center'>
-              <p class='mr-2'>Página siguiente: {{nextPage}}</p>
-              <a
-                href='/products?page={{nextPage}}'
-                class='bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600'
-              >Siguiente</a>
-            </div>
-          {{/if}}
+      <div class='flex justify-between items-center mt-8'>
+        {{#if hasPrevPage}}
+        <div class='flex items-center'>
+          <p class='mr-2'>Página previa: {{prevPage}}</p>
+          <a href='/products?page={{prevPage}}'
+            class='bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600'>Anterior</a>
         </div>
+        {{/if}}
+
+        {{#if hasNextPage}}
+        <div class='flex items-center'>
+          <p class='mr-2'>Página siguiente: {{nextPage}}</p>
+          <a href='/products?page={{nextPage}}'
+            class='bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600'>Siguiente</a>
+        </div>
+        {{/if}}
       </div>
     </div>
+  </div>
   {{/if}}
 </main>
 

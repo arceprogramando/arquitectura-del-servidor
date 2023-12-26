@@ -4,7 +4,8 @@
     <div class="col-md-4 my-auto">
         {{#if profileImage}}
         {{else}}
-        <form class="card card-body rounded-0" id="profileForm" action="/api/users/{{uId}}/documents" method="POST" enctype="multipart/form-data">
+        <form class="card card-body rounded-0" id="profileForm" action="/api/users/{{uId}}/documents" method="POST"
+            enctype="multipart/form-data">
             <div class="form-group">
                 <label for="profileImage">Cargar Imagen de Perfil:</label>
                 <input type="file" name="profileImage" accept="image/*" class="form-control rounded-0 mb-1">
@@ -25,7 +26,7 @@
     </div>
 
     <h2>Actualizar Usuario para pasarse a premium</h2>
-    
+
     <div class="col-md-4 my-auto">
         {{#if identificationImage}}
         {{else}}
@@ -57,8 +58,8 @@
     <div class="col-md-4 my-auto">
         {{#if accountStatusImage}}
         {{else}}
-        <form class="card card-body rounded-0" id="accountStatusForm" action="/api/users/{{uId}}/documents" method="POST"
-            enctype="multipart/form-data">
+        <form class="card card-body rounded-0" id="accountStatusForm" action="/api/users/{{uId}}/documents"
+            method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="accountStatusImage">Comprobante de estado de cuenta:</label>
                 <input type="file" id="document" name="accountStatusImage" accept="image/*"
