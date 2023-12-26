@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import ViewController from '../controllers/views.controller.js';
-import { uploadDocuments } from '../middleware/uploader.js';
+import upload from '../middleware/multeruploader.js';
 
 const viewController = new ViewController();
 const router = Router();
@@ -25,7 +25,7 @@ router.get('/profile', viewController.viewProfile);
 
 router.get('/cartsuser', viewController.viewCartUser);
 
-router.get('/completeProfile', uploadDocuments.single('document'), viewController.viewUpdateCompleteProfile);
+router.get('/completeProfile', upload.single('image'), viewController.viewUpdateCompleteProfile);
 
 router.get('/usermanagement', viewController.viewUserManagement);
 

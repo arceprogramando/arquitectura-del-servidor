@@ -1,33 +1,34 @@
-<div>
-    <h1>ADMIN: {{firstname}}{{lastname}}</h1>
+<header class='bg-black'>
+    <h1 class='text-white text-center uppercase text-2xl py-2'>E-commerce</h1>
+</header>
 
-    {{#each usermap}}
-        {{#if isAdmin}}
-        
-        {{else}}
-            <div class="col-md-5 py-3 overflow-auto h-80">
-                <div id="users">
-                    <div>
-                        <div>
-                            <div class="card card-body rounded-2 mb-2 animate__animated animate__fadeInUp background">
-                                <button class="btn btn-danger btn-delete-user" data-user-id="{{id}}">Eliminar Usuario</button>
-                                <div class="d-flex justify-content-between">
-                                    <h1 class="h3 card-title">Usuario: {{firstname}} {{lastname}}</h1>
-                                </div>
-                                <p class="h5">{{email}}</p>
-                                <div>
-                                    <h2>Rol : {{role}} </h2>
-                                    <button class="btn btn-warning btn-rol-user" data-user-id="{{id}}">Cambiar rol</button>
-                                </div>
-                            </div>
-                        </div>
+<main class='flex flex-col container mx-auto px-6 lg:px-8'>
+    <h1 class='text-2xl font-bold mb-4'>ADMIN: {{firstname}} {{lastname}}</h1>
+
+    <main class='flex flex-col container mx-auto sm:flex-row justify-center items-center px-6 lg:px-8'>
+        <div class='flex container max-w-6xl flex-wrap mx-auto  justify-center '>
+            {{#each usermap}}
+            {{#if isAdmin}}{{else}}
+            <div class='w-full max-w-sm flex-wrap  px-4 mb-4'>
+                <div class='bg-white rounded-lg shadow-md p-4 transition-transform transform hover:scale-105'>
+                    <button class='bg-red-500 text-white px-4 py-2 rounded-full mb-2' data-user-id='{{id}}'>Eliminar
+                        Usuario</button>
+                    <div class='flex justify-between'>
+                        <h1 class='text-xl font-semibold'>Usuario: {{firstname}} {{lastname}}</h1>
+                    </div>
+                    <p class='text-lg'>{{email}}</p>
+                    <div class='mt-2'>
+                        <h2 class='text-lg'>Rol: {{role}}</h2>
+                        <button class='bg-yellow-500 text-white px-4 py-2 rounded-full' data-user-id='{{id}}'>Cambiar
+                            rol</button>
                     </div>
                 </div>
             </div>
-        {{/if}}
-    {{else}}
-        <p>No hay usuarios disponibles.</p>
-    {{/each}}
-</div>
+            {{/if}}
+            {{else}}
+            <p class='text-lg'>No hay usuarios disponibles.</p>
+            {{/each}}
+        </div>
+    </main>
 
-<script src="/js/usermanagement.js"></script>
+    <script src='/js/usermanagement.js'></script>

@@ -2,6 +2,7 @@ import ProductDTO from '../dto/product.dto.js';
 import ProductService from '../services/product.services.js';
 import Responses from '../middleware/error.handlers.js';
 import UserModel from '../model/user.models.js';
+import cloudinary from '../config/cloudinary.config.js';
 
 class ProductController {
 
@@ -25,16 +26,25 @@ class ProductController {
 
       let thumbnails = null;
 
+      // Verifica si se subió una imagen
       if (req.file) {
-        let uploadFolder = '';
-        if (req.file.fieldname === 'profileImage') {
-          uploadFolder = 'profiles';
-        } else if (req.file.fieldname === 'productImage') {
-          uploadFolder = 'products';
-        } else if (req.file.fieldname === 'document') {
-          uploadFolder = 'documents';
+        try {
+          // Sube la imagen a Cloudinary
+          const result = await cloudinary.uploader.upload(req.file.path, {
+            folder: 'products', // Cambia esto según tu estructura en Cloudinary
+          });
+
+          // Obtiene la URL de la imagen subida a Cloudinary
+          thumbnails = result.secure_url;
+
+          // Opcional: Puedes borrar el archivo temporal después de subirlo a Cloudinary
+          // fs.unlinkSync(req.file.path);
+        } catch (cloudinaryError) {
+          console.error('Error al subir la imagen a Cloudinary:', cloudinaryError);
+          return this.httpResponse.ERROR(res, 'Error al subir la imagen a Cloudinary', {
+            error: cloudinaryError.message,
+          });
         }
-        thumbnails = `/upload/${uploadFolder}/${req.file.filename}`;
       }
 
       const productData = {

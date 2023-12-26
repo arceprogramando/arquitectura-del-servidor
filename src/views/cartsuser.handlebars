@@ -2,46 +2,31 @@
   <h1 class='text-white text-center uppercase text-2xl py-2'>E-commerce</h1>
 </header>
 
-<main
-  class='flex flex-col container mx-auto max-w-6xl justify-center items-center px-6 py-12 lg:px-8'
->
+<main class='flex flex-col container mx-auto max-w-6xl justify-center items-center px-6 py-12 lg:px-8'>
 
   <p>¡Hola {{firstname}} , Esperamos que tengas una buena compra!</p>
 
   <div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6'>
     {{#if products}}
-      {{#each products}}
-        <div class='bg-white rounded-lg overflow-hidden shadow-md p-6'>
-          <div class='mb-4'>
-            <h1 class='text-xl font-semibold'>{{title}}</h1>
-            <p class='text-lg font-semibold'>${{price}}</p>
-          </div>
-          <p class='mb-4'>{{description}}</p>
-          <img
-            src='http://localhost:8080/{{image}}'
-            alt='{{title}}'
-            class='w-full h-40 object-contain mb-4'
-          />
-          <p class='mb-2'>STOCK: {{stock}}</p>
-          <div class='flex items-center justify-between'>
-            <input
-              type='number'
-              max='{{stock}}'
-              id='quantity'
-              value='1'
-              class='w-16 p-2 border rounded'
-            />
-            <button
-              data-product-id='{{_id}}'
-              class='bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600'
-            >
-              Agregar al carrito
-            </button>
-          </div>
-        </div>
-      {{/each}}
+    {{#each products}}
+    <div class='bg-white rounded-lg overflow-hidden shadow-md p-6'>
+      <div class='mb-4'>
+        <h1 class='text-xl font-semibold'>{{title}}</h1>
+        <p class='text-lg font-semibold'>${{price}}</p>
+      </div>
+      <p class='mb-4'>{{description}}</p>
+      <img src='{{image}}' alt='{{title}}' class='w-full h-40 object-contain mb-4' />
+      <p class='mb-2'>STOCK: {{stock}}</p>
+      <div class='flex items-center justify-between'>
+        <input type='number' max='{{stock}}' id='quantity' value='1' class='w-16 p-2 border rounded' />
+        <button data-product-id='{{_id}}' class='bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600'>
+          Agregar al carrito
+        </button>
+      </div>
+    </div>
+    {{/each}}
     {{else}}
-      <p class='col-span-2 text-center'>No hay productos disponibles.</p>
+    <p class='col-span-2 text-center'>No hay productos disponibles.</p>
     {{/if}}
   </div>
 
@@ -52,14 +37,14 @@
       <button id='delete-cart'>Borrar Carrito</button>
       <div data-cart-id='{{cId}}'>
         {{#each cartsOfUser}}
-          <div>
-            <button data-product-id='{{productsid}}'>Eliminar Producto</button>
-            <h2>{{title}}</h2>
-            <p>Valor: {{price}}</p>
-            <h3>Cantidad por comprar: {{quantity}}</h3>
-          </div>
+        <div>
+          <button data-product-id='{{productsid}}'>Eliminar Producto</button>
+          <h2>{{title}}</h2>
+          <p>Valor: {{price}}</p>
+          <h3>Cantidad por comprar: {{quantity}}</h3>
+        </div>
         {{else}}
-          <p>No has agregado ningún producto a tu carrito.</p>
+        <p>No has agregado ningún producto a tu carrito.</p>
         {{/each}}
       </div>
       <button class='btn-purchase'>Comprar Carrito</button>

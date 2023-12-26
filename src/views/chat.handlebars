@@ -15,42 +15,26 @@
     <form id='noteForm' action='/api/chat/' method='POST'>
       <h1 class='text-2xl font-bold mb-5'>Escribe un mensaje</h1>
       <div class='mb-4'>
-        <input
-          type='text'
-          id='user'
-          name='user'
-          placeholder='Usuario'
-          class='w-full border rounded p-2'
-          required
-        />
+        <input type='text' id='user' name='user' placeholder='Usuario' class='w-full border rounded p-2' required />
       </div>
       <div class='mb-4'>
-        <textarea
-          name='message'
-          id='message'
-          rows='2'
-          placeholder='Escribe tu mensaje'
-          class='w-full border rounded p-2'
-          required
-        ></textarea>
+        <textarea name='message' id='message' rows='2' placeholder='Escribe tu mensaje'
+          class='w-full border rounded p-2' required></textarea>
       </div>
-      <button
-        type='submit'
-        class='w-full bg-blue-500 text-white p-3 rounded hover:bg-blue-600'
-      >Enviar</button>
+      <button type='submit' class='w-full bg-blue-500 text-white p-3 rounded hover:bg-blue-600'>Enviar</button>
     </form>
   </div>
 
   <div class='max-w-xl container mx-auto'>
     {{#each messages}}
-      <div class='mb-2'>
-        <div class='p-4 bg-white rounded-md shadow-md'>
-          <h1 class='text-lg font-semibold'>{{this.user}}</h1>
-          <p>{{this.message}}</p>
-        </div>
+    <div class='mb-2'>
+      <div class='p-4 bg-white rounded-md shadow-md'>
+        <h1 class='text-lg font-semibold'>{{this.user}}</h1>
+        <p>{{this.message}}</p>
       </div>
+    </div>
     {{else}}
-      <p class='text-gray-500'>No hay mensajes disponibles.</p>
+    <p class='text-gray-500'>No hay mensajes disponibles.</p>
     {{/each}}
   </div>
 </main>

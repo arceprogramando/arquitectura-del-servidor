@@ -17,6 +17,7 @@ const {
   EMAIL,
   PSW_EMAIL,
   BASE_URL,
+  CLOUDINARYAPISECRET,
 } = process.env;
 
 const configObject = {
@@ -32,6 +33,7 @@ const configObject = {
   EMAIL,
   PSW_EMAIL,
   BASE_URL,
+  CLOUDINARYAPISECRET,
 };
 
 export default configObject;

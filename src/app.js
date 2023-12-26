@@ -9,7 +9,7 @@ import displayRoutes from 'express-routemap';
 import { engine } from 'express-handlebars';
 import passport from 'passport';
 import compression from 'express-compression';
-import configObject from './config/config.js';
+import configObject from './config/configenvironment.js';
 import __dirname from './utils.js';
 import viewsRouter from './routes/views.router.js';
 import userRoutes from './routes/user.routes.js';
@@ -20,7 +20,6 @@ import messageRouter from './routes/message.routes.js';
 import sendEmail from './routes/email.routes.js';
 import sessionRouter from './routes/session.routes.js';
 import ticketRouter from './routes/ticket.routes.js';
-import mockingRouter from './routes/mocking.routes.js';
 import docsRouter from './routes/docs.routes.js';
 import initializeDatabase from './dao/factory.js';
 import setLogger from './utils/logger.js';
@@ -51,7 +50,6 @@ app.set('PORT', env.PORT || 8080);
 app.set('NODE_ENV', env.NODE_ENV || 'development');
 app.set('DB_CNN', env.DB_CNN);
 app.set('DB_NAME', env.DB_NAME);
-app.set('PERSISTENCE', env.PERSISTENCE);
 app.set('BASE_URL', env.BASE_URL);
 
 app.use(
@@ -76,10 +74,8 @@ app.use(passport.session());
 
 app.listen(app.get('PORT'), () => {
   console.log(
-    `=Encendido servidor en puerto ${app.get('PORT')}= \n====== ${app.get('BASE_URL')}/ =====`,
+    `====== ${app.get('BASE_URL')}/ =====`,
   );
-  console.log(`==========ENV:${app.get('NODE_ENV')}===========`);
-  console.log(`=======PERSISTENCE:${app.get('PERSISTENCE')}=============`);
   displayRoutes(app);
   initializeDatabase();
 });
@@ -92,6 +88,5 @@ app.use('/api/carts', cartRouter);
 app.use('/api/chat', messageRouter);
 app.use('/api/email', sendEmail);
 app.use('/api/tickets', ticketRouter);
-app.use('/mockingproducts', mockingRouter);
 app.use('/loggertest', loggerRouter);
 app.use('/api/docs', docsRouter);
