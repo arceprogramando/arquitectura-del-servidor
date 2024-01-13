@@ -48,7 +48,7 @@ npm install express cors dotenv cookie-parser express-handlebars mongoose mongoo
 - 🧼 Cleanup: Utiliza este emoji cuando realices tareas delimpieza de código, sin cambios funcionales.
 - 🚀 Refactor: Marca commits que mejoren el rendimiento de la aplicación o cambios funcionales.
 - 🚧 Work in Progress: Usarlo para indicar que el commit contiene trabajo en progreso que no está listo para ser implementado.
-
+- 📚 student in progress : usarlo para indicar que es un elemento a estudiar a futuro
 
 ### Para realizar este Arquitectura
 
