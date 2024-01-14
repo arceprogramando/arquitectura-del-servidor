@@ -25,20 +25,17 @@ class ProductController {
       }
 
       let thumbnails = null;
-
-      // Verifica si se subió una imagen
+      
       if (req.file) {
         try {
           // Sube la imagen a Cloudinary
           const result = await cloudinary.uploader.upload(req.file.path, {
-            folder: 'products', // Cambia esto según tu estructura en Cloudinary
+            folder: 'products',
           });
 
           // Obtiene la URL de la imagen subida a Cloudinary
           thumbnails = result.secure_url;
-
-          // Opcional: Puedes borrar el archivo temporal después de subirlo a Cloudinary
-          // fs.unlinkSync(req.file.path);
+          
         } catch (cloudinaryError) {
           console.error('Error al subir la imagen a Cloudinary:', cloudinaryError);
           return this.httpResponse.ERROR(res, 'Error al subir la imagen a Cloudinary', {
