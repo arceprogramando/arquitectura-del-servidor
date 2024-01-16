@@ -37,7 +37,7 @@ npm install express cors dotenv cookie-parser express-handlebars mongoose mongoo
 - **EMAIL=cndograepromaar@gmail.com** (example)
 - **PSW_EMAIL=gugybzlvfagaarua** (example)
 - **BASE_URL=http://localhost:8080** (example)
-
+- **CLOUDINARYAPISECRET=s_uCHpv-g4O1UBwM3n9kSuWWt-u(example)
 
 ### Como seguir estructura de commits a futuro
 
