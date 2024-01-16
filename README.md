@@ -49,33 +49,36 @@ npm install express cors dotenv cookie-parser express-handlebars mongoose mongoo
 - 🚀 Refactor: Marca commits que mejoren el rendimiento de la aplicación o cambios funcionales.
 - 🚧 Work in Progress: Usarlo para indicar que el commit contiene trabajo en progreso que no está listo para ser implementado.
 - 📚 student in progress : usarlo para indicar que es un elemento a estudiar a futuro
+- 📁 Added archives : Commit para publicaciones donde se agreguen archivos necesarios
 
 ### Para realizar este Arquitectura
 
-- [node.js] - Se uso instalo a nivel local Node Js
-- [express] - Se uso la libreria Express de Node
-- [nodemon] - Se instalo globalmente Nodemon Se instalo como paquete de desarrollo
-- [cross-env] - Para ejecutar scripts que establecen y utilizan variables de entorno en diferentes plataformas
-- [cors] - Para que funcione como middleware que especifica los origenes permitidos, como servicios externos(no se tanto su funcionamiento)
-- [dotenv] - para cargar variables de entorno desde archivos de configuración locales.
-- [cookie-parser] que se utiliza para analizar las cookies en las solicitudes entrantes y hacerlas accesibles en req.cookies.
-- [mongoose] interacción con la base de datos y proporciona una serie de características que facilitan el desarrollo de aplicaciones web y API que utilizan MongoDB 
-- [mongoose-paginate-v2] es una libreria para poder paginar que contiene un wrapper de paginas de diferentes estilos
-- [tailwind] tailwind incluido en CDN para crear diseño mas atractivo
-- [multer] para la configuracion de subida de archivos a travez del front , y manipularlos desde el server
-- [bcrypt] una libreria para poder hashear contraseñas
-- [passport] una libreria que funciona como middleware para hacer autentificacion de login , ya sea con esta misma o con sus extensiones.
-- [passport-github2] Estrategia de passport para poder poder hacer uso de el logeo con github
-- [connect-mongo] es un módulo de Node.js que se utiliza como almacén de sesiones 
-- [express-session] esencial para manejar sesiones de usuario en aplicaciones web creadas con Express.js
-- [passport-local] estrategia de passport para manejar el inicio de sesion local
-- [uuid] libreria para crear ids aleatorios
-- [nodemailer] Libreria para trabajar con mails 
-- [express-compression] Para comprimir 
-- [http-status-codes] Para las respuestas http en el EnumError
-- [winston] universal loggin library como storage de logs
-- [swagger-jsdoc]  Para documentar la API
-- [swagger-ui-express] Para documentar la API
+| Dependencias /Librerias | Funcionalidad                 |
+| --------------- | --------------------------------------------------------------------------- |
+| ✅ [node.js]    | Se  instalo a nivel local NodeJs.|
+| ✅ [express]   | Se uso la libreria Express de NodeJs.|
+| ✅ [nodemon]   |Se instalo globalmente Nodemon Se instalo como paquete de desarrollo.|
+| ✅ [cross-env]   |Para ejecutar scripts que establecen y utilizan variables de entorno en diferentes plataformas.|
+| ✅ [cors]   |Para que funcione como middleware que especifica los origenes permitidos, como servicios externos.|
+| ✅ [dotenv]   |Para cargar variables de entorno desde archivos de configuración locales.|
+| ✅ [cookie-parser]   |Que se utiliza para analizar las cookies en las solicitudes entrantes y hacerlas accesibles en req.cookies.|
+| ✅ [mongoose]  | Interacción con la base de datos y proporciona una serie de características que facilitan el desarrollo de aplicaciones web y API que utilizan MongoDB |
+| ✅ [mongoose-paginate-v2]  | Es una libreria para poder paginar que contiene un wrapper de paginas de diferentes estilos. |
+| ✅ [tailwind]  | Tailwind incluido en CDN para crear diseño mas atractivo. |
+| ✅ [multer]  | Para la configuracion de subida de archivos a travez del front , y manipularlos desde el server. |
+| ✅ [bcrypt]  |Una libreria para poder hashear contraseñas. |
+| ✅ [passport]  | Una libreria que funciona como middleware para hacer autentificacion de login , ya sea con esta misma o con sus extensiones. |
+| ✅ [passport-github2]  | Estrategia de passport para poder poder hacer uso de el logeo con github. |
+| ✅ [connect-mongo]  | Es un módulo de Node.js que se utiliza como almacén de sesiones. |
+| ✅ [express-session]  |Esencial para manejar sesiones de usuario en aplicaciones web creadas con Express.js. |
+| ✅ [passport-local]  |Estrategia de passport para manejar el inicio de sesion local. |
+| ✅ [uuid]  |Libreria para crear ids aleatorios. |
+| ✅ [nodemailer]  |Libreria para trabajar con mails. |
+| ✅ [express-compression]  |Para comprimir. |
+| ✅ [http-status-codes]  |Para las respuestas http en el EnumErrors. |
+| ✅ [winston]  | Universal loggin library como storage de logs. |
+| ✅ [swagger-jsdoc]  | Para documentar la API. |
+| ✅ [swagger-ui-express]  | Para documentar la API. |
 
 # Tareas Pendientes
 
