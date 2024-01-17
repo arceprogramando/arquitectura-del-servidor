@@ -25,19 +25,16 @@ class ProductController {
       }
 
       let thumbnails = null;
-      
+
       if (req.file) {
         try {
-          // Sube la imagen a Cloudinary
           const result = await cloudinary.uploader.upload(req.file.path, {
             folder: 'products',
           });
 
-          // Obtiene la URL de la imagen subida a Cloudinary
           thumbnails = result.secure_url;
-          
+
         } catch (cloudinaryError) {
-          console.error('Error al subir la imagen a Cloudinary:', cloudinaryError);
           return this.httpResponse.ERROR(res, 'Error al subir la imagen a Cloudinary', {
             error: cloudinaryError.message,
           });
@@ -50,6 +47,7 @@ class ProductController {
         price: productDTO.price,
         stock: productDTO.stock,
         category: productDTO.category,
+        email: req.user.email,
         thumbnails,
       };
 
@@ -128,7 +126,6 @@ class ProductController {
       const { pId } = req.params;
       const findUserProduct = await this.productService.getProductById(pId);
       const emailProduct = findUserProduct.email;
-
       await this.productService.sendEmailDeleteProduct(emailProduct);
       const deletedProduct = await this.productService.deleteProductById(pId);
 

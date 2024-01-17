@@ -1,10 +1,4 @@
 node_modules
-.env.dev.local
-.env.prod.local
-.env.test.local
-error-prod.log
-error-qa.log
-error-test.log
-error-dev.log
-errors.log
+.env*
+error*
 
