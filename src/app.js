@@ -49,13 +49,13 @@ app.set('view engine', 'handlebars');
 app.set('PORT', env.PORT || 8080);
 app.set('NODE_ENV', env.NODE_ENV || 'development');
 app.set('DB_CNN', env.DB_CNN);
-app.set('DB_NAME', env.DB_NAME);
+app.set('COLLECTION_NAME', env.COLLECTION_NAME);
 app.set('BASE_URL', env.BASE_URL);
 
 app.use(
   session({
     store: mongoStore.create({
-      mongoUrl: `${app.get('DB_CNN')}${app.get('DB_NAME')}`,
+      mongoUrl: `${app.get('DB_CNN')}${app.get('COLLECTION_NAME')}`,
       mongoOptions: {
         useNewUrlParser: true,
         useUnifiedTopology: true,
