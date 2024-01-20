@@ -1,7 +1,9 @@
 <header class='bg-black'>
   <h1 class='text-white text-center uppercase text-2xl py-2'>E-commerce</h1>
 </header>
-<div class="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem]"></div>
+<div
+  class="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem]">
+</div>
 
 <main class="flex flex-col justify-center items-center px-6 py-12 lg:px-8">
 
@@ -22,12 +24,11 @@
         </form>
         <div class="mt-6 w-fit mx-auto">
           <img src="https://api.lorem.space/image/face?w=120&h=120&hash=bart89fe" class="rounded-full w-28"
-            alt="profile picture" srcset="">
+            alt="profile picture">
         </div>
         <div class="mt-6 ">
           <h2 class="text-black text-center font-bold text-2xl tracking-wide">{{firstname}} {{lastname}}</h2>
         </div>
-        <p> </p>
         <p>Edad: {{age}}</p>
 
         <div class="flex flex-wrap max-w-xl justify-center">
@@ -40,7 +41,7 @@
           <a href="/usermanagement">
             <button type="button"
               class="border border-yellow-500 bg-yellow-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-yellow-600 focus:outline-none focus:shadow-outline">
-              Ir a administrar a los diferentes usuarios
+              Ir aadministrar a los diferentes usuarios
             </button>
           </a>
           {{else}}

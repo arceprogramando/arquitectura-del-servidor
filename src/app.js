@@ -74,7 +74,7 @@ app.use(passport.session());
 
 app.listen(app.get('PORT'), () => {
   console.log(
-    `====== ${app.get('BASE_URL')}/ =====`,
+    `====== ${app.get('BASE_URL')} =====`,
   );
   displayRoutes(app);
   initializeDatabase();
