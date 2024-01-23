@@ -10,12 +10,15 @@ class messageController {
 
   createMessage = async (req, res) => {
     try {
-      const { user, message } = req.body;
-      if (!user) {
-        const errorMessage = `${this.enumError.INVALID_PARAMS} El campo "user" es obligatorio`;
-        req.logger.warn(errorMessage);
-        return this.httpResponse.BAD_REQUEST(res, errorMessage);
-      }
+      
+      const user = req.user.firstname && req.user.lastname
+            ? `${req.user.firstname} ${req.user.lastname}`
+            : req.user.firstname
+                ? req.user.firstname
+                : 'Anonimo';
+                
+      const { message } = req.body;
+
       if (!message) {
         const errorMessage = `${this.enumError.INVALID_PARAMS} El campo "message" es obligatorio`;
         req.logger.warn(errorMessage);

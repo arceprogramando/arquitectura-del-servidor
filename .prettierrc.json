@@ -9,7 +9,7 @@
     {
       "files": "*.js",
       "options": {
-        "printWidth": 140
+        "printWidth": 80
       }
     }
   ]
