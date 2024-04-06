@@ -4,14 +4,15 @@
 - Mi repositorio publico es  [arceprogramando][arceprogramando]
 en github.
 
-## Instalacion 
-```sh
+## 🧞 Commands 
 
-npm install
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             |Para instalar las dependencias necesarias del proyecto|
+| `npm run start:dev`             |Para inicializar el proyecto en dev necesita variables de entorno |
+| `npm run start:test`             |Para inicializar el proyecto en test necesita variables de entorno |
+| `npm run start:prod`             |Para inicializar el proyecto en prod necesita variables de entorno |
 
-npm run start:prod
-
-```
 ### Todos los paquetes desde cero
  
 ```sh
