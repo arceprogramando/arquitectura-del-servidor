@@ -20,7 +20,6 @@ const initializeDatabase = async (_, res) => {
         return Database;
     }
   } catch (error) {
-    console.error('Error initializing database:', error);
     return res.status(500).json({ error: 'Error initializing database' });
   }
 };
