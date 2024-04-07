@@ -51,6 +51,7 @@ app.set('NODE_ENV', env.NODE_ENV || 'development');
 app.set('DB_CNN', env.DB_CNN);
 app.set('COLLECTION_NAME', env.COLLECTION_NAME);
 app.set('BASE_URL', env.BASE_URL);
+app.set('EXPRESS_SESSION_SECRET', env.EXPRESS_SESSION_SECRET);
 
 app.use(
   session({
@@ -62,7 +63,7 @@ app.use(
       },
       ttl: 1000,
     }),
-    secret: 'mi_clave_secreta',
+    secret: `${app.get('EXPRESS_SESSION_SECRET')}`,
     saveUninitialized: false,
     resave: false,
   }),

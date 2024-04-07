@@ -20,6 +20,7 @@ const {
   CLOUDINARYCLOUD_NAME,
   CLOUDINARYAPI_KEY,
   CLOUDINARYAPISECRET,
+  EXPRESS_SESSION_SECRET,
 } = process.env;
 
 const configObject = {
@@ -38,6 +39,7 @@ const configObject = {
   CLOUDINARYCLOUD_NAME,
   CLOUDINARYAPI_KEY,
   CLOUDINARYAPISECRET,
+  EXPRESS_SESSION_SECRET,
 };
 
 export default configObject;
