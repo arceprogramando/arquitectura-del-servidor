@@ -21,7 +21,7 @@ import sendEmail from './routes/email.routes.js';
 import sessionRouter from './routes/session.routes.js';
 import ticketRouter from './routes/ticket.routes.js';
 import docsRouter from './routes/docs.routes.js';
-import initializeDatabase from './dao/factory.js';
+import initializeDatabase from './factory/factory.js';
 import setLogger from './utils/logger.js';
 import loggerRouter from './routes/logger.routes.js';
 
@@ -73,9 +73,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.listen(app.get('PORT'), () => {
-  console.log(
-    `====== ${app.get('BASE_URL')} =====`,
-  );
+  console.log(`====== ${app.get('BASE_URL')} =====`);
   displayRoutes(app);
   initializeDatabase();
 });
