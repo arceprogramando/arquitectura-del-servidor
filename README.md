@@ -1,8 +1,4 @@
-# Arquitectura De un Servidor
-## _Felipe Antonio Aleman Arce_
-
-- Mi repositorio publico es  [arceprogramando][arceprogramando]
-en github.
+# Arquitectura De un Servidor Javascript , Node, Express , MongoDB
 
 ## 🧞 Commands 
 
@@ -12,17 +8,6 @@ en github.
 | `npm run start:dev`             |Para inicializar el proyecto en dev necesita variables de entorno |
 | `npm run start:test`             |Para inicializar el proyecto en test necesita variables de entorno |
 | `npm run start:prod`             |Para inicializar el proyecto en prod necesita variables de entorno |
-
-### Todos los paquetes desde cero
- 
-```sh
-npm init @eslint/config 
-
-npm install cross-env  nodemon  @faker-js/faker chai mocha -D
-
-npm install express cors dotenv cookie-parser express-handlebars mongoose mongoose-paginate-v2 multer bcrypt passport passport-github2 connect-mongo express-session uuid nodemailer express-compression http-status-codes winston swagger-jsdoc swagger-ui-express supertest
-
-```
 
 # Estructura Variables de entorno
 
@@ -72,14 +57,6 @@ npm install express cors dotenv cookie-parser express-handlebars mongoose mongoo
 | ✅ [winston]  | Universal loggin library como storage de logs. |
 | ✅ [swagger-jsdoc]  | Para documentar la API. |
 | ✅ [swagger-ui-express]  | Para documentar la API. |
-
-# Tareas Pendientes
-
-- Hacer test  para session 
-- Utilizar el middleware de Multer para poder recibir los documentos que se carguen y actualizar en el usuario su status para hacer saber que ya subió algún documento en particular.
-- Si se sube una imagen de perfil, deberá guardarlo en una carpeta profiles, en caso de recibir la imagen de un producto, deberá guardarlo en una carpeta products, mientras que ahora al cargar un documento, multer los guardará en una carpeta documents.
--  Modificar el endpoint */api/users/premium/:uid* para que sólo actualice al usuario a premium si ya ha cargado los siguientes documentos:
--   Identificación, Comprobante de domicilio, Comprobante de estado de cuenta
 
   [Coderhouse]: <https://plataforma.coderhouse.com/cursos/43335/programacion-backend>
   [arceprogramando]: <https://github.com/arceprogramando>
