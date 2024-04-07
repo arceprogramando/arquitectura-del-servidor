@@ -71,7 +71,6 @@ const setLogger = (req, res, next) => {
     );
     next();
   } catch (error) {
-    console.error(`Error en setLogger: ${error}`);
     res.status(500).json({ error: `Internal Server Error ${error} ` });
   }
 };
