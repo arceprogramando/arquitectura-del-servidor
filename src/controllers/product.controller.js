@@ -5,7 +5,6 @@ import UserModel from '../model/user.models.js';
 import cloudinary from '../config/cloudinary.config.js';
 
 class ProductController {
-
   constructor() {
     this.productService = new ProductService();
     this.httpResponse = new Responses.HttpResponse();
@@ -33,11 +32,14 @@ class ProductController {
           });
 
           thumbnails = result.secure_url;
-
         } catch (cloudinaryError) {
-          return this.httpResponse.ERROR(res, 'Error al subir la imagen a Cloudinary', {
-            error: cloudinaryError.message,
-          });
+          return this.httpResponse.ERROR(
+            res,
+            'Error al subir la imagen a Cloudinary',
+            {
+              error: cloudinaryError.message,
+            },
+          );
         }
       }
 
@@ -57,24 +59,46 @@ class ProductController {
         productData.owner = 'ADMIN';
       }
 
-      const createdProduct = await this.productService.createProduct(productData);
+      const createdProduct = await this.productService.createProduct(
+        productData,
+      );
 
-      return this.httpResponse.OK(res, 'Agregando productos a la base de datos', { createdProduct });
+      return this.httpResponse.OK(
+        res,
+        'Agregando productos a la base de datos',
+        { createdProduct },
+      );
     } catch (error) {
-      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR}Error al crear el producto `, {
-        error: error.message,
-      });
+      return this.httpResponse.ERROR(
+        res,
+        `${this.enumError.CONTROLER_ERROR}Error al crear el producto `,
+        {
+          error: error.message,
+        },
+      );
     }
   };
 
   getAllProducts = async (req, res) => {
     try {
       const products = await this.productService.getAllProducts();
-      return this.httpResponse.OK(res, 'Tomando productos agregados por el administrador', { products });
+      const simplifiedProducts = products.map((product) => ({
+        id: product._id,
+        title: product.title,
+        description: product.description,
+        price: product.price,
+        category: product.category,
+        thumbnails: product.thumbnails,
+      }));
+      return res.json(simplifiedProducts);
     } catch (error) {
-      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR}Error al traer los productos `, {
-        error: error.message,
-      });
+      return this.httpResponse.ERROR(
+        res,
+        `${this.enumError.CONTROLER_ERROR}Error al traer los productos `,
+        {
+          error: error.message,
+        },
+      );
     }
   };
 
@@ -85,14 +109,23 @@ class ProductController {
       const product = await this.productService.getProductById(pId);
 
       if (!product) {
-        return this.httpResponse.BAD_REQUEST(res, `${this.enumError.INVALID_PARAMS} El producto solicitado no existe.`);
+        return this.httpResponse.BAD_REQUEST(
+          res,
+          `${this.enumError.INVALID_PARAMS} El producto solicitado no existe.`,
+        );
       }
 
-      return this.httpResponse.OK(res, 'El producto fue encontrado ', { product });
-    } catch (error) {
-      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR} Error al obtener el producto `, {
-        error: error.message,
+      return this.httpResponse.OK(res, 'El producto fue encontrado ', {
+        product,
       });
+    } catch (error) {
+      return this.httpResponse.ERROR(
+        res,
+        `${this.enumError.CONTROLER_ERROR} Error al obtener el producto `,
+        {
+          error: error.message,
+        },
+      );
     }
   };
 
@@ -104,7 +137,10 @@ class ProductController {
         const newImagePath = `/upload/products/${req.file.filename}`;
         newData.thumbnails = newImagePath;
       }
-      const updatedProduct = await this.productService.updateProductById(pId, newData);
+      const updatedProduct = await this.productService.updateProductById(
+        pId,
+        newData,
+      );
 
       if (!updatedProduct) {
         return this.httpResponse.BAD_REQUEST(
@@ -113,11 +149,19 @@ class ProductController {
         );
       }
 
-      return this.httpResponse.OK(res, 'El producto fue actualizado correctamente ', { updatedProduct });
+      return this.httpResponse.OK(
+        res,
+        'El producto fue actualizado correctamente ',
+        { updatedProduct },
+      );
     } catch (error) {
-      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR} Error al actualizar el producto `, {
-        error: error.message,
-      });
+      return this.httpResponse.ERROR(
+        res,
+        `${this.enumError.CONTROLER_ERROR} Error al actualizar el producto `,
+        {
+          error: error.message,
+        },
+      );
     }
   };
 
@@ -136,11 +180,18 @@ class ProductController {
         );
       }
 
-      return this.httpResponse.OK(res, 'El producto fue eliminado correctamente ');
+      return this.httpResponse.OK(
+        res,
+        'El producto fue eliminado correctamente ',
+      );
     } catch (error) {
-      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR}error al eliminar el producto `, {
-        error: error.message,
-      });
+      return this.httpResponse.ERROR(
+        res,
+        `${this.enumError.CONTROLER_ERROR}error al eliminar el producto `,
+        {
+          error: error.message,
+        },
+      );
     }
   };
 }
