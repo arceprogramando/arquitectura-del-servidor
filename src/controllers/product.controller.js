@@ -88,7 +88,7 @@ class ProductController {
         description: product.description,
         price: product.price,
         category: product.category,
-        thumbnails: product.thumbnails,
+        thumbnail: product.thumbnails,
       }));
       return res.json(simplifiedProducts);
     } catch (error) {
