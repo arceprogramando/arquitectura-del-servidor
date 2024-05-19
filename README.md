@@ -1,13 +1,15 @@
-# Arquitectura De un Servidor Javascript , Node, Express , MongoDB
+# Arquitectura de UNA API
+
+<img src="SwaggerAPI.PNG"></img>
 
 ## 🧞 Commands 
 
 | Command                   | Action                                           |
 | :------------------------ | :----------------------------------------------- |
 | `npm install`             |Para instalar las dependencias necesarias del proyecto|
-| `npm run start:dev`             |Para inicializar el proyecto en dev necesita variables de entorno |
-| `npm run start:test`             |Para inicializar el proyecto en test necesita variables de entorno |
-| `npm run start:prod`             |Para inicializar el proyecto en prod necesita variables de entorno |
+| `npm run start:dev`       |Para inicializar el proyecto en dev necesita variables de entorno |
+| `npm run start:test`      |Para inicializar el proyecto en test necesita variables de entorno |
+| `npm run start:prod`      |Para inicializar el proyecto en prod necesita variables de entorno |
 
 # Estructura Variables de entorno
 
@@ -58,7 +60,6 @@
 | ✅ [swagger-jsdoc]  | Para documentar la API. |
 | ✅ [swagger-ui-express]  | Para documentar la API. |
 
-  [Coderhouse]: <https://plataforma.coderhouse.com/cursos/43335/programacion-backend>
   [arceprogramando]: <https://github.com/arceprogramando>
   [node.js]: <http://nodejs.org>
   [express]: <http://expressjs.com>
@@ -67,7 +68,6 @@
   [cors]:<https://www.npmjs.com/package/cors>
   [dotenv]:<https://www.npmjs.com/package/dotenv>
   [cookie-parser]:<https://www.npmjs.com/package/cookie-parser>
-  [express-handlebars]:<https://www.npmjs.com/package/express-handlebars>
   [mongoose]:<https://www.npmjs.com/package/mongoose>
   [mongoose-paginate-v2]:<https://www.npmjs.com/package/mongoose-paginate-v2>
   [tailwind]:<https://tailwindcss.com>
