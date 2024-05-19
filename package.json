@@ -1,6 +1,6 @@
 {
   "name": "proyecto-final-retocado",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "proyecto final retocado limpiando cosas innecesarias",
   "main": "app.js",
   "type": "module",
@@ -27,7 +27,6 @@
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "express-compression": "^1.0.2",
-    "express-handlebars": "^7.1.0",
     "express-routemap": "^1.6.0",
     "express-session": "^1.17.3",
     "http-status-codes": "^2.2.0",
