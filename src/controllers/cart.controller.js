@@ -46,8 +46,10 @@ class CartController {
           carts: limitedCarts,
         });
       }
-      if (!(carts.length < 0)) return req.logger.info(`Tomando carritos: ${carts.length}`, carts);
+      if (!(carts.length < 0)) {
+        req.logger.info(`Tomando carritos: ${carts.length}`, carts);
 
+      }
       return this.httpResponse.OK(res, 'Tomando Carritos', { carts });
     } catch (error) {
       req.logger.error('Error al traer los carritos:', error);

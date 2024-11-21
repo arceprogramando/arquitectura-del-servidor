@@ -28,6 +28,7 @@
 - **CLOUDINARYCLOUD_NAME==83sdp479q**(example)
 - **CLOUDINARYAPI_KEY=145546893824915**(example)
 - **CLOUDINARYAPISECRET=s_uCHpv-g4O1UBwM3n9kSuWWt-u**(example)
+- **COLLECTION_NAME=products**(example)
 
 ## Para la nueva estructura de mis commits voy a utilizar https://www.conventionalcommits.org/en/v1.0.0/
 
