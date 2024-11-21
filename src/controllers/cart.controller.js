@@ -46,11 +46,11 @@ class CartController {
           carts: limitedCarts,
         });
       }
-      if (!(carts.length < 0)) {
-        req.logger.info(`Tomando carritos: ${carts.length}`, carts);
+      if (!(carts.length < 0)) req.logger.info(`Tomando ${carts.length} carritos: `, carts);
 
-      }
-      return this.httpResponse.OK(res, 'Tomando Carritos', { carts });
+      return this.httpResponse.OK(res, `Tomando ${carts.length} carritos: `, {
+        carts,
+      });
     } catch (error) {
       req.logger.error('Error al traer los carritos:', error);
       return this.httpResponse.ERROR(
@@ -72,8 +72,8 @@ class CartController {
           `${this.enumError.INVALID_PARAMS}La cart con id  ${cId} no existe`,
         );
       }
-      req.logger.info(`Se encontró la cart con id:${cId}`, cart);
-      return this.httpResponse.OK(res, `Se encontro la cart con id:${cId} `, {
+      req.logger.info(`Se encontró el carrito con id: ${cId}`, cart);
+      return this.httpResponse.OK(res, `Se encontro el carrito con el ID: ${cId} `, {
         cart,
       });
     } catch (error) {
