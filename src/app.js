@@ -47,10 +47,6 @@ app.use(
   session({
     store: mongoStore.create({
       mongoUrl: `${app.get('DB_CNN')}${app.get('COLLECTION_NAME')}`,
-      mongoOptions: {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      },
       ttl: 1000,
     }),
     secret: `${app.get('EXPRESS_SESSION_SECRET')}`,

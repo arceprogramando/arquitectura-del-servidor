@@ -5,10 +5,6 @@ const { DB_CNN, BASE_URL, COLLECTION_NAME } = configObject;
 
 const configConnection = {
   url: `${DB_CNN}${COLLECTION_NAME}` ?? `mongodb://${BASE_URL}:/${COLLECTION_NAME}`,
-  options: {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  },
 };
 
 const mongoDBConnection = async () => {
