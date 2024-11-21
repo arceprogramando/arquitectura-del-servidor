@@ -5,7 +5,6 @@ config({
 });
 
 const {
-  DB_PORT,
   PORT,
   DB_CNN,
   DB_HOST,
@@ -24,7 +23,6 @@ const {
 } = process.env;
 
 const configObject = {
-  DB_PORT,
   PORT,
   DB_CNN,
   DB_HOST,

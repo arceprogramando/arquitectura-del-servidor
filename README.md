@@ -14,7 +14,6 @@
 # Estructura Variables de entorno
 
 - **PORT=8080** (example)
-- **DB_PORT=27017** (example)
 - **DB_CNN=mongodb+srv://Example:Example@ecommerce.mhqm9ea.mongodb.net/**
 - **DB_HOST=localhost** (example)
 - **COLLECTION_NAME=ecommerceexample** (example)
