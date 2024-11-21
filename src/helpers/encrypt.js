@@ -1,14 +1,24 @@
-import bcrypt from 'bcrypt';
+import argon2 from 'argon2';
 
 const createHash = async (password) => {
-  const saltRounds = 10;
-  const salt = await bcrypt.genSalt(saltRounds);
-  return bcrypt.hash(password, salt);
+  return await argon2.hash(password);
 };
 
-const isValidPassword = (password, user) => bcrypt.compareSync(password, user.password);
+const isValidPassword = async (password, user) => {
+  try {
+    return await argon2.verify(user.password, password);
+  } catch (err) {
+    return false;
+  }
+};
 
-const comparePasswords = (password, hashedPassword) => bcrypt.compareSync(password, hashedPassword);
+const comparePasswords = async (password, hashedPassword) => {
+  try {
+    return await argon2.verify(hashedPassword, password);
+  } catch (err) {
+    return false;
+  }
+};
 
 const encrypt = {
   createHash,
