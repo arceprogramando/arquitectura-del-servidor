@@ -192,6 +192,8 @@ class UserController {
         role: user.role,
       }));
 
+      if (simplifiedUsers.length <= 0) return this.httpResponse.OK(res, 'No hay usuarios para mostrar', { simplifiedUsers });
+      
       return this.httpResponse.OK(res, 'Usuarios traidos exitosamente', { simplifiedUsers });
     } catch (error) {
       return this.httpResponse.ERROR(

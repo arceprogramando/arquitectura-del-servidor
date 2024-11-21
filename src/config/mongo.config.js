@@ -2,11 +2,9 @@ import mongoose from 'mongoose';
 import configObject from './configenvironment.js';
 
 const { DB_CNN, BASE_URL, COLLECTION_NAME } = configObject;
-console.log(COLLECTION_NAME);
 const configConnection = {
   url: `${DB_CNN}/${COLLECTION_NAME}` ?? `mongodb://${BASE_URL}:/${COLLECTION_NAME}`,
 };
-console.log(configConnection.url)
 const mongoDBConnection = async () => {
   try {
     await mongoose.connect(configConnection.url, configConnection.options);
