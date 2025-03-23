@@ -23,22 +23,6 @@ npm install express cors dotenv cookie-parser express-handlebars mongoose mongoo
 
 ```
 
-# Estructura Variables de entorno
-
-- **PORT=8080** (example)
-- **DB_PORT=27017** (example)
-- **DB_CNN=mongodb+srv://Example:Example@ecommerce.mhqm9ea.mongodb.net/**
-- **DB_HOST=localhost** (example)
-- **COLLECTION_NAME=ecommerceexample** (example)
-- **NODE_ENV=devexample** (example)
-- **GITHUB_CLIENT_ID=26cefeb1545d2aa3581a** (example)
-- **GITHUB_CLIENT_SECRET=b855264f7625130617f1604c340b88** (example)
-- **PERSISTENCE=MONGO** (example)
-- **EMAIL=cndograepromaar@gmail.com** (example)
-- **PSW_EMAIL=gugybzlvfagaarua** (example)
-- **BASE_URL=http://localhost:8080** (example)
-- **CLOUDINARYAPISECRET=s_uCHpv-g4O1UBwM3n9kSuWWt-u(example)
-
 ### Como seguir estructura de commits a futuro
 
 - 🌈 Change Styles: Úsarlo para commits que afecten principalmente la apariencia o el diseño de la aplicación.
