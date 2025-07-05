@@ -52,6 +52,8 @@ app.set('NODE_ENV', env.NODE_ENV || 'development');
 app.set('DB_CNN', env.DB_CNN);
 app.set('COLLECTION_NAME', env.COLLECTION_NAME);
 app.set('BASE_URL', env.BASE_URL);
+app.set('SESSION_SECRET', env.SESSION_SECRET || 'mi_clave_secreta');
+app.set('CORS_ORIGIN', env.CORS_ORIGIN || '*');
 
 app.use(
   session({

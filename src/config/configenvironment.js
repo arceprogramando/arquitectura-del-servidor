@@ -19,6 +19,7 @@ const {
   BASE_URL,
   CLOUDINARYAPISECRET,
   SESSION_SECRET,
+  CORS_ORIGIN,
 } = process.env;
 
 const configObject = {
@@ -36,6 +37,7 @@ const configObject = {
   BASE_URL,
   CLOUDINARYAPISECRET,
   SESSION_SECRET,
+  CORS_ORIGIN,
 };
 
 export default configObject;
