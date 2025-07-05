@@ -9,6 +9,7 @@
     "start:prod": "cross-env NODE_ENV=prod nodemon ./src/app.js",
     "start:qa": "cross-env NODE_ENV=qa nodemon ./src/app.js",
     "start:dev": "cross-env NODE_ENV=dev nodemon ./src/app.js",
+    "dev": "cross-env NODE_ENV=dev nodemon ./src/app.js",
     "start:test": "cross-env NODE_ENV=dev nodemon ./src/app.js",
     "test": "cross-env NODE_ENV=dev mocha test/supertest.test.js",
     "test:unit": "cross-env NODE_ENV=dev mocha",
