@@ -34,6 +34,7 @@ app.use(
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
   }),
 );
+
 app.use(cookieParser());
 app.use(compression({ brotli: { enable: true, zlib: {} } }));
 app.use(setLogger);
@@ -62,7 +63,7 @@ app.use(
       },
       ttl: 1000,
     }),
-    secret: 'mi_clave_secreta',
+    secret: app.get('SESSION_SECRET') || 'mi_clave_secreta',
     saveUninitialized: false,
     resave: false,
   }),
@@ -73,9 +74,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.listen(app.get('PORT'), () => {
-  console.log(
-    `====== ${app.get('BASE_URL')} =====`,
-  );
+  console.log(`====== ${app.get('BASE_URL')} =====`);
   displayRoutes(app);
   initializeDatabase();
 });

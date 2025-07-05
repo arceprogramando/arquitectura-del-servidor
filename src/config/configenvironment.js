@@ -18,6 +18,7 @@ const {
   PSW_EMAIL,
   BASE_URL,
   CLOUDINARYAPISECRET,
+  SESSION_SECRET,
 } = process.env;
 
 const configObject = {
@@ -34,6 +35,7 @@ const configObject = {
   PSW_EMAIL,
   BASE_URL,
   CLOUDINARYAPISECRET,
+  SESSION_SECRET,
 };
 
 export default configObject;
