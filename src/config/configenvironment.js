@@ -20,6 +20,7 @@ const {
   CLOUDINARYAPISECRET,
   SESSION_SECRET,
   CORS_ORIGIN,
+  METHOD_ORIGINS,
 } = process.env;
 
 const configObject = {
@@ -38,6 +39,7 @@ const configObject = {
   CLOUDINARYAPISECRET,
   SESSION_SECRET,
   CORS_ORIGIN,
+  METHOD_ORIGINS,
 };
 
 export default configObject;
