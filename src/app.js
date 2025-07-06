@@ -11,19 +11,10 @@ import passport from 'passport';
 import compression from 'express-compression';
 import configObject from './config/configenvironment.js';
 import __dirname from './utils.js';
-import viewsRouter from './routes/views.router.js';
-import userRoutes from './routes/user.routes.js';
 import initializePassport from './config/passport.config.js';
-import productRouter from './routes/products.routes.js';
-import cartRouter from './routes/carts.routes.js';
-import messageRouter from './routes/message.routes.js';
-import sendEmail from './routes/email.routes.js';
-import sessionRouter from './routes/session.routes.js';
-import ticketRouter from './routes/ticket.routes.js';
-import docsRouter from './routes/docs.routes.js';
 import initializeDatabase from './dao/factory.js';
 import setLogger from './utils/logger.js';
-import loggerRouter from './routes/logger.routes.js';
+import setupRoutes from './config/routes.config.js';
 
 const app = express();
 const env = configObject;
@@ -75,19 +66,10 @@ initializePassport();
 app.use(passport.initialize());
 app.use(passport.session());
 
+setupRoutes(app);
+
 app.listen(app.get('PORT'), () => {
   console.log(`====== ${app.get('BASE_URL')} =====`);
   displayRoutes(app);
   initializeDatabase();
 });
-
-app.use('/', viewsRouter);
-app.use('/api/users', userRoutes);
-app.use('/api/session', sessionRouter);
-app.use('/api/products', productRouter);
-app.use('/api/carts', cartRouter);
-app.use('/api/chat', messageRouter);
-app.use('/api/email', sendEmail);
-app.use('/api/tickets', ticketRouter);
-app.use('/loggertest', loggerRouter);
-app.use('/api/docs', docsRouter);
