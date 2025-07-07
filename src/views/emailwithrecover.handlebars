@@ -1,24 +1,32 @@
-<header class='bg-black'>
-  <h1 class='text-white text-center uppercase text-2xl py-2'>E-commerce</h1>
-</header>
-<div class="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem]"></div>
+<div
+  class='absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem]'
+></div>
 
+<div class='min-h-screen flex items-center justify-center'>
+  <div class='bg-white p-8 rounded shadow-md w-96'>
+    <h1 class='text-2xl font-semibold mb-6'>Recuperación de Contraseña</h1>
 
-<div class="min-h-screen flex items-center justify-center">
-    <div class="bg-white p-8 rounded shadow-md w-96">
-        <h1 class="text-2xl font-semibold mb-6">Recuperación de Contraseña</h1>
+    <form action='/api/session/recoverwithemail' method='post'>
+      <div class='mb-4'>
+        <label
+          for='email'
+          class='block text-sm font-medium text-gray-600'
+        >Correo</label>
+        <input
+          type='email'
+          name='email'
+          id='email'
+          placeholder='Introduzca su correo'
+          class='mt-1 p-2 w-full border rounded-md'
+        />
+      </div>
 
-        <form action="/api/session/recoverwithemail" method="post">
-            <div class="mb-4">
-                <label for="email" class="block text-sm font-medium text-gray-600">Correo</label>
-                <input type="email" name="email" id="email" placeholder="Introduzca su correo"
-                    class="mt-1 p-2 w-full border rounded-md">
-            </div>
-
-            <button type="submit"
-                class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">
-                Recuperar Contraseña
-            </button>
-        </form>
-    </div>
+      <button
+        type='submit'
+        class='bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300'
+      >
+        Recuperar Contraseña
+      </button>
+    </form>
+  </div>
 </div>

@@ -1,79 +1,114 @@
-<header class='bg-black'>
-  <h1 class='text-white text-center uppercase text-2xl py-2'>E-commerce</h1>
-</header>
-<div class="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem]"></div>
+<div
+  class='absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem]'
+></div>
 
 <div>
-    <h1 data-uId="{{uId}}">PERFIL DEL USUARIO</h1>
+  <h1 data-uId='{{uId}}'>PERFIL DEL USUARIO</h1>
 
-    <div class="col-md-4 my-auto">
-        {{#if profileImage}}
-        {{else}}
-        <form class="card card-body rounded-0" id="profileForm" action="/api/users/{{uId}}/documents" method="POST"
-            enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="profileImage">Cargar Imagen de Perfil:</label>
-                <input type="file" name="profileImage" accept="image/*" class="form-control rounded-0 mb-1">
-            </div>
-            <button class="btn btn-dark rounded-0">Enviar</button>
-        </form>
-        {{/if}}
-    </div>
+  <div class='col-md-4 my-auto'>
+    {{#if profileImage}}{{else}}
+      <form
+        class='card card-body rounded-0'
+        id='profileForm'
+        action='/api/users/{{uId}}/documents'
+        method='POST'
+        enctype='multipart/form-data'
+      >
+        <div class='form-group'>
+          <label for='profileImage'>Cargar Imagen de Perfil:</label>
+          <input
+            type='file'
+            name='profileImage'
+            accept='image/*'
+            class='form-control rounded-0 mb-1'
+          />
+        </div>
+        <button class='btn btn-dark rounded-0'>Enviar</button>
+      </form>
+    {{/if}}
+  </div>
 
-    <p>{{firstname}} {{lastname}}</p>
-    <p>Edad: {{age}}</p>
-    <p>Email: {{email}}</p>
-    <div>
-        <form action="/api/session/logout" method="get">
-            <br />
-            <button type="submit">Cerrar sesión</button>
-        </form>
-    </div>
+  <p>{{firstname}} {{lastname}}</p>
+  <p>Edad: {{age}}</p>
+  <p>Email: {{email}}</p>
+  <div>
+    <form action='/api/session/logout' method='get'>
+      <br />
+      <button type='submit'>Cerrar sesión</button>
+    </form>
+  </div>
 
-    <h2>Actualizar Usuario para pasarse a premium</h2>
+  <h2>Actualizar Usuario para pasarse a premium</h2>
 
-    <div class="col-md-4 my-auto">
-        {{#if identificationImage}}
-        {{else}}
-        <form class="card card-body rounded-0" id="identificationForm" action="/api/users/{{uId}}/documents"
-            method="POST" enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="identificationImage">Subir identificación:</label>
-                <input type="file" name="identificationImage" accept="image/*" class="form-control rounded-0 mb-1">
-            </div>
-            <button class="btn btn-dark rounded-0">Enviar</button>
-        </form>
-        {{/if}}
-    </div>
+  <div class='col-md-4 my-auto'>
+    {{#if identificationImage}}{{else}}
+      <form
+        class='card card-body rounded-0'
+        id='identificationForm'
+        action='/api/users/{{uId}}/documents'
+        method='POST'
+        enctype='multipart/form-data'
+      >
+        <div class='form-group'>
+          <label for='identificationImage'>Subir identificación:</label>
+          <input
+            type='file'
+            name='identificationImage'
+            accept='image/*'
+            class='form-control rounded-0 mb-1'
+          />
+        </div>
+        <button class='btn btn-dark rounded-0'>Enviar</button>
+      </form>
+    {{/if}}
+  </div>
 
-    <div class="col-md-4 my-auto">
-        {{#if residenceImage}}
-        {{else}}
-        <form class="card card-body rounded-0" id="residenceForm" action="/api/users/{{uId}}/documents" method="POST"
-            enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="residenceImage">Comprobante de domicilio:</label>
-                <input type="file" name="residenceImage" accept="image/*" class="form-control rounded-0 mb-1">
-            </div>
-            <button class="btn btn-dark rounded-0">Enviar</button>
-        </form>
-        {{/if}}
-    </div>
+  <div class='col-md-4 my-auto'>
+    {{#if residenceImage}}{{else}}
+      <form
+        class='card card-body rounded-0'
+        id='residenceForm'
+        action='/api/users/{{uId}}/documents'
+        method='POST'
+        enctype='multipart/form-data'
+      >
+        <div class='form-group'>
+          <label for='residenceImage'>Comprobante de domicilio:</label>
+          <input
+            type='file'
+            name='residenceImage'
+            accept='image/*'
+            class='form-control rounded-0 mb-1'
+          />
+        </div>
+        <button class='btn btn-dark rounded-0'>Enviar</button>
+      </form>
+    {{/if}}
+  </div>
 
-    <div class="col-md-4 my-auto">
-        {{#if accountStatusImage}}
-        {{else}}
-        <form class="card card-body rounded-0" id="accountStatusForm" action="/api/users/{{uId}}/documents"
-            method="POST" enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="accountStatusImage">Comprobante de estado de cuenta:</label>
-                <input type="file" id="document" name="accountStatusImage" accept="image/*"
-                    class="form-control rounded-0 mb-1">
-            </div>
-            <button class="btn btn-dark rounded-0">Enviar</button>
-        </form>
-        {{/if}}
-    </div>
+  <div class='col-md-4 my-auto'>
+    {{#if accountStatusImage}}{{else}}
+      <form
+        class='card card-body rounded-0'
+        id='accountStatusForm'
+        action='/api/users/{{uId}}/documents'
+        method='POST'
+        enctype='multipart/form-data'
+      >
+        <div class='form-group'>
+          <label for='accountStatusImage'>Comprobante de estado de cuenta:</label>
+          <input
+            type='file'
+            id='document'
+            name='accountStatusImage'
+            accept='image/*'
+            class='form-control rounded-0 mb-1'
+          />
+        </div>
+        <button class='btn btn-dark rounded-0'>Enviar</button>
+      </form>
+    {{/if}}
+  </div>
 </div>
 
-<script src="/js/completeproducts.js"></script>
+<script src='/js/completeproducts.js'></script>

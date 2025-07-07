@@ -1,0 +1,40 @@
+<!-- Ejemplo de cómo usar el nuevo layout -->
+
+<!-- Contenido principal de la página -->
+<div class='space-y-6'>
+  <div class='bg-blue-50 border border-blue-200 rounded-lg p-6'>
+    <h2 class='text-lg font-semibold text-blue-900 mb-2'>¡Bienvenido!</h2>
+    <p class='text-blue-700'>
+      Esta es una página de ejemplo usando los nuevos componentes modulares.
+    </p>
+  </div>
+
+  <div class='grid grid-cols-1 md:grid-cols-2 gap-6'>
+    <div class='bg-white border border-gray-200 rounded-lg p-6'>
+      <h3 class='text-lg font-medium text-gray-900 mb-3'>Características</h3>
+      <ul class='space-y-2 text-gray-600'>
+        <li>✅ Layout modular con componentes reutilizables</li>
+        <li>✅ Header responsive con navegación</li>
+        <li>✅ Footer con enlaces organizados</li>
+        <li>✅ Estilos con Tailwind CSS</li>
+      </ul>
+    </div>
+
+    <div class='bg-white border border-gray-200 rounded-lg p-6'>
+      <h3 class='text-lg font-medium text-gray-900 mb-3'>Cómo usar</h3>
+      <p class='text-gray-600 mb-3'>
+        Para usar estos componentes en tus vistas, simplemente pasa los datos
+        necesarios desde tu controlador:
+      </p>
+      <div class='bg-gray-100 rounded p-3 text-sm'>
+        <code class='text-gray-800'>
+          res.render('mi-vista', {<br />
+          &nbsp;&nbsp;title: 'Mi Página',<br />
+          &nbsp;&nbsp;pageTitle: 'Título Principal',<br />
+          &nbsp;&nbsp;user: req.user<br />
+          });
+        </code>
+      </div>
+    </div>
+  </div>
+</div>

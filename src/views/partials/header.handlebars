@@ -1,0 +1,71 @@
+<header class="bg-white shadow-sm border-b border-gray-200"></header>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <div class="flex items-center">
+        <h1 class="text-xl font-semibold text-gray-900">
+          <a href="/" class="hover:text-gray-700 transition-colors">
+            {{#if brandName}}{{brandName}}{{else}}Mi App{{/if}}
+          </a>
+        </h1>
+      </div>
+
+      <nav class="hidden md:flex space-x-8">
+        
+        <a href="/products" class="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+          Productos
+        </a>
+        <a href="/api/docs" class="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+          API Docs
+        </a>
+      </nav>
+
+      <div class="flex items-center space-x-4">
+        {{#if user}}
+          <span class="text-sm text-gray-700">Hola, {{user.first_name}}</span>
+          <a href="/profile" class="bg-blue-600 text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors">
+            Perfil
+          </a>
+          <a href="/logout" class="text-gray-500 hover:text-gray-700 text-sm font-medium transition-colors">
+            Salir
+          </a>
+        {{else}}
+          <a href="/" class="text-gray-500 hover:text-gray-700 text-sm font-medium transition-colors">
+            Iniciar Sesión
+          </a>
+          <a href="/register" class="bg-blue-600 text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors">
+            Registrarse
+          </a>
+        {{/if}}
+      </div>
+
+      <div class="md:hidden">
+        <button type="button" class="text-gray-500 hover:text-gray-700 focus:outline-none focus:text-gray-700" onclick="toggleMobileMenu()">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="md:hidden hidden">
+      <div class="px-2 pt-2 pb-3 space-y-1 border-t border-gray-200">
+        <a href="/" class="block text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md text-base font-medium transition-colors">
+          Inicio
+        </a>
+        <a href="/products" class="block text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md text-base font-medium transition-colors">
+          Productos
+        </a>
+        <a href="/api/docs" class="block text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md text-base font-medium transition-colors">
+          API Docs
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  function toggleMobileMenu() {
+    const menu = document.getElementById('mobile-menu');
+    menu.classList.toggle('hidden');
+  }
+</script>

@@ -1,11 +1,12 @@
-<header class='bg-black'>
-  <h1 class='text-white text-center uppercase text-2xl py-2'>E-commerce</h1>
-</header>
-<div class="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem]"></div>
+<div
+  class='absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem]'
+></div>
 
-<main class='flex flex-col container mx-auto sm:flex-row justify-center items-center px-6 lg:px-8'>
-  
-  <div class='mt-10 sm:mx-auto  p-4'>
+<main
+  class='flex flex-col container mx-auto sm:flex-row justify-center items-center px-6 lg:px-8'
+>
+
+  <div class='mt-10 sm:mx-auto p-4'>
     <div class='p-8'>
 
       <p class='text-center font-semibold uppercase mb-2'>¡Qué bueno, volviste!</p>
@@ -15,44 +16,69 @@
 
       <form action='/api/session/login' method='post' class='space-y-6 mb-8'>
         <div>
-          <label for='email' class='block text-sm font-medium text-gray-900 uppercase'>Correo Electronico</label>
+          <label
+            for='email'
+            class='block text-sm font-medium text-gray-900 uppercase'
+          >Correo Electronico</label>
           <div class='mt-2'>
-            <input type='email' name='email' id='email' autocomplete='email'
+            <input
+              type='email'
+              name='email'
+              id='email'
+              autocomplete='email'
               placeholder='introduzca su correo electronico'
-              class='block w-full rounded-md border-0 pl-1 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6' />
+              class='block w-full rounded-md border-0 pl-1 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+            />
           </div>
         </div>
 
         <div>
           <div class='flex items-center justify-between'>
-            <label for='password' class='block text-sm font-medium leading-6 text-gray-900 uppercase'>Contraseña</label>
+            <label
+              for='password'
+              class='block text-sm font-medium leading-6 text-gray-900 uppercase'
+            >Contraseña</label>
             <div class='text-sm'>
-              <a href='/emailwithrecover' class='font-semibold text-indigo-600 hover:text-indigo-500'>¿Olvidaste tu
-                contraseña?</a>
+              <a
+                href='/emailwithrecover'
+                class='font-semibold text-indigo-600 hover:text-indigo-500'
+              >¿Olvidaste tu contraseña?</a>
             </div>
           </div>
           <div>
-            <input type='password' name='password' id='password' autocomplete='current-password'
-              placeholder='Introduzca su contraseña' required
-              class='block w-full rounded-md border-0 py-1.5 pl-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6' />
+            <input
+              type='password'
+              name='password'
+              id='password'
+              autocomplete='current-password'
+              placeholder='Introduzca su contraseña'
+              required
+              class='block w-full rounded-md border-0 py-1.5 pl-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+            />
           </div>
         </div>
-        <button type='submit'
-          class='flex w-full mb-4 uppercase justify-center bg-black px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'>Ingresar</button>
+        <button
+          type='submit'
+          class='flex w-full mb-4 uppercase justify-center bg-black px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+        >Ingresar</button>
       </form>
       <div class='grid grid-cols-2 gap-4'>
         <div class='p-2'>
           <a href='/api/session/github'>
-            <button type='submit'
-              class='w-full mb-8 uppercase bg-black px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'>
+            <button
+              type='submit'
+              class='w-full mb-8 uppercase bg-black px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+            >
               Logearse Con Github
             </button>
           </a>
         </div>
         <div class='p-2'>
           <a href='/api/session/github'>
-            <button type='submit'
-              class='w-full bg-black uppercase px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'>
+            <button
+              type='submit'
+              class='w-full bg-black uppercase px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+            >
               Logearse Con Github
             </button>
           </a>
@@ -61,7 +87,9 @@
     </div>
 
   </div>
-  <div class='flex flex-col items-center justify-center text-center text-sm mt-10 sm:mx-auto sm:w-full max-w-[500px]'>
+  <div
+    class='flex flex-col items-center justify-center text-center text-sm mt-10 sm:mx-auto sm:w-full max-w-[500px]'
+  >
     <div class='p-8'>
 
       <p class='font-semibold uppercase mb-2'>¿Primera vez?</p>
@@ -75,7 +103,8 @@
         <p class='text-blue-500 px-3 py-2'>Envío gratis a CABA</p>
       </div>
       <button
-        class='mt-6 uppercase bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'>
+        class='mt-6 uppercase bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+      >
         <a href='/register'>Crear Cuenta</a>
       </button>
     </div>

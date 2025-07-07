@@ -35,7 +35,21 @@ app.use(express.static(`${__dirname}/public`));
 app.use(express.json({ limit: '500kb' }));
 app.use(express.urlencoded({ extended: true }));
 
-app.engine('handlebars', engine());
+app.engine(
+  'handlebars',
+  engine({
+    defaultLayout: 'main',
+    partialsDir: `${__dirname}/views/partials`,
+    helpers: {
+      // Helper para el año actual
+      currentYear: () => new Date().getFullYear(),
+      // Helper para comparaciones
+      eq: (a, b) => a === b,
+      // Helper para formatear fechas
+      formatDate: (date) => new Date(date).toLocaleDateString('es-ES'),
+    },
+  }),
+);
 app.set('views', `${__dirname}/views`);
 app.set('view engine', 'handlebars');
 

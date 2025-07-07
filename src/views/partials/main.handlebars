@@ -1,0 +1,28 @@
+<main class='flex-1 bg-gray-50'>
+  <div class='max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8'>
+    {{#if pageTitle}}
+      <div class='mb-6'>
+        <h1 class='text-2xl font-bold text-gray-900'>{{pageTitle}}</h1>
+        {{#if pageDescription}}
+          <p class='mt-2 text-gray-600'>{{pageDescription}}</p>
+        {{/if}}
+      </div>
+    {{/if}}
+
+    <div class='bg-white shadow rounded-lg'>
+      <div class='px-6 py-6'>
+        {{{content}}}
+      </div>
+    </div>
+
+    {{#if sidebarContent}}
+      <div class='mt-6'>
+        <div class='bg-white shadow rounded-lg'>
+          <div class='px-6 py-6'>
+            {{{sidebarContent}}}
+          </div>
+        </div>
+      </div>
+    {{/if}}
+  </div>
+</main>
