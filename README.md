@@ -11,32 +11,25 @@
 
 npm install
 
-npm run start:prod
+npm run dev
 
-```
-
-### Todos los paquetes desde cero
-
-```sh
-npm init @eslint/config
-
-npm install cross-env  nodemon  @faker-js/faker chai mocha -D
-
-npm install express cors dotenv cookie-parser express-handlebars mongoose mongoose-paginate-v2 multer bcrypt passport passport-github2 connect-mongo express-session uuid nodemailer express-compression http-status-codes winston swagger-jsdoc swagger-ui-express supertest
+Se deben el .env.dev.local o el ambiente correspondiente
 
 ```
 
 ### Como seguir estructura de commits a futuro
 
-- 🌈 Change Styles: Úsarlo para commits que afecten principalmente la apariencia o el diseño de la aplicación.
-- ✨ New Features: Usarlo cuando agregue una nueva característica o funcionalidad a la aplicación.
-- ⛔ Critical Changes: usarlo cuando se que contengan cambios críticos que puedan afectar gravemente el funcionamiento de la aplicación.
-- 🐛 Error Fix: Para commits que solucionen problemas o errores en el código existente.
-- 🧼 Cleanup: Utiliza este emoji cuando realices tareas delimpieza de código, sin cambios funcionales.
-- 🚀 Refactor: Marca commits que mejoren el rendimiento de la aplicación o cambios funcionales.
-- 🚧 Work in Progress: Usarlo para indicar que el commit contiene trabajo en progreso que no está listo para ser implementado.
-- 📚 student in progress : usarlo para indicar que es un elemento a estudiar a futuro
-- 📁 Added archives : Commit para publicaciones donde se agreguen archivos necesarios
+> 📌 Este proyecto sigue [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).  
+> Usalo para mantener un historial de cambios legible y estructurado.
+
+#### Examples
+
+- `feat: add login functionality`
+- `fix: correct form validation`
+- `refactor: simplify route logic`
+- `chore: update dependencies`
+- `docs: add API usage instructions`
+- `test: add unit tests for auth service`
 
 ### Para realizar este Arquitectura
 
