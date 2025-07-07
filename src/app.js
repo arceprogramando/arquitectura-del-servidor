@@ -1,75 +1,57 @@
-// Server
-
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-import session from 'express-session';
-import mongoStore from 'connect-mongo';
-import displayRoutes from 'express-routemap';
+import compression from 'express-compression';
 import { engine } from 'express-handlebars';
 import passport from 'passport';
-import compression from 'express-compression';
-import configObject from './config/configenvironment.js';
+import displayRoutes from 'express-routemap';
+
 import __dirname from './utils.js';
-import initializePassport from './config/passport.config.js';
-import initializeDatabase from './dao/factory.js';
 import setLogger from './utils/logger.js';
+import configObject from './config/configenvironment.js';
+import initializePassport from './config/passport.config.js';
+import { setupSession } from './config/session.config.js';
 import setupRoutes from './config/routes.config.js';
+import initializeDatabase from './dao/factory.js';
 
 const app = express();
-const env = configObject;
+
+Object.entries(configObject).forEach(([key, value]) => {
+  app.set(key, value);
+});
 
 app.use(
   cors({
-    origin: '*',
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+    origin: app.get('CORS_ORIGIN') || '*',
+    methods: app.get('METHOD_ORIGINS').split(',') || 'GET,POST,PUT,DELETE',
+    credentials: true,
   }),
 );
-
 app.use(cookieParser());
 app.use(compression({ brotli: { enable: true, zlib: {} } }));
 app.use(setLogger);
 
 app.use(express.static(`${__dirname}/public`));
-app.use(express.json());
+app.use(express.json({ limit: '500kb' }));
 app.use(express.urlencoded({ extended: true }));
 
 app.engine('handlebars', engine());
 app.set('views', `${__dirname}/views`);
 app.set('view engine', 'handlebars');
 
-app.set('PORT', env.PORT || 8080);
-app.set('NODE_ENV', env.NODE_ENV || 'development');
-app.set('DB_CNN', env.DB_CNN);
-app.set('COLLECTION_NAME', env.COLLECTION_NAME);
-app.set('BASE_URL', env.BASE_URL);
-app.set('SESSION_SECRET', env.SESSION_SECRET || 'mi_clave_secreta');
-app.set('CORS_ORIGIN', env.CORS_ORIGIN || '*');
-
-app.use(
-  session({
-    store: mongoStore.create({
-      mongoUrl: `${app.get('DB_CNN')}${app.get('COLLECTION_NAME')}`,
-      mongoOptions: {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      },
-      ttl: 1000,
-    }),
-    secret: app.get('SESSION_SECRET') || 'mi_clave_secreta',
-    saveUninitialized: false,
-    resave: false,
-  }),
-);
-
+setupSession(app);
 initializePassport();
+
 app.use(passport.initialize());
 app.use(passport.session());
 
 setupRoutes(app);
 
 app.listen(app.get('PORT'), () => {
-  console.log(`====== ${app.get('BASE_URL')} =====`);
-  displayRoutes(app);
   initializeDatabase();
+  if (app.get('NODE_ENV') === 'dev') {
+    displayRoutes(app);
+    console.log('====== Corriendo en modo desarrollo ======');
+    console.log(`====== Corriendo en ${app.get('BASE_URL')} =====`);
+  }
 });
