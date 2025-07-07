@@ -82,7 +82,7 @@ Se deben integrar el .env.dev.local o el ambiente correspondiente
 [passport-local]: https://www.passportjs.org/packages/passport-local/
 [uuid]: https://www.npmjs.com/package/uuid
 [nodemailer]: https://www.npmjs.com/package/nodemailer
-[express-compression]: https://www.npmjs.com/package/compression
+[compression]: https://www.npmjs.com/package/compression
 [http-status-codes]: https://www.npmjs.com/package/http-status-codes
 [winston]: https://www.npmjs.com/package/winston
 [artillery]: https://www.npmjs.com/package/artillery
