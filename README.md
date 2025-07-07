@@ -60,8 +60,6 @@ Se deben integrar el .env.dev.local o el ambiente correspondiente
 | ✅ [swagger-jsdoc]        | Para documentar la API.                                                                                                                                |
 | ✅ [swagger-ui-express]   | Para documentar la API.                                                                                                                                |
 
-# Tareas Pendientes
-
 [Coderhouse]: https://plataforma.coderhouse.com/cursos/43335/programacion-backend
 [arceprogramando]: https://github.com/arceprogramando
 [node.js]: http://nodejs.org
