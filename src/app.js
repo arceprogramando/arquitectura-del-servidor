@@ -11,7 +11,7 @@ import setLogger from './utils/logger.js';
 import configObject from './config/configenvironment.js';
 import initializePassport from './config/passport.config.js';
 import { setupSession } from './config/session.config.js';
-import setupRoutes from './config/routes.config.js';
+import configureRoutes from './config/routes.config.js';
 import initializeDatabase from './dao/factory.js';
 
 const app = express();
@@ -45,7 +45,7 @@ initializePassport();
 app.use(passport.initialize());
 app.use(passport.session());
 
-setupRoutes(app);
+configureRoutes(app);
 
 app.listen(app.get('PORT'), () => {
   initializeDatabase();

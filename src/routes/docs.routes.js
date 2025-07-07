@@ -6,6 +6,8 @@ import swaggerOpts from '../config/swagger.config.js';
 const router = Router();
 const specs = swaggerJSDoc(swaggerOpts);
 
-router.use('/', swaggerUi.serve, swaggerUi.setup(specs));
+// Swagger UI necesita usar .use() para servir archivos estáticos correctamente
+router.use('/', swaggerUi.serve);
+router.get('/', swaggerUi.setup(specs));
 
 export default router;
