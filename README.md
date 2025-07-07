@@ -13,7 +13,7 @@ npm install
 
 npm run dev
 
-Se deben el .env.dev.local o el ambiente correspondiente
+Se deben integrar el .env.dev.local o el ambiente correspondiente
 
 ```
 
