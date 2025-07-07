@@ -1,10 +1,10 @@
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-import compression from 'express-compression';
 import { engine } from 'express-handlebars';
 import passport from 'passport';
 import displayRoutes from 'express-routemap';
+import compression from 'compression';
 
 import __dirname from './utils.js';
 import setLogger from './utils/logger.js';
