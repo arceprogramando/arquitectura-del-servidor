@@ -1,71 +1,65 @@
 import express from 'express';
-import cors from 'cors';
-import cookieParser from 'cookie-parser';
-import { engine } from 'express-handlebars';
-import passport from 'passport';
 import displayRoutes from 'express-routemap';
-import compression from 'compression';
 
-import __dirname from './utils.js';
-import setLogger from './utils/logger.js';
+import { setupMiddlewares, setupViewEngine, setupAuthentication } from './config/middleware.config.js';
 import configObject from './config/configenvironment.js';
-import initializePassport from './config/passport.config.js';
-import { setupSession } from './config/session.config.js';
 import configureRoutes from './config/routes.config.js';
 import initializeDatabase from './dao/factory.js';
 
-const app = express();
+const fastLogger = {
+  info: configObject.NODE_ENV === 'dev' ? console.log : () => {},
+  error: console.error,
+  warn: console.warn,
+  time: configObject.NODE_ENV === 'dev' ? console.time : () => {},
+  timeEnd: configObject.NODE_ENV === 'dev' ? console.timeEnd : () => {},
+};
 
-Object.entries(configObject).forEach(([key, value]) => {
-  app.set(key, value);
-});
+const initializeApp = () => {
+  const app = express();
 
-app.use(
-  cors({
-    origin: app.get('CORS_ORIGIN') || '*',
-    methods: app.get('METHOD_ORIGINS').split(',') || 'GET,POST,PUT,DELETE',
-    credentials: true,
-  }),
-);
-app.use(cookieParser());
-app.use(compression({ brotli: { enable: true, zlib: {} } }));
-app.use(setLogger);
+  try {
+    fastLogger.time('⏱️ Tiempo de inicialización total');
+    fastLogger.time('⏱️ Configuración de aplicación');
 
-app.use(express.static(`${__dirname}/public`));
-app.use(express.json({ limit: '500kb' }));
-app.use(express.urlencoded({ extended: true }));
+    Object.entries(configObject).forEach(([key, value]) => {
+      app.set(key, value);
+    });
 
-app.engine(
-  'handlebars',
-  engine({
-    defaultLayout: 'main',
-    partialsDir: `${__dirname}/views/partials`,
-    helpers: {
-      // Helper para el año actual
-      currentYear: () => new Date().getFullYear(),
-      // Helper para comparaciones
-      eq: (a, b) => a === b,
-      // Helper para formatear fechas
-      formatDate: (date) => new Date(date).toLocaleDateString('es-ES'),
-    },
-  }),
-);
-app.set('views', `${__dirname}/views`);
-app.set('view engine', 'handlebars');
+    setupMiddlewares(app);
+    setupViewEngine(app);
+    setupAuthentication(app);
+    configureRoutes(app);
 
-setupSession(app);
-initializePassport();
+    fastLogger.timeEnd('⏱️ Configuración de aplicación');
 
-app.use(passport.initialize());
-app.use(passport.session());
+    initializeDatabase()
+      .then(() => fastLogger.info('✅ Base de datos conectada'))
+      .catch((error) => fastLogger.error('❌ Error conectando a la base de datos:', error));
 
-configureRoutes(app);
-
-app.listen(app.get('PORT'), () => {
-  initializeDatabase();
-  if (app.get('NODE_ENV') === 'dev') {
-    displayRoutes(app);
-    console.log('====== Corriendo en modo desarrollo ======');
-    console.log(`====== Corriendo en ${app.get('BASE_URL')} =====`);
+    return app;
+  } catch (error) {
+    fastLogger.error('❌ Error durante la inicialización:', error);
+    process.exit(1);
+    return null;
   }
-});
+};
+
+const startServer = () => {
+  const app = initializeApp();
+
+  app.listen(app.get('PORT'), () => {
+    fastLogger.info('🚀 Servidor iniciado exitosamente');
+    fastLogger.info(`📍 URL: ${app.get('BASE_URL')}`);
+    fastLogger.info(`🌍 Entorno: ${app.get('NODE_ENV')}`);
+    fastLogger.info(`📡 Puerto: ${app.get('PORT')}`);
+
+    if (app.get('NODE_ENV') === 'dev') {
+      fastLogger.info('📋 Mostrando rutas disponibles:');
+      displayRoutes(app);
+    }
+
+    fastLogger.timeEnd('⏱️ Tiempo de inicialización total');
+  });
+};
+
+startServer();
