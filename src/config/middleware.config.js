@@ -32,7 +32,7 @@ export const setupViewEngine = (app) => {
   app.engine(
     'handlebars',
     engine({
-      defaultLayout: 'main',
+      defaultLayout: 'layout',
       partialsDir: `${__dirname}/views/partials`,
       helpers: {
         currentYear: () => new Date().getFullYear(),
