@@ -15,17 +15,33 @@ class UserController {
 
   logoutUser = async (req, res) => {
     try {
-      const { user } = req;
-      req.user.last_connection = new Date();
-      await user.save();
+      // Verificar si el usuario está autenticado
+      if (req.user) {
+        req.user.last_connection = new Date();
+        await req.user.save();
+      }
 
-      req.session.destroy();
+      // Destruir la sesión
+      return new Promise((resolve) => {
+        req.session.destroy((err) => {
+          if (err) {
+            console.error('Error al destruir la sesión:', err);
+            res.status(500).json({ error: 'Error al cerrar sesión' });
+            return resolve();
+          }
 
-      return res.redirect('/');
+          // Limpiar la cookie de sesión
+          res.clearCookie('connect.sid');
+
+          // Redirigir al inicio
+          res.redirect('/');
+          return resolve();
+        });
+      });
     } catch (error) {
       return this.httpResponse.ERROR(
         res,
-        `${this.enumError.CONTROLER_ERROR}error al crear el carrito`,
+        `${this.enumError.CONTROLER_ERROR}error al cerrar sesión`,
         { error: error.message },
       );
     }
@@ -161,7 +177,6 @@ class UserController {
         uploadedDocuments.residenceImage = true;
         filename = req.files.residenceImage.fieldname;
         await findUser.save();
-
       } else if (req.files.accountStatusImage) {
         uploadFolder = 'documents/accountStatusImage';
         uploadedDocuments.accountStatusImage = true;
@@ -170,7 +185,10 @@ class UserController {
       }
 
       const thumbnails = `/upload/${uploadFolder}/${filename}`;
-      console.log('🚀 ~ file: user.controllers.js:171 ~ UserController ~ uploadDocuments= ~ thumbnails:', thumbnails);
+      console.log(
+        '🚀 ~ file: user.controllers.js:171 ~ UserController ~ uploadDocuments= ~ thumbnails:',
+        thumbnails,
+      );
 
       return this.httpResponse.OK(res, 'Documentos cargados exitosamente');
     } catch (error) {
@@ -203,7 +221,6 @@ class UserController {
 
   deleteInactiveUsersAndNotify = async (req, res) => {
     try {
-
       const inactiveUsers = await this.userService.findInactiveUsers();
       const inactiveUserIds = inactiveUsers.map((user) => user._id.toString());
       const inactiveUserEmails = inactiveUsers.map((user) => user.email);
@@ -211,7 +228,9 @@ class UserController {
       await this.userService.notifyDeleteWithEmail(inactiveUserEmails);
       const deleteUsers = await this.userService.deleteManyUsers(inactiveUserIds);
 
-      return this.httpResponse.OK(res, 'Usuarios inactivos borrados correctamente', { deleteUsers });
+      return this.httpResponse.OK(res, 'Usuarios inactivos borrados correctamente', {
+        deleteUsers,
+      });
     } catch (error) {
       return this.httpResponse.ERROR(
         res,
@@ -227,7 +246,6 @@ class UserController {
       const deleteUser = await this.userService.deleteUserById(uId);
 
       return this.httpResponse.OK(res, 'Usuarios inactivos borrados correctamente', { deleteUser });
-
     } catch (error) {
       return this.httpResponse.ERROR(
         res,
@@ -242,7 +260,6 @@ class UserController {
 
       const changeRole = await this.userService.adminChangerRoles(uId);
       return this.httpResponse.OK(res, 'Usuarios inactivos borrados correctamente', { changeRole });
-
     } catch (error) {
       return this.httpResponse.ERROR(
         res,

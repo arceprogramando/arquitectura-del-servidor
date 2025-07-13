@@ -7,7 +7,7 @@ const userController = new UserController();
 
 router.post('/register', passport.authenticate('local-register', { failureRedirect: '/register', successRedirect: '/' }));
 
-router.post('/login', passport.authenticate('local-login', { failureRedirect: '/', successRedirect: '/profile' }));
+router.post('/login', passport.authenticate('local-login', { failureRedirect: '/login', successRedirect: '/' }));
 
 router.get('/github', passport.authenticate('github', { scope: ['user:email'] }));
 

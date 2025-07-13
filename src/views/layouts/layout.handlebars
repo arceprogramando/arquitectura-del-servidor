@@ -14,6 +14,40 @@
     ::-webkit-scrollbar-track { background: #f1f1f1; }
     ::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: #a8a8a8; }
+    
+    /* Aspect ratio personalizado para productos */
+    .product-image-container {
+      position: relative;
+      width: 100%;
+      height: 320px; /* Altura fija más alta */
+      overflow: hidden;
+      border-radius: 0.5rem 0.5rem 0 0;
+    }
+    
+    .product-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top; /* Enfoca en la parte superior */
+      transition: transform 0.3s ease;
+    }
+    
+    .product-image:hover {
+      transform: scale(1.05);
+    }
+    
+    /* Para pantallas más grandes */
+    @media (min-width: 768px) {
+      .product-image-container {
+        height: 280px;
+      }
+    }
+    
+    @media (min-width: 1024px) {
+      .product-image-container {
+        height: 300px;
+      }
+    }
   </style>
   
   <title>{{#if title}}{{title}}{{else}}Vestimenta Catan{{/if}}</title>

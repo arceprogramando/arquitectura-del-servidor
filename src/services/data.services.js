@@ -21,7 +21,7 @@ class DataService {
   async getProductoById(id) {
     try {
       const productos = await this.getProductos();
-      return productos.find(producto => producto.id === parseInt(id));
+      return productos.find((producto) => producto.id === parseInt(id, 10));
     } catch (error) {
       console.error('Error al obtener producto por ID:', error);
       return null;
@@ -31,7 +31,7 @@ class DataService {
   async getProductosByGenero(genero) {
     try {
       const productos = await this.getProductos();
-      return productos.filter(producto => producto.genero === genero);
+      return productos.filter((producto) => producto.genero === genero);
     } catch (error) {
       console.error('Error al obtener productos por género:', error);
       return [];

@@ -22,11 +22,11 @@
         <div class="lg:grid lg:grid-cols-2 lg:gap-x-8 lg:items-start">
           <!-- Imagen del producto -->
           <div class="flex flex-col-reverse">
-            <div class="aspect-w-1 aspect-h-1 w-full">
+            <div class="w-full h-96 sm:h-[500px] overflow-hidden">
               <img 
                 src="{{producto.thumbnail}}" 
                 alt="{{producto.producto}} - {{producto.genero}}"
-                class="w-full h-96 object-cover object-center sm:rounded-lg"
+                class="w-full h-full object-cover object-top sm:rounded-lg"
               />
             </div>
           </div>

@@ -33,4 +33,9 @@ router.get('/usermanagement', viewController.viewUserManagement);
 
 router.get('/product/:id', viewController.showProductDetail);
 
+router.get('/logout', (req, res) => {
+  // Redirigir a la ruta real de logout en la API
+  res.redirect('/api/session/logout');
+});
+
 export default router;
