@@ -1,0 +1,146 @@
+{{#if user}}
+  <div class="bg-gray-50 min-h-screen py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mb-8">
+        <h1 class="text-3xl font-bold text-gray-900 mb-2">
+          ¡Bienvenido, {{user.firstname}}!
+        </h1>
+        <p class="text-lg text-gray-600">
+          Descubre nuestra colección de remeras térmicas
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {{#each productos}}
+          {{#if (hasStock this)}}
+            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+              <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden">
+                <img 
+                  src="{{thumbnail}}" 
+                  alt="{{producto}} - {{genero}}"
+                  class="w-full h-64 object-cover object-center hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              
+              <div class="p-6">
+                <div class="flex items-center justify-between mb-3">
+                  <h3 class="text-xl font-semibold text-gray-900 capitalize">
+                    {{producto}}
+                  </h3>
+                  <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                    {{genero}}
+                  </span>
+                </div>
+                
+                <!-- Talles disponibles -->
+                <div class="mb-4">
+                  <p class="text-sm text-gray-600 mb-2">Talles disponibles:</p>
+                  <div class="flex flex-wrap gap-1">
+                    {{#each talles}}
+                      {{#if (talleHasStock this)}}
+                        <span class="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded">
+                          {{talle}}
+                        </span>
+                      {{/if}}
+                    {{/each}}
+                  </div>
+                </div>
+
+                <!-- Colores disponibles únicos -->
+                <div class="mb-4">
+                  <p class="text-sm text-gray-600 mb-2">Colores disponibles:</p>
+                  <div class="flex flex-wrap gap-2">
+                    {{#each (getUniqueColors this)}}
+                      <div class="flex items-center gap-1 bg-gray-50 px-2 py-1 rounded">
+                        <div class="w-3 h-3 rounded-full border border-gray-300
+                          {{#if (eq this 'blanco')}}bg-white{{/if}}
+                          {{#if (eq this 'negro')}}bg-black{{/if}}
+                          {{#if (eq this 'gris')}}bg-gray-500{{/if}}
+                          {{#if (eq this 'azul')}}bg-blue-500{{/if}}
+                        "></div>
+                        <span class="text-xs text-gray-600 capitalize">{{this}}</span>
+                      </div>
+                    {{/each}}
+                  </div>
+                </div>
+
+                <!-- Stock total mejorado -->
+                <div class="mb-4">
+                  <p class="text-sm text-gray-600 mb-2">Stock por talle:</p>
+                  <div class="grid grid-cols-2 gap-2 text-xs">
+                    {{#each talles}}
+                      {{#if (talleHasStock this)}}
+                        <div class="bg-gray-50 px-2 py-1 rounded">
+                          <span class="font-medium">{{talle}}:</span>
+                          <span class="text-gray-600">{{getTalleStock this}} unidades</span>
+                        </div>
+                      {{/if}}
+                    {{/each}}
+                  </div>
+                </div>
+
+                <div class="flex items-center justify-between">
+                  <div class="text-sm text-gray-500">
+                    <span class="font-medium">Total:</span> 
+                    <span class="text-green-600 font-semibold">{{getTotalStock this}} unidades</span>
+                  </div>
+                  <a 
+                    href="/product/{{id}}" 
+                    class="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200"
+                  >
+                    <span>Ver detalles</span>
+                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          {{/if}}
+        {{/each}}
+      </div>
+
+      {{#unless (hasAnyProductsWithStock productos)}}
+        <div class="text-center py-12">
+          <div class="text-gray-400 text-6xl mb-4">
+            📦
+          </div>
+          <h3 class="text-xl font-medium text-gray-900 mb-2">
+            No hay productos con stock disponible
+          </h3>
+          <p class="text-gray-600">
+            Todos nuestros productos están temporalmente agotados. Vuelve pronto para ver nuevos productos en stock.
+          </p>
+        </div>
+      {{/unless}}
+    </div>
+  </div>
+{{else}}
+  <div class="min-h-screen flex items-center justify-center bg-gray-50">
+    <div class="max-w-md w-full space-y-8">
+      <div class="text-center">
+        <div class="text-6xl mb-4">🔐</div>
+        <h2 class="text-3xl font-bold text-gray-900 mb-2">
+          Acceso Requerido
+        </h2>
+        <p class="text-gray-600 mb-8">
+          Inicia sesión para ver nuestros productos
+        </p>
+        <div class="space-y-4">
+          <a 
+            href="/login" 
+            class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
+          >
+            Iniciar Sesión
+          </a>
+          <a 
+            href="/register" 
+            class="w-full flex justify-center py-3 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
+          >
+            Registrarse
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+{{/if}}

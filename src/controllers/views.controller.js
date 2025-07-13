@@ -3,24 +3,47 @@ import ProductModel from '../model/products.models.js';
 import CartModel from '../model/carts.models.js';
 import UserModel from '../model/user.models.js';
 import Responses from '../middleware/error.handlers.js';
+import DataService from '../services/data.services.js';
 
 class ViewController {
-
   constructor() {
     this.viewService = new ViewService();
     this.productModel = ProductModel;
     this.cartModel = CartModel;
     this.userModel = UserModel;
+    this.dataService = new DataService();
     this.httpResponse = new Responses.HttpResponse();
     this.enumError = Responses.EnumError;
   }
 
   showLoginPage = async (req, res) => {
     try {
-      return res.render('login', {
+      return res.render('login', {});
+    } catch (error) {
+      return this.httpResponse.ERROR(
+        res,
+        `${this.enumError.CONTROLER_ERROR} error al visualizar el login `,
+        { error: error.message },
+      );
+    }
+  };
+
+  showHomePage = async (req, res) => {
+    try {
+      const productos = await this.dataService.getProductos();
+
+      return res.render('index', {
+        title: 'Inicio - Vestimenta Catan',
+        pageTitle: 'Bienvenido a Vestimenta Catan',
+        pageDescription: 'Descubre nuestra colección de remeras térmicas',
+        productos,
       });
     } catch (error) {
-      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR} error al visualizar el login `, { error: error.message });
+      return this.httpResponse.ERROR(
+        res,
+        `${this.enumError.CONTROLER_ERROR} error al visualizar la página de inicio `,
+        { error: error.message },
+      );
     }
   };
 
@@ -51,9 +74,7 @@ class ViewController {
 
       const visit = `Se ha visitado el sitio ${visitCount} ${visitCount === 1 ? 'vez' : 'veces'}`;
 
-      const {
-        docs, hasPrevPage, hasNextPage, prevPage, nextPage,
-      } = await this.viewService.getProducts(query, options);
+      const { docs, hasPrevPage, hasNextPage, prevPage, nextPage } = await this.viewService.getProducts(query, options);
 
       const productIds = docs.map((product) => product._id);
 
@@ -84,8 +105,11 @@ class ViewController {
         messages,
       });
     } catch (error) {
-      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR} Error al obtener los mensajes en el views controller `, { error: error.message });
-
+      return this.httpResponse.ERROR(
+        res,
+        `${this.enumError.CONTROLER_ERROR} Error al obtener los mensajes en el views controller `,
+        { error: error.message },
+      );
     }
   };
 
@@ -97,7 +121,11 @@ class ViewController {
         cart: populateProduct.toObject(),
       });
     } catch (error) {
-      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR}Error al popular los mensajes en el views controller `, { error: error.message });
+      return this.httpResponse.ERROR(
+        res,
+        `${this.enumError.CONTROLER_ERROR}Error al popular los mensajes en el views controller `,
+        { error: error.message },
+      );
     }
   };
 
@@ -105,7 +133,11 @@ class ViewController {
     try {
       return res.render('register');
     } catch (error) {
-      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR} Error al visualizar el register en el controller del view `, { error: error.message });
+      return this.httpResponse.ERROR(
+        res,
+        `${this.enumError.CONTROLER_ERROR} Error al visualizar el register en el controller del view `,
+        { error: error.message },
+      );
     }
   };
 
@@ -113,29 +145,37 @@ class ViewController {
     try {
       return res.render('recover');
     } catch (error) {
-      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR}Error al visualizar el register en el controller del view `, { error: error.message });
+      return this.httpResponse.ERROR(
+        res,
+        `${this.enumError.CONTROLER_ERROR}Error al visualizar el register en el controller del view `,
+        { error: error.message },
+      );
     }
   };
 
   viewEmailToRecover = async (req, res) => {
     try {
-
       return res.render('emailwithrecover');
-
     } catch (error) {
-      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR}Error al visualizar el register 
-      en el controller del view `, { error: error.message });
-
+      return this.httpResponse.ERROR(
+        res,
+        `${this.enumError.CONTROLER_ERROR}Error al visualizar el register 
+      en el controller del view `,
+        { error: error.message },
+      );
     }
   };
 
   viewCheckYourEmail = async (req, res) => {
     try {
       return res.render('checkyouremail');
-
     } catch (error) {
-      return this.httpResponse.ERROR(res, `${this.enumError.CONTROLER_ERROR}Error al visualizar el register 
-      en el controller del view `, { error: error.message });
+      return this.httpResponse.ERROR(
+        res,
+        `${this.enumError.CONTROLER_ERROR}Error al visualizar el register 
+      en el controller del view `,
+        { error: error.message },
+      );
     }
   };
 
@@ -175,12 +215,9 @@ class ViewController {
         _id: product._id,
         image: product.thumbnails,
         stock: product.stock,
-
       }));
 
-      const findUser = await this.userModel
-        .findOne({ _id: uId })
-        .populate('carts');
+      const findUser = await this.userModel.findOne({ _id: uId }).populate('carts');
 
       const cId = findUser.carts[0]?.cart._id.toString();
 
@@ -225,7 +262,6 @@ class ViewController {
       });
     } catch (error) {
       return res.redirect('/profile');
-
     }
   };
 
@@ -255,6 +291,32 @@ class ViewController {
     }
   };
 
+  showProductDetail = async (req, res) => {
+    try {
+      const { id } = req.params;
+      const producto = await this.dataService.getProductoById(id);
+
+      if (!producto) {
+        return res.status(404).render('error', {
+          title: 'Producto no encontrado',
+          message: 'El producto que buscas no existe',
+        });
+      }
+
+      return res.render('product-detail', {
+        title: `${producto.producto} - ${producto.genero}`,
+        pageTitle: producto.producto,
+        pageDescription: `Detalles del producto: ${producto.producto} para ${producto.genero}`,
+        producto,
+      });
+    } catch (error) {
+      return this.httpResponse.ERROR(
+        res,
+        `${this.enumError.CONTROLER_ERROR} error al mostrar detalle del producto `,
+        { error: error.message },
+      );
+    }
+  };
 }
 
 export default ViewController;

@@ -1,0 +1,197 @@
+{
+  "productos": [
+    {
+      "id": 1,
+      "producto": "remera térmica",
+      "genero": "mujer",
+      "thumbnail": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&h=500&fit=crop&crop=center",
+      "talles": [
+        {
+          "talle": "1",
+          "variantes": [
+            {
+              "color": "blanco",
+              "cantidad": 4
+            },
+            {
+              "color": "gris",
+              "cantidad": 3
+            }
+          ]
+        },
+        {
+          "talle": "2",
+          "variantes": [
+            {
+              "color": "blanco",
+              "cantidad": 4
+            },
+            {
+              "color": "gris",
+              "cantidad": 2
+            },
+            {
+              "color": "negro",
+              "cantidad": 4
+            },
+            {
+              "color": "azul",
+              "cantidad": 1
+            }
+          ]
+        },
+        {
+          "talle": "3",
+          "variantes": [
+            {
+              "color": "blanco",
+              "cantidad": 5
+            },
+            {
+              "color": "gris",
+              "cantidad": 4
+            },
+            {
+              "color": "negro",
+              "cantidad": 3
+            },
+            {
+              "color": "azul",
+              "cantidad": 2
+            }
+          ]
+        },
+        {
+          "talle": "4",
+          "variantes": [
+            {
+              "color": "gris",
+              "cantidad": 3
+            },
+            {
+              "color": "azul",
+              "cantidad": 4
+            },
+            {
+              "color": "negro",
+              "cantidad": 11
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "producto": "remera térmica",
+      "genero": "hombre",
+      "thumbnail": "https://images.unsplash.com/photo-1576995853123-5a10305d93c0?w=500&h=500&fit=crop&crop=center",
+      "talles": [
+        {
+          "talle": "S",
+          "variantes": [
+            {
+              "color": "blanco",
+              "cantidad": 1
+            },
+            {
+              "color": "gris",
+              "cantidad": 0
+            },
+            {
+              "color": "negro",
+              "cantidad": 0
+            },
+            {
+              "color": "azul",
+              "cantidad": 0
+            }
+          ]
+        },
+        {
+          "talle": "M",
+          "variantes": [
+            {
+              "color": "blanco",
+              "cantidad": 0
+            },
+            {
+              "color": "gris",
+              "cantidad": 0
+            },
+            {
+              "color": "negro",
+              "cantidad": 0
+            },
+            {
+              "color": "azul",
+              "cantidad": 0
+            }
+          ]
+        },
+        {
+          "talle": "L",
+          "variantes": [
+            {
+              "color": "blanco",
+              "cantidad": 0
+            },
+            {
+              "color": "gris",
+              "cantidad": 0
+            },
+            {
+              "color": "negro",
+              "cantidad": 0
+            },
+            {
+              "color": "azul",
+              "cantidad": 0
+            }
+          ]
+        },
+        {
+          "talle": "XL",
+          "variantes": [
+            {
+              "color": "blanco",
+              "cantidad": 0
+            },
+            {
+              "color": "gris",
+              "cantidad": 0
+            },
+            {
+              "color": "negro",
+              "cantidad": 0
+            },
+            {
+              "color": "azul",
+              "cantidad": 0
+            }
+          ]
+        },
+        {
+          "talle": "XXL",
+          "variantes": [
+            {
+              "color": "blanco",
+              "cantidad": 0
+            },
+            {
+              "color": "gris",
+              "cantidad": 0
+            },
+            {
+              "color": "negro",
+              "cantidad": 0
+            },
+            {
+              "color": "azul",
+              "cantidad": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

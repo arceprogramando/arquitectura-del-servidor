@@ -5,7 +5,9 @@ import upload from '../middleware/multeruploader.js';
 const viewController = new ViewController();
 const router = Router();
 
-router.get('/', viewController.showLoginPage);
+router.get('/', viewController.showHomePage);
+
+router.get('/login', viewController.showLoginPage);
 
 router.get('/products', viewController.getProducts);
 
@@ -28,5 +30,7 @@ router.get('/cartsuser', viewController.viewCartUser);
 router.get('/completeProfile', upload.single('image'), viewController.viewUpdateCompleteProfile);
 
 router.get('/usermanagement', viewController.viewUserManagement);
+
+router.get('/product/:id', viewController.showProductDetail);
 
 export default router;

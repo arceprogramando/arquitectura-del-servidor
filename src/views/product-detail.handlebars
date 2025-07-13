@@ -1,0 +1,246 @@
+{{#if user}}
+  <div class="bg-gray-50 min-h-screen py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Breadcrumb -->
+      <nav class="flex mb-8" aria-label="Breadcrumb">
+        <ol class="inline-flex items-center space-x-1 md:space-x-3">
+          <li class="inline-flex items-center">
+            <a href="/" class="text-gray-600 hover:text-gray-900 text-sm font-medium">
+              Inicio
+            </a>
+          </li>
+          <li>
+            <div class="flex items-center">
+              <span class="text-gray-400 mx-2">/</span>
+              <span class="text-gray-500 text-sm font-medium">{{producto.producto}}</span>
+            </div>
+          </li>
+        </ol>
+      </nav>
+
+      <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+        <div class="lg:grid lg:grid-cols-2 lg:gap-x-8 lg:items-start">
+          <!-- Imagen del producto -->
+          <div class="flex flex-col-reverse">
+            <div class="aspect-w-1 aspect-h-1 w-full">
+              <img 
+                src="{{producto.thumbnail}}" 
+                alt="{{producto.producto}} - {{producto.genero}}"
+                class="w-full h-96 object-cover object-center sm:rounded-lg"
+              />
+            </div>
+          </div>
+
+          <!-- Información del producto -->
+          <div class="px-4 pb-16 pt-10 sm:px-6 lg:px-8 lg:pb-24 lg:pt-16">
+            <div class="lg:col-start-1 lg:border-r lg:border-gray-200 lg:pr-8">
+              <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl capitalize">
+                {{producto.producto}}
+              </h1>
+              
+              <div class="mt-4">
+                <span class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-sm font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
+                  {{producto.genero}}
+                </span>
+              </div>
+
+              <div class="mt-6">
+                <h3 class="text-lg font-semibold text-gray-900">Descripción</h3>
+                <p class="mt-2 text-gray-600">
+                  Remera térmica de alta calidad, perfecta para mantener el calor corporal en días fríos. 
+                  Fabricada con materiales transpirables y cómodos para uso diario.
+                </p>
+              </div>
+
+              <!-- Selección de talle -->
+              <div class="mt-8">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">Selecciona tu talle</h3>
+                <div class="grid grid-cols-4 gap-3">
+                  {{#each producto.talles}}
+                    <button 
+                      class="talle-btn relative flex items-center justify-center rounded-md border border-gray-300 bg-white py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 cursor-pointer"
+                      data-talle="{{talle}}"
+                      onclick="selectTalle('{{talle}}')"
+                    >
+                      {{talle}}
+                    </button>
+                  {{/each}}
+                </div>
+              </div>
+
+              <!-- Selección de color -->
+              <div class="mt-8">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">Selecciona tu color</h3>
+                <div id="colores-container" class="grid grid-cols-4 gap-3">
+                  <!-- Los colores se llenarán dinámicamente con JavaScript -->
+                </div>
+              </div>
+
+              <!-- Stock disponible -->
+              <div class="mt-6">
+                <div id="stock-info" class="text-sm text-gray-600 hidden">
+                  <span class="font-medium">Stock disponible:</span> 
+                  <span id="stock-cantidad">-</span> unidades
+                </div>
+              </div>
+
+              <!-- Botón de agregar al carrito -->
+              <div class="mt-8">
+                <button 
+                  id="add-to-cart-btn"
+                  class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 disabled:bg-gray-300 disabled:cursor-not-allowed"
+                  disabled
+                >
+                  Agregar al carrito
+                </button>
+              </div>
+
+              <!-- Información adicional -->
+              <div class="mt-8 border-t border-gray-200 pt-8">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">Información del producto</h3>
+                <dl class="space-y-3">
+                  <div>
+                    <dt class="text-sm font-medium text-gray-500">Material</dt>
+                    <dd class="text-sm text-gray-900">100% Algodón térmico</dd>
+                  </div>
+                  <div>
+                    <dt class="text-sm font-medium text-gray-500">Cuidado</dt>
+                    <dd class="text-sm text-gray-900">Lavado a máquina en agua fría</dd>
+                  </div>
+                  <div>
+                    <dt class="text-sm font-medium text-gray-500">Origen</dt>
+                    <dd class="text-sm text-gray-900">Argentina</dd>
+                  </div>
+                </dl>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const producto = {{{json producto}}};
+    let talleSeleccionado = null;
+    let colorSeleccionado = null;
+
+    function selectTalle(talle) {
+      talleSeleccionado = talle;
+      
+      // Remover selección anterior
+      document.querySelectorAll('.talle-btn').forEach(btn => {
+        btn.classList.remove('ring-2', 'ring-blue-500', 'bg-blue-50');
+      });
+      
+      // Agregar selección al talle actual
+      event.target.classList.add('ring-2', 'ring-blue-500', 'bg-blue-50');
+      
+      // Mostrar colores disponibles para este talle
+      mostrarColoresDisponibles(talle);
+      
+      // Resetear color seleccionado
+      colorSeleccionado = null;
+      updateAddToCartButton();
+    }
+
+    function mostrarColoresDisponibles(talle) {
+      const talleData = producto.talles.find(t => t.talle === talle);
+      const coloresContainer = document.getElementById('colores-container');
+      
+      coloresContainer.innerHTML = '';
+      
+      talleData.variantes.forEach(variante => {
+        if (variante.cantidad > 0) {
+          const colorBtn = document.createElement('button');
+          colorBtn.className = 'color-btn relative flex items-center justify-center rounded-md border-2 border-gray-300 py-3 px-4 text-sm font-medium hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 cursor-pointer';
+          colorBtn.setAttribute('data-color', variante.color);
+          colorBtn.setAttribute('data-cantidad', variante.cantidad);
+          colorBtn.onclick = () => selectColor(variante.color, variante.cantidad);
+          
+          const colorClass = {
+            'blanco': 'bg-white',
+            'negro': 'bg-black',
+            'gris': 'bg-gray-500',
+            'azul': 'bg-blue-500'
+          }[variante.color];
+          
+          colorBtn.innerHTML = `
+            <div class="w-6 h-6 rounded-full ${colorClass} border border-gray-300"></div>
+            <span class="ml-2 capitalize">${variante.color}</span>
+          `;
+          
+          coloresContainer.appendChild(colorBtn);
+        }
+      });
+    }
+
+    function selectColor(color, cantidad) {
+      colorSeleccionado = color;
+      
+      // Remover selección anterior
+      document.querySelectorAll('.color-btn').forEach(btn => {
+        btn.classList.remove('ring-2', 'ring-blue-500', 'bg-blue-50');
+      });
+      
+      // Agregar selección al color actual
+      event.target.classList.add('ring-2', 'ring-blue-500', 'bg-blue-50');
+      
+      // Mostrar stock
+      const stockInfo = document.getElementById('stock-info');
+      const stockCantidad = document.getElementById('stock-cantidad');
+      stockCantidad.textContent = cantidad;
+      stockInfo.classList.remove('hidden');
+      
+      updateAddToCartButton();
+    }
+
+    function updateAddToCartButton() {
+      const addBtn = document.getElementById('add-to-cart-btn');
+      
+      if (talleSeleccionado && colorSeleccionado) {
+        addBtn.disabled = false;
+        addBtn.textContent = 'Agregar al carrito';
+      } else {
+        addBtn.disabled = true;
+        addBtn.textContent = 'Selecciona talle y color';
+      }
+    }
+
+    // Evento para agregar al carrito
+    document.getElementById('add-to-cart-btn').addEventListener('click', function() {
+      if (talleSeleccionado && colorSeleccionado) {
+        // Aquí implementarías la lógica para agregar al carrito
+        alert(`Agregado al carrito: ${producto.producto} - Talle: ${talleSeleccionado}, Color: ${colorSeleccionado}`);
+      }
+    });
+  </script>
+{{else}}
+  <div class="min-h-screen flex items-center justify-center bg-gray-50">
+    <div class="max-w-md w-full space-y-8">
+      <div class="text-center">
+        <div class="text-6xl mb-4">🔐</div>
+        <h2 class="text-3xl font-bold text-gray-900 mb-2">
+          Acceso Requerido
+        </h2>
+        <p class="text-gray-600 mb-8">
+          Inicia sesión para ver los detalles del producto
+        </p>
+        <div class="space-y-4">
+          <a 
+            href="/login" 
+            class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
+          >
+            Iniciar Sesión
+          </a>
+          <a 
+            href="/register" 
+            class="w-full flex justify-center py-3 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
+          >
+            Registrarse
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+{{/if}}
