@@ -74,7 +74,8 @@ class ViewController {
 
       const visit = `Se ha visitado el sitio ${visitCount} ${visitCount === 1 ? 'vez' : 'veces'}`;
 
-      const { docs, hasPrevPage, hasNextPage, prevPage, nextPage } = await this.viewService.getProducts(query, options);
+      const { docs, hasPrevPage, hasNextPage, prevPage, nextPage } =
+        await this.viewService.getProducts(query, options);
 
       const productIds = docs.map((product) => product._id);
 
@@ -181,22 +182,43 @@ class ViewController {
 
   viewProfile = async (req, res) => {
     try {
+      console.log('=== DEBUG PROFILE ===');
+      console.log('req.user:', req.user);
+      console.log('req.session:', req.session);
+      console.log(
+        'req.isAuthenticated():',
+        req.isAuthenticated ? req.isAuthenticated() : 'No method',
+      );
+
       const { user } = req;
 
-      const isAdmin = req.user.role === 'ADMIN';
+      if (!user) {
+        console.log('❌ No user found, redirecting to home');
+        return res.redirect('/');
+      }
 
+      const isAdmin = req.user.role === 'ADMIN';
       const isPremium = req.user.role === 'PREMIUM';
 
-      return res.render('profile', {
-        firstname: user.firstname,
-        lastname: user.lastname || user.login,
-        age: user.age,
-        email: user.email,
-        role: user.role,
+      const profileData = {
+        user: {
+          firstname: user.firstname,
+          lastname: user.lastname || user.login,
+          age: user.age,
+          email: user.email,
+          role: user.role,
+          phone: user.phone,
+          address: user.address,
+        },
         isAdmin,
         isPremium,
-      });
+      };
+
+      console.log('✅ Rendering profile with data:', profileData);
+
+      return res.render('profile', profileData);
     } catch (error) {
+      console.log('❌ Error in viewProfile:', error);
       return res.redirect('/');
     }
   };

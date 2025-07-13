@@ -83,8 +83,7 @@ export const setupViewEngine = (app) => {
           return producto.talles.reduce((total, talle) => {
             if (talle.variantes) {
               return (
-                total +
-                talle.variantes.reduce(
+                total + talle.variantes.reduce(
                   (talleTotal, variante) => talleTotal + (variante.cantidad || 0),
                   0,
                 )
@@ -100,10 +99,15 @@ export const setupViewEngine = (app) => {
           return productos.some((producto) => {
             if (!producto.talles) return false;
             return producto.talles.some(
-              (talle) =>
-                talle.variantes && talle.variantes.some((variante) => variante.cantidad > 0),
+              (talle) => talle.variantes && talle.variantes.some((variante) => variante.cantidad > 0),
             );
           });
+        },
+
+        // Helper para obtener substring
+        substring: (str, start, end) => {
+          if (!str) return '';
+          return str.substring(start, end);
         },
       },
     }),
