@@ -9,8 +9,8 @@
         {
           "talle": "1",
           "variantes": [
-            { "color": "blanco", "cantidad": 4 },
-            { "color": "gris", "cantidad": 3 }
+            { "color": "blanco", "cantidad": 3 },
+            { "color": "gris", "cantidad": 2 }
           ]
         },
         {
@@ -61,7 +61,7 @@
           "variantes": [
             { "color": "negro", "cantidad": 5 },
             { "color": "azul", "cantidad": 5 },
-            { "color": "blanco", "cantidad": 5 },
+            { "color": "blanco", "cantidad": 6 },
             { "color": "gris", "cantidad": 4 }
           ]
         },
@@ -69,7 +69,7 @@
           "talle": "L",
           "variantes": [
             { "color": "negro", "cantidad": 4 },
-            { "color": "blanco", "cantidad": 3 },
+            { "color": "blanco", "cantidad": 4 },
             { "color": "azul", "cantidad": 2 },
             { "color": "gris", "cantidad": 2 }
           ]
@@ -80,16 +80,75 @@
             { "color": "negro", "cantidad": 5 },
             { "color": "azul", "cantidad": 4 },
             { "color": "gris", "cantidad": 2 },
-            { "color": "blanco", "cantidad": 2 }
+            { "color": "blanco", "cantidad": 3 }
           ]
         },
         {
           "talle": "XXL",
           "variantes": [
-            { "color": "negro", "cantidad": 4 },
+            { "color": "negro", "cantidad": 5 },
             { "color": "azul", "cantidad": 3 },
             { "color": "gris", "cantidad": 2 },
             { "color": "blanco", "cantidad": 1 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "producto": "remera térmica",
+      "genero": "niños unisex",
+      "thumbnail": "/images/products/remera-termica-ninios-1.jpeg",
+      "talles": [
+        {
+          "talle": "6",
+          "variantes": [
+            { "color": "negro", "cantidad": 3 },
+            { "color": "gris", "cantidad": 4 },
+            { "color": "blanco", "cantidad": 6 },
+            { "color": "azul", "cantidad": 2 }
+          ]
+        },
+        {
+          "talle": "8",
+          "variantes": [
+            { "color": "negro", "cantidad": 4 },
+            { "color": "gris", "cantidad": 5 },
+            { "color": "blanco", "cantidad": 6 },
+            { "color": "azul", "cantidad": 4 }
+          ]
+        },
+        {
+          "talle": "10",
+          "variantes": [
+            { "color": "negro", "cantidad": 4 },
+            { "color": "blanco", "cantidad": 5 },
+            { "color": "azul", "cantidad": 4 }
+          ]
+        },
+        {
+          "talle": "12",
+          "variantes": [
+            { "color": "negro", "cantidad": 4 },
+            { "color": "blanco", "cantidad": 6 },
+            { "color": "azul", "cantidad": 4 }
+          ]
+        },
+        {
+          "talle": "14",
+          "variantes": [
+            { "color": "negro", "cantidad": 5 },
+            { "color": "blanco", "cantidad": 6 },
+            { "color": "azul", "cantidad": 5 }
+          ]
+        },
+        {
+          "talle": "16",
+          "variantes": [
+            { "color": "negro", "cantidad": 4 },
+            { "color": "gris", "cantidad": 4 },
+            { "color": "blanco", "cantidad": 6 },
+            { "color": "azul", "cantidad": 4 }
           ]
         }
       ]
