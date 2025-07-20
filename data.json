@@ -121,7 +121,7 @@
         {
           "talle": "10",
           "variantes": [
-            { "color": "negro", "cantidad": 4 },
+            { "color": "negro", "cantidad": 5 },
             { "color": "blanco", "cantidad": 5 },
             { "color": "azul", "cantidad": 4 }
           ]
@@ -178,6 +178,30 @@
         {
           "talle": "?",
           "variantes": [{ "color": "negro", "cantidad": 2 }]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "producto": "calza térmica",
+      "genero": "mujer",
+      "thumbnail": "/images/products/calza-termica-hombre-1.png",
+      "talles": [
+        {
+          "talle": "2",
+          "variantes": [{ "color": "negro", "cantidad": 3 }]
+        },
+        {
+          "talle": "3",
+          "variantes": [{ "color": "negro", "cantidad": 2 }]
+        },
+        {
+          "talle": "4",
+          "variantes": [{ "color": "negro", "cantidad": 1 }]
+        },
+        {
+          "talle": "?",
+          "variantes": [{ "color": "negro", "cantidad": 1 }]
         }
       ]
     }
