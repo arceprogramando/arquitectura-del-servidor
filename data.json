@@ -152,6 +152,34 @@
           ]
         }
       ]
+    },
+    {
+      "id": 4,
+      "producto": "calza térmica",
+      "genero": "hombre",
+      "thumbnail": "/images/products/calza-termica-hombre-1.png",
+      "talles": [
+        {
+          "talle": "M",
+          "variantes": [{ "color": "negro", "cantidad": 5 }]
+        },
+        {
+          "talle": "L",
+          "variantes": [{ "color": "negro", "cantidad": 5 }]
+        },
+        {
+          "talle": "XL",
+          "variantes": [{ "color": "negro", "cantidad": 3 }]
+        },
+        {
+          "talle": "XXL",
+          "variantes": [{ "color": "negro", "cantidad": 5 }]
+        },
+        {
+          "talle": "?",
+          "variantes": [{ "color": "negro", "cantidad": 2 }]
+        }
+      ]
     }
   ]
 }
